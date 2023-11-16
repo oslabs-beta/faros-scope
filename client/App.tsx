@@ -6,6 +6,6 @@ const App = () => {
       <h1>Faros Scope</h1>
     </div>
   );
-}
+};
 
 export default App;
