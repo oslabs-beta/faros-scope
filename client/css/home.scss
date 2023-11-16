@@ -1,0 +1,10 @@
+.outerView {
+  background: transparent;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.7) 0.1em,
+      transparent 0.1em
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0.1em, transparent 0.1em);
+  background-size: 3em 3em;
+  border: 1.5px solid #000000;
+}

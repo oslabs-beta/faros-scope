@@ -1,0 +1,54 @@
+@import './variables.scss';
+
+@mixin flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@mixin flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-base {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1rem;
+}
+
+.outerContainer {
+  @include flex-vertical;
+  height: 100vh;
+  width: 100vw;
+  background-color: #222222;
+  color: #ededed;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  overflow: hidden;
+}
+
+.innerContainer {
+  @include flex-vertical;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dark {
+  background-color: $background-color-dark;
+  color: $dark-text;
+}
+
+.light {
+  background-color: $background-color-light;
+  color: $light-text;
+}

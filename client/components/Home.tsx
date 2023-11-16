@@ -1,11 +1,19 @@
-import React from "react";
+import React from 'react';
+import '../css/home.scss';
+import { useTheme } from '../Theme';
 
 const Home = () => {
+  const { theme } = useTheme();
+
   return (
-    <div>
-      <h1>Home</h1>
+    <div className={`outerContainer ${theme}`}>
+      <div className={`innerContainer ${theme}`}>
+        <div className="outerView">
+          <h1>Nodes View</h1>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Home;

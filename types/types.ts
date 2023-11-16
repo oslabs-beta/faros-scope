@@ -5,6 +5,11 @@ import {
   CreationOptional,
 } from 'sequelize';
 
+export interface ThemeContextType {
+  theme: string; 
+  toggleTheme:()=> void; 
+}
+
 export class User extends Model<
   InferAttributes<User>,
   InferCreationAttributes<User>

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
+
+* {
+  box-sizing: border-box;
+  transition: background-color 0.3s ease-in-out;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Baumans';
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
