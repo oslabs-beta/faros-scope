@@ -13,6 +13,6 @@ if (container) {
   root.render(
     <Theme>
       <App />
-    </Theme>
+    </Theme>,
   );
 }
