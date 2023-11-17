@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/navbar.scss';
 import { useTheme } from '../Theme';
+import SwitchButton from './reusable/SwitchButton';
 
 const NavBar = () => {
   const { toggleTheme, theme } = useTheme();
@@ -11,13 +12,9 @@ const NavBar = () => {
   return (
     <nav className="NavBar">
       <h1 id='App-Name-Header'>Faros</h1>
-      <button
-        className={`switch ${theme}`}
-        id="Theme-Button"
-        onClick={changeTheme}
-      >
-        Theme
-      </button>
+      <div className="nav-right">
+        <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+      </div>
     </nav>
   );
 };

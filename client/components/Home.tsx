@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className={`outerContainer ${theme}`}>
       <div className={`innerContainer ${theme}`}>
-        <div className="outerView">
+        <div className={`outerView${theme}`}>
           <h1>Nodes View</h1>
         </div>
       </div>

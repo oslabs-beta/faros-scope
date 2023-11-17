@@ -5,14 +5,18 @@ import './css/variables.scss';
 import React from 'react';
 import App from './App';
 import Theme from './Theme';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 const container = document.getElementById('root');
 
 if (container) {
   const root = createRoot(container);
   root.render(
-    <Theme>
-      <App />
-    </Theme>,
+    <Provider store={store}>
+      <Theme>
+        <App />
+      </Theme>
+    </Provider>,
   );
 }
