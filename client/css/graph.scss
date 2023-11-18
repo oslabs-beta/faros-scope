@@ -1,0 +1,48 @@
+@import './base.scss';
+@import './variables.scss';
+
+.container {
+  /*   overflow: scroll; */
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border: 2px solid #1f1f1f;
+  cursor: grab;
+  border-radius: 8px;
+}
+
+.container:active {
+  cursor: grabbing;
+}
+
+.draggablelight {
+  @include flex-vertical;
+  width: 200%;
+  height: 200%;
+  background: #cfcfcf;
+  background-image: linear-gradient(
+      rgba($graph-blue, 1) 0.1em,
+      transparent 0.1em
+    ),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
+  background-size: 2.5em 2.5em;
+  border-radius: 8px;
+}
+
+.draggabledark {
+  @include flex-vertical;
+  width: 200%;
+  height: 200%;
+  background: rgb(45, 45, 45);
+  background-image: linear-gradient(
+      rgba($graph-blue, 1) 0.1em,
+      transparent 0.1em
+    ),
+    linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em),
+    linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+  background-size: 2.5em 2.5em;
+  border-radius: 8px;
+}

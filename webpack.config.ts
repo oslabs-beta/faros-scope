@@ -39,7 +39,11 @@ const config: Configuration = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        loader: 'file-loader',
         type: 'asset/resource',
+        options: {
+          outputPath: 'assets/', // Specify the output path for the emitted files
+        },
       },
     ],
   },

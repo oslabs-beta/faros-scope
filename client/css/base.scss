@@ -52,3 +52,31 @@
   background-color: $background-color-light;
   color: $light-text;
 }
+
+@keyframes hover-up-down {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes hover-up-down-3D {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 0 0px #287aff;
+  }
+  50% {
+    transform: translateY(-3.5px);
+    box-shadow: 0 0 8px #287aff;
+    text-shadow: 0px 0px 10px #287aff;
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 0 0px #287aff;
+  }
+}

@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
+import ThemedContainer from './reusable/ThemedContainer';
 import '../css/home.scss';
-import { useTheme } from '../Theme';
+import Graph from './reusable/Graph';
 
 const Home = () => {
-  const { theme } = useTheme();
-
   return (
-    <div className={`outerContainer ${theme}`}>
-      <div className={`innerContainer ${theme}`}>
-        <div className={`outerView${theme}`}>
-          <h1>Nodes View</h1>
-        </div>
-      </div>
-    </div>
+    <ThemedContainer>
+      <Graph />
+    </ThemedContainer>
   );
 };
 
