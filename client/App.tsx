@@ -9,6 +9,7 @@ const App = () => {
   const { theme } = useTheme();
   const body = document.querySelector('body');
 
+  //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
   useEffect(() => {
     if (body) {
       body.classList.toggle('dark', theme === 'dark');

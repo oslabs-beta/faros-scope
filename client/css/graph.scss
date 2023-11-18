@@ -8,7 +8,7 @@
   width: 100%;
   border: 2px solid #1f1f1f;
   cursor: grab;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .container:active {
@@ -16,7 +16,10 @@
 }
 
 .draggablelight {
-  @include flex-vertical;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 200%;
   height: 200%;
   background: #cfcfcf;
@@ -26,11 +29,13 @@
     ),
     linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
   background-size: 2.5em 2.5em;
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .draggabledark {
-  @include flex-vertical;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 200%;
   height: 200%;
   background: rgb(45, 45, 45);
@@ -44,5 +49,5 @@
     linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   background-size: 2.5em 2.5em;
-  border-radius: 8px;
+  border-radius: 0px;
 }

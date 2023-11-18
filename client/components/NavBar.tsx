@@ -4,6 +4,10 @@ import { useTheme } from '../Theme';
 import SwitchButton from './reusable/SwitchButton';
 import { Link } from 'react-router-dom';
 
+/**
+ * The NavBar component is contstantly rendered at the top of the page. It contains a link to the Faros GitHub repo, and other links to different pages of the app. It also contains a toggle switch to change the theme of the app.
+ * @returns ReactNode
+ */
 const NavBar = () => {
   const { toggleTheme, theme } = useTheme();
   const changeTheme = () => {
