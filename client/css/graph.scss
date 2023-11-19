@@ -1,8 +1,22 @@
 @import './base.scss';
 @import './variables.scss';
 
+@keyframes opacity-flicker {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+
+}
+
 .container {
   /*   overflow: scroll; */
+  position: relative;
   overflow: hidden;
   height: 100%;
   width: 100%;
@@ -43,11 +57,21 @@
       rgba($graph-blue, 1) 0.1em,
       transparent 0.1em
     ),
-    linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
+  background-size: 2.5em 2.5em;
+  border-radius: 0px;
+}
+
+.draggableGlowOverlay {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  opacity: 1;
+  animation: opacity-flicker 8s infinite ease-in-out;
+  background-image: linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
     linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em),
     linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   background-size: 2.5em 2.5em;
-  border-radius: 0px;
 }

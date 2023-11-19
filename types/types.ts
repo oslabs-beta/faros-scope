@@ -5,6 +5,12 @@ import {
   CreationOptional,
 } from 'sequelize';
 
+export interface IDefaultError {
+  log: string; 
+  status: number; 
+  message: string | object; 
+}
+
 export interface ThemeContextType {
   theme: string; 
   toggleTheme:()=> void; 

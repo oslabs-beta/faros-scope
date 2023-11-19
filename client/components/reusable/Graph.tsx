@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import Node from './Node';
+import formatNodes from '../../util/formatNodes';
 import { useTheme } from '../../Theme';
 import '../../css/graph.scss';
 
@@ -10,7 +10,7 @@ import '../../css/graph.scss';
 const Graph = () => {
   // reference to the draggable div, which is the container for the graph
   const draggable = useRef<HTMLDivElement>(null);
-
+  const nodes = [1, 2, 3, 4, 5];
   // default width and height from viewport
   let defaultW = window.innerWidth,
     defaultH = window.innerHeight;
@@ -74,8 +74,10 @@ const Graph = () => {
 
   return (
     <div ref={draggable} className="container">
+      {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
+      {theme === 'dark' && <div className="draggableGlowOverlay"></div>}
       <div className={`draggable${theme}`} id="draggable">
-        <Node />
+        <div className="nodesContainer">{formatNodes(nodes)}</div>
       </div>
     </div>
   );
