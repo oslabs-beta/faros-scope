@@ -1,19 +1,23 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
+import '../../../css/Reactdnd.scss';
 
 interface DroppableProps {
   id: string;
   children?: any;
   styleOverride?: any;
+  classOverride?: string;
+  orientation: string;
 }
 
-export function Droppable({ id, children, styleOverride }: DroppableProps) {
+export function Droppable({ id, children, styleOverride, classOverride, orientation }: DroppableProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: id,
+    data: { orientation },
   });
 
   styleOverride = {
-    backgroundColor: 'transparent',
+    backgroundColor: isOver ? '#FFFFFF' : 'transparent',
     ...styleOverride,
   };
 
@@ -24,8 +28,8 @@ export function Droppable({ id, children, styleOverride }: DroppableProps) {
   };
 
   return (
-    <div ref={setNodeRef} style={styleOverride}>
-      <div style={dummyStyle}></div>
+    <div className={classOverride || 'droppableContainer'} ref={setNodeRef} style={styleOverride}>
+      {/* <div style={dummyStyle}></div> */}
       {children}
     </div>
   );

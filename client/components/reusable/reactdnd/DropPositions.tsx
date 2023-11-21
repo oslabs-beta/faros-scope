@@ -8,55 +8,44 @@ interface DropPositionsProps {
 }
 
 const DropPositions = ({ parent }: DropPositionsProps) => {
-  const styleTop = {
-    height: '50px',
-    width: '100%',
-    top: '2%',
-  };
-
-  const styleLeft = {
-    height: '100%',
-    width: '50px',
-    top: '0%',
-    bottom: '0%',
-    left: '0%',
-  };
-
-  const styleBottom = {
-    height: '50px',
-    width: '50%',
-    bottom: '0%',
-    right: '0%',
-    left: '0%',
-  };
-
-  const styleRight = {
-    height: '50%',
-    width: '50px',
-    top: '50%',
-    bottom: '0%',
-    right: '0%',
-  };
   return (
     <div className="navPositions">
-      <Droppable id="topNavPosition" styleOverride={styleTop}>
+      <Droppable
+        id="topNavPosition"
+        orientation="horizontal"
+        classOverride="styleTop"
+      >
         <div id="topNavPosition">
-          {parent === 'topNavPosition' && <NavBar />}
+          {parent === 'topNavPosition' && <NavBar orientation="horizontal" />}
         </div>
       </Droppable>
-      <Droppable id="leftNavPosition" styleOverride={styleLeft}>
+      <Droppable
+        id="leftNavPosition"
+        orientation="vertical"
+        classOverride="styleLeft"
+      >
         <div id="leftNavPosition">
-          {parent === 'leftNavPosition' && <NavBar />}
+          {parent === 'leftNavPosition' && <NavBar orientation="vertical" />}
         </div>
       </Droppable>
-      <Droppable id="bottomNavPosition" styleOverride={styleBottom}>
+      <Droppable
+        id="bottomNavPosition"
+        classOverride="styleBottom"
+        orientation="horizontal"
+      >
         <div id="bottomNavPosition">
-          {parent === 'bottomNavPosition' && <NavBar />}
+          {parent === 'bottomNavPosition' && (
+            <NavBar orientation="horizontal" />
+          )}
         </div>
       </Droppable>
-      <Droppable id="rightNavPosition" styleOverride={styleRight}>
+      <Droppable
+        id="rightNavPosition"
+        classOverride="styleRight"
+        orientation="vertical"
+      >
         <div id="rightNavPosition">
-          {parent === 'rightNavPosition' && <NavBar />}
+          {parent === 'rightNavPosition' && <NavBar orientation="vertical" />}
         </div>
       </Droppable>
     </div>
