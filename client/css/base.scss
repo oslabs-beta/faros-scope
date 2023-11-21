@@ -80,3 +80,11 @@
     box-shadow: 0 0 0px #287aff;
   }
 }
+
+.Main {
+  @include flex-vertical;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}

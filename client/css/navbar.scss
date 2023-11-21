@@ -3,15 +3,34 @@
 .NavBar {
   @include flex-horizontal;
   height: 4rem;
-  width: 100%;
+  width: fit-content;
   background-color: #154084;
   color: #ededed;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
   overflow: hidden;
   padding: 0 1rem;
-  box-shadow: 0px 1px 10px 0px #000000;
   position: relative;
+  pointer-events: visible;
+}
+
+.navContainer {
+  overflow: hidden;
+  position: fixed;
+  top: 1%;
+  z-index: 1;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 5px 5px #000000;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navContainer:hover {
+  box-shadow: 0px 1px 15px 0px #9d2719;
+  transform: translateY(-2px);
+  // animation: hover-up-down-exaggerate 1s infinite ease-in-out;
+  cursor: pointer;
+  box-shadow: 10px 10px #000000;
 }
 
 #App-Name-Header {
@@ -46,6 +65,7 @@
 }
 
 .navLink:hover {
+  animation: hover-up-down-3D 1s infinite ease-in-out;
   align-items: center;
   color: #ededed;
   text-decoration: none;
@@ -54,7 +74,6 @@
   text-shadow: 0px 0px 5px #287aff;
   transform: translateY(-2px);
   box-shadow: 0 0 15px #287aff;
-  animation: hover-up-down-3D 1s infinite ease-in-out;
   background-color: #16428961;
 }
 

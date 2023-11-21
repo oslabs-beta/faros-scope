@@ -10,9 +10,10 @@ interface NodeInterface {
  * @returns ReactNode
  */
 const Node = ({ content }: NodeInterface) => {
+  //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="Node">
-      <span className='nodeOverlay'></span>
+      <span className="nodeOverlay"></span>
       <div className="outerNode">
         <div className="innerNode">
           <div className="nodeContent">{content}</div>
