@@ -9,38 +9,34 @@ interface DropPositionsProps {
 
 const DropPositions = ({ parent }: DropPositionsProps) => {
   const styleTop = {
-    position: 'absolute',
-    top: '2%',
-    transform: 'translate(50%, 0)',
-    width: '50%',
     height: '50px',
-    backgroundColor: 'red',
-  };
-  const styleLeft = {
-    position: 'absolute',
-    height: '100%',
-    width: '50px',
-    top: '0',
-    bottom: '0',
-    left: '0',
-    transform: 'translate(0, -50%)',
-    backgroundColor: 'red',
-  };
-  const styleBottom = {
-    position: 'absolute',
-    bottom: '0',
-    left: '50%',
-    transform: 'translate(-50%, 0)',
-    backgroundColor: 'red',
-  };
-  const styleRight = {
-    position: 'absolute',
-    top: '50%',
-    right: '0',
-    transform: 'translate(0, -50%)',
-    backgroundColor: 'red',
+    width: '100%',
+    top: '2%',
   };
 
+  const styleLeft = {
+    height: '100%',
+    width: '50px',
+    top: '0%',
+    bottom: '0%',
+    left: '0%',
+  };
+
+  const styleBottom = {
+    height: '50px',
+    width: '50%',
+    bottom: '0%',
+    right: '0%',
+    left: '0%',
+  };
+
+  const styleRight = {
+    height: '50%',
+    width: '50px',
+    top: '50%',
+    bottom: '0%',
+    right: '0%',
+  };
   return (
     <div className="navPositions">
       <Droppable id="topNavPosition" styleOverride={styleTop}>

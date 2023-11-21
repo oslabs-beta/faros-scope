@@ -9,7 +9,7 @@ import Draggable from './reusable/reactdnd/Draggable';
  * The NavBar component is contstantly rendered at the top of the page. It contains a link to the Faros GitHub repo, and other links to different pages of the app. It also contains a toggle switch to change the theme of the app.
  * @returns ReactNode
  */
-const NavBar = () => {
+const NavBar = ({ styleOverride }: any) => {
   const { toggleTheme, theme } = useTheme();
   const changeTheme = () => {
     toggleTheme();
@@ -17,7 +17,7 @@ const NavBar = () => {
 
   return (
     <Draggable id='navbar'>
-      <div className='navContainer'>
+      <div style={styleOverride} className='navContainer'>
         <nav className="NavBar">
           <a
             id="App-Name-Header"

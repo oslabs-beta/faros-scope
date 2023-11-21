@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, closestCenter } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
-import NavBar from './components/NavBar';
 
 // This is the main component that is rendered by the client.
 const Main = () => {
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
-  const [parent, setParent] = useState(null);
+  const [parent, setParent] = useState('topNavPosition');
   function handleDragEnd({ over }: any) {
     console.log(over);
-    setParent(over ? over.id : null);
+    setParent(over ? over.id : parent);
   }
   return (
     <div className="Main">
-      <DndContext onDragEnd={handleDragEnd}>
-        {!parent && <NavBar />}
+      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
         <DropPositions parent={parent} />
       </DndContext>
       <Outlet />
