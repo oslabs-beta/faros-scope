@@ -21,46 +21,58 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   };
 
   return (
-    <Draggable id="navbar" orientation={orientation || ''}>
-      <div style={styleOverride} className="navContainer">
-        <nav className="NavBar">
-          <a
-            id="App-Name-Header"
-            className="navLink"
-            href="https://github.com/oslabs-beta/faros-scope"
-          >
+    <div
+      style={styleOverride}
+      className={`navContainer ${
+        orientation === 'vertical' ? 'vertical' : 'horizontal'
+      }`}
+    >
+      <Draggable
+        className={`navDragContainer ${orientation || ''}`}
+        id="navDragContainer"
+        orientation={orientation || ''}
+      >
+        <div className="navDragButton">
+          <img id="navDragImg" src="../../assets/move-svgrepo-com.svg"></img>
+        </div>
+      </Draggable>
+      <nav
+        className={`NavBar ${
+          orientation === 'horizontal' ? 'horizontal' : 'vertical'
+        }`}
+      >
+        <a
+          id="App-Name-Header"
+          className="navLink"
+          href="https://github.com/oslabs-beta/faros-scope"
+        >
+          {orientation === 'vertical' ? 'FA' : 'Faros'}
+        </a>
+        <div className="nav-right">
+          <Link to={'/'} className="navLink">
             {orientation === 'vertical' ? (
-              'FA'
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/icons8-home-512.png"
+              ></img>
             ) : (
-              'Faros'
+              'Home'
             )}
-          </a>
-          <div className="nav-right">
-            <Link to={'/'} className="navLink">
-              {orientation === 'vertical' ? (
-                <img
-                  style={{ maxWidth: '35px', maxHeight: '35px' }}
-                  src="../../assets/home.png"
-                ></img>
-              ) : (
-                'Home'
-              )}
-            </Link>
-            <Link to={'/settings'} className="navLink">
-              {orientation === 'vertical' ? (
-                <img
-                  style={{ maxWidth: '35px', maxHeight: '35px' }}
-                  src="../../assets/settings.png"
-                ></img>
-              ) : (
-                'Settings'
-              )}
-            </Link>
-            <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
-          </div>
-        </nav>
-      </div>
-    </Draggable>
+          </Link>
+          <Link to={'/settings'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/icons8-settings-512.png"
+              ></img>
+            ) : (
+              'Settings'
+            )}
+          </Link>
+          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+        </div>
+      </nav>
+    </div>
   );
 };
 

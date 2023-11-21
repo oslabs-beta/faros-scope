@@ -51,7 +51,7 @@
 .styleLeft {
   position: absolute;
   display: flex;
-  left: 1%;
+  left: 5%;
   top: 0%;
   height: 100%;
   width: 50px;
@@ -69,8 +69,12 @@
 .styleRight {
   position: absolute;
   display: flex;
-  right: 0%;
+  right: 5%;
   top: 0%;
   height: 100%;
   width: 50px;
+}
+
+.draggableContainer {
+  pointer-events: all;
 }

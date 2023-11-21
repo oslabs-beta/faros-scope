@@ -7,9 +7,10 @@ interface DraggableProps {
   id: string;
   children: ReactNode;
   orientation: string;
+  className?: string;
 }
 
-function Draggable({ id, children, orientation='horizontal' }: DraggableProps) {
+function Draggable({ id, children, orientation='horizontal', className }: DraggableProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
     data: {
@@ -22,7 +23,14 @@ function Draggable({ id, children, orientation='horizontal' }: DraggableProps) {
   };
 
   return (
-    <div className='draggableContainer' ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div
+      className={className || 'draggableContainer'}
+      id={id || 'draggableContainer'}
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+    >
       {children}
     </div>
   );

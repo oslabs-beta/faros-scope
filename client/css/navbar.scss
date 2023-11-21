@@ -1,37 +1,125 @@
 @import './base.scss';
 
-.NavBar {
-  @include flex-horizontal;
-  height: 4rem;
-  width: fit-content;
-  background-color: #154084;
-  color: #ededed;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  overflow: hidden;
-  padding: 0 1rem;
-  position: relative;
-  pointer-events: visible;
-  opacity: 1;
+.navDragButton {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+
+#navDragImg {
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .navContainer {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
-  top: 1%;
+  top: 0%;
   z-index: 1;
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 5px 5px #000000;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
+  &:hover {
+    #navDragContainer {
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+        background-color: #0000005d;
+      }
+    }
+  }
+}
+
+.navContainer.vertical {
+  overflow: visible;
+  position: relative;
+  top: 0%;
+  z-index: 1;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 5px 5px #000000;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    #navDragContainer {
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+        background-color: #0000005d;
+      }
+    }
+  }
+}
+
+.navDragContainer {
+  @include flex-horizontal;
+  position: absolute;
+  top: 15%;
+  left: -55px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  pointer-events: all;
+  &:hover {
+    animation: hover-up-down-3D 1s infinite ease-in-out;
+  }
+  &.vertical {
+    @include flex-vertical;
+    position: absolute;
+    top: -25%;
+    left: 28%;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    pointer-events: all;
+  }
 }
 
 .navContainer:hover {
   box-shadow: 0px 1px 15px 0px #9d2719;
   transform: translateY(-2px);
-  // animation: hover-up-down-exaggerate 1s infinite ease-in-out;
   cursor: pointer;
   box-shadow: 10px 10px #000000;
+}
+
+.NavBar {
+  @include flex-horizontal;
+  height: 4rem;
+  width: fit-content;
+  background-color: #154084;
+  border-radius: 8px;
+  color: #ededed;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  overflow: visible;
+  padding: 1rem 1rem;
+  position: relative;
+  pointer-events: visible;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 0px 5px 1.5px #277aff;
+}
+
+.NavBar.vertical {
+  @include flex-vertical;
+  height: fit-content;
+  width: min-content;
+  background-color: #154084;
+  border-radius: 8px;
+  color: #ededed;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  position: relative;
+  pointer-events: visible;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  .nav-right {
+    @include flex-vertical;
+  }
 }
 
 #App-Name-Header {
@@ -57,7 +145,7 @@
   align-items: center;
   color: #ededed;
   text-decoration: none;
-  margin-left: 1rem;
+  margin: 0.5rem;
   cursor: pointer;
   text-shadow: 0px 0px 5px #000000;
   transition: all 0.2s ease-in-out;

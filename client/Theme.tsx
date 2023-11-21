@@ -39,6 +39,7 @@ const Theme = ({ children }: { children: ReactNode }) => {
   localStorage.setItem('theme', theme);
 
   const toggleTheme = () => {
+    console.log('toggle theme');
     localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
