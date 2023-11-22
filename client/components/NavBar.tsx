@@ -3,7 +3,6 @@ import '../css/navbar.scss';
 import { useTheme } from '../Theme';
 import SwitchButton from './reusable/SwitchButton';
 import { Link } from 'react-router-dom';
-import Draggable from './reusable/reactdnd/Draggable';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -21,58 +20,50 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   };
 
   return (
-    <div
-      style={styleOverride}
-      className={`navContainer ${
-        orientation === 'vertical' ? 'vertical' : 'horizontal'
-      }`}
-    >
-      <Draggable
-        className={`navDragContainer ${orientation || ''}`}
-        id="navDragContainer"
-        orientation={orientation || ''}
-      >
-        <div className="navDragButton">
-          <img id="navDragImg" src="../../assets/move-svgrepo-com.svg"></img>
-        </div>
-      </Draggable>
-      <nav
-        className={`NavBar ${
-          orientation === 'horizontal' ? 'horizontal' : 'vertical'
+      <div
+        style={styleOverride}
+        className={`navContainer ${
+          orientation === 'vertical' ? 'vertical' : 'horizontal'
         }`}
       >
-        <a
-          id="App-Name-Header"
-          className="navLink"
-          href="https://github.com/oslabs-beta/faros-scope"
+        <nav
+          className={`NavBar ${
+            orientation === 'horizontal' ? 'horizontal' : 'vertical'
+          }`}
         >
-          {orientation === 'vertical' ? 'FA' : 'Faros'}
-        </a>
-        <div className="nav-right">
-          <Link to={'/'} className="navLink">
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/icons8-home-512.png"
-              ></img>
-            ) : (
-              'Home'
-            )}
-          </Link>
-          <Link to={'/settings'} className="navLink">
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/icons8-settings-512.png"
-              ></img>
-            ) : (
-              'Settings'
-            )}
-          </Link>
-          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
-        </div>
-      </nav>
-    </div>
+          <a
+            id="App-Name-Header"
+            className="navLink"
+            href="https://github.com/oslabs-beta/faros-scope"
+          >
+            {orientation === 'vertical' ? 'FA' : 'Faros'}
+          </a>
+          <div className="nav-right">
+            <Link to={'/'} className="navLink">
+              {orientation === 'vertical' ? (
+                <img
+                  style={{ maxWidth: '35px', maxHeight: '35px' }}
+                  src="../../assets/icons8-home-512.png"
+                ></img>
+              ) : (
+                'Home'
+              )}
+            </Link>
+            <Link to={'/settings'} className="navLink">
+              {orientation === 'vertical' ? (
+                <img
+                  style={{ maxWidth: '35px', maxHeight: '35px' }}
+                  src="../../assets/icons8-settings-512.png"
+                ></img>
+              ) : (
+                'Settings'
+              )}
+            </Link>
+            <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+          </div>
+        </nav>
+      </div>
+
   );
 };
 

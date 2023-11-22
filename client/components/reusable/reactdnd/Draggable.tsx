@@ -10,16 +10,22 @@ interface DraggableProps {
   className?: string;
 }
 
-function Draggable({ id, children, orientation='horizontal', className }: DraggableProps) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: id,
-    data: {
-      orientation
-    }
-  });
+function Draggable({
+  id,
+  children,
+  orientation = 'horizontal',
+  className,
+}: DraggableProps) {
+  const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef } =
+    useDraggable({
+      id: id,
+      data: {
+        orientation,
+      },
+    });
   const style = {
     // Outputs `translate3d(x, y, 0)`
-    transform: CSS.Translate.toString(transform),
+    // transform: CSS.Translate.toString(transform),
   };
 
   return (
@@ -28,9 +34,17 @@ function Draggable({ id, children, orientation='horizontal', className }: Dragga
       id={id || 'draggableContainer'}
       ref={setNodeRef}
       style={style}
-      {...listeners}
       {...attributes}
     >
+      <button
+        className="dragButton"
+        id="dragButton"
+        {...listeners}
+        {...attributes}
+        ref={setActivatorNodeRef}
+      >
+        <img id="navDragImg" src="../../assets/move-svgrepo-com.svg"></img>
+      </button>
       {children}
     </div>
   );

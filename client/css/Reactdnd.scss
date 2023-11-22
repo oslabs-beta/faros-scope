@@ -9,6 +9,16 @@
   pointer-events: none;
 }
 
+.outerDroppable {
+  @include flex-horizontal;
+  position: relative;
+  pointer-events: all;
+  // height: fit-content;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
 #topNavPosition {
   @include flex-horizontal;
   position: relative;
@@ -20,7 +30,7 @@
   @include flex-horizontal;
   position: relative;
   width: 100%;
-  top: 0;
+  bottom: 0;
 }
 
 #leftNavPosition {
@@ -43,7 +53,7 @@
   position: absolute;
   display: flex;
   left: 0%;
-  top: 5%;
+  top: 1.5rem;
   height: 50px;
   width: 100%;
 }
@@ -55,13 +65,16 @@
   top: 0%;
   height: 100%;
   width: 50px;
+  .outerDroppable {
+    height: 100%;
+  }
 }
 
 .styleBottom {
   position: absolute;
   display: flex;
   left: 0%;
-  bottom: 10%;
+  bottom: 1.5rem;
   height: 50px;
   width: 100%;
 }
@@ -73,8 +86,67 @@
   top: 0%;
   height: 100%;
   width: 50px;
+  .outerDroppable {
+    height: 100%;
+  }
 }
 
 .draggableContainer {
   pointer-events: all;
+}
+
+.outlineTop {
+  position: absolute;
+  background-color: $base-yellow;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 4.5em;
+  width: 27em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineLeft {
+  position: absolute;
+  background-color: $base-yellow;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18em;
+  width: 7.5em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineBottom {
+  position: absolute;
+  background-color: $base-yellow;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 4.5em;
+  width: 27em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineRight {
+  position: absolute;
+  background-color: $base-yellow;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18em;
+  width: 7.5em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.dragButton {
+  background-color: transparent;
+  border: none;
 }

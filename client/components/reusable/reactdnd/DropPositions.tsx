@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Droppable from './Droppable';
 import NavBar from '../../NavBar';
 import '../../../css/Reactdnd.scss';
+import DraggableNavbar from './DraggableNavbar';
 
 interface DropPositionsProps {
   parent: string | null;
@@ -14,28 +15,31 @@ const DropPositions = ({ parent }: DropPositionsProps) => {
         id="topNavPosition"
         orientation="horizontal"
         classOverride="styleTop"
+        outlineClass='outlineTop'
       >
         <div id="topNavPosition">
-          {parent === 'topNavPosition' && <NavBar orientation="horizontal" />}
+          {parent === 'topNavPosition' && <DraggableNavbar orientation="horizontal" />}
         </div>
       </Droppable>
       <Droppable
         id="leftNavPosition"
         orientation="vertical"
         classOverride="styleLeft"
+        outlineClass='outlineLeft'
       >
         <div id="leftNavPosition">
-          {parent === 'leftNavPosition' && <NavBar orientation="vertical" />}
+          {parent === 'leftNavPosition' && <DraggableNavbar orientation="vertical" />}
         </div>
       </Droppable>
       <Droppable
         id="bottomNavPosition"
         classOverride="styleBottom"
         orientation="horizontal"
+        outlineClass='outlineBottom'
       >
         <div id="bottomNavPosition">
           {parent === 'bottomNavPosition' && (
-            <NavBar orientation="horizontal" />
+            <DraggableNavbar orientation="horizontal" />
           )}
         </div>
       </Droppable>
@@ -43,9 +47,10 @@ const DropPositions = ({ parent }: DropPositionsProps) => {
         id="rightNavPosition"
         classOverride="styleRight"
         orientation="vertical"
+        outlineClass='outlineRight'
       >
         <div id="rightNavPosition">
-          {parent === 'rightNavPosition' && <NavBar orientation="vertical" />}
+          {parent === 'rightNavPosition' && <DraggableNavbar orientation="vertical" />}
         </div>
       </Droppable>
     </div>
