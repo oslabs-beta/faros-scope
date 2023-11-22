@@ -6,14 +6,14 @@ import {
 } from 'sequelize';
 
 export interface IDefaultError {
-  log: string; 
-  status: number; 
-  message: string | object; 
+  log: string;
+  status: number;
+  message: string | object;
 }
 
 export interface ThemeContextType {
-  theme: string; 
-  toggleTheme:()=> void; 
+  theme: string;
+  toggleTheme: () => void;
 }
 
 export class User extends Model<
@@ -28,5 +28,5 @@ export class User extends Model<
 }
 
 export interface IMetrics {
-  metrics: {}; 
+  metrics: {};
 }
