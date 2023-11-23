@@ -1,6 +1,7 @@
 import React from 'react';
 import Node from '../components/reusable/Node';
 
+
 function formatNodes(arr: any[], interval: number = 4) {
   const result: any = [];
   let i = 0;

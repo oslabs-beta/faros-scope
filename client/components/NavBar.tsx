@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/navbar.scss';
+import '../css/Navbar.scss';
 import { useTheme } from '../Theme';
 import SwitchButton from './reusable/SwitchButton';
 import { Link } from 'react-router-dom';

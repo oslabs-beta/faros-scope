@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import './Variables.scss';
 
 @mixin flex-horizontal {
   display: flex;
@@ -28,8 +28,9 @@
 
 .outerContainer {
   @include flex-vertical;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
+  height: 100%;
+  width: 100%;
   background-color: #222222;
   color: #ededed;
   font-family: 'Roboto', sans-serif;
@@ -39,6 +40,7 @@
 
 .innerContainer {
   @include flex-vertical;
+  position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -54,6 +56,16 @@
   color: $light-text;
 }
 
+.Opacity-In {
+  animation: opacity 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.Opacity-Out {
+  animation: opacity-reverse 1s ease-in-out;
+  animation-fill-mode: backwards;
+}
+
 @keyframes hover-up-down {
   0% {
     transform: translateY(0px);
@@ -63,6 +75,24 @@
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity-reverse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

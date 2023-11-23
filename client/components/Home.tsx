@@ -1,6 +1,6 @@
 import React from 'react';
 import ThemedContainer from './reusable/ThemedContainer';
-import '../css/home.scss';
+import '../css/Home.scss';
 import Graph from './reusable/Graph';
 
 /**
