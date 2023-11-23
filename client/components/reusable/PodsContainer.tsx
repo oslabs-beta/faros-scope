@@ -5,12 +5,17 @@ import '../../css/Graph.scss';
 
 interface PodContainerProps {
   nodePods: any[];
-  nodePodsViewRef?: any;
+  podsViewRef?: any;
 }
 
-const PodContainer = ({ nodePods, nodePodsViewRef }: PodContainerProps) => {
+/**
+  * PodContainer is a container that displays the pods of a node when a node is clicked on.
+  * @param nodePods - The pods of the node that was clicked on.
+  * @param podsViewRef - A reference to the nodePodsView div.
+  */
+const PodContainer = ({ nodePods, podsViewRef }: PodContainerProps) => {
   return (
-    <div ref={nodePodsViewRef} className="podsView">
+    <div ref={podsViewRef} className="podsView">
       <Draggable delay={5000}>
         <div className="podsViewInner">
           <div className="podsContainer">

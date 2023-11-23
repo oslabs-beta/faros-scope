@@ -8,48 +8,58 @@ interface DraggableProps {
   delay?: number;
 }
 
+/**
+ * Draggable is a container that allows the user to drag the graph around.
+ * @param children - The children of the Draggable component.
+ * @param color - The color of the Draggable component.
+ * @param delay - The delay before the Draggable component is initialized.
+ **/
 const Draggable = ({ children, color, delay }: DraggableProps) => {
-  // reference to the draggable div, which is the container for the graph
+  //! color does not quite work yet
+  //* reference to the draggable div, which is the container for the graph
   const draggable = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
-  // dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
+  //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
   let dragging = false;
 
   let startX = 0,
     startY = 0;
   useEffect(() => {
-    // As user moves the mouse while dragging, update the scroll position
+    //* As user moves the mouse while dragging, update the scroll position
     //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
     const handleMouseMove = (e: MouseEvent) => {
       if (!dragging) return;
-      // calculate the change in mouse position from the previous position
+
+      //* calculate the change in mouse position from the previous position
       const deltaX = startX - e.clientX;
       const deltaY = startY - e.clientY;
-      // update the scroll position of the graph
+
+      //* update the scroll position of the graph
       if (draggable.current) {
         draggable.current.scrollLeft += deltaX;
         draggable.current.scrollTop += deltaY;
       }
-      // update the start coordinates for next mouse move event
+
+      //* update the start coordinates for next mouse move event
       startX = e.clientX;
       startY = e.clientY;
     };
 
-    // Once user clicks, begin dragging
+    //* Once user clicks, begin dragging
     const handleMouseDown = (e: MouseEvent) => {
       dragging = true;
       startX = e.clientX;
       startY = e.clientY;
     };
 
-    // Once user releases mouse, stop dragging
+    //* Once user releases mouse, stop dragging
     const handleMouseUp = () => {
       dragging = false;
     };
 
-    // initialize the graph
+    //* initialize the graph
     if (draggable.current) {
-      // center the graph
+      //* center the graph
       if (draggable.current) {
         if (delay) {
           setTimeout(() => {
@@ -65,14 +75,15 @@ const Draggable = ({ children, color, delay }: DraggableProps) => {
                   2,
                 behavior: 'smooth',
               });
-              // add event listeners for dragging with mouse
+
+              //* add event listeners for dragging with mouse
               draggable.current.addEventListener('mousemove', handleMouseMove);
               draggable.current.addEventListener('mouseup', handleMouseUp);
               draggable.current.addEventListener('mousedown', handleMouseDown);
             }
           }, 2000);
         } else {
-          // center the graph
+          //* center the graph
           draggable.current.scrollTo({
             top:
               (draggable.current.scrollHeight -
@@ -83,7 +94,8 @@ const Draggable = ({ children, color, delay }: DraggableProps) => {
               2,
             behavior: 'smooth',
           });
-          // add event listeners for dragging with mouse
+          
+          //* add event listeners for dragging with mouse
           draggable.current.addEventListener('mousemove', handleMouseMove);
           draggable.current.addEventListener('mouseup', handleMouseUp);
           draggable.current.addEventListener('mousedown', handleMouseDown);
@@ -91,7 +103,7 @@ const Draggable = ({ children, color, delay }: DraggableProps) => {
       }
     }
 
-    // Clean up event listeners when component unmounts
+    //* Clean up event listeners when component unmounts
     return () => {
       if (draggable.current) {
         draggable.current.removeEventListener('mousemove', handleMouseMove);
