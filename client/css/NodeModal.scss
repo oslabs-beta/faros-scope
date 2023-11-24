@@ -1,4 +1,5 @@
 @import 'Variables';
+@import 'Base';
 
 $border-width: 25px;
 $border-height: 25px;
@@ -53,6 +54,7 @@ $border-height: 25px;
   width: 100%;
   height: 100%;
   border-radius: 0;
+  box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
 }
 
 .close {
@@ -78,29 +80,6 @@ $border-height: 25px;
   height: $border-width;
   background-color: #eb4034;
   border: none;
-}
-
-.podsView {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
-}
-
-.podsViewInner {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
-  border-radius: 0;
-  animation: opacity 1s ease-in-out;
-  animation-fill-mode: backwards;
-  animation-delay: 2s;
-  opacity: 1;
 }
 
 // maybe scale the window instead of width and height

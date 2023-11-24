@@ -1,7 +1,8 @@
 import React from 'react';
-import Pod from './Pod';
 import Draggable from './Draggable';
+import formatPods from '../../util/formatPods';
 import '../../css/Graph.scss';
+import '../../css/Pod.scss';
 
 interface PodContainerProps {
   nodePods: any[];
@@ -19,9 +20,10 @@ const PodContainer = ({ nodePods, podsViewRef }: PodContainerProps) => {
       <Draggable delay={5000}>
         <div className="podsViewInner">
           <div className="podsContainer">
-            {nodePods.map((pod) => (
+            {formatPods(nodePods, 4)}
+            {/* {nodePods.map((pod) => (
               <Pod podName={pod.name} metrics={{}} />
-            ))}
+            ))} */}
           </div>
         </div>
       </Draggable>

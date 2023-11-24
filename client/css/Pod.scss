@@ -1,0 +1,44 @@
+@import 'Variables';
+@import 'Base';
+
+.podsView {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.podsViewInner {
+  @include flex-horizontal;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 0;
+  animation: opacity 1s ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: 2s;
+  opacity: 1;
+}
+
+.podsContainer {
+  // @include flex-horizontal;
+  // flex-wrap: wrap;
+  position: relative;
+  width: min-content;
+  height: min-content;
+  border-radius: 0;
+}
+
+.pod {
+  position: relative;
+  min-width: 8rem;
+  min-height: 8rem;
+  margin: 1rem;
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 0;
+  background-color: #eb4034;
+}

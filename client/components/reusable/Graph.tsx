@@ -14,7 +14,7 @@ const Graph = () => {
   return (
     <Draggable>
       <div className="graph" ref={draggable}>
-        {formatNodes(nodes)}
+        {formatNodes(nodes, 4)}
       </div>
     </Draggable>
   );

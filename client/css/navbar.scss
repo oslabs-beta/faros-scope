@@ -9,6 +9,14 @@
 #navDragImg {
   max-width: 40px;
   max-height: 40px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    animation: hover-up-down-3D 1s infinite ease-in-out;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #287aff;
+    background-color: #16428961;
+    cursor: grab;
+  }
 }
 
 .navContainer {
