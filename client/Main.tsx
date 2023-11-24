@@ -3,9 +3,38 @@ import { Outlet } from 'react-router-dom';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import NavBar from './components/NavBar';
+import { useGetTotalNodesQuery } from './redux/metricsApi'
+import { rawListeners } from 'process';
 
 // This is the main component that is rendered by the client.
 const Main = () => {
+  const { data, status, error } = useGetTotalNodesQuery({
+    pollingInterval: '3000',
+  })
+
+  const cache: any = {}
+  if(data){
+    for(const elm of data.data.result){
+      let node = elm.metric.node
+      if(!cache[node]){
+        cache[node] = [elm.metric.pod]
+      } else {
+        cache[node].push(elm.metric.pod)
+      }
+      
+     
+      // if(!cache.node)
+      //   cache.node = 0;
+      // console.log(elm.metric.node)
+
+    }
+console.log(cache)
+      // data.data.result.map((el)=> {
+      //   el.metric
+      // })
+  }
+
+
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
   const [parent, setParent] = useState('topNavPosition');
   const [orientation, setOrientation] = useState('horizontal');
