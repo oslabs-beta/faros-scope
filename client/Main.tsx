@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import NavBar from './components/NavBar';
-import { useGetTotalNodesQuery } from './redux/metricsApi'
+import { useGetTotalNodesQuery, useGetTotalPodsQuery, useGetTotalContainersQuery } from './redux/metricsApi'
 import { rawListeners } from 'process';
 import formatNodes from './util/formatNodes'
 
@@ -14,16 +14,30 @@ const Main = () => {
     pollingInterval: '3000',
   })
   if(data){
-
     const nodeData = [];
     for(const elm of data.data.result){
       nodeData.push(elm);
     }
-    console.log(nodeData)
+    console.log('node info', nodeData)
     formatNodes(nodeData);
   }
+  // Query for pods, returns pod objs, node data is a string name
+  const { data : podData, status : statusData, error : errorData } = useGetTotalPodsQuery({
+    pollingInterval: '3000',
+  })
 
+  if(podData){
+    console.log('pod info', podData?.data.result)
+  }
 
+  // Query for pods, returns pod objs, node data is a string name
+  const { data : containerData, status : containerStatus, error : containerError } = useGetTotalContainersQuery({
+      pollingInterval: '3000',
+    })
+  
+    if(containerData){
+      console.log('container info', containerData?.data.result)
+    }
 
   // const cache: any = {}
   // if(data){
