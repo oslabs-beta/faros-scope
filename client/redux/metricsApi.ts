@@ -10,7 +10,7 @@ const metricsApi = createApi({
       query: () => 'metrics',
     }),
     getTotalNodes: builder.query({
-      query: () => 'query?query=kube_pod_info'
+      query: () => 'query?query=kube_node_info'
     })
   }),
 });
