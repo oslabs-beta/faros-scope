@@ -12,6 +12,8 @@ import React from 'react';
  * @param pods - The pods of a node.
  * @returns A list of JSX elements.
  */
+
+import formatContainers from './formatContainers';
 const formatPods = (
   pods: any[] = [],
   interval: number = 4,
@@ -28,6 +30,7 @@ const formatPods = (
         <div onClick={clickFunc} key={element.name} className="podContainer">
           <div className="pod">
             {element.name}
+            {element.containers && formatContainers(element.containers)}
           </div>
         </div>
       );

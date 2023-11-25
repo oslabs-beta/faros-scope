@@ -18,12 +18,13 @@ const Node = ({ content }: NodeInterface) => {
     setModalOpen(true);
   }
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
+  console.log(content)
   return (
     <div className="Node" onClick={openModal}>
       <span className="nodeOverlay"></span>
       <div className="outerNode">
         <div className="innerNode">
-          <div className="nodeContent">{content}</div>
+          <div className="nodeContent">{content.name}</div>
         </div>
       </div>
       {modalOpen && createPortal(
