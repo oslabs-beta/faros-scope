@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState ,useRef, useEffect } from 'react';
 import formatNodes from '../../util/formatNodes';
 import { useTheme } from '../../Theme';
 import '../../css/graph.scss';
+
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around
@@ -10,7 +11,8 @@ import '../../css/graph.scss';
 const Graph = () => {
   // reference to the draggable div, which is the container for the graph
   const draggable = useRef<HTMLDivElement>(null);
-  const nodes = [1, 2, 3, 4, 5];
+  const [nodes,setNodes] = useState([1, 2, 3, 4, 5])
+  
   // default width and height from viewport
   let defaultW = window.innerWidth,
     defaultH = window.innerHeight;
@@ -20,6 +22,28 @@ const Graph = () => {
   let dragging = false;
   let startX = 0,
     startY = 0;
+
+
+  // Test Fetch
+  // NEED TO ADD TYPES
+  useEffect(() => {
+    async function getNodes() {
+      try {
+        const response = await fetch('http://34.28.168.97:9090/api/v1/query?query=kube_node_created');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const nodeNames = data.data.result.map((el:any)=>el.metric.node)
+        setNodes(nodeNames)
+      } catch (e) {
+        console.error("Failed to fetch nodes:", e);
+      }
+    }
+  
+    getNodes();
+  }, []);
 
   useEffect(() => {
     // As user moves the mouse while dragging, update the scroll position
