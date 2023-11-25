@@ -1,5 +1,12 @@
 import React from 'react';
 
+
+//* example arr input:
+//* [
+//*   { name: '1', containers: [{ name: '1' }, { name: '2' }] },
+//*   { name: '2'},
+//* ]
+
 /**
  * Formats the pods of a node into a list of JSX elements.
  * @param pods - The pods of a node.

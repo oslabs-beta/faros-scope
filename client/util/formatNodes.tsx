@@ -1,6 +1,12 @@
 import React from 'react';
 import Node from '../components/reusable/Node';
 
+//* example arr input:
+//* [
+//*   { name: '1'},
+//*   { name: '2'},
+//* ]
+
 /**
  * Formats the nodes of a cluster into a list of JSX elements.
  * @param arr - The nodes of a cluster.
