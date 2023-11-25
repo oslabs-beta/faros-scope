@@ -2,43 +2,77 @@
 @import 'Base';
 
 .podsView {
+  @include flex-horizontal;
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 0;
   animation-fill-mode: forwards;
   animation-duration: 1s;
+  background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px);
+  background-size: 1em 1em;
+  &.light {
+    background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent 60%);
+  }
 }
 
 .podsViewInner {
   @include flex-horizontal;
   position: relative;
-  display: flex;
   flex-wrap: wrap;
   width: fit-content;
   height: fit-content;
   border-radius: 0;
   animation: opacity 1s ease-in-out;
   animation-fill-mode: backwards;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
   opacity: 1;
 }
 
 .podsContainer {
-  // @include flex-horizontal;
-  // flex-wrap: wrap;
   position: relative;
   width: min-content;
   height: min-content;
   border-radius: 0;
 }
 
-.pod {
+.podContainer {
   position: relative;
-  min-width: 8rem;
-  min-height: 8rem;
-  margin: 1rem;
-  border: 1.5px solid rgb(255, 255, 255);
+  width: min-content;
+  height: min-content;
   border-radius: 0;
-  background-color: #eb4034;
+  transition: all 0.5s ease-in-out;
+  .pod {
+    position: relative;
+    min-width: 12rem;
+    min-height: 12rem;
+    margin: 1rem;
+    border: 1.5px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    background-color: #eb4034;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.3);
+      z-index: 999;
+    }
+  }
+}
+
+.podsViewPolkaOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent  60%);
+  background-size: 1em 1em;
+  border-radius: 0;
+}
+
+.podsViewOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  border-radius: 0;
+  pointer-events: all;
 }

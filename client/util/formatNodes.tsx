@@ -17,12 +17,8 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
       return <Node key={element.name} content={element} />;
     });
 
-    // for (let j = 0; j < elements.length; j++) {
-    //   row.push(<Node key={j} content={elements[j]} />);
-    // }
-
     result.push(
-      <div className='row'>{row}</div>,
+      <div key={i} className='row'>{row}</div>,
     );
 
     i += interval; // Increment by interval

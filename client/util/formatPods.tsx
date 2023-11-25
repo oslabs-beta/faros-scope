@@ -1,16 +1,15 @@
-import React from "react";
-
-interface formatPodsInterface {
-  pods: any[];
-  interval?: number;
-}
+import React from 'react';
 
 /**
  * Formats the pods of a node into a list of JSX elements.
  * @param pods - The pods of a node.
  * @returns A list of JSX elements.
  */
-const formatPods = (pods: any[] = [], interval: number = 4) => {
+const formatPods = (
+  pods: any[] = [],
+  interval: number = 4,
+  clickFunc?: (...args: any) => any,
+) => {
   const result: any = [];
 
   let i = 0;
@@ -18,16 +17,24 @@ const formatPods = (pods: any[] = [], interval: number = 4) => {
     const elements = pods.slice(i, i + interval);
 
     const row = elements.map((element: any) => {
-      return <div key={element.name} className='pod'>{element.name}</div>;
+      return (
+        <div onClick={clickFunc} key={element.name} className="podContainer">
+          <div className="pod">
+            {element.name}
+          </div>
+        </div>
+      );
     });
 
     result.push(
-      <div key={i} className='row'>{row}</div>,
+      <div key={i} className="row">
+        {row}
+      </div>,
     );
 
     i += interval; // Increment by interval
   }
   return result;
-}
+};
 
 export default formatPods;

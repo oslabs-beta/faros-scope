@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
   transition: background-color 0.3s ease-in-out;
+  font-family: 'Baumans';
 }
 
 body {
@@ -16,7 +17,6 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: 'Baumans';
 }
 
 #root {
