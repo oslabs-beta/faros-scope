@@ -1,5 +1,11 @@
 @import 'Variables';
 @import 'Base';
+@mixin podContainer {
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
+  text-shadow: 1px 0px 1px rgba(20, 20, 20, 0.5);
+  border: 1px solid rgb(255, 255, 255);
+}
 
 .podsView {
   @include flex-horizontal;
@@ -17,16 +23,23 @@
 }
 
 .podsViewInner {
-  @include flex-horizontal;
+  display: flex;
+  justify-content: center;
   position: relative;
   flex-wrap: wrap;
-  width: fit-content;
-  height: fit-content;
+  width: 65rem;
+  height: 45rem;
   border-radius: 0;
   animation: opacity 1s ease-in-out;
   animation-fill-mode: backwards;
   animation-delay: 1.5s;
   opacity: 1;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  border: 2px solid rgb(255, 255, 255);
+  padding: 1.25rem;
+  overflow: auto;
+  box-shadow: 0px 0px 8px 4px $base-yellow;
 }
 
 .podsContainer {
@@ -42,24 +55,70 @@
   height: min-content;
   border-radius: 0;
   transition: all 0.5s ease-in-out;
-  .pod {
-    @include flex-vertical;
-    position: relative;
-    min-width: 12rem;
-    min-height: 12rem;
-    margin: 1rem;
-    border: 1.5px solid rgb(255, 255, 255);
-    border-radius: 4px;
-    background-color: $base-yellow;
-    transition: all 0.5s ease-in-out;
-    box-shadow: 0px 1px 7.5px 0px $base-yellow;
-    
-    &:hover {
-      transform: scale(1.3);
-      z-index: 999;
-    }
-    
+  animation: wave 1s ease-in-out;
+  animation-fill-mode: backwards;
+  // animation-delay: 2s;
+}
+
+.pod {
+  @include flex-vertical;
+  position: relative;
+  width: 13rem;
+  height: 13rem;
+  margin: 1rem;
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  background-color: $base-yellow;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 1px 7.5px 0px $base-yellow;
+  overflow: auto;
+  &:hover {
+    transform: scale(1.25);
+    z-index: 999;
   }
+}
+
+.podName {
+  @include flex-horizontal;
+  color: darken($base-orange, 10%);
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  height: min-content;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
+  text-shadow: 0px 0px 5px $base-orange;
+  white-space: nowrap;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.podMetrics {
+  @include flex-vertical;
+  @include podContainer;
+  width: 8em;
+  height: 5em;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  margin: 0.5rem;
+}
+
+.podContainers {
+  @include podContainer;
+  @include flex-vertical;
+  width: 8em;
+  height: 5em;
+  border-radius: 4px;
+  margin: 0.5rem;
+}
+
+.podRow {
+  display: flex;
+  width: 100%;
+  height: fit-content;
 }
 
 .podsViewPolkaOverlay {
@@ -79,4 +138,18 @@
   z-index: 1;
   border-radius: 0;
   pointer-events: all;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }

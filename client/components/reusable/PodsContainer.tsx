@@ -21,17 +21,21 @@ const PodContainer = ({ nodePods, podsViewRef }: PodContainerProps) => {
   const disableOverlay = () => {
     setShowOverlay(false);
     console.log('disableOverlay');
-  }
+  };
   const enableOverlay = () => {
     setShowOverlay(true);
     console.log('enableOverlay');
-  }
+  };
   return (
     <div ref={podsViewRef} className="podsView">
-      {showOverlay && <span onClick={disableOverlay} className="podsViewOverlay"></span>}
+      {showOverlay && (
+        <span onClick={disableOverlay} className="podsViewOverlay"></span>
+      )}
       {theme === 'dark' && <span className="podsViewPolkaOverlay"></span>}
       <div className="podsViewInner">
-        <div className="podsContainer">{formatPods(nodePods, 4, enableOverlay)}</div>
+        <div className="podsContainer">
+          {formatPods(nodePods, 4, enableOverlay)}
+        </div>
       </div>
     </div>
   );

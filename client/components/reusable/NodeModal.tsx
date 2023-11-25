@@ -20,8 +20,14 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const podsViewRef = useRef(null);
 
   // mock data
-  console.log(Node)
-  const nodePods = Node?.pods || [{ name: 'test1' }, { name: 'test2' }, { name: 'testa3' }, { name: 'test4'}, { name: 'test5'} ];
+  console.log(Node);
+  const nodePods = Node?.pods || [
+    { name: 'test1' },
+    { name: 'test2' },
+    { name: 'testa3' },
+    { name: 'test4' },
+    { name: 'test5' },
+  ];
 
   //* Close modal when clicked outside of modal or x button is clicked
   const closeModal = (
@@ -30,15 +36,20 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
       | React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     e.stopPropagation();
-    if (!nodeModalPodsViewRef.current || !podsViewRef.current || !nodeModalOverlay.current) {
+    if (
+      !nodeModalPodsViewRef.current ||
+      !podsViewRef.current ||
+      !nodeModalOverlay.current
+    ) {
       setModalOpen(false);
       return;
     } else {
-      exitAnimations(e,
+      exitAnimations(
+        e,
         nodeModalPodsViewRef.current,
         nodeModalOverlay.current,
         podsViewRef.current,
-        setModalOpen
+        setModalOpen,
       );
     }
   };

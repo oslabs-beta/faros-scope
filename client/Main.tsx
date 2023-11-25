@@ -7,10 +7,37 @@ import NavBar from './components/NavBar';
 // This is the main component that is rendered by the client.
 const Main = () => {
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
-  const [parent, setParent] = useState('topNavPosition');
-  const [orientation, setOrientation] = useState('horizontal');
-  function handleDragEnd({ over, active }: any) {
-    console.log('The droppable element ', over);
+  const [parent, setParent] = useState(getStoredPosition());
+  const [orientation, setOrientation] = useState(inferOrientation(parent));
+
+  function inferOrientation(parent: string) {
+    switch (parent) {
+      case 'topNavPosition':
+        return 'horizontal';
+      case 'leftNavPosition':
+        return 'vertical';
+      case 'bottomNavPosition':
+        return 'horizontal';
+      case 'rightNavPosition':
+        return 'vertical';
+      default:
+        return 'horizontal';
+    }
+  }
+
+  function setStoredPosition(orientation: string) {
+    localStorage.setItem('orientation', orientation);
+  }
+
+  function getStoredPosition() {
+    const orientation = localStorage.getItem('orientation');
+    if (orientation === null || !orientation.length) {
+      setStoredPosition('topNavPosition');
+    }
+    return orientation || 'topNavPosition';
+  }
+
+  function handleDragEnd({ over }: any) {
     switch (over?.id) {
       case 'topNavPosition':
         setOrientation('horizontal');
@@ -28,8 +55,9 @@ const Main = () => {
         break;
     }
     setParent(over ? over.id : parent);
-    console.log('The draggable element ', active)
+    setStoredPosition(over ? over.id : parent);
   }
+
   return (
     <div className="Main">
       <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>

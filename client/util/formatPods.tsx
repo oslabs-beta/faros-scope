@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 //* example arr input:
 //* [
 //*   { name: '1', containers: [{ name: '1' }, { name: '2' }] },
@@ -23,21 +22,28 @@ const formatPods = (
 
   let i = 0;
   while (i < pods.length) {
-    const elements = pods.slice(i, i + interval);
+    const elements = pods.slice(i, i + interval); // Get interval elements
 
-    const row = elements.map((element: any) => {
+    const row = elements.map((element: any, indx) => {
+      const animationDelay = `${2 + (indx / 4) + (i / 4)}s`;
       return (
-        <div onClick={clickFunc} key={element.name} className="podContainer">
+        <div style={{animationDelay: animationDelay}} onClick={clickFunc} key={element.name} className="podContainer">
           <div className="pod">
-            {element.name}
-            {element.containers && formatContainers(element.containers)}
+            <div className="podName">{element.name}</div>
+            <div className="podMetrics">
+              <div className="podCpu">CPU: 0</div>
+              <div className="podMemory">Memory: 0</div>
+            </div>
+            <div className="podContainers">
+              {element.containers && formatContainers(element.containers)}
+            </div>
           </div>
         </div>
       );
     });
 
     result.push(
-      <div key={i} className="row">
+      <div key={i} className="podRow">
         {row}
       </div>,
     );

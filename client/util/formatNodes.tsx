@@ -24,7 +24,9 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     });
 
     result.push(
-      <div key={i} className='row'>{row}</div>,
+      <div key={i} className="row">
+        {row}
+      </div>,
     );
 
     i += interval; // Increment by interval

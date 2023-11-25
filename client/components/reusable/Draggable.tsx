@@ -14,7 +14,7 @@ interface DraggableProps {
  * @param delay - The delay before the Draggable component is initialized.
  **/
 const Draggable = ({ children, delay }: DraggableProps) => {
-  //* reference to the draggable div, which is the container for the graph
+  //* references to the draggable div, which is the container for the graph
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableGraph = useRef<HTMLDivElement>(null);
 
@@ -50,7 +50,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
             maxScrollLeft,
           ),
         );
-        
+
         const newScrollTop = Math.max(
           0,
           Math.min(draggableContainer.current.scrollTop + deltaY, maxScrollTop),
@@ -146,8 +146,9 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   return (
     <div ref={draggableContainer} className="draggableContainer">
       {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
+      <div className={`graphBackgroundImage${theme}`}></div>
       {theme === 'dark' && <div className="draggableGlowOverlay"></div>}
-      <div ref={draggableGraph} className={`draggable${theme}`} id="draggable">
+      <div ref={draggableGraph} className={`draggable`} id="draggable">
         {children}
       </div>
     </div>

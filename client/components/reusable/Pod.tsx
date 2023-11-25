@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface PodProps {
   podName: string;
   metrics: {};
 }
 
-const Pod = ({podName, metrics}: PodProps) => {
+const Pod = ({ podName, metrics }: PodProps) => {
   return (
     <div className="outerPod">
       <div className="innerPod">

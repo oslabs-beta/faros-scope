@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext, ReactNode } from 'react';
 import { ThemeContextType } from '../types/types';
 
-
 /**
  * A context that provides the current theme and a function to toggle it
  * @example - Usage:
@@ -14,7 +13,7 @@ import { ThemeContextType } from '../types/types';
  *    </div>
  *  );
  * };
-*/
+ */
 export const ThemeContext = createContext<ThemeContextType>({
   theme: 'dark',
   toggleTheme: () => {},
@@ -33,7 +32,7 @@ export const ThemeContext = createContext<ThemeContextType>({
  *   </Theme>
  *  );
  * };
-*/
+ */
 const Theme = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   localStorage.setItem('theme', theme);
@@ -64,7 +63,7 @@ const Theme = ({ children }: { children: ReactNode }) => {
  *    </div>
  *  );
  * };
-*/
+ */
 export const useTheme = () => {
   return useContext(ThemeContext);
 };
