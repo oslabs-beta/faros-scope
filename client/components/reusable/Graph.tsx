@@ -12,10 +12,7 @@ const Graph = () => {
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
   const nodes = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-    10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3,
-    4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-    13, 14,
+    1, 2, 3, 4, 5,
   ];
   const formattedNodes = formatNodes(nodes, 8);
   const [nodesScale, setNodesScale] = useState(1);
