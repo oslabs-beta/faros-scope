@@ -42,6 +42,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
         const maxScrollTop =
           draggableContainer.current.scrollHeight -
           draggableContainer.current.clientHeight;
+
         // Limit scrolling to the visible content
         const newScrollLeft = Math.max(
           0,
@@ -146,9 +147,9 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   return (
     <div ref={draggableContainer} className="draggableContainer">
       {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
-      <div className={`graphBackgroundImage ${theme}`}></div>
-      {theme === 'dark' && <div className="draggableGlowOverlay"></div>}
-      <div ref={draggableGraph} className={`draggable`} id="draggable">
+      <span className={`graphBackgroundImage ${theme}`}></span>
+      {theme === 'dark' && <span className="draggableGlowOverlay"></span>}
+      <div ref={draggableGraph} className={`draggableGraph`} id="draggableGraph">
         {children}
       </div>
     </div>

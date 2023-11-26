@@ -27,7 +27,6 @@
 }
 
 .outerContainer {
-  @include flex-vertical;
   position: relative;
   height: 100%;
   width: 100%;
@@ -35,15 +34,12 @@
   color: #ededed;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
-  overflow: hidden;
 }
 
 .innerContainer {
-  @include flex-vertical;
   position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 .dark {
