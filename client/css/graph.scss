@@ -13,8 +13,10 @@
 .draggableContainer {
   position: relative;
   overflow: hidden;
-  // height: 100%;
-  // width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  max-width: fit-content;
+  max-height: fit-content;
   border-radius: 0px;
   transition: all 0.5s ease-in-out;
   cursor: grab;
@@ -41,18 +43,30 @@
   border-radius: 0px;
 }
 
-.graphBackgroundImagedark {
+.graphBackgroundImage {
   position: absolute;
   min-width: 200%;
   min-height: 200%;
-  background: #1a1a1a;
-  background-image: linear-gradient(
-      rgba($graph-blue, 1) 0.1em,
-      transparent 0.1em
-    ),
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
   background-size: 2.2em 2.2em;
   background-repeat: repeat;
+  &.dark {
+    background: $background-color-dark;
+    background-image: linear-gradient(
+        rgba($graph-blue, 1) 0.1em,
+        transparent 0.1em
+      ),
+      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
+  }
+  &.light {
+    background: $background-color-light;
+    background-image: linear-gradient(
+        rgba($graph-blue, 0.5) 0.1em,
+        transparent 0.5em
+      ),
+      linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+      linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+      linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+  }
 }
 
 .draggableGlowOverlay {

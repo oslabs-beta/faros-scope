@@ -121,7 +121,7 @@ const Graph = () => {
     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
   ];
 
-  const formattedNodes = formatNodes(nodes, 8);
+  const formattedNodes = formatNodes(nodes, 15);
   const [nodesScale, setNodesScale] = useState(1);
 
   /* 
