@@ -6,7 +6,7 @@ import '../../css/Graph.scss';
 // import query
 import {
   useGetTopNodesQuery,
-  useGetTotalNodesQuery,
+useGetClusterInfoQuery
 } from '../../redux/metricsApi';
 
 /**
@@ -14,18 +14,7 @@ import {
  * @returns ReactNode
  */
 const Graph = () => {
-  // const { data, status, error } = useGetTopNodesQuery();
-  // console.log(data, status, error);
 
-  const {
-    data: TNQData,
-    status: TNQStatus,
-    error: TNQError,
-  } = useGetTotalNodesQuery();
-  console.log(TNQData, TNQStatus, TNQError);
-  // if (data) {
-  //   console.log(data, status, error);
-  // }
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
 
@@ -44,84 +33,85 @@ const Graph = () => {
   //     ]
   //   })
   // })
-  const nodes = [
-    {
-      name: 'Node 1',
-      pods: [
-        {
-          name: 'Pod 1',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-        {
-          name: 'Pod 2',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-        {
-          name: 'Pod 3',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-      ],
-    },
-    { name: 'Node 2', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-    { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
-  ];
+//   const nodes = [
+//     {
+//       name: 'Node 1',
+//       pods: [
+//         {
+//           name: 'Pod 1',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//         {
+//           name: 'Pod 2',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//         {
+//           name: 'Pod 3',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//       ],
+//     },
+//     { name: 'Node 2', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//     { name: 'Node 3', pods: [{ name: '1' }, { name: '2' }, { name: '3' }] },
+//   ];
 
-  const formattedNodes = formatNodes(nodes, 8);
+    //   const formattedNodes = formatNodes(nodes, 8);
+    const [ formattedNodes, setFormattedNodes] = useState([]); 
   const [nodesScale, setNodesScale] = useState(1);
 
   /* 
@@ -157,6 +147,16 @@ const Graph = () => {
   ​
   y: -620.9833374023438
   */
+    
+  useEffect(() => {
+    const getClusterInfo = async () => {
+        const response = await fetch('http://34.27.144.68:8000/clusterInfo')
+        const data = await response.json();
+        const formattedNodes = formatNodes(data, data.length);
+        setFormattedNodes(formattedNodes);
+    }
+    getClusterInfo();
+}, []); 
 
   // DELETE
   const zoomSafety = 40;
@@ -173,12 +173,22 @@ const Graph = () => {
         setNodesScale((prev) => prev + 0.1);
       }
       setScale(target, nodesScale);
+
+        getClusterInfo();
     };
     graph.current.addEventListener('wheel', handleWheel);
     return () => {
       graph.current?.removeEventListener('wheel', handleWheel);
     };
   });
+    
+    async function getClusterInfo() {
+        console.log('getClusterInfo')
+        const res = await fetch('http://34.27.144.68:8000/clusterInfo');
+        const data = await res.json();
+        const nodesFormatted = formatNodes(data, data.length);
+        return nodesFormatted; 
+    }
 
   return (
     <div className="graphContainer">

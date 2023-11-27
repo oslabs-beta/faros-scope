@@ -23,7 +23,8 @@ const Node = ({ content }: NodeInterface) => {
       <span className="nodeOverlay"></span>
       <div className="outerNode">
         <div className="innerNode">
-          <div className="nodeContent">{content.name}</div>
+                  {/* <div className="nodeContent">{content.name}</div> */}
+                  <p>{content.nodeName}</p>
         </div>
       </div>
       {modalOpen &&

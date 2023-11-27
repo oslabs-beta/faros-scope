@@ -26,7 +26,3 @@ export class User extends Model<
   declare email: string;
   declare password: string;
 }
-
-export interface IMetrics {
-  metrics: {};
-}
