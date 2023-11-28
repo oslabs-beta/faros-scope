@@ -22,6 +22,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   const draggableContent = useRef<HTMLDivElement>(null);
   //* for some reason this needs to be initialized to 1.1, otherwise the graph will be too small
   //* I believe this is because the DOM is not yet loaded when the component is initialized, so the calculations are off for the offsets
+  //* might have to do with the actual CSS set such as fit-content
   const [nodesScale, setNodesScale] = useState(1.1);
 
   const { theme } = useTheme();
@@ -170,8 +171,8 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   useEffect(() => {
     if (!draggableInner.current || !draggableContent.current) return;
 
-    const content = draggableContent.current as HTMLDivElement;
     const inner = draggableInner.current as HTMLDivElement;
+    const content = draggableContent.current as HTMLDivElement;
 
     // Apply the scale to draggableInner
     setScale(inner, nodesScale);
@@ -184,7 +185,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
     content.style.width = `${scaledWidth + 200}px`;
     content.style.height = `${scaledHeight + 200}px`;
 
-    console.log(nodesScale);
+    // console.log(nodesScale);
   }, [nodesScale]);
 
   return (
