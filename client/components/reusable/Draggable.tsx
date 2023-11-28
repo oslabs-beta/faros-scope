@@ -170,15 +170,15 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   return (
     <div ref={draggableContainer} className="draggableContainer">
       {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
-      <span className={`graphBackgroundImage ${theme}`}></span>
-      {theme === 'dark' && <span className="draggableGlowOverlay"></span>}
-      <div
+      {/* <span className={`graphBackgroundImage ${theme}`}></span>
+      {theme === 'dark' && <span className="draggableGlowOverlay"></span>} */}
+      {/* <div
         ref={draggableInner}
         className={`draggableInner`}
         style={{ transform: `scale(${nodesScale})` }}
-      >
+      > */}
         <div className="draggableContent">{children}</div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

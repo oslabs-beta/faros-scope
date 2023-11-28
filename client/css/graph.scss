@@ -10,6 +10,8 @@
 }
 
 .draggableContainer {
+  display: flex;
+  justify-content: center;
   min-width: fit-content;
   min-height: fit-content;
   width: 100%;
@@ -19,6 +21,18 @@
   border-radius: 0px;
   transition: all 0.5s ease-in-out;
   cursor: grab;
+  background-color: $background-color-dark;
+  background-size: 2.2em 2.2em;
+  background-image: linear-gradient(
+      rgba($graph-blue, 1) 0.1em,
+      transparent 0.1em
+    ),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em),
+    linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+  background-attachment: local;
   &:active {
     cursor: grabbing;
   }
@@ -49,56 +63,51 @@
 }
 
 .draggableContent {
-  // position: absolute;
   height: fit-content;
   width: fit-content;
 }
 
-.graphBackgroundImage {
-  position: absolute;
-  // min-width: 200%;
-  // min-height: 200%;
-  min-width: 100%;
-  min-height: 100%;
-  background-size: 2.2em 2.2em;
-  background-repeat: repeat;
-  &.dark {
-    background-color: $background-color-dark;
-    background-image: linear-gradient(
-        rgba($graph-blue, 1) 0.1em,
-        transparent 0.1em
-      ),
-      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
-  }
-  &.light {
-    background-color: $background-color-light;
-    background-image: linear-gradient(
-        rgba($graph-blue, 1) 0.1em,
-        transparent 0.1em
-      ),
-      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
-  }
-}
+// .graphBackgroundImage {
+//   position: absolute;
+//   min-width: 100%;
+//   min-height: 100%;
+//   background-size: 2.2em 2.2em;
+//   background-repeat: repeat;
+//   &.dark {
+//     background-color: $background-color-dark;
+//     background-image: linear-gradient(
+//         rgba($graph-blue, 1) 0.1em,
+//         transparent 0.1em
+//       ),
+//       linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
+//   }
+//   &.light {
+//     background-color: $background-color-light;
+//     background-image: linear-gradient(
+//         rgba($graph-blue, 1) 0.1em,
+//         transparent 0.1em
+//       ),
+//       linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em);
+//   }
+// }
 
-.draggableGlowOverlay {
-  position: absolute;
-  // min-width: 200%;
-  // min-height: 200%;
-  min-width: 100%;
-  min-height: 100%;
-  background: transparent;
-  opacity: 1;
-  animation: opacity-flicker 8s infinite ease-in-out;
-  background-image: linear-gradient(
-      rgba($graph-blue, 0.5) 0.1em,
-      transparent 0.5em
-    ),
-    linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
-  background-size: 2.2em 2.2em;
-  pointer-events: none;
-}
+// .draggableGlowOverlay {
+//   position: absolute;
+//   min-width: 100%;
+//   min-height: 100%;
+//   background: transparent;
+//   opacity: 1;
+//   animation: opacity-flicker 8s infinite ease-in-out;
+//   background-image: linear-gradient(
+//       rgba($graph-blue, 0.5) 0.1em,
+//       transparent 0.5em
+//     ),
+//     linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+//     linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+//     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+//   background-size: 2.2em 2.2em;
+//   pointer-events: none;
+// }
 
 @keyframes opacity-flicker {
   0% {
