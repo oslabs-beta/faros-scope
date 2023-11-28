@@ -25,9 +25,14 @@ const formatPods = (
     const elements = pods.slice(i, i + interval); // Get interval elements
 
     const row = elements.map((element: any, indx) => {
-      const animationDelay = `${2 + (indx / 4) + (i / 4)}s`;
+      const animationDelay = `${2 + indx / 4 + i / 4}s`;
       return (
-        <div style={{animationDelay: animationDelay}} onClick={clickFunc} key={element.name} className="podContainer">
+        <div
+          style={{ animationDelay: animationDelay }}
+          onClick={clickFunc}
+          key={element.name}
+          className="podContainer"
+        >
           <div className="pod">
             <div className="podName">{element.name}</div>
             <div className="podMetrics">

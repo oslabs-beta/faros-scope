@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import '../../css/Graph.scss';
 import { useTheme } from '../../Theme';
+import { setScale } from '../../util/animationsUtil';
 interface DraggableProps {
   children: React.ReactNode;
   delay?: number;
@@ -16,14 +17,15 @@ interface DraggableProps {
 const Draggable = ({ children, delay }: DraggableProps) => {
   //* references to the draggable div, which is the container for the graph
   const draggableContainer = useRef<HTMLDivElement>(null);
-  const draggableGraph = useRef<HTMLDivElement>(null);
+  const draggableInner = useRef<HTMLDivElement>(null);
+  const [nodesScale, setNodesScale] = useState(1);
 
   const { theme } = useTheme();
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
-  let dragging = false;
+  let dragging: boolean = false;
 
-  let startX = 0,
-    startY = 0;
+  let startX: number = 0,
+    startY: number = 0;
   useEffect(() => {
     //* As user moves the mouse while dragging, update the scroll position
     //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
@@ -67,14 +69,14 @@ const Draggable = ({ children, delay }: DraggableProps) => {
     };
 
     //* Once user clicks, begin dragging
-    const handleMouseDown = (e: MouseEvent) => {
+    const handleMouseDown = (e: MouseEvent): void => {
       dragging = true;
       startX = e.clientX;
       startY = e.clientY;
     };
 
     //* Once user releases mouse, stop dragging
-    const handleMouseUp = () => {
+    const handleMouseUp = (): void => {
       dragging = false;
     };
 
@@ -144,13 +146,38 @@ const Draggable = ({ children, delay }: DraggableProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!draggableInner.current) return;
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLDivElement;
+      const childDimensions = target.getBoundingClientRect();
+      const parentDimensions = target.parentElement?.getBoundingClientRect();
+
+      if (e.deltaY > 0 && nodesScale > 0.5) {
+        setNodesScale((prev) => prev - 0.1);
+      } else if (e.deltaY < 0 && nodesScale < 1.5) {
+        setNodesScale((prev) => prev + 0.1);
+      }
+    };
+
+    draggableInner.current.addEventListener('wheel', handleWheel);
+    return () => {
+      draggableInner.current?.removeEventListener('wheel', handleWheel);
+    };
+  });
+
   return (
     <div ref={draggableContainer} className="draggableContainer">
       {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
       <span className={`graphBackgroundImage ${theme}`}></span>
       {theme === 'dark' && <span className="draggableGlowOverlay"></span>}
-      <div ref={draggableGraph} className={`draggableGraph`} id="draggableGraph">
-        {children}
+      <div
+        ref={draggableInner}
+        className={`draggableInner`}
+        style={{ transform: `scale(${nodesScale})` }}
+      >
+        <div className="draggableContent">{children}</div>
       </div>
     </div>
   );

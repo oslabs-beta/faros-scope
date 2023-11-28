@@ -15,8 +15,8 @@ import Node from '../components/reusable/Node';
 function formatNodes(arr: any[] = [], interval: number = 4) {
   const result: any = [];
   const dimensions = {
-    width: `${arr.length / 2 + 1.5}em`,
-    height: `${arr.length / 2 + 1.5}em`,
+    width: `${arr.length % 2 + 5}em`,
+    height: `${arr.length % 2 + 5}em`,
     maxWidth: '8em',
     maxHeight: '8em',
   };
