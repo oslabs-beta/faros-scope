@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import formatNodes from '../../util/formatNodes';
 import Draggable from './Draggable';
 import '../../css/Graph.scss';
+import { useTheme } from '../../Theme';
 // import query
 import {
   useGetTopNodesQuery,
@@ -25,7 +26,7 @@ const Graph = () => {
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
-
+  const { theme } = useTheme();
   // ADD NODE QUERY AND RESPONSE
   const nodes = Array.from({ length: 50 }, () => {
     return {
@@ -61,7 +62,7 @@ const Graph = () => {
 
   return (
     <Draggable>
-      <div className="graph" ref={graph}>
+      <div className={`graph ${theme}`} ref={graph}>
         {formattedNodes}
       </div>
     </Draggable>

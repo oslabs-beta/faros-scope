@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import '../../css/Graph.scss';
 import { useTheme } from '../../Theme';
 import { setScale } from '../../util/animationsUtil';
+import { node } from 'webpack';
 interface DraggableProps {
   children: React.ReactNode;
   delay?: number;
@@ -18,7 +19,10 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   //* references to the draggable div, which is the container for the graph
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableInner = useRef<HTMLDivElement>(null);
-  const [nodesScale, setNodesScale] = useState(1);
+  const draggableContent = useRef<HTMLDivElement>(null);
+  //* for some reason this needs to be initialized to 1.1, otherwise the graph will be too small
+  //* I believe this is because the DOM is not yet loaded when the component is initialized, so the calculations are off for the offsets
+  const [nodesScale, setNodesScale] = useState(1.1);
 
   const { theme } = useTheme();
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
@@ -26,7 +30,21 @@ const Draggable = ({ children, delay }: DraggableProps) => {
 
   let startX: number = 0,
     startY: number = 0;
+
+  const handleWheel = (e: WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      setNodesScale((prev) => Number(Math.max(0.5, prev - 0.1).toFixed(1)));
+    } else if (e.deltaY < 0) {
+      setNodesScale((prev) => Number(Math.min(1.5, prev + 0.1).toFixed(1)));
+    }
+  };
+
   useEffect(() => {
+    //* add event listener for scrolling with mouse wheel for scaling
+    if (draggableInner.current)
+      draggableInner.current.addEventListener('wheel', handleWheel);
+
     //* As user moves the mouse while dragging, update the scroll position
     //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
     const handleMouseMove = (e: MouseEvent) => {
@@ -143,42 +161,39 @@ const Draggable = ({ children, delay }: DraggableProps) => {
           handleMouseDown,
         );
       }
+
+      if (draggableInner.current)
+        draggableInner.current?.removeEventListener('wheel', handleWheel);
     };
   }, []);
 
   useEffect(() => {
-    if (!draggableInner.current) return;
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLDivElement;
-      const childDimensions = target.getBoundingClientRect();
-      const parentDimensions = target.parentElement?.getBoundingClientRect();
+    if (!draggableInner.current || !draggableContent.current) return;
 
-      if (e.deltaY > 0 && nodesScale > 0.5) {
-        setNodesScale((prev) => prev - 0.1);
-      } else if (e.deltaY < 0 && nodesScale < 1.5) {
-        setNodesScale((prev) => prev + 0.1);
-      }
-    };
+    const content = draggableContent.current as HTMLDivElement;
+    const inner = draggableInner.current as HTMLDivElement;
 
-    draggableInner.current.addEventListener('wheel', handleWheel);
-    return () => {
-      draggableInner.current?.removeEventListener('wheel', handleWheel);
-    };
-  });
+    // Apply the scale to draggableInner
+    setScale(inner, nodesScale);
+
+    // Calculate the scaled width and height
+    const scaledWidth = Math.round(inner.offsetWidth * nodesScale);
+    const scaledHeight = Math.round(inner.offsetHeight * nodesScale);
+
+    // Update the width and height of draggableContent
+    content.style.width = `${scaledWidth + 200}px`;
+    content.style.height = `${scaledHeight + 200}px`;
+
+    console.log(nodesScale);
+  }, [nodesScale]);
 
   return (
-    <div ref={draggableContainer} className="draggableContainer">
-      {/* draggableGlowOverlay is what facilitates the customizable glow effect, it IS essentially the glow effect itself */}
-      {/* <span className={`graphBackgroundImage ${theme}`}></span>
-      {theme === 'dark' && <span className="draggableGlowOverlay"></span>} */}
-      {/* <div
-        ref={draggableInner}
-        className={`draggableInner`}
-        style={{ transform: `scale(${nodesScale})` }}
-      > */}
-        <div className="draggableContent">{children}</div>
-      {/* </div> */}
+    <div ref={draggableContainer} className={`draggableContainer ${theme}`}>
+      <div ref={draggableContent} className="draggableContent">
+        <div ref={draggableInner} className="draggableInner">
+          {children}
+        </div>
+      </div>
     </div>
   );
 };

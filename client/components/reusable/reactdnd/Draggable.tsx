@@ -29,8 +29,8 @@ function Draggable({
 
   return (
     <div
-      className={className || 'draggableContainer'}
-      id={id || 'draggableContainer'}
+      className={className || 'draggableDNDContainer'}
+      id={id || 'draggableDNDContainer'}
       ref={setNodeRef}
       style={style}
       {...attributes}
