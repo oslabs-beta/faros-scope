@@ -8,17 +8,23 @@
 }
 
 .podsView {
-  @include flex-horizontal;
+  @include flex-vertical;
   position: relative;
   width: 100%;
   height: 100%;
   border-radius: 0;
   animation-fill-mode: forwards;
   animation-duration: 1s;
-  background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px);
+  background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px),
+    radial-gradient(rgba($graph-blue, 0.5) 15%, transparent 60%);
   background-size: 1em 1em;
+  overflow: auto;
+  padding: 1em;
   &.light {
-    background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent 60%);
+    background-image: radial-gradient(
+      rgba($graph-blue, 1) 2px,
+      transparent 3px
+    );
   }
 }
 
@@ -26,30 +32,41 @@
   display: flex;
   justify-content: center;
   position: relative;
-  flex-wrap: wrap;
-  width: 65rem;
-  height: 45rem;
-  border-radius: 0;
+  width: 100%;
+  height: 100%;
   animation: opacity 1s ease-in-out;
   animation-fill-mode: backwards;
   animation-delay: 1.5s;
   opacity: 1;
   backdrop-filter: blur(5px);
   border-radius: 8px;
-  border: 2px solid rgb(255, 255, 255);
-  padding: 1.25rem;
-  overflow: auto;
-  box-shadow: 0px 0px 8px 4px $base-yellow;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &.dark {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 15px 0px $diamond-blue;
+  }
+  &.light {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: none;
+  }
 }
 
 .podsContainer {
   position: relative;
-  width: min-content;
-  height: min-content;
+  width: 100%;
+  height: 100%;
   border-radius: 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .podContainer {
+  @include podContainer;
   position: relative;
   width: min-content;
   height: min-content;
@@ -57,15 +74,30 @@
   transition: all 0.5s ease-in-out;
   animation: wave 1s ease-in-out;
   animation-fill-mode: backwards;
-  // animation-delay: 2s;
+  border-radius: 4px;
+  margin: 0.5rem 0.5rem;
+  background-color: rgba(31, 31, 31, 0.55);
+}
+
+.podContainers {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pod {
-  @include flex-vertical;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  width: 13rem;
-  height: 13rem;
-  margin: 1rem;
+  width: 18rem;
+  height: 20rem;
+  margin: 0.5rem;
   border: 1.5px solid rgb(255, 255, 255);
   border-radius: 4px;
   background-color: $base-yellow;
@@ -79,12 +111,14 @@
 }
 
 .podName {
-  @include flex-horizontal;
+  display: flex;
+  align-items: center;
   color: darken($base-orange, 10%);
   overflow-x: auto;
   overflow-y: hidden;
+  flex-shrink: 0;
   width: 100%;
-  height: min-content;
+  height: fit-content;
   padding: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -95,37 +129,30 @@
 }
 
 .podMetrics {
-  @include flex-vertical;
   @include podContainer;
-  width: 8em;
-  height: 5em;
+  width: fit-content;
+  height: fit-content;
   padding: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: rgb(255, 255, 255);
   margin: 0.5rem;
-}
-
-.podContainers {
-  @include podContainer;
-  @include flex-vertical;
-  width: 8em;
-  height: 5em;
-  border-radius: 4px;
-  margin: 0.5rem;
+  padding: 1rem;
 }
 
 .podRow {
   display: flex;
+  // middle adjusted row
   width: 100%;
   height: fit-content;
+  padding: 0 1.5rem;
 }
 
 .podsViewPolkaOverlay {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent  60%);
+  // background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent  60%);
   background-size: 1em 1em;
   border-radius: 0;
 }

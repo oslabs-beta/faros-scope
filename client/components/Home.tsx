@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemedContainer from './reusable/ThemedContainer';
+import ThemeContainer from './reusable/ThemedContainer';
 import '../css/Home.scss';
 import Graph from './reusable/Graph';
 
@@ -8,9 +8,9 @@ import Graph from './reusable/Graph';
  */
 const Home = () => {
   return (
-    <ThemedContainer>
+    <ThemeContainer>
       <Graph />
-    </ThemedContainer>
+    </ThemeContainer>
   );
 };
 

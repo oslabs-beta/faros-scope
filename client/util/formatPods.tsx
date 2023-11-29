@@ -18,6 +18,7 @@ const formatPods = (
   interval: number = 4,
   clickFunc?: (...args: any) => any,
 ) => {
+  console.log('formatPods');
   const result: any = [];
 
   let i = 0;

@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import '../../css/Graph.scss';
+import { useGrid } from '../context/GridContext';
 import { useTheme } from '../../Theme';
 import { setScale } from '../../util/animationsUtil';
-import { node } from 'webpack';
+import '../../css/Graph.scss';
 interface DraggableProps {
   children: React.ReactNode;
   delay?: number;
@@ -12,40 +12,69 @@ interface DraggableProps {
 /**
  * Draggable is a container that allows the user to drag the graph around.
  * @param children - The children of the Draggable component.
- * @param color - The color of the Draggable component.
- * @param delay - The delay before the Draggable component is initialized.
  **/
-const Draggable = ({ children, delay }: DraggableProps) => {
+const Draggable = ({ children }: DraggableProps) => {
   //* references to the draggable div, which is the container for the graph
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableInner = useRef<HTMLDivElement>(null);
   const draggableContent = useRef<HTMLDivElement>(null);
-  //* for some reason this needs to be initialized to 1.1, otherwise the graph will be too small
-  //* I believe this is because the DOM is not yet loaded when the component is initialized, so the calculations are off for the offsets
-  //* might have to do with the actual CSS set such as fit-content
-  const [nodesScale, setNodesScale] = useState(1.1);
+
+  const { gridScrollPosition, updateGridScrollPosition } = useGrid();
+  const [nodesScale, setNodesScale] = useState(1);
 
   const { theme } = useTheme();
+
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
   let dragging: boolean = false;
-
   let startX: number = 0,
     startY: number = 0;
 
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
+    console.log(nodesScale)
     if (e.deltaY > 0) {
-      setNodesScale((prev) => Number(Math.max(0.5, prev - 0.1).toFixed(1)));
+      setNodesScale((prev) => {
+        // Calculate newScale based on the previous state (prev)
+        if (prev <= 0.5) return prev;
+        const newScale = Number((prev - 0.1).toFixed(1));
+
+        // Log the updated value of newScale
+        console.log(newScale);
+
+        // Update other parts of the state or perform other actions as needed
+        updateGridScrollPosition(
+          gridScrollPosition.x - 100,
+          gridScrollPosition.y - 100,
+        );
+
+        // Return the newScale to update the state
+        return newScale;
+      });
     } else if (e.deltaY < 0) {
-      setNodesScale((prev) => Number(Math.min(1.5, prev + 0.1).toFixed(1)));
+      setNodesScale((prev) => {
+        // Calculate newScale based on the previous state (prev)
+        if (prev >= 3) return prev;
+        const newScale = Number((prev + 0.1).toFixed(1));
+
+        // Log the updated value of newScale
+        console.log(newScale);
+
+        // Update other parts of the state or perform other actions as needed
+        updateGridScrollPosition(
+          gridScrollPosition.x + 100,
+          gridScrollPosition.y + 100,
+        );
+
+        // Return the newScale to update the state
+        return newScale;
+      });
     }
   };
 
   useEffect(() => {
     //* add event listener for scrolling with mouse wheel for scaling
-    if (draggableInner.current)
-      draggableInner.current.addEventListener('wheel', handleWheel);
-
+    if (!draggableInner.current) return;
+    draggableInner.current.addEventListener('wheel', handleWheel);
     //* As user moves the mouse while dragging, update the scroll position
     //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
     const handleMouseMove = (e: MouseEvent) => {
@@ -63,8 +92,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
         const maxScrollTop =
           draggableContainer.current.scrollHeight -
           draggableContainer.current.clientHeight;
-
-        // Limit scrolling to the visible content
+        //* Limit scrolling to the visible content
         const newScrollLeft = Math.max(
           0,
           Math.min(
@@ -78,6 +106,7 @@ const Draggable = ({ children, delay }: DraggableProps) => {
           Math.min(draggableContainer.current.scrollTop + deltaY, maxScrollTop),
         );
 
+        //* update the scroll position
         draggableContainer.current.scrollLeft = newScrollLeft;
         draggableContainer.current.scrollTop = newScrollTop;
       }
@@ -101,49 +130,10 @@ const Draggable = ({ children, delay }: DraggableProps) => {
 
     //* initialize the graph
     if (draggableContainer.current) {
-      //* center the graph
-      if (draggableContainer.current) {
-        if (delay) {
-          setTimeout(() => {
-            if (draggableContainer.current) {
-              draggableContainer.current.scrollTo({
-                top:
-                  (draggableContainer.current.scrollHeight -
-                    draggableContainer.current?.clientHeight) /
-                  2,
-                left:
-                  (draggableContainer.current.scrollWidth -
-                    draggableContainer.current?.clientWidth) /
-                  2,
-                behavior: 'smooth',
-              });
-            }
-          }, delay);
-        } else {
-          //* center the graph
-          draggableContainer.current.scrollTo({
-            top:
-              (draggableContainer.current.scrollHeight -
-                draggableContainer.current?.clientHeight) /
-              2,
-            left:
-              (draggableContainer.current.scrollWidth -
-                draggableContainer.current?.clientWidth) /
-              2,
-            behavior: 'smooth',
-          });
-        }
-        //* add event listeners for dragging with mouse
-        draggableContainer.current.addEventListener(
-          'mousemove',
-          handleMouseMove,
-        );
-        draggableContainer.current.addEventListener('mouseup', handleMouseUp);
-        draggableContainer.current.addEventListener(
-          'mousedown',
-          handleMouseDown,
-        );
-      }
+      //* add event listeners for dragging with mouse
+      draggableContainer.current.addEventListener('mousemove', handleMouseMove);
+      draggableContainer.current.addEventListener('mouseup', handleMouseUp);
+      draggableContainer.current.addEventListener('mousedown', handleMouseDown);
     }
 
     //* Clean up event listeners when component unmounts
@@ -169,23 +159,20 @@ const Draggable = ({ children, delay }: DraggableProps) => {
   }, []);
 
   useEffect(() => {
-    if (!draggableInner.current || !draggableContent.current) return;
-
-    const inner = draggableInner.current as HTMLDivElement;
+    if (!draggableContainer.current || !draggableContent.current) return;
     const content = draggableContent.current as HTMLDivElement;
+    const container = draggableContainer.current as HTMLDivElement;
 
-    // Apply the scale to draggableInner
-    setScale(inner, nodesScale);
+    // Apply the scale to draggableContent
+    setScale(content, nodesScale);
 
-    // Calculate the scaled width and height
-    const scaledWidth = Math.round(inner.offsetWidth * nodesScale);
-    const scaledHeight = Math.round(inner.offsetHeight * nodesScale);
-
-    // Update the width and height of draggableContent
-    content.style.width = `${scaledWidth + 200}px`;
-    content.style.height = `${scaledHeight + 200}px`;
-
-    // console.log(nodesScale);
+    // Update the scroll position to zoom in on the mouse position
+    container.scrollTo({
+      left: gridScrollPosition.x,
+      top: gridScrollPosition.y,
+      behavior: 'smooth',
+    });
+    console.log('gridScrollPosition', gridScrollPosition);
   }, [nodesScale]);
 
   return (

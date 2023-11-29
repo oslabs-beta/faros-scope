@@ -18,16 +18,8 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
-
-  // mock data
-  console.log(Node);
-  const nodePods = Node?.pods || [
-    { name: 'test1' },
-    { name: 'test2' },
-    { name: 'testa3' },
-    { name: 'test4' },
-    { name: 'test5' },
-  ];
+  //* pods to format
+  const nodePods = Node?.pods;
 
   //* Close modal when clicked outside of modal or x button is clicked
   const closeModal = (

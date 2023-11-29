@@ -59,6 +59,16 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
+          <button className='navLink btn'>
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/center.png"
+              ></img>
+            ) : (
+              'Center Grid'
+            )}
+          </button>
           <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
         </div>
       </nav>

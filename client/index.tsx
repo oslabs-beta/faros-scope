@@ -17,6 +17,6 @@ if (container) {
       <Theme>
         <App />
       </Theme>
-    </Provider>,
+    </Provider>
   );
 }

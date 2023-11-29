@@ -35,7 +35,7 @@ const config: Configuration = {
       },
       {
         test: /\.s?css$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', {loader: 'postcss-loader'},  'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

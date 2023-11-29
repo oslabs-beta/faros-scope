@@ -23,9 +23,9 @@
   background-attachment: local;
   background-image: 
     // horizontal lines
-    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.1em),
+    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
     // vertical lines
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em),
     // horizontal glow bottom side
     linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
     // horizontal glow top side
@@ -37,9 +37,9 @@
   &.light {
     background-image: 
     // horizontal lines
-    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.1em),
-    // vertical lines
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.1em),
+      linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+      // vertical lines
+      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
   }
   &:active {
     cursor: grabbing;
@@ -54,7 +54,7 @@
   backdrop-filter: blur(8px);
   border-radius: 8px;
   &.dark {
-    background-color: rgba(0, 0, 0, 0.030);
+    background-color: rgba(0, 0, 0, 0.03);
     border: 1px solid rgb(0, 0, 0);
     box-shadow: 0px 0px 15px 0px $diamond-blue;
   }
@@ -70,17 +70,16 @@
   height: fit-content;
   width: fit-content;
   transition: all 0.5s ease-in-out;
+  scale: 0.5;
 }
 
 .draggableContent {
   @include flex-vertical;
   position: relative;
-  height: 100vw;
-  width: 100vw;
-  // min-width: fit-content;
-  // min-height: fit-content;
   transition: all 0.5s ease-in-out;
-  transform-origin: center center;
+  transform-origin: 0% 0%;
+  overflow: hidden;
+  scale: 1;
 }
 
 @keyframes opacity-flicker {
