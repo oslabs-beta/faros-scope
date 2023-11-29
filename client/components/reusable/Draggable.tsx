@@ -31,7 +31,7 @@ const Draggable = ({ children }: DraggableProps) => {
 
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
-    console.log(nodesScale)
+    console.log(nodesScale);
     if (e.deltaY > 0) {
       setNodesScale((prev) => {
         // Calculate newScale based on the previous state (prev)
@@ -43,8 +43,8 @@ const Draggable = ({ children }: DraggableProps) => {
 
         // Update other parts of the state or perform other actions as needed
         updateGridScrollPosition(
-          gridScrollPosition.x - 100,
-          gridScrollPosition.y - 100,
+          gridScrollPosition.x - 120,
+          gridScrollPosition.y - 120,
         );
 
         // Return the newScale to update the state
@@ -61,8 +61,8 @@ const Draggable = ({ children }: DraggableProps) => {
 
         // Update other parts of the state or perform other actions as needed
         updateGridScrollPosition(
-          gridScrollPosition.x + 100,
-          gridScrollPosition.y + 100,
+          gridScrollPosition.x + 120,
+          gridScrollPosition.y + 120,
         );
 
         // Return the newScale to update the state

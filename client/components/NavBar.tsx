@@ -59,6 +59,16 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
+          <Link to={'/List-View'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/list.png"
+              ></img>
+            ) : (
+              'List View'
+            )}
+          </Link>
           <button className='navLink btn'>
             {orientation === 'vertical' ? (
               <img
