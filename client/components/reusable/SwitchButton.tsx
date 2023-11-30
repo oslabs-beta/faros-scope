@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/switchbutton.scss';
+import '../../css/Switchbutton.scss';
 import { useTheme } from '../../Theme';
 
 interface SwitchButtonProps {

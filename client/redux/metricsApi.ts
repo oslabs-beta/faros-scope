@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IMetrics } from '../../types/types'
 
-const metricsApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+export const metricsApi = createApi({
+  reducerPath: 'metricsApi', 
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
   endpoints: (builder) => ({
-    getMetrics: builder.query<IMetrics, void>({
-      query: () => 'metrics',
+    getClusterInfo: builder.query({
+      query: () => 'clusterInfo'
     }),
   }),
 });
 
-export const { useGetMetricsQuery } = metricsApi;
+export const { useGetClusterInfoQuery} = metricsApi;

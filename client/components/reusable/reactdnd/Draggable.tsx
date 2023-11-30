@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import '../../../css/Reactdnd.scss';
 
 interface DraggableProps {
@@ -16,7 +15,7 @@ function Draggable({
   orientation = 'horizontal',
   className,
 }: DraggableProps) {
-  const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef } =
+  const { attributes, listeners, setNodeRef, setActivatorNodeRef } =
     useDraggable({
       id: id,
       data: {
@@ -30,8 +29,8 @@ function Draggable({
 
   return (
     <div
-      className={className || 'draggableContainer'}
-      id={id || 'draggableContainer'}
+      className={className || 'draggableDNDContainer'}
+      id={id || 'draggableDNDContainer'}
       ref={setNodeRef}
       style={style}
       {...attributes}

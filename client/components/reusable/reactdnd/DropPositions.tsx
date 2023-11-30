@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Droppable from './Droppable';
-import NavBar from '../../NavBar';
 import '../../../css/Reactdnd.scss';
 import DraggableNavbar from './DraggableNavbar';
 
@@ -15,27 +14,31 @@ const DropPositions = ({ parent }: DropPositionsProps) => {
         id="topNavPosition"
         orientation="horizontal"
         classOverride="styleTop"
-        outlineClass='outlineTop'
+        outlineClass="outlineTop"
       >
         <div id="topNavPosition">
-          {parent === 'topNavPosition' && <DraggableNavbar orientation="horizontal" />}
+          {parent === 'topNavPosition' && (
+            <DraggableNavbar orientation="horizontal" />
+          )}
         </div>
       </Droppable>
       <Droppable
         id="leftNavPosition"
         orientation="vertical"
         classOverride="styleLeft"
-        outlineClass='outlineLeft'
+        outlineClass="outlineLeft"
       >
         <div id="leftNavPosition">
-          {parent === 'leftNavPosition' && <DraggableNavbar orientation="vertical" />}
+          {parent === 'leftNavPosition' && (
+            <DraggableNavbar orientation="vertical" />
+          )}
         </div>
       </Droppable>
       <Droppable
         id="bottomNavPosition"
         classOverride="styleBottom"
         orientation="horizontal"
-        outlineClass='outlineBottom'
+        outlineClass="outlineBottom"
       >
         <div id="bottomNavPosition">
           {parent === 'bottomNavPosition' && (
@@ -47,10 +50,12 @@ const DropPositions = ({ parent }: DropPositionsProps) => {
         id="rightNavPosition"
         classOverride="styleRight"
         orientation="vertical"
-        outlineClass='outlineRight'
+        outlineClass="outlineRight"
       >
         <div id="rightNavPosition">
-          {parent === 'rightNavPosition' && <DraggableNavbar orientation="vertical" />}
+          {parent === 'rightNavPosition' && (
+            <DraggableNavbar orientation="vertical" />
+          )}
         </div>
       </Droppable>
     </div>

@@ -1,0 +1,181 @@
+@import 'Variables';
+@import 'Base';
+@mixin podContainer {
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
+  text-shadow: 1px 0px 1px rgba(20, 20, 20, 0.5);
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.podsView {
+  @include flex-vertical;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px),
+    radial-gradient(rgba($graph-blue, 0.5) 15%, transparent 60%);
+  background-size: 1em 1em;
+  overflow: auto;
+  padding: 1em;
+  &.light {
+    background-image: radial-gradient(
+      rgba($graph-blue, 1) 2px,
+      transparent 3px
+    );
+  }
+}
+
+.podsViewInner {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: opacity 1s ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: 1.5s;
+  opacity: 1;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  overflow: auto;
+  &.dark {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 15px 0px $diamond-blue;
+  }
+  &.light {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: none;
+  }
+}
+
+.podsContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.podContainer {
+  @include podContainer;
+  position: relative;
+  width: min-content;
+  height: min-content;
+  border-radius: 0;
+  transition: all 0.5s ease-in-out;
+  animation: wave 1s ease-in-out;
+  animation-fill-mode: backwards;
+  border-radius: 4px;
+  margin: 0.5rem 0.5rem;
+  background-color: rgba(31, 31, 31, 0.55);
+}
+
+.podContainers {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 18rem;
+  height: 20rem;
+  margin: 0.5rem;
+  border: 1.5px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  background-color: $base-yellow;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 1px 7.5px 0px $base-yellow;
+  overflow: auto;
+  &:hover {
+    transform: scale(1.25);
+    z-index: 999;
+  }
+}
+
+.podName {
+  display: flex;
+  align-items: center;
+  color: darken($base-orange, 10%);
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-shrink: 0;
+  width: 100%;
+  height: fit-content;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
+  text-shadow: 0px 0px 5px $base-orange;
+  white-space: nowrap;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.podMetrics {
+  @include podContainer;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.podRow {
+  display: flex;
+  // middle adjusted row
+  width: 100%;
+  height: fit-content;
+  padding: 0 1.5rem;
+}
+
+.podsViewPolkaOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  // background-image: radial-gradient(rgba($graph-blue, 0.5) 15%, transparent  60%);
+  background-size: 1em 1em;
+  border-radius: 0;
+}
+
+.podsViewOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  border-radius: 0;
+  pointer-events: all;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

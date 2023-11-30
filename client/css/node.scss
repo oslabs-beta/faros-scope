@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import 'Variables.scss';
 
 @keyframes hover-up-down-exaggerate {
   0% {
@@ -42,15 +42,12 @@
 .Node {
   position: relative;
   background-color: $base-red;
-  border-radius: 8px;
-  width: 10em;
-  height: 10em;
   rotate: 45deg;
   margin: 4rem;
   border: 1px solid rgb(255, 255, 255);
-  // box-shadow: 0px 0px 100px 1000px #ff020227;
   box-shadow: 10px 10px #000000;
   border-radius: 8px;
+  user-select: none;
 }
 
 .Node:hover {
@@ -61,34 +58,39 @@
   cursor: pointer;
   box-shadow: 10px 10px #000000;
   .outerNode {
-    box-shadow: 0px 1px 15px 0px #9d2719;
+    box-shadow: 0px 1px 15px 0px #ffffff;
     animation: expand 1s infinite ease-in-out;
     border: 2px solid black;
   }
-}
-
-.Node:active {
-  animation: shake-left-right 0.5s infinite ease-in-out;
+  .nodeOverlay {
+    box-shadow: 0px 0px 0px 1px rgb(255, 255, 255);
+  }
 }
 
 .nodeOverlay {
   position: absolute;
   width: 100%;
   height: 100%;
+  box-shadow: 0px 0px 10px 1px rgb(255, 255, 255);
+  border-radius: 8px;
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.165) 0em,
-      transparent 8em
+    rgba(255, 255, 255, 0.165) 0em,
+    transparent 8em
   );
+  transition: all 0.2s ease-in-out;
 }
 
 .row {
+  display: flex;
   width: 100%;
   height: fit-content;
-  display: flex;
-  justify-content: center;
 }
+
 .item {
   height: 100px;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 50%;
   width: 100px;
   font-size: 5rem;
 }
@@ -127,8 +129,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10em;
-  height: 10em;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   transform: rotate(-45deg);
+}
+
+@keyframes box-shadow-node {
+  0% {
+    box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+  }
+  50% {
+    box-shadow: 0px 0px 0px 0px rgb(255, 255, 255);
+  }
+  100% {
+    box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+  }
 }

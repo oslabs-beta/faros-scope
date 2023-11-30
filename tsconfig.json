@@ -13,8 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "outDir": "./build"
+    "outDir": "./build",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["server/**/*.ts", "./**/*.tsx"],
+  "include": ["server/**/*.ts", "./**/*.tsx", "types"],
   "exclude": ["node_modules"]
 }

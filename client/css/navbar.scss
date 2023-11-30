@@ -1,14 +1,21 @@
-@import './base.scss';
+@import './Base.scss';
 
 .navDragButton {
   max-width: 40px;
   max-height: 40px;
 }
 
-
 #navDragImg {
   max-width: 40px;
   max-height: 40px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    animation: hover-up-down-3D 1s infinite ease-in-out;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #287aff;
+    background-color: #16428961;
+    cursor: grab;
+  }
 }
 
 .navContainer {
@@ -132,7 +139,6 @@
 }
 
 .navLink {
-  align-items: center;
   color: #ededed;
   text-decoration: none;
   margin: 0.5rem;
@@ -141,6 +147,11 @@
   transition: all 0.2s ease-in-out;
   border-radius: 8px;
   padding: 0.5rem;
+  font-size: 1.25rem;
+  &.btn {
+    background-color: transparent;
+    border: transparent;
+  }
 }
 
 .navLink:hover {

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/navbar.scss';
+import '../css/Navbar.scss';
 import { useTheme } from '../Theme';
 import SwitchButton from './reusable/SwitchButton';
 import { Link } from 'react-router-dom';
@@ -20,50 +20,69 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   };
 
   return (
-      <div
-        style={styleOverride}
-        className={`navContainer ${
-          orientation === 'vertical' ? 'vertical' : 'horizontal'
+    <div
+      style={styleOverride}
+      className={`navContainer ${
+        orientation === 'vertical' ? 'vertical' : 'horizontal'
+      }`}
+    >
+      <nav
+        className={`NavBar ${
+          orientation === 'horizontal' ? 'horizontal' : 'vertical'
         }`}
       >
-        <nav
-          className={`NavBar ${
-            orientation === 'horizontal' ? 'horizontal' : 'vertical'
-          }`}
+        <a
+          id="App-Name-Header"
+          className="navLink"
+          href="https://github.com/oslabs-beta/faros-scope"
         >
-          <a
-            id="App-Name-Header"
-            className="navLink"
-            href="https://github.com/oslabs-beta/faros-scope"
-          >
-            {orientation === 'vertical' ? 'FA' : 'Faros'}
-          </a>
-          <div className="nav-right">
-            <Link to={'/'} className="navLink">
-              {orientation === 'vertical' ? (
-                <img
-                  style={{ maxWidth: '35px', maxHeight: '35px' }}
-                  src="../../assets/icons8-home-512.png"
-                ></img>
-              ) : (
-                'Home'
-              )}
-            </Link>
-            <Link to={'/settings'} className="navLink">
-              {orientation === 'vertical' ? (
-                <img
-                  style={{ maxWidth: '35px', maxHeight: '35px' }}
-                  src="../../assets/icons8-settings-512.png"
-                ></img>
-              ) : (
-                'Settings'
-              )}
-            </Link>
-            <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
-          </div>
-        </nav>
-      </div>
-
+          {orientation === 'vertical' ? 'FA' : 'Faros'}
+        </a>
+        <div className="nav-right">
+          <Link to={'/'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/icons8-home-512.png"
+              ></img>
+            ) : (
+              'Home'
+            )}
+          </Link>
+          <Link to={'/settings'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/icons8-settings-512.png"
+              ></img>
+            ) : (
+              'Settings'
+            )}
+          </Link>
+          <Link to={'/List-View'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/list.png"
+              ></img>
+            ) : (
+              'List View'
+            )}
+          </Link>
+          <button className='navLink btn'>
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/center.png"
+              ></img>
+            ) : (
+              'Center Grid'
+            )}
+          </button>
+          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+        </div>
+      </nav>
+    </div>
   );
 };
 

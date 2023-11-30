@@ -1,0 +1,123 @@
+@import 'Variables';
+@import 'Base';
+
+$border-width: 25px;
+$border-height: 25px;
+
+.nodeModalOverlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  pointer-events: all;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.nodeClickableOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  pointer-events: all;
+  animation-fill-mode: forwards;
+}
+
+.nodeModalContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.nodeModalPodsView {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 25px solid #cfd8dc;
+  box-shadow: -20px -20px 1px 0px black;
+  border-radius: 2px;
+  animation: expand-window 1.5s ease-in-out;
+  overflow: visible;
+}
+
+.CloseModalAnimation {
+  animation: close-window 1.5s ease-in-out;
+}
+
+.nodeModalPodsViewInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+}
+
+.close {
+  position: absolute;
+  right: -23px;
+  top: -23.5px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.closeButton {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  border: none;
+  pointer-events: all;
+  color: white;
+}
+
+.closeButton:hover {
+  width: $border-width;
+  height: $border-width;
+  background-color: #eb4034;
+  border: none;
+}
+
+// maybe scale the window instead of width and height
+@keyframes expand-window {
+  0% {
+    width: 0%;
+    height: 0%;
+    opacity: 0;
+    box-shadow: 0px 0px 0px 0px black;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    box-shadow: -20px -20px 1px 0px black;
+  }
+}
+
+@keyframes close-window {
+  0% {
+    width: 100%;
+    height: 100%;
+    box-shadow: -15px -15px 1px 0px black;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    width: 15%;
+    height: 10%;
+  }
+}
