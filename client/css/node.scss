@@ -39,6 +39,18 @@
   }
 }
 
+@keyframes hover-up-down-node {
+  0% {
+    transform: translate(0px)
+  }
+  50% {
+    transform: translate(8px, 8px);
+  }
+  100% {
+    transform: translate(0px);
+  }
+}
+
 .Node {
   position: relative;
   background-color: $base-red;
@@ -48,6 +60,7 @@
   box-shadow: 10px 10px #000000;
   border-radius: 8px;
   user-select: none;
+  animation: hover-up-down-node 2s infinite ease-in-out;
 }
 
 .Node:hover {

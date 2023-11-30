@@ -17,6 +17,7 @@ const Graph = () => {
   const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
   const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
 
+  // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
   const state = useSelector(
     metricsApi.endpoints.getClusterInfo.select(undefined),
   );

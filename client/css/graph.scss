@@ -53,6 +53,7 @@
   transition: all 0.5s ease-in-out;
   backdrop-filter: blur(8px);
   border-radius: 8px;
+  animation: opacity 1s ease-in-out;
   &.dark {
     background-color: rgba(0, 0, 0, 0.03);
     border: 1px solid rgb(0, 0, 0);
@@ -70,7 +71,8 @@
   height: fit-content;
   width: fit-content;
   transition: all 0.5s ease-in-out;
-  scale: 0.5;
+  // scale: 0.5;
+  scale: 1;
 }
 
 .draggableContent {
