@@ -1,9 +1,5 @@
-import React from 'react';
 import '../../css/Switchbutton.scss';
-import { useTheme } from '../../Theme';
-
-import styles from './SwitchButton.module.css';
-import classNames from 'classNames'; 
+import { useTheme } from '../context/Theme';
 
 interface SwitchButtonProps {
   checked: boolean;
@@ -38,5 +34,3 @@ export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
     </div>
   );
 };
-
-

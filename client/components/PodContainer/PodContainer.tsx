@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import formatPods from '../../util/formatPods';
-import { useTheme } from '../../Theme';
+import { useTheme } from '../context/Theme';
 import '../../css/Graph.scss';
 import '../../css/Pod.scss';
 
@@ -24,11 +24,6 @@ export const PodContainer = ({ nodePods, podsViewRef }: PodContainerProps) => {
     setShowOverlay(false);
     console.log('disableOverlay');
   };
-
-  // const enableOverlay = () => {
-  //   setShowOverlay(true);
-  //   console.log('enableOverlay');
-  // };
 
   return (
     <div ref={podsViewRef} className={`podsView ${theme}`}>

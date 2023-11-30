@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../../css/Node.scss';
-import {NodeModal} from './index';
+import NodeModal from './NodeModal';
 import { createPortal } from 'react-dom';
-
-import styles from './Node.module.css';
-import classNames from 'classNames';
 
 interface NodeInterface {
   content: any;
@@ -22,7 +19,7 @@ interface NodeInterface {
  * @param dimensions - The dimensions of the node.
  * @returns ReactNode
  */
-export const Node = ({ content, dimensions }: NodeInterface) => {
+const Node = ({ content, dimensions }: NodeInterface) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = (e: any) => {
     e.stopPropagation();
@@ -30,13 +27,14 @@ export const Node = ({ content, dimensions }: NodeInterface) => {
   };
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
+
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="Node" style={nodeStyle} onClick={openModal}>
       <span className="nodeOverlay"></span>
       <div className="outerNode">
         <div className="innerNode">
-          <div className="nodeContent">{content?.name}</div>
+          <div className="nodeContent">{content.name}</div>
         </div>
       </div>
       {modalOpen &&
@@ -47,3 +45,5 @@ export const Node = ({ content, dimensions }: NodeInterface) => {
     </div>
   );
 };
+
+export default Node;

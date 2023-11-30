@@ -1,4 +1,3 @@
-import React from 'react';
 import Droppable from './Droppable';
 import '../../../css/Reactdnd.scss';
 import DraggableNavbar from './DraggableNavbar';

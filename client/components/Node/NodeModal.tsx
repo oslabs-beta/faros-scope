@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { PodContainer } from '../PodContainer';
-import {ThemeContainer} from '../ThemeContainer'
+import { useRef } from 'react';
+import PodsContainer from '../Pod/PodsContainer';
+import { ThemedContainer } from '../Themed/Container/index';
 import exitAnimations from '../../util/nodeModalExitAnims';
 import '../../css/NodeModal.scss';
 
@@ -14,7 +14,7 @@ interface NodeModalInterface {
  * @param Node - The node that was clicked on.
  * @param setModalOpen - A function that sets the modal to open or closed.
  */
-export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
+const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
@@ -60,12 +60,14 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             </button>
           </span>
           <div className="nodeModalPodsViewInner">
-            <ThemeContainer>
-              <PodContainer podsViewRef={podsViewRef} nodePods={nodePods} />
-            </ThemeContainer>
+            <ThemedContainer>
+              <PodsContainer podsViewRef={podsViewRef} nodePods={nodePods} />
+            </ThemedContainer>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default NodeModal;

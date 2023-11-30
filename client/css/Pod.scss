@@ -2,13 +2,11 @@
 @import 'Base';
 @mixin podContainer {
   color: rgb(255, 255, 255);
-  box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
-  text-shadow: 1px 0px 1px rgba(20, 20, 20, 0.5);
-  border: 1px solid rgb(255, 255, 255);
+  text-shadow: 2px 2px 1px rgba(20, 20, 20, 0.5);
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .podsView {
-  @include flex-vertical;
   position: relative;
   width: 100%;
   height: 100%;
@@ -18,8 +16,7 @@
   background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px),
     radial-gradient(rgba($graph-blue, 0.5) 15%, transparent 60%);
   background-size: 1em 1em;
-  overflow: auto;
-  padding: 1em;
+  padding: 1rem;
   &.light {
     background-image: radial-gradient(
       rgba($graph-blue, 1) 2px,
@@ -29,8 +26,6 @@
 }
 
 .podsViewInner {
-  display: flex;
-  justify-content: center;
   position: relative;
   width: 100%;
   height: 100%;
@@ -40,7 +35,9 @@
   opacity: 1;
   backdrop-filter: blur(5px);
   border-radius: 8px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
   &.dark {
     background-color: rgba(0, 0, 0, 0.03);
     border: 1px solid rgb(255, 255, 255);
@@ -53,46 +50,55 @@
   }
 }
 
-.podsContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  padding: 2rem 0;
+.containerBuckets {
+  @include podContainer;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: fit-content;
+  border: none;
+  box-shadow: 0px 4px 7.5px -3px rgba(20, 20, 20, 0.5);
+}
+
+.containerBucketOuter {
+  padding: 0.5rem;
+  overflow-x: auto;
+  border-top: none;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.containerImage {
+  white-space: nowrap;
 }
 
 .podContainer {
-  @include podContainer;
   position: relative;
   width: min-content;
   height: min-content;
-  border-radius: 0;
   transition: all 0.5s ease-in-out;
-  animation: wave 1s ease-in-out;
+  background-image: linear-gradient(
+    45deg,
+    lighten($base-red, 20%),
+    $base-orange,
+  );
+  animation: expand-card-deck 1s ease-in-out, wave 1s ease-in-out,
+    move-gradient 1.5s ease-in-out infinite;
+  background-size: 600% 600%;
   animation-fill-mode: backwards;
-  border-radius: 4px;
-  margin: 0.5rem 0.5rem;
+  border-radius: 10px;
+  margin: 0.5rem;
   background-color: rgba(31, 31, 31, 0.55);
 }
 
-.podContainers {
-  position: relative;
+.podsContainer {
   width: 100%;
   height: 100%;
-  border-radius: 0;
-  padding: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: none;
 }
 
 .pod {
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
   width: 18rem;
   height: 20rem;
@@ -104,7 +110,7 @@
   box-shadow: 0px 1px 7.5px 0px $base-yellow;
   overflow: auto;
   &:hover {
-    transform: scale(1.25);
+    transform: scale(1.10);
     z-index: 999;
   }
 }
@@ -112,7 +118,6 @@
 .podName {
   display: flex;
   align-items: center;
-  color: darken($base-orange, 10%);
   overflow-x: auto;
   overflow-y: hidden;
   flex-shrink: 0;
@@ -122,21 +127,21 @@
   font-size: 1.5rem;
   font-weight: 600;
   box-shadow: 0px 1px 7.5px 0px rgba(20, 20, 20, 0.5);
-  text-shadow: 0px 0px 5px $base-orange;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .podMetrics {
   @include podContainer;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   padding: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: rgb(255, 255, 255);
-  margin: 0.5rem;
-  padding: 1rem;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  box-shadow: 0px 4px 7.5px -3px rgba(20, 20, 20, 0.5);
 }
 
 .podRow {
@@ -144,7 +149,8 @@
   // middle adjusted row
   width: 100%;
   height: fit-content;
-  padding: 0 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .podsViewPolkaOverlay {
@@ -177,5 +183,27 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes expand-card-deck {
+  0% {
+    margin: -9.5rem;
+  }
+
+  100% {
+    margin: 0.5rem;
+  }
+}
+
+@keyframes move-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

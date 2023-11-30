@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export function setAnimationDelay(element: HTMLElement, delay: number): void {
   element.style.animationDelay = `${delay}s`;
