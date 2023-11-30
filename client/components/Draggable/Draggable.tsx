@@ -22,7 +22,6 @@ export const Draggable = ({ children }: DraggableProps) => {
   const draggableContent = useRef<HTMLDivElement>(null);
 
   const { gridScrollPosition, updateGridScrollPosition } = useGrid();
-  console.log('gridScrollPosition', gridScrollPosition);
   const [nodesScale, setNodesScale] = useState(1);
 
   const { theme } = useTheme();
@@ -34,25 +33,28 @@ export const Draggable = ({ children }: DraggableProps) => {
 
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
-    console.log(nodesScale);
-    if (e.deltaY > 0 && nodesScale > 0.5) {
+    if (e.deltaY > 0) {
       setNodesScale((prev) => {
+        if (prev <= 0.5) return prev;
         const newScale = Number((prev - 0.1).toFixed(1));
-        console.log(newScale);
+
         updateGridScrollPosition(
           gridScrollPosition.x - 100,
           gridScrollPosition.y - 100,
         );
+
         return newScale;
       });
-    } else if (e.deltaY < 0 && nodesScale < 3) {
+    } else if (e.deltaY < 0) {
       setNodesScale((prev) => {
+        if (prev >= 3) return prev;
         const newScale = Number((prev + 0.1).toFixed(1));
-        console.log(newScale);
+
         updateGridScrollPosition(
           gridScrollPosition.x + 100,
           gridScrollPosition.y + 100,
         );
+
         return newScale;
       });
     }

@@ -15,7 +15,7 @@ const formatContainers = (containers: any[] = []) => {
   return containers.map((element: any) => {
     return (
       // Rename Class
-      <div>
+      <div >
         <div> name: {element.name}</div>
         <div> image: {element.image}</div>
       </div>

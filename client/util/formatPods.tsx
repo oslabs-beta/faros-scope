@@ -1,4 +1,5 @@
 import React from 'react';
+import Pod from '../components/reusable/Pod';
 
 //* example arr input:
 //* [
@@ -28,23 +29,29 @@ const formatPods = (
     const row = elements.map((element: any, indx) => {
       const animationDelay = `${2 + indx / 4 + i / 4}s`;
       return (
-        <div
-          style={{ animationDelay: animationDelay }}
-          onClick={clickFunc}
-          key={element.name}
-          className="podContainer"
-        >
-          <div className="pod">
-            <div className="podName">{element.name}</div>
-            <div className="podMetrics">
-              <div className="podCpu">CPU: 0</div>
-              <div className="podMemory">Memory: 0</div>
-            </div>
-            <div className="podContainers">
-              {element.containers && formatContainers(element.containers)}
-            </div>
-          </div>
-        </div>
+        // <div
+        //   style={{ animationDelay: animationDelay }}
+        //   onClick={clickFunc}
+        //   key={element.name}
+        //   className="podContainer"
+        // >
+        //   <div className="pod">
+        //     <div className="podName">{element.name}</div>
+        //     <div className="podMetrics">
+        //       <div className="podCpu">CPU: 0</div>
+        //       <div className="podMemory">Memory: 0</div>
+        //     </div>
+        //     <div className="podContainers">
+        //       {element.containers && formatContainers(element.containers)}
+        //     </div>
+        //   </div>
+        // </div>
+        <Pod
+          podName={element.name}
+          podData={element}
+          animationDelay={animationDelay}
+          clickFunc={clickFunc}
+        />
       );
     });
 

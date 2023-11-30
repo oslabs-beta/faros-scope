@@ -1,23 +1,29 @@
 import React from 'react';
+import formatContainers from '../../util/formatContainers';
 
 interface PodProps {
   podName: string;
-  metrics: {};
+  podData: any;
+  animationDelay?: string;
+  clickFunc?: (...args: any) => void;
 }
 
-const Pod = (props: PodProps) => {
-  console.log('Hello from the Pod'); 
-  console.log('Pod Props', props);
-
+const Pod = ({ podName, podData, animationDelay, clickFunc }: PodProps) => {
   return (
-    <div className="outerPod">
-      <div className="innerPod">
-        <div className="podName">
-          <span className="podNameText">{props.podName}</span>
-        </div>
+    <div
+      style={{ animationDelay: animationDelay }}
+      onClick={clickFunc}
+      key={podName}
+      className="podContainer"
+    >
+      <div className="pod">
+        <div className="podName">{podName}</div>
         <div className="podMetrics">
-          <div className="podCpu">CPU: {/*metrics.cpu*/}</div>
-          <div className="podMemory">Memory: {/*metrics.memory*/}</div>
+          <div className="podCpu">CPU: 0</div>
+          <div className="podMemory">Memory: 0</div>
+        </div>
+        <div className="podContainers">
+          {podData.containers && formatContainers(podData.containers)}
         </div>
       </div>
     </div>

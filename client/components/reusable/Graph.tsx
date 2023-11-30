@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import formatNodes from '../../util/formatNodes';
-import Draggable from './Draggable';
+import { Draggable } from './Draggable';
 import '../../css/Graph.scss';
 import { useTheme } from '../../Theme';
 // import query
