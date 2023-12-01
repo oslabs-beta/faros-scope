@@ -30,6 +30,7 @@ const Node = ({ content, dimensions }: NodeInterface) => {
 
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
+      <div className="borderNode">
     <div className="Node" style={nodeStyle} onClick={openModal}>
       <span className="nodeOverlay"></span>
       <div className="outerNode">
@@ -42,6 +43,7 @@ const Node = ({ content, dimensions }: NodeInterface) => {
           <NodeModal Node={content} setModalOpen={setModalOpen} />,
           document.body,
         )}
+    </div>
     </div>
   );
 };

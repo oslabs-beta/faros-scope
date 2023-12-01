@@ -52,15 +52,29 @@
 }
 
 .Node {
-  position: relative;
-  background-color: $base-red;
-  rotate: 45deg;
-  margin: 4rem;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 10px 10px #000000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color-dark;
+  // background-image: linear-gradient(45, $base-yellow, $base-orange);
   border-radius: 8px;
+  clip-path: polygon(51.00% 2.00%,89.00% 21.00%,99.00% 60.00%,75.00% 99.00%,26.00% 99.00%,1.00% 60.00%,11.00% 21.00%);
   user-select: none;
-  animation: hover-up-down-node 2s infinite ease-in-out;
+  scale: 0.95;
+  left: 0;
+  top: 0;
+  // animation: hover-up-down-node 2s infinite ease-in-out;
+}
+
+.borderNode{
+  position: relative;
+  width: 108px;
+  height: 104px;
+  background-color: black;
+  // background-image: linear-gradient(45, $base-yellow, $base-orange);
+  border-radius: 20px;
+  scale:1.0;
+  clip-path: polygon(51.00% 2.00%,89.00% 21.00%,99.00% 60.00%,75.00% 99.00%,26.00% 99.00%,1.00% 60.00%,11.00% 21.00%);
 }
 
 .Node:hover {
