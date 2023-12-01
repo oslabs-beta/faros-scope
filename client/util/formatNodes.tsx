@@ -23,11 +23,11 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
   console.log(arr);
   let i = 0;
   while (i < arr.length) {
-    const elements = arr.slice(i, i + interval);
+    const nodesSlice = arr.slice(i, i + interval);
 
-    const row = elements.map((element: any) => {
+    const row = nodesSlice.map((node: any) => {
       return (
-        <Node dimensions={dimensions} key={element.name} content={element} />
+        <Node dimensions={dimensions} key={node.name} node={node} />
       );
     });
 

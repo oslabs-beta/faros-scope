@@ -54,6 +54,7 @@
   backdrop-filter: blur(8px);
   border-radius: 8px;
   animation: opacity 1s ease-in-out;
+  padding: 1rem;
   &.dark {
     background-color: rgba(0, 0, 0, 0.03);
     border: 1px solid rgb(0, 0, 0);
@@ -65,13 +66,16 @@
   }
 }
 
+.row {
+  perspective: 1000px;
+}
+
 .draggableInner {
   transform-origin: center center;
   position: relative;
   height: fit-content;
   width: fit-content;
   transition: all 0.5s ease-in-out;
-  // scale: 0.5;
   scale: 1;
 }
 

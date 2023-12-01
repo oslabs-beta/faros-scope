@@ -11,7 +11,7 @@ export const metricsApi = createApi({
       query: () => 'nodeStats' 
     }),
     getPodStats: builder.query({
-      query: () => 'nodeStats' 
+      query: () => 'podStats' 
     })
   }),
 });

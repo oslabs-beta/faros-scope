@@ -13,8 +13,9 @@ import GridProvider from '../context/GridContext';
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
  * @returns ReactNode
  */
-const Graph = () => {
+export const Graph = () => {
   const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
+
   const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
 
   // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
@@ -36,5 +37,3 @@ const Graph = () => {
     </GridProvider>
   );
 };
-
-export default Graph;

@@ -1,20 +1,5 @@
 @import 'Variables.scss';
 
-@keyframes hover-up-down-exaggerate {
-  0% {
-    transform: translateY(0px);
-    box-shadow: 10px 10px #000000;
-  }
-  50% {
-    transform: translate(5px, 5px);
-    box-shadow: 0px 0px #000000;
-  }
-  100% {
-    transform: translateY(0px);
-    box-shadow: 10px 10px #000000;
-  }
-}
-
 @keyframes expand {
   0% {
     transform: scale(1);
@@ -41,43 +26,58 @@
 
 @keyframes hover-up-down-node {
   0% {
-    transform: translate(0px)
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(8px, 8px);
+    transform: translateY(4px);
   }
   100% {
-    transform: translate(0px);
+    transform: translateY(0px);
   }
 }
 
 .Node {
-  position: relative;
-  background-color: $base-red;
-  rotate: 45deg;
-  margin: 4rem;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 10px 10px #000000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color-dark;
+  // background-image: linear-gradient(45, $base-yellow, $base-orange);
   border-radius: 8px;
+  clip-path: polygon(
+    51% 2%,
+    89% 21%,
+    99% 60%,
+    75% 99%,
+    26% 99%,
+    1% 60%,
+    11% 21%
+  );
   user-select: none;
-  animation: hover-up-down-node 2s infinite ease-in-out;
+  scale: 0.95;
+  left: -1.5%;
+  top: -2%;
 }
 
-.Node:hover {
-  animation-play-state: paused;
-  box-shadow: 0px 1px 15px 0px #9d2719;
-  transform: translateY(-2px);
-  animation: hover-up-down-exaggerate 1s infinite ease-in-out;
+.borderNode {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  background-color: black;
+  border-radius: 20px;
+  clip-path: polygon(
+    51% 2%,
+    89% 21%,
+    99% 60%,
+    75% 99%,
+    26% 99%,
+    1% 60%,
+    11% 21%
+  );
+  transition: all 0.2s ease-in-out;
+}
+
+.borderNode:hover {
   cursor: pointer;
-  box-shadow: 10px 10px #000000;
-  .outerNode {
-    box-shadow: 0px 1px 15px 0px #ffffff;
-    animation: expand 1s infinite ease-in-out;
-    border: 2px solid black;
-  }
-  .nodeOverlay {
-    box-shadow: 0px 0px 0px 1px rgb(255, 255, 255);
-  }
 }
 
 .nodeOverlay {
@@ -145,7 +145,6 @@
   width: 100%;
   height: 100%;
   background-color: transparent;
-  transform: rotate(-45deg);
 }
 
 @keyframes box-shadow-node {

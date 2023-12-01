@@ -1,4 +1,5 @@
-import Pod from '../components/Pod/Pod';
+import { Pod } from '../components/Pod/index';
+import { useGetClusterInfoQuery } from '../redux/metricsApi';
 
 //* example arr input:
 //* [
@@ -18,7 +19,7 @@ const formatPods = (
 ) => {
   console.log('formatPods');
   // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
-  // console.log('STATE: ', state); 
+  // console.log('STATE: ', state);
   const result: any = [];
 
   let i = 0;

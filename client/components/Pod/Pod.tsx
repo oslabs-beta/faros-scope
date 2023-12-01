@@ -7,7 +7,12 @@ interface PodProps {
   clickFunc?: (...args: any) => void;
 }
 
-const Pod = ({ podName, podData, animationDelay, clickFunc }: PodProps) => {
+export const Pod = ({
+  podName,
+  podData,
+  animationDelay,
+  clickFunc,
+}: PodProps) => {
   return (
     <div
       style={{ animationDelay: animationDelay }}
@@ -30,5 +35,3 @@ const Pod = ({ podName, podData, animationDelay, clickFunc }: PodProps) => {
     </div>
   );
 };
-
-export default Pod;
