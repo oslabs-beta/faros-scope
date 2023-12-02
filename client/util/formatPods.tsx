@@ -22,7 +22,7 @@ const formatPods = (
   clickFunc?: (...args: any) => any,
   ) => {
 
-    const { data } = useGetPodStatsQuery(undefined, {pollingInterval: 10000})
+    const { data } = useGetPodStatsQuery(undefined, {pollingInterval: 5000})
     if(data) pods = data;
   
   // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
