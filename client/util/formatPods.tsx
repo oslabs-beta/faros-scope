@@ -1,5 +1,5 @@
 import { Pod } from '../components/Pod/index';
-import { useGetClusterInfoQuery } from '../redux/metricsApi';
+import { useGetPodStatsQuery } from '../redux/metricsApi';
 
 //* example arr input:
 //* [
@@ -12,12 +12,19 @@ import { useGetClusterInfoQuery } from '../redux/metricsApi';
  * @param pods - The pods of a node.
  * @returns A list of JSX elements.
  */
+// const { refetch } = metricsApi.endpoints.getPodStats.useQuerySubscription(undefined)
+
 const formatPods = (
+  // Pods polling query
+  
   pods: any[] = [],
   interval: number = 7,
   clickFunc?: (...args: any) => any,
-) => {
-  console.log('formatPods');
+  ) => {
+
+    const { data } = useGetPodStatsQuery(undefined, {pollingInterval: 10000})
+    if(data) pods = data;
+  
   // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
   // console.log('STATE: ', state);
   const result: any = [];
