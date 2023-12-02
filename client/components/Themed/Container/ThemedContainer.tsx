@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { useTheme } from '../../Theme';
+import { ReactNode } from 'react';
+import { useTheme } from '../../context/Theme';
 
 /**
  * A basic container that uses the current theme for styling, and wraps its children in a centered div
@@ -7,7 +7,7 @@ import { useTheme } from '../../Theme';
  * @returns ReactNode
  */
 
-const ThemedContainer = ({ children }: { children: ReactNode }) => {
+export const ThemedContainer = ({ children }: { children: ReactNode }) => {
   const { theme } = useTheme();
   return (
     <div className={`outerContainer ${theme}`}>
@@ -15,5 +15,3 @@ const ThemedContainer = ({ children }: { children: ReactNode }) => {
     </div>
   );
 };
-
-export default ThemedContainer;

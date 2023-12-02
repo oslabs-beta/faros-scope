@@ -2,7 +2,6 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 
 export interface IDefaultError {

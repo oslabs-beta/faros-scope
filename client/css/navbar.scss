@@ -5,7 +5,6 @@
   max-height: 40px;
 }
 
-
 #navDragImg {
   max-width: 40px;
   max-height: 40px;
@@ -140,7 +139,6 @@
 }
 
 .navLink {
-  align-items: center;
   color: #ededed;
   text-decoration: none;
   margin: 0.5rem;
@@ -149,6 +147,11 @@
   transition: all 0.2s ease-in-out;
   border-radius: 8px;
   padding: 0.5rem;
+  font-size: 1.25rem;
+  &.btn {
+    background-color: transparent;
+    border: transparent;
+  }
 }
 
 .navLink:hover {

@@ -1,10 +1,7 @@
-import React from 'react';
-import '../css/Navbar.scss';
-import { useTheme } from '../Theme';
-import SwitchButton from './reusable/SwitchButton';
+import '../../css/Navbar.scss';
+import { useTheme } from '../context/Theme';
+import { SwitchButton } from '../SwitchButton/index';
 import { Link } from 'react-router-dom';
-
-import { NotPod } from './reusable';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -15,7 +12,7 @@ interface NavBarProps {
  * The NavBar component is contstantly rendered at the top of the page. It contains a link to the Faros GitHub repo, and other links to different pages of the app. It also contains a toggle switch to change the theme of the app.
  * @returns ReactNode
  */
-const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
+export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   const { toggleTheme, theme } = useTheme();
   const changeTheme = () => {
     toggleTheme();
@@ -61,12 +58,29 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
-                  <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
-                  <NotPod />
+          <Link to={'/List-View'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/list.png"
+              ></img>
+            ) : (
+              'List View'
+            )}
+          </Link>
+          <button className="navLink btn">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/center.png"
+              ></img>
+            ) : (
+              'Center Grid'
+            )}
+          </button>
+          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
         </div>
       </nav>
     </div>
   );
 };
-
-export default NavBar;

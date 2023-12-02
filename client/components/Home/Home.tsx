@@ -1,17 +1,14 @@
-import React from 'react';
-import ThemedContainer from './reusable/ThemedContainer';
-import '../css/Home.scss';
-import Graph from './reusable/Graph';
+import { ThemedContainer } from '../Themed/Container/index';
+import '../../css/Home.scss';
+import { Graph } from '../Graph/index';
 
 /**
  * The home page of the application, which contains the graph, main component of the app, landing page.
  */
-const Home = () => {
+export const Home = () => {
   return (
     <ThemedContainer>
       <Graph />
     </ThemedContainer>
   );
 };
-
-export default Home;

@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import Droppable from './Droppable';
-import NavBar from '../../NavBar';
 import '../../../css/Reactdnd.scss';
 import DraggableNavbar from './DraggableNavbar';
 

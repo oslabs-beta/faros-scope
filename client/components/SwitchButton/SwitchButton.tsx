@@ -1,6 +1,5 @@
-import React from 'react';
 import '../../css/Switchbutton.scss';
-import { useTheme } from '../../Theme';
+import { useTheme } from '../context/Theme';
 
 interface SwitchButtonProps {
   checked: boolean;
@@ -13,7 +12,7 @@ interface SwitchButtonProps {
  * @param onChange
  * @returns ReactNode
  */
-const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
+export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
   const { theme } = useTheme();
   //* Sun is the light theme, moon is the dark theme, image element uses a dynamic path, depending on the theme mode
   const sun = '../../assets/sun.png';
@@ -35,5 +34,3 @@ const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
     </div>
   );
 };
-
-export default SwitchButton;

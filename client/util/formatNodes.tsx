@@ -1,5 +1,4 @@
-import React from 'react';
-import Node from '../components/reusable/Node';
+import Node from '../components/Node/Node';
 
 //* example arr input:
 //* [
@@ -15,19 +14,20 @@ import Node from '../components/reusable/Node';
 function formatNodes(arr: any[] = [], interval: number = 4) {
   const result: any = [];
   const dimensions = {
-    width: `${arr.length % 2 + 5}em`,
-    height: `${arr.length % 2 + 5}em`,
+    width: `${(arr.length % 2) + 5}em`,
+    height: `${(arr.length % 2) + 5}em`,
     maxWidth: '8em',
     maxHeight: '8em',
   };
 
+  console.log(arr);
   let i = 0;
   while (i < arr.length) {
-    const elements = arr.slice(i, i + interval);
+    const nodesSlice = arr.slice(i, i + interval);
 
-    const row = elements.map((element: any) => {
+    const row = nodesSlice.map((node: any) => {
       return (
-        <Node dimensions={dimensions} key={element.name} content={element} />
+        <Node dimensions={dimensions} key={node.name} node={node} />
       );
     });
 

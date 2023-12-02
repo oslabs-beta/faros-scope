@@ -1,8 +1,8 @@
-import express, { NextFunction, Response, Request } from 'express';
+import { NextFunction, Response, Request } from 'express';
 
 
 const metricsController = {
-  async getMetrics(req: Request, res: Response, next: NextFunction) {
+  async getMetrics(_req: Request, res: Response, next: NextFunction) {
     try {
 
 

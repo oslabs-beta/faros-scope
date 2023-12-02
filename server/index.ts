@@ -20,12 +20,12 @@ app.use(express.static(path.join(__dirname, '../client/assets')));
 app.use('/api', Router)
 
 // catch all route handler
-app.use('*', (req: Request, res: Response): void => {
+app.use('*', (_req: Request, res: Response): void => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 // global error handler
-app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction): void => {
   const defaultError = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,

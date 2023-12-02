@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
-import NavBar from './components/NavBar';
+import { NavBar } from './components/NavBar/index';
 
 import { useDispatch } from 'react-redux';
 import {metricsApi, useGetClusterInfoQuery} from './redux/metricsApi';

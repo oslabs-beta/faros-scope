@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './Theme';
+import { useTheme } from './components/context/Theme';
+import { Home } from './components/Home/index';
+import { Settings } from './components/Settings/index';
 import Main from './Main';
-import Home from './components/Home';
-import Settings from './components/Settings';
 
 const App = () => {
   const { theme } = useTheme();
