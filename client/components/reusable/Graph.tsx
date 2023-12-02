@@ -5,68 +5,52 @@ import '../../css/Graph.scss';
 import { useTheme } from '../../Theme';
 // import query
 import {
-  useGetTopNodesQuery,
-  useGetTotalNodesQuery,
+useGetClusterInfoQuery,
 } from '../../redux/metricsApi';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/store';
+import { metricsApi, selectAllNodes } from '../../redux/metricsApi';
+import NodesList from './NodesList';
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
  * @returns ReactNode
  */
 const Graph = () => {
-  // const { data, status, error } = useGetTopNodesQuery();
-  // console.log(data, status, error);
 
-  const {
-    data: TNQData,
-    status: TNQStatus,
-    error: TNQError,
-  } = useGetTotalNodesQuery();
-  console.log(TNQData, TNQStatus, TNQError);
+    const { data, status, error } = useGetClusterInfoQuery(undefined, {});
+    console.log('TRANSFORMED RESPONSE', data);
+
+    // ^ Options for getting state from the store
+    const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
+    console.log('ENDPOINT', state); 
+    // const state = useAppSelector((state) => state);
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
-  // ADD NODE QUERY AND RESPONSE
-  const nodes = Array.from({ length: 50 }, () => {
-    return {
-      name: 'Node 1',
-      pods: [
-        {
-          name: 'Pod 1',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-        {
-          name: 'Pod 2',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-        {
-          name: 'Pod 3',
-          containers: [
-            { name: 'nginx', image: 'nginx' },
-            { name: 'busybox', image: 'busybox' },
-          ],
-        },
-      ],
-    };
-  });
-
-  const formattedNodes = formatNodes(nodes, 8);
-
 
   return (
     <Draggable>
       <div className={`graph ${theme}`} ref={graph}>
-        {formattedNodes}
+              {/* {formattedNodes} */}
+              {/* {data && <NodesList />} */}
       </div>
     </Draggable>
   );
 };
 
 export default Graph;
+
+// function NodesList() {
+
+//     const nodes = useSelector(selectAllNodes) ?? []; 
+//     console.log(nodes); 
+
+
+//     return (
+//         <div>
+
+//         </div>
+//     )
+// }

@@ -1,54 +1,64 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IMetrics } from '../../types/types'
+import { useSelector } from 'react-redux';
+import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
+
+interface Node {
+    id: string; 
+    pods: Pod[];
+}
+
+interface Pod {
+    id: string; 
+    nodeId: string;
+    containers: Container[];
+}
+
+interface Container {
+    id: string;
+    podId: string;
+    image: string; 
+}
+
+export const nodesAdapter = createEntityAdapter<Node>();
+const nodesInitalState = nodesAdapter.getInitialState();
+export const podsAdapter = createEntityAdapter<Pod>();
+const podsInititalState = podsAdapter.getInitialState(); 
+export const containersAdapter = createEntityAdapter<Container>();
+const containersInitialState = containersAdapter.getInitialState(); 
 
 export const metricsApi = createApi({
-  reducerPath: 'metricsApi', 
-  // baseQuery: fetchBaseQuery({ baseUrl: 'http://34.27.144.68:8000/' }),
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://34.28.168.97:9090/api/v1/' }),
-  endpoints: (builder) => ({
-    getMetrics: builder.query<IMetrics, void>({
-      query: () => 'metrics',
-    }),
-    getTopNodes: builder.query<IMetrics, void>({
-      query: () => 'topPods', 
-      // do we want to do anything on the start of the query? what do we want to do with the result of the query
-      
-    }), 
-    getTotalNodes: builder.query<IMetrics, void>({
-      query: () => 'query?query=kube_node_info',
-      async onQueryStarted(
-        arg,
-        {
-          dispatch,
-          getState,
-          extra,
-          requestId,
-          queryFulfilled,
-          getCacheEntry,
-          updateCachedData,
-        }
-      ) {
-      console.log('the state', getState()); 
-      console.log('the cached entry', getCacheEntry()); 
+    reducerPath: 'metricsApi', 
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
+    endpoints: (builder) => ({
+    getClusterInfo: builder.query({
+        query: () => 'clusterInfo', 
+        transformResponse: (response: any) => { 
+            // console.log('RESPONSE', response);
 
-      },
-      async onCacheEntryAdded(
-        arg,
-        {
-          dispatch,
-          getState,
-          extra,
-          requestId,
-          cacheEntryRemoved,
-          cacheDataLoaded,
-          getCacheEntry,
-          updateCachedData,
+            let nodes: Node[] = []; 
+            let pods: Pod[] =[]; 
+            let containers: Container[] = [];
+
+            response.forEach(node => {
+              nodes.push({ id: node.nodeName, ...node });
+              node.pods.forEach(pod => {
+                pods.push({ id: pod.name, nodeId: node.nodeName, ...pod });
+                pod.containers.forEach(container => {
+                  containers.push({ id: container.name, podId: pod.name, ...container });
+                });
+              });
+            });
+
+
+            return {
+                nodes: nodesAdapter.setAll(nodesInitalState, nodes),
+                pods: podsAdapter.setAll(podsInititalState, pods),
+                containers: containersAdapter.setAll(containersInitialState, containers),
+              };
         }
-      ) {
-        console.log('The cache data loaded ',cacheDataLoaded); 
-      },
+    }), 
     }),
-  })
 });
 
-export const { useGetMetricsQuery, useGetTopNodesQuery, useGetTotalNodesQuery } = metricsApi;
+export const { useGetClusterInfoQuery } = metricsApi;
+

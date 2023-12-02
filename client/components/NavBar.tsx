@@ -4,6 +4,8 @@ import { useTheme } from '../Theme';
 import SwitchButton from './reusable/SwitchButton';
 import { Link } from 'react-router-dom';
 
+import { NotPod } from './reusable';
+
 interface NavBarProps {
   styleOverride?: any;
   orientation?: string;
@@ -59,7 +61,8 @@ const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
-          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+                  <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+                  <NotPod />
         </div>
       </nav>
     </div>
