@@ -80,8 +80,8 @@
     lighten($base-red, 20%),
     $base-orange
   );
-  animation: expand-card-deck 1s ease-in-out, wave 1s ease-in-out,
-    move-gradient 1.5s ease-in-out infinite;
+  // animation: expand-card-deck 1s ease-in-out, wave 1s ease-in-out,
+  //   move-gradient 1.5s ease-in-out infinite;
   background-size: 600% 600%;
   animation-fill-mode: backwards;
   border-radius: 10px;

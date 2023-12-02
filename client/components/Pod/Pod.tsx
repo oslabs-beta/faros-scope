@@ -13,6 +13,7 @@ export const Pod = ({
   animationDelay,
   clickFunc,
 }: PodProps) => {
+  // console.log(podData.containers[0].usage.cpu)
   return (
     <div
       style={{ animationDelay: animationDelay }}
@@ -23,8 +24,8 @@ export const Pod = ({
       <div className="pod">
         <div className="podName">{podName}</div>
         <div className="podMetrics">
-          <div className="podCpu">CPU: 0</div>
-          <div className="podMemory">Memory: 0</div>
+          <div className="podCpu">Cpu: {podData.containers[0].usage?.cpu}</div>
+          <div className="podMemory">Memory: {podData.containers[0].usage?.memory}</div>
         </div>
         {podData.containers && (
           <div className="containerBuckets">
