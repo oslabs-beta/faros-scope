@@ -56,5 +56,6 @@ export const containersSlice = createSlice({
     },
 });
 
-
-
+export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state.nodes); 
+export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors(state => state.pods);
+export const { selectAll: selectAllContainers, selectById: selectContainerById } = containersAdapter.getSelectors(state => state.containers);

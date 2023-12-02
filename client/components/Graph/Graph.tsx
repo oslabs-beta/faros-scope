@@ -17,15 +17,15 @@ import GridProvider from '../context/GridContext';
 export const Graph = () => {
 
 
-    const selectCluster = useMemo(() => {
-        return createSelector(res => res.data)
-    }); 
+    // const selectCluster = useMemo(() => {
+    //     return createSelector(res => res.data)
+    // }); 
     
     const { data, isSuccess } = useGetClusterInfoQuery(undefined, {
-        selectFromResult: result => ({
-            ...result, 
-            clusterInfo: selectCluster(result)
-      })
+    //     selectFromResult: result => ({
+    //         ...result, 
+    //         clusterInfo: selectCluster(result)
+    //   })
   });
 
   const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
