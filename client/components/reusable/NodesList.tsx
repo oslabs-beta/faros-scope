@@ -1,13 +1,14 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { nodeOptionSelector } from '../../redux/metricsApi';
+import { useNodesSelector } from '../../redux/metricsApi';
+import {useAppSelector} from '../../redux/store';
 
-const  NodesList =( ) => {
+const NodesList = () => {
 
-    const nodes = useSelector(nodeOptionSelector) ?? []; 
-    console.log(nodes); 
 
+    const Nodes = useNodesSelector((state) => state.queries?.getClusterInfo.data);
+    console.log(Nodes); 
 
     return (
         <div>

@@ -7,10 +7,9 @@ import { useTheme } from '../../Theme';
 import {
 useGetClusterInfoQuery,
 } from '../../redux/metricsApi';
-import { useSelector } from 'react-redux';
-import { useAppSelector } from '../../redux/store';
-import { metricsApi, selectAllNodes } from '../../redux/metricsApi';
-import NodesList from './NodesList';
+
+import { useSelector, isPlainObject } from 'react-redux';
+import {metricsApi } from '../../redux/metricsApi';
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
@@ -18,39 +17,70 @@ import NodesList from './NodesList';
  */
 const Graph = () => {
 
-    const { data, status, error } = useGetClusterInfoQuery(undefined, {});
-    console.log('TRANSFORMED RESPONSE', data);
+    // const { data: Cluster, status, error } = useGetClusterInfoQuery();
 
-    // ^ Options for getting state from the store
-    const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
-    console.log('ENDPOINT', state); 
-    // const state = useAppSelector((state) => state);
+    // console.log(data, status, error); 
+
+    // const { data: { nodes } } = useSelector(metricsApi.endpoints.getClusterInfo.select(undefined, {}));
+    // console.log(nodes);
+    // console.log(typeof nodes?.ids); 
+    // console.log(Array.isArray(nodes?.ids));
+    // const result = metricsApi.endpoints.getClusterInfo.select()(state);
+    // console.log('RESULT ', result)
+
+
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  // ADD NODE QUERY AND RESPONSE
+//   const nodes = Array.from({ length: 50 }, () => {
+//     return {
+//       name: 'Node 1',
+//       pods: [
+//         {
+//           name: 'Pod 1',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//         {
+//           name: 'Pod 2',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//         {
+//           name: 'Pod 3',
+//           containers: [
+//             { name: 'nginx', image: 'nginx' },
+//             { name: 'busybox', image: 'busybox' },
+//           ],
+//         },
+//       ],
+//     };
+//   });
+
+// if (data) {
+//     const formattedNodes = (formatNodes(data, 8));
+//     }
+
+//     console.log(formattedNodes);
+
 
   return (
     <Draggable>
-      <div className={`graph ${theme}`} ref={graph}>
-              {/* {formattedNodes} */}
-              {/* {data && <NodesList />} */}
+          <div className={`graph ${theme}`} ref={graph}>
+              {/* {nodes && (
+                  nodes.ids.map((node) => {
+                      return formatNodes(node, 8);
+                  })
+              )} */}
       </div>
     </Draggable>
   );
 };
 
 export default Graph;
-
-// function NodesList() {
-
-//     const nodes = useSelector(selectAllNodes) ?? []; 
-//     console.log(nodes); 
-
-
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// }

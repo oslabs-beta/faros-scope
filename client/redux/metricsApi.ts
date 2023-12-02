@@ -1,31 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
+import { nodesAdapter } from './metricsSlice';
 
-interface Node {
-    id: string; 
-    pods: Pod[];
-}
-
-interface Pod {
-    id: string; 
-    nodeId: string;
-    containers: Container[];
-}
-
-interface Container {
-    id: string;
-    podId: string;
-    image: string; 
-}
-
-export const nodesAdapter = createEntityAdapter<Node>();
-const nodesInitalState = nodesAdapter.getInitialState();
-export const podsAdapter = createEntityAdapter<Pod>();
-const podsInititalState = podsAdapter.getInitialState(); 
-export const containersAdapter = createEntityAdapter<Container>();
-const containersInitialState = containersAdapter.getInitialState(); 
-
+const initialState = nodesAdapter.getInitialState();
 export const metricsApi = createApi({
     reducerPath: 'metricsApi', 
     baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
@@ -33,7 +11,6 @@ export const metricsApi = createApi({
     getClusterInfo: builder.query({
         query: () => 'clusterInfo', 
         transformResponse: (response: any) => { 
-            // console.log('RESPONSE', response);
 
             let nodes: Node[] = []; 
             let pods: Pod[] =[]; 
@@ -49,16 +26,19 @@ export const metricsApi = createApi({
               });
             });
 
-
             return {
-                nodes: nodesAdapter.setAll(nodesInitalState, nodes),
-                pods: podsAdapter.setAll(podsInititalState, pods),
-                containers: containersAdapter.setAll(containersInitialState, containers),
+                nodes: nodes,
+                pods: pods,
+                containers: containers
               };
-        }
+        },
     }), 
     }),
 });
 
 export const { useGetClusterInfoQuery } = metricsApi;
 
+// export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state[metricsApi.reducerPath]);
+
+// export type NodeState = ReturnType<typeof nodesAdapter.getInitialState>
+// export const useNodesSelector: TypedUseSelectorHook<NodeState> = useSelector;

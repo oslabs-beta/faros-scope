@@ -1,13 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { metricsApi } from './metricsApi'
 
-// const booksAdapter = createEntityAdapter({
-//     // Assume IDs are stored in a field other than `book.id`
-//     selectId: (book) => book.bookId,
-//     // Keep the "all IDs" array sorted based on book titles
-//     sortComparer: (a, b) => a.title.localeCompare(b.title),
-//   })
-
 interface Node {
     id: string; 
     pods: Pod[];
@@ -30,37 +23,38 @@ export const podsAdapter = createEntityAdapter<Pod>();
 export const containersAdapter = createEntityAdapter<Container>();
 
 export const nodesSlice = createSlice({
-    name: 'nodes', 
+    name: 'nodes',
     initialState: nodesAdapter.getInitialState(),
-    reducers: {}, 
+    reducers: {},
     extraReducers: (builder) => {
-        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { nodes } }) => { 
-            console.log('NODES', nodes)
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { nodes } }) => {
+            nodesAdapter.setAll(state, nodes);
         }
-    }
-})
+        )
+    },
+});
 
 export const podsSlice = createSlice({
-    name: 'pods', 
+    name: 'pods',
     initialState: podsAdapter.getInitialState(),
-    reducers: {}, 
+    reducers: {},
     extraReducers: (builder) => {
-        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { nodes } }) => { 
+        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { pods } }) => {
+            podsAdapter.setAll(state, pods);
         }
     }
-})
+});
   
 export const containersSlice = createSlice({
     name: 'containers',
     initialState: containersAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
-        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { nodes } }) => {
+        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { containers } }) => {
+            containersAdapter.setAll(state, containers);
         }
     }
 });
 
-
-export default metricsSlice.reducer;
 
 

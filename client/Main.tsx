@@ -4,8 +4,18 @@ import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import NavBar from './components/NavBar';
 
+import { useDispatch } from 'react-redux';
+import {metricsApi, useGetClusterInfoQuery} from './redux/metricsApi';
+
 // This is the main component that is rendered by the client.
 const Main = () => {
+
+    // const dispatch = useDispatch()
+    // dispatch(metricsApi.endpoints.getClusterInfo.initiate(undefined, {}));
+
+    const { data } = useGetClusterInfoQuery(undefined, {});
+    console.log(data);
+
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
   const [parent, setParent] = useState(getStoredPosition());
   const [orientation, setOrientation] = useState(inferOrientation(parent));
