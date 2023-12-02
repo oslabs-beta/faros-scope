@@ -33,32 +33,24 @@ const Node = ({ node, dimensions }: NodeInterface) => {
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="nodeContainer">
-      <span className={`tooltip-text ${theme}`}>
-        {node.nodeName}
-      </span>
-    <div style={dimensions} className="borderNode">
-      <div className="Node" style={nodeStyle} onClick={openModal}>
-        <span className="nodeOverlay"></span>
-         {/* <div className="outerNode">  */}
-          {/* <div className="innerNode"> */}
-            <div className="nodeContent">
-              <div className="nodeName">
-                {node.nodeName}
-              </div> 
-                <label>Pods: {node.pods.length}</label>
-              {/* </div> */}
-            {/* </div> */}
-        </div> 
-        {/* pass node's name or similar relationship info to indetify,
+      <span className={`tooltip-text ${theme}`}>{node.nodeName}</span>
+      <div style={dimensions} className="borderNode">
+        <div className="Node" style={nodeStyle} onClick={openModal}>
+          <span className="nodeOverlay"></span>
+          <div className="nodeContent">
+            <div className="nodeName">{node.nodeName}</div>
+            <label className="podCount">Pods: {node.pods.length}</label>
+          </div>
+          {/* pass node's name or similar relationship info to indetify,
           
           exactly which node to access from global state to create bond */}
-        {modalOpen &&
-          createPortal(
-            <NodeModal Node={node} setModalOpen={setModalOpen} />,
-            document.body,
-          )}
+          {modalOpen &&
+            createPortal(
+              <NodeModal Node={node} setModalOpen={setModalOpen} />,
+              document.body,
+            )}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
