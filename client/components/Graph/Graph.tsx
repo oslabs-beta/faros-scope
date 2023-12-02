@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
-import {Draggable} from '../index';
+import { Draggable } from '../Draggable/Draggable';
 import '../../css/Graph.scss';
-import { useTheme } from '../../Theme';
-
-import styles from './Graph.module.css';
-import classNames from './classNames';
-
+import { useTheme } from '../context/Theme';
 // import query
 import { useGetClusterInfoQuery } from '../../redux/metricsApi';
 import GridProvider from '../context/GridContext';
@@ -17,7 +15,13 @@ import GridProvider from '../context/GridContext';
  */
 export const Graph = () => {
   const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
+
   const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
+
+  // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
+  const state = useSelector(
+    metricsApi.endpoints.getClusterInfo.select(undefined),
+  );
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);

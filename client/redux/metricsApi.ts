@@ -7,7 +7,13 @@ export const metricsApi = createApi({
     getClusterInfo: builder.query({
       query: () => 'clusterInfo'
     }),
+    getNodeStats: builder.query({
+      query: () => 'nodeStats' 
+    }),
+    getPodStats: builder.query({
+      query: () => 'podStats' 
+    })
   }),
 });
 
-export const { useGetClusterInfoQuery} = metricsApi;
+export const { useGetClusterInfoQuery, useGetNodeStatsQuery, useGetPodStatsQuery} = metricsApi;

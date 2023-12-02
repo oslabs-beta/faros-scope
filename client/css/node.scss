@@ -1,27 +1,14 @@
 @import 'Variables.scss';
 
-@keyframes hover-up-down-exaggerate {
-  0% {
-    transform: translateY(0px);
-    box-shadow: 10px 10px #000000;
-  }
-  50% {
-    transform: translate(5px, 5px);
-    box-shadow: 0px 0px #000000;
-  }
-  100% {
-    transform: translateY(0px);
-    box-shadow: 10px 10px #000000;
-  }
-}
-
 @keyframes expand {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
@@ -31,40 +18,73 @@
   0% {
     transform: translateX(0px);
   }
+
   50% {
     transform: translateX(5px);
   }
+
   100% {
     transform: translateX(0px);
   }
 }
 
-.Node {
-  position: relative;
-  background-color: $base-red;
-  rotate: 45deg;
-  margin: 4rem;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 10px 10px #000000;
-  border-radius: 8px;
-  user-select: none;
+@keyframes hover-up-down-node {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-.Node:hover {
-  animation-play-state: paused;
-  box-shadow: 0px 1px 15px 0px #9d2719;
-  transform: translateY(-2px);
-  animation: hover-up-down-exaggerate 1s infinite ease-in-out;
+.Node {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color-dark;
+  // background-image: linear-gradient(45, $base-yellow, $base-orange);
+  border-radius: 8px;
+  clip-path: polygon(
+    51% 2%,
+    89% 21%,
+    99% 60%,
+    75% 99%,
+    26% 99%,
+    1% 60%,
+    11% 21%
+  );
+  user-select: none;
+  scale: 0.95;
+  left: -1.5%;
+  top: -2%;
+}
+
+.borderNode {
+  position: relative;
+  background-color: black;
+  border-radius: 20px;
+  clip-path: polygon(
+    51% 2%,
+    89% 21%,
+    99% 60%,
+    75% 99%,
+    26% 99%,
+    1% 60%,
+    11% 21%
+  );
+  transition: all 0.2s ease-in-out;
+}
+
+.borderNode:hover {
   cursor: pointer;
-  box-shadow: 10px 10px #000000;
-  .outerNode {
-    box-shadow: 0px 1px 15px 0px #ffffff;
-    animation: expand 1s infinite ease-in-out;
-    border: 2px solid black;
-  }
-  .nodeOverlay {
-    box-shadow: 0px 0px 0px 1px rgb(255, 255, 255);
-  }
 }
 
 .nodeOverlay {
@@ -105,43 +125,66 @@
   justify-content: flex-start;
 }
 
-.nodesContainer {
+.nodeContainer {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 }
 
-.outerNode {
-  position: absolute;
+.nodeContent {
   display: flex;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 0px solid black;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  height: 70%;
+  width: 70%;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: center;
+
+  div {
+    height: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 0.2em 0em;
+  }
 }
 
-.innerNode {
+.nodeContainer:has(.nodeName:hover) .tooltip-text {
+  visibility: visible;
+  white-space: nowrap;
+  top: 0%;
+  right: 0%;
+  z-index: 100;
+}
+
+.nodeName {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  transform: rotate(-45deg);
+}
+
+.tooltip-text {
+  position: absolute;
+  left: -50%;
+  right: 0%;
+  margin: auto;
+  padding: 0.6em;
+  width: fit-content;
+  visibility: hidden;
+
+  border: 3px solid white;
+  scale: 0.8;
 }
 
 @keyframes box-shadow-node {
   0% {
     box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
   }
+
   50% {
     box-shadow: 0px 0px 0px 0px rgb(255, 255, 255);
   }
+
   100% {
     box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
   }

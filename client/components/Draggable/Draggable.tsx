@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useGrid } from '../context/GridContext';
-import { useTheme } from '../../Theme';
+import { useRef, useEffect, useState } from 'react';
+import { useTheme } from '../context/Theme';
 import { setScale } from '../../util/animationsUtil';
 import '../../css/Graph.scss';
 
@@ -20,50 +19,31 @@ export const Draggable = ({ children }: DraggableProps) => {
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableInner = useRef<HTMLDivElement>(null);
   const draggableContent = useRef<HTMLDivElement>(null);
-
-  const { gridScrollPosition, updateGridScrollPosition } = useGrid();
   const [nodesScale, setNodesScale] = useState(1);
-
   const { theme } = useTheme();
 
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
   let dragging: boolean = false;
   let startX: number = 0,
     startY: number = 0;
-
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
     if (e.deltaY > 0) {
       setNodesScale((prev) => {
         if (prev <= 0.5) return prev;
         const newScale = Number((prev - 0.1).toFixed(1));
-
-        updateGridScrollPosition(
-          gridScrollPosition.x - 100,
-          gridScrollPosition.y - 100,
-        );
-
         return newScale;
       });
     } else if (e.deltaY < 0) {
       setNodesScale((prev) => {
         if (prev >= 3) return prev;
         const newScale = Number((prev + 0.1).toFixed(1));
-
-        updateGridScrollPosition(
-          gridScrollPosition.x + 100,
-          gridScrollPosition.y + 100,
-        );
-
         return newScale;
       });
     }
   };
 
   useEffect(() => {
-    //* add event listener for scrolling with mouse wheel for scaling
-    if (!draggableInner.current) return;
-    draggableInner.current.addEventListener('wheel', handleWheel);
     //* As user moves the mouse while dragging, update the scroll position
     //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
     const handleMouseMove = (e: MouseEvent) => {
@@ -125,6 +105,11 @@ export const Draggable = ({ children }: DraggableProps) => {
       draggableContainer.current.addEventListener('mousedown', handleMouseDown);
     }
 
+    if (draggableInner.current) {
+      //* add event listener for scrolling with mouse wheel for scaling
+      draggableInner.current.addEventListener('wheel', handleWheel);
+    }
+
     //* Clean up event listeners when component unmounts
     return () => {
       if (draggableContainer.current) {
@@ -141,7 +126,6 @@ export const Draggable = ({ children }: DraggableProps) => {
           handleMouseDown,
         );
       }
-
       if (draggableInner.current) {
         draggableInner.current?.removeEventListener('wheel', handleWheel);
       }
@@ -150,19 +134,27 @@ export const Draggable = ({ children }: DraggableProps) => {
 
   useEffect(() => {
     if (!draggableContainer.current || !draggableContent.current) return;
+    // const container = draggableContainer.current as HTMLDivElement;
     const content = draggableContent.current as HTMLDivElement;
-    const container = draggableContainer.current as HTMLDivElement;
 
-    // Apply the scale to draggableContent
+    //* Apply the scale to draggableContent
     setScale(content, nodesScale);
+    if (nodesScale > 1) {
+      setTimeout(() => {
+        // container.scrollTo({
+        //   left: (container.scrollWidth - container.clientWidth) / 2,
+        //   top: (container.scrollHeight - container.clientHeight) / 2,
+        //   behavior: 'smooth',
+        // });
 
-    // Update the scroll position to zoom in on the mouse position
-    container.scrollTo({
-      left: gridScrollPosition.x,
-      top: gridScrollPosition.y,
-      behavior: 'smooth',
-    });
-    console.log('gridScrollPosition', gridScrollPosition);
+        //* scroll into view discovered, scroll to no longer needed for now
+        content.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        });
+      }, 400);
+    }
   }, [nodesScale]);
 
   return (

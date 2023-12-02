@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import '../../../css/Reactdnd.scss';
 

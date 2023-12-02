@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../../css/Node.scss';
-import {NodeModal} from './index';
+import NodeModal from './NodeModal';
 import { createPortal } from 'react-dom';
-
-import styles from './Node.module.css';
-import classNames from 'classNames';
+import { useTheme } from '../context/Theme';
 
 interface NodeInterface {
-  content: any;
+  node: any;
   dimensions?: {
     width: string;
     height: string;
@@ -22,7 +20,7 @@ interface NodeInterface {
  * @param dimensions - The dimensions of the node.
  * @returns ReactNode
  */
-export const Node = ({ content, dimensions }: NodeInterface) => {
+const Node = ({ node, dimensions }: NodeInterface) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = (e: any) => {
     e.stopPropagation();
@@ -30,20 +28,31 @@ export const Node = ({ content, dimensions }: NodeInterface) => {
   };
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
+  const { theme } = useTheme();
+  console.log(node);
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
-    <div className="Node" style={nodeStyle} onClick={openModal}>
-      <span className="nodeOverlay"></span>
-      <div className="outerNode">
-        <div className="innerNode">
-          <div className="nodeContent">{content?.name}</div>
+    <div className="nodeContainer">
+      <span className={`tooltip-text ${theme}`}>{node.nodeName}</span>
+      <div style={dimensions} className="borderNode">
+        <div className="Node" style={nodeStyle} onClick={openModal}>
+          <span className="nodeOverlay"></span>
+          <div className="nodeContent">
+            <div className="nodeName">{node.nodeName}</div>
+            <label className="podCount">Pods: {node.pods.length}</label>
+          </div>
+          {/* pass node's name or similar relationship info to indetify,
+          
+          exactly which node to access from global state to create bond */}
+          {modalOpen &&
+            createPortal(
+              <NodeModal Node={node} setModalOpen={setModalOpen} />,
+              document.body,
+            )}
         </div>
       </div>
-      {modalOpen &&
-        createPortal(
-          <NodeModal Node={content} setModalOpen={setModalOpen} />,
-          document.body,
-        )}
     </div>
   );
 };
+
+export default Node;

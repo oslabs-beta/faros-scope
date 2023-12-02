@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, ReactNode } from 'react';
-import { ThemeContextType } from '../types/types';
+import { ThemeContextType } from '../../../types/types';
 
 /**
  * A context that provides the current theme and a function to toggle it

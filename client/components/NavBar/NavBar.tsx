@@ -1,11 +1,7 @@
-import React from 'react';
 import '../../css/Navbar.scss';
-import { useTheme } from '../../Theme';
-import {SwitchButton} from '../index';
+import { useTheme } from '../context/Theme';
+import { SwitchButton } from '../SwitchButton/index';
 import { Link } from 'react-router-dom';
-
-import styles from './NavBar.module.css'; 
-import classNames from 'classNames';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -62,7 +58,17 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
-          <button className='navLink btn'>
+          <Link to={'/List-View'} className="navLink">
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src="../../assets/list.png"
+              ></img>
+            ) : (
+              'List View'
+            )}
+          </Link>
+          <button className="navLink btn">
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}

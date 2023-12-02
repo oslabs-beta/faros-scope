@@ -1,25 +1,26 @@
-import React from 'react';
-import Pod from '../components/reusable/Pod';
-
-//* example arr input:
-//* [
-//*   { name: '1', containers: [{ name: '1' }, { name: '2' }] },
-//*   { name: '2'},
-//* ]
+import { Pod } from '../components/Pod/index';
+import { useGetPodStatsQuery } from '../redux/metricsApi';
 
 /**
  * Formats the pods of a node into a list of JSX elements.
  * @param pods - The pods of a node.
  * @returns A list of JSX elements.
  */
+// const { refetch } = metricsApi.endpoints.getPodStats.useQuerySubscription(undefined)
 
-import formatContainers from './formatContainers';
 const formatPods = (
+  // Pods polling query
+  
   pods: any[] = [],
-  interval: number = 4,
+  interval: number = 7,
   clickFunc?: (...args: any) => any,
-) => {
-  console.log('formatPods');
+  ) => {
+
+    const { data } = useGetPodStatsQuery(undefined, {pollingInterval: 5000})
+    if(data) pods = data;
+  
+  // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
+  // console.log('STATE: ', state);
   const result: any = [];
 
   let i = 0;
@@ -29,28 +30,12 @@ const formatPods = (
     const row = elements.map((element: any, indx) => {
       const animationDelay = `${2 + indx / 4 + i / 4}s`;
       return (
-        // <div
-        //   style={{ animationDelay: animationDelay }}
-        //   onClick={clickFunc}
-        //   key={element.name}
-        //   className="podContainer"
-        // >
-        //   <div className="pod">
-        //     <div className="podName">{element.name}</div>
-        //     <div className="podMetrics">
-        //       <div className="podCpu">CPU: 0</div>
-        //       <div className="podMemory">Memory: 0</div>
-        //     </div>
-        //     <div className="podContainers">
-        //       {element.containers && formatContainers(element.containers)}
-        //     </div>
-        //   </div>
-        // </div>
         <Pod
           podName={element.name}
           podData={element}
           animationDelay={animationDelay}
           clickFunc={clickFunc}
+          key={element.name}
         />
       );
     });

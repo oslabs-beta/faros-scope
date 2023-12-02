@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { metricsApi } from './metricsApi';
+import { current } from '@reduxjs/toolkit';
 
 const metricsSlice = createSlice({
   name: 'metrics',
@@ -9,6 +11,16 @@ const metricsSlice = createSlice({
     setMetrics(state, action) {
       state.metrics = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      metricsApi.endpoints.getClusterInfo.matchFulfilled,
+      (state, { payload: { result } }) => {
+        console.log('This is from inside the metrics slice: ', result);
+        console.log(current(state));
+        console.log("Gian Marco!");
+      },
+    );
   },
 });
 

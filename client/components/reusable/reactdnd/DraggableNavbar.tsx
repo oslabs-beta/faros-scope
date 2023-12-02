@@ -1,13 +1,12 @@
-import React from "react";
-import Draggable from "./Draggable";
-import NavBar from "../../NavBar";
+import Draggable from './Draggable';
+import { NavBar } from '../../NavBar/index';
 
 interface DraggableNavBarProps {
   styleOverride?: any;
   orientation?: string;
 }
 
-const DraggableNavbar = ({orientation}: DraggableNavBarProps) => {
+const DraggableNavbar = ({ orientation }: DraggableNavBarProps) => {
   return (
     <Draggable
       className={`navDragContainer ${orientation || ''}`}
@@ -17,6 +16,6 @@ const DraggableNavbar = ({orientation}: DraggableNavBarProps) => {
       <NavBar orientation={orientation} />
     </Draggable>
   );
-}
+};
 
 export default DraggableNavbar;

@@ -1,12 +1,9 @@
-import React from 'react';
-import { ThemeContainer } from '../index';
-// import styles from './Settings.module.css';
-// import classNames from 'classnames';
+import { ThemedContainer } from '../Themed/Container/index';
 
 export const Settings = () => {
   return (
-    <ThemeContainer>
+    <ThemedContainer>
       <h1>Settings</h1>
-    </ThemeContainer>
+    </ThemedContainer>
   );
 };
