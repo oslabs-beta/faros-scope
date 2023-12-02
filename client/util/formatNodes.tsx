@@ -20,7 +20,6 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     maxHeight: '8em',
   };
 
-  console.log(arr);
   let i = 0;
   while (i < arr.length) {
     const nodesSlice = arr.slice(i, i + interval);

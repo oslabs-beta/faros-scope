@@ -39,10 +39,10 @@ export const podsSlice = createSlice({
     initialState: podsAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
-        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { pods } }) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, {payload: {pods}}) => {
             podsAdapter.setAll(state, pods);
-        }
-    }
+        })
+    },
 });
   
 export const containersSlice = createSlice({
@@ -50,10 +50,10 @@ export const containersSlice = createSlice({
     initialState: containersAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
-        metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { containers } }) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { containers } }) => {
             containersAdapter.setAll(state, containers);
-        }
-    }
+        })
+    },
 });
 
 

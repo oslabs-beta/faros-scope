@@ -6,6 +6,7 @@ import { Draggable } from '../Draggable/Draggable';
 import '../../css/Graph.scss';
 import { useTheme } from '../context/Theme';
 // import query
+import { createSelector } from '@reduxjs/toolkit'
 import { useGetClusterInfoQuery } from '../../redux/metricsApi';
 import GridProvider from '../context/GridContext';
 
@@ -14,14 +15,23 @@ import GridProvider from '../context/GridContext';
  * @returns ReactNode
  */
 export const Graph = () => {
-  const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
 
-  const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
 
-  // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
-  const state = useSelector(
-    metricsApi.endpoints.getClusterInfo.select(undefined),
-  );
+    const selectCluster = useMemo(() => {
+        return createSelector(res => res.data)
+    }); 
+    
+    const { data, isSuccess } = useGetClusterInfoQuery(undefined, {
+        selectFromResult: result => ({
+            ...result, 
+            clusterInfo: selectCluster(result)
+      })
+  });
+
+  const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
+
+    console.log('RESPONSE', data);
+    console.log('NESTEDCLUSTERINFO', nestedClusterInfo);
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);

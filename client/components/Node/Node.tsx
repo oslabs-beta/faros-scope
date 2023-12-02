@@ -26,9 +26,12 @@ const Node = ({ node, dimensions }: NodeInterface) => {
     setModalOpen(true);
   };
 
+    console.log('NODE', node); 
+
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
 
-  console.log(node);
+    
+
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="borderNode">

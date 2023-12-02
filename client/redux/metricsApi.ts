@@ -32,11 +32,20 @@ export const metricsApi = createApi({
                 containers: containers
               };
         },
-    }), 
+    }),  
+        getClusterMetrics: builder.query({
+            query: () => 'clusterMetrics'
+        }),
+    getNodeStats: builder.query({
+        query: () => 'nodeStats' 
+      }),
+      getPodStats: builder.query({
+        query: () => 'podStats' 
+      })
     }),
 });
 
-export const { useGetClusterInfoQuery } = metricsApi;
+export const { useGetClusterInfoQuery, useGetNodeStatsQuery, useGetPodStatsQuery} = metricsApi;
 
 // export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state[metricsApi.reducerPath]);
 
