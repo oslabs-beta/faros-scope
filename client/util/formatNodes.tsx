@@ -14,10 +14,10 @@ import Node from '../components/Node/Node';
 function formatNodes(arr: any[] = [], interval: number = 4) {
   const result: any = [];
   const dimensions = {
-    width: `${(arr.length % 2) + 5}em`,
-    height: `${(arr.length % 2) + 5}em`,
-    maxWidth: '8em',
-    maxHeight: '8em',
+    width: `${(arr.length % 2) + 9}em`,
+    height: `${(arr.length % 2) + 9}em`,
+    maxWidth: '15em',
+    maxHeight: '15em',
   };
 
   console.log(arr);

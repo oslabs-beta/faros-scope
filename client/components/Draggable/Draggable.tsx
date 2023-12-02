@@ -105,10 +105,10 @@ export const Draggable = ({ children }: DraggableProps) => {
       draggableContainer.current.addEventListener('mousedown', handleMouseDown);
     }
 
-    if (draggableInner.current) {
-      //* add event listener for scrolling with mouse wheel for scaling
-      draggableInner.current.addEventListener('wheel', handleWheel);
-    }
+    // if (draggableInner.current) {
+    //   //* add event listener for scrolling with mouse wheel for scaling
+    //   draggableInner.current.addEventListener('wheel', handleWheel);
+    // }
 
     //* Clean up event listeners when component unmounts
     return () => {
