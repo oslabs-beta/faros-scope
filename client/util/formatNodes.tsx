@@ -1,4 +1,8 @@
 import Node from '../components/Node/Node';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
+import { nodesSlice } from '../redux/metricsSlice'
 
 //* example arr input:
 //* [
@@ -19,6 +23,15 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     maxWidth: '15em',
     maxHeight: '15em',
   };
+
+  // const selectNodes = useMemo(() => {
+  //   return createSelector(
+  //     selectAllNodes, 
+  //     (nodes) => 
+  //   )
+  // })
+
+  // const nodeData = useSelector(nodesSlice);
 
   console.log(arr);
   let i = 0;

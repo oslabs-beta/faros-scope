@@ -1,28 +1,72 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { metricsApi } from './metricsApi';
-import { current } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { metricsApi } from './metricsApi'
 
-const metricsSlice = createSlice({
-  name: 'metrics',
-  initialState: {
-    metrics: {},
-  },
-  reducers: {
-    setMetrics(state, action) {
-      state.metrics = action.payload;
+export interface Node {
+    id: string; 
+    pods: Pod[];
+}
+
+export interface Pod {
+id: string; 
+    nodeId: string;
+    containers: Container[];
+}
+
+export interface Container {
+    id: string;
+    podId: string;
+    image: string; 
+}
+
+export const nodesAdapter = createEntityAdapter<Node>();
+export const podsAdapter = createEntityAdapter<Pod>();
+export const containersAdapter = createEntityAdapter<Container>();
+
+export const nodesSlice = createSlice({
+    name: 'nodes',
+    initialState: nodesAdapter.getInitialState(),
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { nodes } }) => {
+            nodesAdapter.setAll(state, nodes);
+        }
+        )
     },
-  },
-  extraReducers: (builder) => {
-    builder.addMatcher(
-      metricsApi.endpoints.getClusterInfo.matchFulfilled,
-      (state, { payload: { result } }) => {
-        console.log('This is from inside the metrics slice: ', result);
-        console.log(current(state));
-        console.log("Gian Marco!");
-      },
-    );
-  },
 });
 
-export default metricsSlice.reducer;
-export const { setMetrics } = metricsSlice.actions;
+export const podsSlice = createSlice({
+    name: 'pods',
+    initialState: podsAdapter.getInitialState(),
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, {payload: {pods}}) => {
+            podsAdapter.setAll(state, pods);
+        })
+    },
+});
+  
+export const containersSlice = createSlice({
+    name: 'containers',
+    initialState: containersAdapter.getInitialState(),
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterInfo.matchFulfilled, (state, { payload: { containers } }) => {
+            containersAdapter.setAll(state, containers);
+        })
+    },
+});
+
+export const { 
+  selectAll: selectAllPods, 
+  selectById: selectPodById, 
+} = podsAdapter.getSelectors(state => state.pods); 
+
+export const {
+  selectAll: selectAllNodes,
+  selectById: selectNodeById, 
+} = nodesAdapter.getSelectors(state => state.nodes); 
+
+export const {
+  selectAll: selectAllContainers,
+  selectById: selectContainerById,
+} = containersAdapter.getSelectors(state => state.containers);

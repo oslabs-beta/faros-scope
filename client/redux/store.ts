@@ -1,13 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit';
-import metricsReducer from './metricsSlice';
-import {metricsApi} from './metricsApi'
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { metricsApi } from './metricsApi';
+import { nodesSlice, podsSlice, containersSlice } from './metricsSlice';
 
-const store = configureStore({
-  reducer: {
-    [metricsApi.reducerPath] : metricsApi.reducer,
-    metrics: metricsReducer,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(metricsApi.middleware),
+const rootReducer = combineReducers({
+    [metricsApi.reducerPath]: metricsApi.reducer,
+    nodes: nodesSlice.reducer,
+    pods: podsSlice.reducer,
+    containers: containersSlice.reducer,
 });
+  
+const store = configureStore({
+
+    reducer: rootReducer, 
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(metricsApi.middleware), 
+})
 
 export default store;
