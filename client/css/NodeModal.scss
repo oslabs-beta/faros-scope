@@ -35,15 +35,20 @@ $border-height: 25px;
   width: 100%;
 }
 
-.nodeModalPodsView {
+.nodeModalPodsViewOuter {
   position: relative;
   width: 100%;
   height: 100%;
-  border: 25px solid #cfd8dc;
-  box-shadow: -20px -20px 1px 0px black;
   border-radius: 2px;
   animation: expand-window 1.5s ease-in-out;
+  box-shadow: -20px -20px 1px 0px black;
   overflow: visible;
+  &.dark {
+    border: 25px solid #2d2f30;
+  }
+  &.light {
+    border: 25px solid #cfd8dc;
+  }
 }
 
 .CloseModalAnimation {
@@ -55,7 +60,12 @@ $border-height: 25px;
   width: 100%;
   height: 100%;
   border-radius: 0;
-  box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+  &.dark {
+    box-shadow: 0px 0px 15px 1px rgb(255, 255, 255);
+  }
+  &.light {
+    box-shadow: 0px 0px 8px 1px rgb(0, 0, 0);
+  }
 }
 
 .close {

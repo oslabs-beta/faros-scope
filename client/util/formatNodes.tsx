@@ -16,11 +16,20 @@ import { createSelector } from '@reduxjs/toolkit';
 function formatNodes(arr: any[] = [], interval: number = 4) {
   const result: any = [];
   const dimensions = {
-    width: `${(arr.length % 2) + 5}em`,
-    height: `${(arr.length % 2) + 5}em`,
-    maxWidth: '8em',
-    maxHeight: '8em',
+    width: `${(arr.length % 2) + 9}em`,
+    height: `${(arr.length % 2) + 9}em`,
+    maxWidth: '15em',
+    maxHeight: '15em',
   };
+
+  // const selectNodes = useMemo(() => {
+  //   return createSelector(
+  //     selectAllNodes, 
+  //     (nodes) => 
+  //   )
+  // })
+
+  // const nodeData = useSelector(nodesSlice);
 
     const nodesName = useMemo(() => {
         return createSelector()
@@ -31,16 +40,10 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     const nodesSlice = arr.slice(i, i + interval);
 
     const row = nodesSlice.map((node: any) => {
-      return (
-        <Node dimensions={dimensions} key={node.name} node={node} />
-      );
+      return <Node dimensions={dimensions} key={node.name} node={node} />;
     });
 
-    result.push(
-      <div key={i} className="row">
-        {row}
-      </div>,
-    );
+    result.push(<div className="row">{row}</div>);
 
     i += interval; // Increment by interval
   }

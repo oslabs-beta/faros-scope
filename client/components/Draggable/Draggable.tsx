@@ -134,17 +134,24 @@ export const Draggable = ({ children }: DraggableProps) => {
 
   useEffect(() => {
     if (!draggableContainer.current || !draggableContent.current) return;
-    const container = draggableContainer.current as HTMLDivElement;
+    // const container = draggableContainer.current as HTMLDivElement;
     const content = draggableContent.current as HTMLDivElement;
 
-    // Apply the scale to draggableContent
+    //* Apply the scale to draggableContent
     setScale(content, nodesScale);
     if (nodesScale > 1) {
       setTimeout(() => {
-        container.scrollTo({
-          left: (container.scrollWidth - container.clientWidth) / 2,
-          top: (container.scrollHeight - container.clientHeight) / 2,
+        // container.scrollTo({
+        //   left: (container.scrollWidth - container.clientWidth) / 2,
+        //   top: (container.scrollHeight - container.clientHeight) / 2,
+        //   behavior: 'smooth',
+        // });
+
+        //* scroll into view discovered, scroll to no longer needed for now
+        content.scrollIntoView({
           behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
         });
       }, 400);
     }

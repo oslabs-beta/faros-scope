@@ -1,5 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit'
 import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';

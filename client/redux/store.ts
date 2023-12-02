@@ -1,4 +1,3 @@
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { metricsApi } from './metricsApi';
 import { nodesSlice, podsSlice, containersSlice } from './metricsSlice';
@@ -11,6 +10,7 @@ const rootReducer = combineReducers({
 });
   
 const store = configureStore({
+
     reducer: rootReducer, 
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(metricsApi.middleware), 
 })

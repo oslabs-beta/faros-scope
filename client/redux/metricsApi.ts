@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
 import { nodesAdapter } from './metricsSlice';
+import { Pod, Node, Container } from './metricsSlice'
 
 const initialState = nodesAdapter.getInitialState();
 export const metricsApi = createApi({
@@ -33,10 +34,10 @@ export const metricsApi = createApi({
               };
         },
     }),  
-        getClusterMetrics: builder.query({
-            query: () => 'clusterMetrics'
-        }),
-    getNodeStats: builder.query({
+      getClusterMetrics: builder.query({
+        query: () => 'clusterMetrics'
+      }),
+      getNodeStats: builder.query({
         query: () => 'nodeStats' 
       }),
       getPodStats: builder.query({
@@ -44,7 +45,7 @@ export const metricsApi = createApi({
       }),
       getClusterMetricsMap: builder.query({
         query: () => 'clusterMetricsMap'
-      }),
+      })
     }),
 });
 

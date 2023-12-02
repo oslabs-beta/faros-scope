@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../../css/Node.scss';
 import NodeModal from './NodeModal';
 import { createPortal } from 'react-dom';
+import { useTheme } from '../context/Theme';
 
 interface NodeInterface {
   node: any;
@@ -29,25 +30,37 @@ const Node = ({ node, dimensions }: NodeInterface) => {
     console.log('NODE', node); 
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
-
-    
-
+  const { theme } = useTheme();
+  console.log(node);
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
-    <div className="borderNode">
+    <div className="nodeContainer">
+      <span className={`tooltip-text ${theme}`}>
+        {node.nodeName}
+      </span>
+    <div style={dimensions} className="borderNode">
       <div className="Node" style={nodeStyle} onClick={openModal}>
         <span className="nodeOverlay"></span>
-        <div className="outerNode">
-          <div className="innerNode">
-            <div className="nodeContent">{node.name}</div>
-          </div>
-        </div>
+         {/* <div className="outerNode">  */}
+          {/* <div className="innerNode"> */}
+            <div className="nodeContent">
+              <div className="nodeName">
+                {node.nodeName}
+              </div> 
+                <label>Pods: {node.pods.length}</label>
+              {/* </div> */}
+            {/* </div> */}
+        </div> 
+        {/* pass node's name or similar relationship info to indetify,
+          
+          exactly which node to access from global state to create bond */}
         {modalOpen &&
           createPortal(
             <NodeModal Node={node} setModalOpen={setModalOpen} />,
             document.body,
           )}
       </div>
+    </div>
     </div>
   );
 };
