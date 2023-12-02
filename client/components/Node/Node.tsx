@@ -39,6 +39,9 @@ const Node = ({ node, dimensions }: NodeInterface) => {
             <div className="nodeContent">{node.name}</div>
           </div>
         </div>
+        {/* pass node's name or similar relationship info to indetify,
+          
+          exactly which node to access from global state to create bond */}
         {modalOpen &&
           createPortal(
             <NodeModal Node={node} setModalOpen={setModalOpen} />,

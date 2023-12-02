@@ -26,16 +26,10 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     const nodesSlice = arr.slice(i, i + interval);
 
     const row = nodesSlice.map((node: any) => {
-      return (
-        <Node dimensions={dimensions} key={node.name} node={node} />
-      );
+      return <Node dimensions={dimensions} key={node.name} node={node} />;
     });
 
-    result.push(
-      <div key={i} className="row">
-        {row}
-      </div>,
-    );
+    result.push(<div className="row">{row}</div>);
 
     i += interval; // Increment by interval
   }

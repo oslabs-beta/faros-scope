@@ -1,12 +1,6 @@
 import { Pod } from '../components/Pod/index';
 import { useGetClusterInfoQuery } from '../redux/metricsApi';
 
-//* example arr input:
-//* [
-//*   { name: '1', containers: [{ name: '1' }, { name: '2' }] },
-//*   { name: '2'},
-//* ]
-
 /**
  * Formats the pods of a node into a list of JSX elements.
  * @param pods - The pods of a node.
@@ -34,6 +28,7 @@ const formatPods = (
           podData={element}
           animationDelay={animationDelay}
           clickFunc={clickFunc}
+          key={element.name}
         />
       );
     });

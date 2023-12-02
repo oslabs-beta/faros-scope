@@ -11,6 +11,7 @@ const formatContainers = (containers: any[] = []) => {
       <Container
         containerName={container.name}
         containerImage={container.image}
+        key={container.name}
       />
     );
   });
