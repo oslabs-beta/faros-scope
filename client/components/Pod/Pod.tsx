@@ -14,6 +14,7 @@ export const Pod = ({
   clickFunc,
 }: PodProps) => {
   // console.log(podData.containers[0].usage.cpu)
+  //* cpu% = state.nodeName.pods.podName.CPU
   return (
     <div
       style={{ animationDelay: animationDelay }}

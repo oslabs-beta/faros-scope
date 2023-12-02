@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import PodsContainer from '../Pod/PodsContainer';
 import { ThemedContainer } from '../Themed/Container/index';
 import exitAnimations from '../../util/nodeModalExitAnims';
+import { useTheme } from '../context/Theme';
 import '../../css/NodeModal.scss';
 
 interface NodeModalInterface {
@@ -18,6 +19,7 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
+  const { theme } = useTheme();
   //* pods to format
   const nodePods = Node?.pods;
 
@@ -53,13 +55,13 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
     <div ref={nodeModalOverlay} className="nodeModalOverlay Opacity-In">
       <div className="nodeClickableOverlay" onClick={closeModal}></div>
       <div className="nodeModalContainer">
-        <div ref={nodeModalPodsViewRef} className="nodeModalPodsView">
+        <div ref={nodeModalPodsViewRef} className={`nodeModalPodsViewOuter ${theme}`}>
           <span className="close">
             <button className="closeButton" onClick={closeModal}>
               X
             </button>
           </span>
-          <div className="nodeModalPodsViewInner">
+          <div className={`nodeModalPodsViewInner ${theme}`}>
             <ThemedContainer>
               <PodsContainer podsViewRef={podsViewRef} nodePods={nodePods} />
             </ThemedContainer>
