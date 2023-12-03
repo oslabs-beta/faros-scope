@@ -1,5 +1,7 @@
 import '../../css/Switchbutton.scss';
 import { useTheme } from '../context/Theme';
+import sun from '../../assets/sun.png';
+import moon from '../../assets/moon.png';
 
 interface SwitchButtonProps {
   checked: boolean;
@@ -15,9 +17,6 @@ interface SwitchButtonProps {
 export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
   const { theme } = useTheme();
   //* Sun is the light theme, moon is the dark theme, image element uses a dynamic path, depending on the theme mode
-  const sun = '../../assets/sun.png';
-  const moon = '../../assets/moon.png';
-
   return (
     <div className="switchContainer">
       <div className="switchButton">

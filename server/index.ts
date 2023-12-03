@@ -18,7 +18,7 @@ app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../build')));
-app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+// app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.use('/api', Router)
 
 // catch all route handler

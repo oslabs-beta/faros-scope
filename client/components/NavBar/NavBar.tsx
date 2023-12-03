@@ -2,6 +2,10 @@ import '../../css/Navbar.scss';
 import { useTheme } from '../context/Theme';
 import { SwitchButton } from '../SwitchButton/index';
 import { Link } from 'react-router-dom';
+import homeImage from '../../assets/icons8-home-512.png';
+import settingsImage from '../../assets/icons8-settings-512.png';
+import listImage from '../../assets/list.png';
+import centerImage from '../../assets/center.png';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -42,7 +46,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/icons8-home-512.png"
+                src={homeImage}
               ></img>
             ) : (
               'Home'
@@ -52,7 +56,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/icons8-settings-512.png"
+                src={settingsImage}
               ></img>
             ) : (
               'Settings'
@@ -62,7 +66,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/list.png"
+                src={listImage}
               ></img>
             ) : (
               'List View'
@@ -72,7 +76,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src="../../assets/center.png"
+                src={centerImage}
               ></img>
             ) : (
               'Center Grid'

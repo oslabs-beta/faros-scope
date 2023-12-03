@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
+import moveImage from '../../../assets/move-svgrepo-com.svg';
 import '../../../css/Reactdnd.scss';
 
 interface DraggableProps {
@@ -42,7 +43,7 @@ function Draggable({
         {...attributes}
         ref={setActivatorNodeRef}
       >
-        <img id="navDragImg" src="../../assets/move-svgrepo-com.svg"></img>
+        <img id="navDragImg" src={moveImage}></img>
       </button>
       {children}
     </div>

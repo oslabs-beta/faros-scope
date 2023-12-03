@@ -1,13 +1,21 @@
 import '../../css/Landing.scss';
 
 export const Landing = () => {
-  // idk why this isn't rendering at the route
-  // problem is with the server I believe
-  // react router problem
   return (
     <div className="landingMain">
       <div className="landingContent">
-        <h1>Landing Page</h1>
+        <nav className="landingNav">
+
+        </nav>
+        {/* <hr className="break-full-width" /> */}
+        <div className="landingBody">
+          <div className="landingBodyContent">
+            <h1>Welcome to Faros</h1>
+            <h2>
+              Faros is a web application that allows users to visualize their Kubernetes clusters and their resources.
+            </h2>
+          </div>
+        </div>
       </div>
     </div>
   )
