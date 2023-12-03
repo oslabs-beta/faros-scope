@@ -1,29 +1,27 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { metricsApi } from './metricsApi'
 
-interface Node {
+export interface Node {
     id: string; 
     pods: Pod[];
 }
-
-interface Pod {
+export interface Pod {
 id: string; 
     nodeId: string;
     containers: Container[];
 }
 
-interface Container {
+export interface Container {
     id: string;
     podId: string;
     image: string; 
 }
 
-interface  Metrics {
+export interface  Metrics {
     cpuUsage: number;
     memUsage: number;
     type: string;
     cpuUsagePct: number;
-    memUsage: number;
 }
 
 export const nodesAdapter = createEntityAdapter<Node>();

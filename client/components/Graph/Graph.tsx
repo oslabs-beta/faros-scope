@@ -20,13 +20,8 @@ export const Graph = () => {
     // const selectCluster = useMemo(() => {
     //     return createSelector(res => res.data)
     // }); 
-    
-    const { data, isSuccess } = useGetClusterInfoQuery(undefined, {
-    //     selectFromResult: result => ({
-    //         ...result, 
-    //         clusterInfo: selectCluster(result)
-    //   })
-  });
+    // ^ if we are making a query to get clusterInfo, we should be able to use the result from the query to get the clusterInfo here
+    const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
 
   const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
 

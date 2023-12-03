@@ -10,12 +10,8 @@ import {metricsApi, useGetClusterInfoQuery, useGetClusterMetricsMapQuery} from '
 // This is the main component that is rendered by the client.
 const Main = () => {
 
-    // const dispatch = useDispatch()
-    // dispatch(metricsApi.endpoints.getClusterInfo.initiate(undefined, {}));
-
-    const { data } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
+    const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
     const {data: MetricsMap} = useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000}); 
-    console.log(data);
 
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
   const [parent, setParent] = useState(getStoredPosition());

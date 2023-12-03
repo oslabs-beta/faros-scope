@@ -7,29 +7,13 @@ import { useSelector } from 'react-redux';
  * @param pods - The pods of a node.
  * @returns A list of JSX elements.
  */
-// const { refetch } = metricsApi.endpoints.getPodStats.useQuerySubscription(undefined)
 
 const formatPods = (
-  // Pods polling query
-  
   pods: any[] = [],
   interval: number = 7,
   clickFunc?: (...args: any) => any,
   ) => {
 
-
-    
-    // console.log('METRICS MAP', MetricsMap);
-
-    const { data } = useGetPodStatsQuery(undefined, { pollingInterval: 5000 })
-    // const { data } = useGetPodStatsQuery(undefined, {})
-
-    if (data) {
-        console.log('DATA', data);
-    }
-  
-  // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
-  // console.log('STATE: ', state);
   const result: any = [];
 
   let i = 0;

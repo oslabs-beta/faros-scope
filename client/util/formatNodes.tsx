@@ -22,19 +22,6 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     maxHeight: '15em',
   };
 
-  // const selectNodes = useMemo(() => {
-  //   return createSelector(
-  //     selectAllNodes, 
-  //     (nodes) => 
-  //   )
-  // })
-
-  // const nodeData = useSelector(nodesSlice);
-
-    // const nodesName = useMemo(() => {
-    //     return createSelector()
-    // })
-
   let i = 0;
   while (i < arr.length) {
     const nodesSlice = arr.slice(i, i + interval);
