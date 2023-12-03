@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useTheme } from '../context/Theme';
 import { setScale } from '../../util/animationsUtil';
+import { useGrid } from '../context/GridContext';
 import '../../css/Graph.scss';
 
 // import styles from './Draggable.module.css';
@@ -19,7 +20,11 @@ export const Draggable = ({ children }: DraggableProps) => {
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableInner = useRef<HTMLDivElement>(null);
   const draggableContent = useRef<HTMLDivElement>(null);
+
+  //* hook instantiation
   const [nodesScale, setNodesScale] = useState(1);
+  const { setMostSignificantChild, scrollToSignificantChild, scrollable } =
+    useGrid();
   const { theme } = useTheme();
 
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
@@ -87,6 +92,8 @@ export const Draggable = ({ children }: DraggableProps) => {
 
     //* Once user clicks, begin dragging
     const handleMouseDown = (e: MouseEvent): void => {
+      console.log('scrollable', scrollable);
+      if (!scrollable) return;
       dragging = true;
       startX = e.clientX;
       startY = e.clientY;
@@ -108,6 +115,13 @@ export const Draggable = ({ children }: DraggableProps) => {
     if (draggableInner.current) {
       //* add event listener for scrolling with mouse wheel for scaling
       draggableInner.current.addEventListener('wheel', handleWheel);
+      // Reset user-select property on component unmount
+      draggableInner.current.style.userSelect = '';
+    }
+
+    //* set the most significant child of graph to the draggableContent
+    if (draggableContent.current) {
+      setMostSignificantChild(draggableContent.current);
     }
 
     //* Clean up event listeners when component unmounts
@@ -130,29 +144,18 @@ export const Draggable = ({ children }: DraggableProps) => {
         draggableInner.current?.removeEventListener('wheel', handleWheel);
       }
     };
-  }, []);
+  }, [scrollable]);
 
   useEffect(() => {
     if (!draggableContainer.current || !draggableContent.current) return;
-    // const container = draggableContainer.current as HTMLDivElement;
     const content = draggableContent.current as HTMLDivElement;
 
     //* Apply the scale to draggableContent
     setScale(content, nodesScale);
     if (nodesScale > 1) {
       setTimeout(() => {
-        // container.scrollTo({
-        //   left: (container.scrollWidth - container.clientWidth) / 2,
-        //   top: (container.scrollHeight - container.clientHeight) / 2,
-        //   behavior: 'smooth',
-        // });
-
         //* scroll into view discovered, scroll to no longer needed for now
-        content.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'center',
-        });
+        scrollToSignificantChild();
       }, 400);
     }
   }, [nodesScale]);

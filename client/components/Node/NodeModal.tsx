@@ -62,7 +62,7 @@ const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             </button>
           </span>
           <div className={`nodeModalPodsViewInner ${theme}`}>
-            <ThemedContainer>
+            <ThemedContainer IDOverride='nodeModalThemedContainer'>
               <PodsContainer podsViewRef={podsViewRef} nodePods={nodePods} />
             </ThemedContainer>
           </div>

@@ -7,11 +7,19 @@ import { useTheme } from '../../context/Theme';
  * @returns ReactNode
  */
 
-export const ThemedContainer = ({ children }: { children: ReactNode }) => {
+export const ThemedContainer = ({
+  children,
+  IDOverride,
+}: {
+  children: ReactNode;
+  IDOverride?: string;
+}) => {
   const { theme } = useTheme();
   return (
-    <div className={`outerContainer ${theme}`}>
-      <div className={`innerContainer ${theme}`}>{children}</div>
+    <div id={IDOverride || ''} className={`outerContainer ${theme}`}>
+      <div id={IDOverride || ''} className={`innerContainer ${theme}`}>
+        {children}
+      </div>
     </div>
   );
 };

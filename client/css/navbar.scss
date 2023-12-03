@@ -155,7 +155,8 @@
 }
 
 .navLink:hover {
-  animation: hover-up-down-3D 1s infinite ease-in-out;
+  animation: hover-up-down-3D 1s infinite ease-in-out,
+    navLinkBlueShadow 1s infinite ease-in-out;
   align-items: center;
   color: #ededed;
   text-decoration: none;

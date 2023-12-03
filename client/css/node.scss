@@ -1,4 +1,5 @@
 @import 'Variables.scss';
+@import 'Base.scss';
 
 @keyframes expand {
   0% {
@@ -43,15 +44,15 @@
 }
 
 .Node {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  @include flex-vertical;
+  // background-color: $background-color-dark;
   background-color: $background-color-dark;
+  background-image: linear-gradient(
+    #1a1a1a,
+    rgba(255, 255, 255, 0.165) 0em,
+    transparent 8em
+  );
   // background-image: linear-gradient(45, $base-yellow, $base-orange);
-  border-radius: 8px;
   clip-path: polygon(
     51% 2%,
     89% 21%,
@@ -61,10 +62,7 @@
     1% 60%,
     11% 21%
   );
-  user-select: none;
   scale: 0.95;
-  left: -1.5%;
-  top: -2%;
 }
 
 .borderNode {
@@ -84,7 +82,7 @@
 }
 
 .borderNode:hover {
-  cursor: pointer;
+  cursor: default;
 }
 
 .nodeOverlay {
@@ -98,6 +96,27 @@
     transparent 8em
   );
   transition: all 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+#podIcon {
+  transition: all 0.2s ease-in-out;
+  border: 1px solid $base-orange;
+  border-radius: 8px;
+  background-color: #00000040;
+  &:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    animation: hover-up-down-3D 1s infinite ease-in-out,
+      podIconOrangeShadow 1s infinite ease-in-out;
+  }
+
+  &:active {
+    cursor: pointer;
+    border-radius: 50%;
+    animation: podIconOrangeShadow 1s infinite ease-in-out,
+      scale-up-down 1s infinite ease-in-out;
+  }
 }
 
 .row {
@@ -137,17 +156,20 @@
   position: relative;
   flex-direction: column;
   justify-content: center;
-  height: 70%;
-  width: 70%;
+  height: fit-content;
+  width: 10rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
-
   div {
     height: fit-content;
     overflow-x: auto;
     white-space: nowrap;
     margin: 0.2em 0em;
+  }
+
+  *:hover {
+    cursor: text;
   }
 }
 
@@ -161,6 +183,12 @@
 
 .nodeName {
   position: relative;
+  max-height: min-content;
+}
+
+.podCount {
+  max-width: fit-content;
+  margin: auto;
 }
 
 .tooltip-text {
@@ -171,21 +199,27 @@
   padding: 0.6em;
   width: fit-content;
   visibility: hidden;
-
-  border: 3px solid white;
+  opacity: 0.9;
   scale: 0.8;
+  &.dark {
+    border: 3px solid white;
+    color: white;
+  }
+  &.light {
+    border: 3px solid black;
+    color: black;
+  }
 }
 
-@keyframes box-shadow-node {
+@keyframes podIconOrangeShadow {
   0% {
-    box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+    box-shadow: 0 0 0px $base-orange;
   }
-
   50% {
-    box-shadow: 0px 0px 0px 0px rgb(255, 255, 255);
+    box-shadow: 0 0 8px $base-orange;
+    text-shadow: 0px 0px 10px $base-orange;
   }
-
   100% {
-    box-shadow: 0px 0px 50px 5px rgb(255, 255, 255);
+    box-shadow: 0 0 0px $base-orange;
   }
 }

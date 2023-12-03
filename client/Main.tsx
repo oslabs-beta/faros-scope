@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import { NavBar } from './components/NavBar/index';
+import GridProvider from './components/context/GridContext';
 
 // This is the main component that is rendered by the client.
 const Main = () => {
@@ -60,13 +61,18 @@ const Main = () => {
 
   return (
     <div className="Main">
-      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
-        <DragOverlay>
-          <NavBar orientation={orientation} />
-        </DragOverlay>
-        <DropPositions parent={parent} />
-      </DndContext>
-      <Outlet />
+      <GridProvider>
+        <DndContext
+          onDragEnd={handleDragEnd}
+          collisionDetection={closestCenter}
+        >
+          <DragOverlay>
+            <NavBar orientation={orientation} />
+          </DragOverlay>
+          <DropPositions parent={parent} />
+        </DndContext>
+        <Outlet />
+      </GridProvider>
     </div>
   );
 };

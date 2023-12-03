@@ -10,7 +10,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 0;
+  border-radius: 8px;
   animation-fill-mode: forwards;
   animation-duration: 1s;
   background-image: radial-gradient(rgba($graph-blue, 1) 2px, transparent 3px),
@@ -75,14 +75,16 @@
   width: min-content;
   height: min-content;
   transition: all 0.5s ease-in-out;
-  background-image: linear-gradient(
-    45deg,
-    lighten($base-red, 20%),
-    $base-orange
-  );
-  // animation: expand-card-deck 1s ease-in-out, wave 1s ease-in-out,
-  //   move-gradient 1.5s ease-in-out infinite;
-  background-size: 600% 600%;
+	background: $healthyGradient;
+	background-size: 400% 400%;
+  animation: 
+    expand-card-deck 1s ease-in-out,
+    wave 2s ease-in-out,
+    move-gradient 4s ease-in-out infinite;
+    
+  // background-size: 1.2em 1.2em;
+  background-repeat: repeat;
+  // background-position: 0% 50%;
   animation-fill-mode: backwards;
   border-radius: 10px;
   margin: 0.5rem;
@@ -105,7 +107,8 @@
   margin: 0.5rem;
   border: 1.5px solid rgb(255, 255, 255);
   border-radius: 4px;
-  background-color: $base-yellow;
+  background-color: $background-color-dark;
+  background-image: linear-gradient(#1f1f1f, #ffffff14);
   transition: all 0.5s ease-in-out;
   overflow: auto;
   &:hover {
@@ -175,7 +178,7 @@
   }
 
   50% {
-    transform: translateY(-1rem);
+    transform: translateY(1rem);
   }
 
   100% {

@@ -93,16 +93,37 @@
 @keyframes hover-up-down-3D {
   0% {
     transform: translateY(0px);
-    box-shadow: 0 0 0px #287aff;
   }
   50% {
     transform: translateY(-3.5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes navLinkBlueShadow {
+  0% {
+    box-shadow: 0 0 0px #287aff;
+  }
+  50% {
     box-shadow: 0 0 8px #287aff;
     text-shadow: 0px 0px 10px #287aff;
   }
   100% {
-    transform: translateY(0px);
     box-shadow: 0 0 0px #287aff;
+  }
+}
+
+@keyframes scale-up-down {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -112,4 +133,19 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+}
+
+.inlineOrangeText {
+  color: $base-orange;
+  display: inline;
+}
+
+.inlineBlueText {
+  color: $base-blue;
+  display: inline;
+}
+
+.inlineRedText {
+  color: $base-red;
+  display: inline;
 }

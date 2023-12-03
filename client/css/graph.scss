@@ -1,14 +1,6 @@
 @import './Base.scss';
 @import './Variables.scss';
 
-.graphContainer {
-  position: relative;
-  height: 200vh;
-  width: 200vw;
-  border-radius: 0;
-  background-color: #000000;
-}
-
 .draggableContainer {
   position: relative;
   width: 100vw;
@@ -63,6 +55,9 @@
   &.light {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(255, 255, 255);
+  }
+  &:focus {
+    border: 3px solid $diamond-blue;
   }
 }
 

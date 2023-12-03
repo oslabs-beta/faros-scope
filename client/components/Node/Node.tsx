@@ -3,6 +3,7 @@ import '../../css/Node.scss';
 import NodeModal from './NodeModal';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../context/Theme';
+import podIcon from '../../assets/icons8-box-64.png';
 
 interface NodeInterface {
   node: any;
@@ -35,11 +36,20 @@ const Node = ({ node, dimensions }: NodeInterface) => {
     <div className="nodeContainer">
       <span className={`tooltip-text ${theme}`}>{node.nodeName}</span>
       <div style={dimensions} className="borderNode">
-        <div className="Node" style={nodeStyle} onClick={openModal}>
-          <span className="nodeOverlay"></span>
+        <div className="Node" style={nodeStyle}>
+          <img
+            onClick={openModal}
+            src={podIcon}
+            id="podIcon"
+            style={{ maxWidth: '40px', maxHeight: '40px' }}
+            alt="pod icon"
+          />
+          {/* <span className="nodeOverlay"></span> */}
           <div className="nodeContent">
             <div className="nodeName">{node.nodeName}</div>
-            <label className="podCount">Pods: {node.pods.length}</label>
+            <label className="podCount">
+              Pods: <span className='inlineOrangeText'>{node.pods.length}</span>
+            </label>
           </div>
           {/* pass node's name or similar relationship info to indetify,
           

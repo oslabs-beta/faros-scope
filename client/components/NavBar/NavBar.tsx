@@ -1,7 +1,8 @@
-import '../../css/Navbar.scss';
 import { useTheme } from '../context/Theme';
 import { SwitchButton } from '../SwitchButton/index';
 import { Link } from 'react-router-dom';
+import { useGrid } from '../context/GridContext';
+import '../../css/Navbar.scss';
 import homeImage from '../../assets/icons8-home-512.png';
 import settingsImage from '../../assets/icons8-settings-512.png';
 import listImage from '../../assets/list.png';
@@ -18,9 +19,14 @@ interface NavBarProps {
  */
 export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   const { toggleTheme, theme } = useTheme();
+  const { scrollToSignificantChild } = useGrid();
   const changeTheme = () => {
     toggleTheme();
   };
+
+  const centerGrid = () => {
+    scrollToSignificantChild();
+  }
 
   return (
     <div
@@ -62,7 +68,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
-          <Link to={'/List-View'} className="navLink">
+          <Link to={'/list-view'} className="navLink">
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -72,7 +78,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'List View'
             )}
           </Link>
-          <button className="navLink btn">
+          <button className="navLink btn" onClick={centerGrid}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}

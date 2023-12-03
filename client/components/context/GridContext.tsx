@@ -1,23 +1,42 @@
 import { useContext, useState, createContext } from 'react';
 
 interface GridContextProps {
-  updateGridScrollPosition: (x: number, y: number) => void;
-  gridScrollPosition: { x: number; y: number };
+  scrollToSignificantChild: () => void;
+  setMostSignificantChild: (child: HTMLElement | null) => void;
+  setGridScrollable: (scrollable: boolean) => void;
+  scrollable: boolean;
 }
 const GridContext = createContext({} as GridContextProps);
 
 const GridProvider = ({ children }: { children: React.ReactNode }) => {
-  const [gridScrollPosition, setGridScrollPosition] = useState({ x: 0, y: 0 });
+  const [significantChild, setSignificantChild] =
+    useState<HTMLElement | null>();
+  const [scrollable, setScrollable] = useState(true);
 
-  function updateGridScrollPosition(x: number, y: number): void {
-    setGridScrollPosition((prev) => ({ x: prev.x + x, y: prev.y + y }));
+  function setMostSignificantChild(child: HTMLElement | null) {
+    setSignificantChild(child);
+  }
+
+  function scrollToSignificantChild() {
+    if (!significantChild) return;
+    significantChild?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
+    });
+  }
+
+  function setGridScrollable(scrollable: boolean) {
+    setScrollable(scrollable);
   }
 
   return (
     <GridContext.Provider
       value={{
-        updateGridScrollPosition,
-        gridScrollPosition,
+        scrollToSignificantChild,
+        setMostSignificantChild,
+        setGridScrollable,
+        scrollable,
       }}
     >
       {children}
