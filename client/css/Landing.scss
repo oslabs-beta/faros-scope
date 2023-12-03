@@ -23,7 +23,7 @@
     // vertical glow right side
     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   background-repeat: repeat;
-  animation: move-gradient 10s linear infinite;
+  animation: move-gradient 20s linear infinite;
 }
 
 .landingContent {
