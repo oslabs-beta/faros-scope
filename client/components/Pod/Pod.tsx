@@ -16,7 +16,8 @@ export const Pod = ({
 }: PodProps) => {
 
   const useSelectorState = useSelector((state) => state);
-  const { cpuUsage, memUsage } = useSelectorState.metricsMap.metrics[podName] || { cpuUsage: 0, memUsage: 0 };
+  console.log('Selector State Pods', useSelectorState)
+  const { cpuUsagePct, memUsagePct } = useSelectorState.metricsMap.metrics[podName] || { cpuUsage: 0, memUsage: 0 };
 
   return (
     <div
@@ -27,8 +28,8 @@ export const Pod = ({
       <div className="pod">
         <div className="podName">{podName}</div>
         <div className="podMetrics">
-          <div className="podCpu">Cpu: {cpuUsage}</div>
-          <div className="podMemory">Memory: {memUsage}</div>
+          <div className="podCpu">Cpu: {cpuUsagePct.toFixed(2)}%</div>
+          <div className="podMemory">Memory: {memUsagePct.toFixed(2)}%</div>
         </div>
           {podData.containers && (
             podData.containers.map((container)=>{
