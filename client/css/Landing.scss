@@ -1,0 +1,11 @@
+@import "variables";
+@import "base";
+
+.landingMain {
+  background-size: 2.2em 2.2em;
+  background-image: 
+    // horizontal lines
+    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+    // vertical lines
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
+}

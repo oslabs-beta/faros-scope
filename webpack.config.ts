@@ -39,10 +39,9 @@ const config: Configuration = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        loader: 'file-loader',
         type: 'asset/resource',
-        options: {
-          outputPath: 'assets/', // Specify the output path for the emitted files
+        generator: {
+          filename: 'build/assets/[hash][ext][query]',
         },
       },
     ],
@@ -52,8 +51,8 @@ const config: Configuration = {
   },
   devServer: {
     static: {
-      publicPath: '/build',
-      directory: path.resolve(__dirname, 'build'),
+      publicPath: '/client',
+      directory: path.resolve(__dirname, 'client'),
     },
     historyApiFallback: true,
     proxy: {

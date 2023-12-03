@@ -9,8 +9,9 @@ interface PodContainerProps {
   podsViewRef?: any;
 }
 
-import styles from './PodContainer.module.css';
-import classNames from 'classNames';
+// import styles from './PodContainer.module.css';
+// import classNames from 'classNames';
+
 /**
  * PodContainer is a container that displays the pods of a node when a node is clicked on.
  * @param nodePods - The pods of the node that was clicked on.

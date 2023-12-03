@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { metricsApi } from '../../redux/metricsApi';
+// import { useSelector } from 'react-redux';
+// import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';
 import '../../css/Graph.scss';
@@ -19,9 +19,9 @@ export const Graph = () => {
   const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
 
   // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
-  const state = useSelector(
-    metricsApi.endpoints.getClusterInfo.select(undefined),
-  );
+  // const state = useSelector(
+  //   metricsApi.endpoints.getClusterInfo.select(undefined),
+  // );
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);

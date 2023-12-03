@@ -8,7 +8,7 @@
     "buildClient": "webpack",
     "buildServer": "tsc -p tsconfig.json",
     "build": "npm run buildClient && npm run buildServer",
-    "dev": "concurrently --kill-others \"nodemon ./server/index.ts\" \"webpack serve --hot --mode development --env development\"",
+    "dev": "concurrently --kill-others \"nodemon ./server/index.ts\" \"webpack serve --mode development --env development\"",
     "start": "node build/server/index.js"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "file-loader": "^6.2.0",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",

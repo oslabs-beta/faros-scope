@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTheme } from './components/context/Theme';
 import { Home } from './components/Home/index';
 import { Settings } from './components/Settings/index';
+import { Landing } from './components/LandingPage/index';
 import Main from './Main';
 
 const App = () => {
@@ -22,8 +23,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
+        <Route path="/landing" element={<Landing />} />
       </Routes>
     </BrowserRouter>
   );
