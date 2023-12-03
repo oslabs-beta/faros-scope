@@ -1,6 +1,5 @@
 import { useRef, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { createSelector } from '@reduxjs/toolkit'
 import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';
@@ -31,8 +30,8 @@ export const Graph = () => {
 
   const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
 
-    console.log('RESPONSE', data);
-    console.log('NESTEDCLUSTERINFO', nestedClusterInfo);
+    // console.log('RESPONSE', data);
+    // console.log('NESTEDCLUSTERINFO', nestedClusterInfo);
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);

@@ -18,9 +18,18 @@ interface Container {
     image: string; 
 }
 
+interface  Metrics {
+    cpuUsage: number;
+    memUsage: number;
+    type: string;
+    cpuUsagePct: number;
+    memUsage: number;
+}
+
 export const nodesAdapter = createEntityAdapter<Node>();
 export const podsAdapter = createEntityAdapter<Pod>();
 export const containersAdapter = createEntityAdapter<Container>();
+export const metricsAdapter = createEntityAdapter<Metrics>();
 
 export const nodesSlice = createSlice({
     name: 'nodes',
@@ -55,6 +64,18 @@ export const containersSlice = createSlice({
         })
     },
 });
+
+export const metricsMapSlice = createSlice({
+    name: 'metricsMap', 
+    initialState: {}, 
+    reducers: {}, 
+    extraReducers: (builder) => {
+        builder.addMatcher(metricsApi.endpoints.getClusterMetricsMap.matchFulfilled, (state, payload) => {
+            state.metrics = payload.payload;
+            // metricsAdapter.setAll(state, payload )
+        })
+    }
+})
 
 export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state.nodes); 
 export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors(state => state.pods);

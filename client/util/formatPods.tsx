@@ -1,5 +1,6 @@
 import { Pod } from '../components/Pod/index';
-import { useGetPodStatsQuery } from '../redux/metricsApi';
+import { useGetPodStatsQuery, useGetClusterMetricsMapQuery } from '../redux/metricsApi';
+import { useSelector } from 'react-redux';
 
 /**
  * Formats the pods of a node into a list of JSX elements.
@@ -16,8 +17,16 @@ const formatPods = (
   clickFunc?: (...args: any) => any,
   ) => {
 
-    const { data } = useGetPodStatsQuery(undefined, {pollingInterval: 5000})
-    if(data) pods = data;
+
+    
+    // console.log('METRICS MAP', MetricsMap);
+
+    const { data } = useGetPodStatsQuery(undefined, { pollingInterval: 5000 })
+    // const { data } = useGetPodStatsQuery(undefined, {})
+
+    if (data) {
+        console.log('DATA', data);
+    }
   
   // const state = useSelector(metricsApi.endpoints.getClusterInfo.select());
   // console.log('STATE: ', state);

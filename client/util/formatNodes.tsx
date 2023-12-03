@@ -31,9 +31,9 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
 
   // const nodeData = useSelector(nodesSlice);
 
-    const nodesName = useMemo(() => {
-        return createSelector()
-    })
+    // const nodesName = useMemo(() => {
+    //     return createSelector()
+    // })
 
   let i = 0;
   while (i < arr.length) {

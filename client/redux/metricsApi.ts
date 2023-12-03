@@ -51,7 +51,3 @@ export const metricsApi = createApi({
 
 export const { useGetClusterInfoQuery, useGetNodeStatsQuery, useGetPodStatsQuery, useGetClusterMetricsMapQuery} = metricsApi;
 
-// export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state[metricsApi.reducerPath]);
-
-// export type NodeState = ReturnType<typeof nodesAdapter.getInitialState>
-// export const useNodesSelector: TypedUseSelectorHook<NodeState> = useSelector;

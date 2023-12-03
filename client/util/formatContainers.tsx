@@ -11,6 +11,8 @@ const formatContainers = (containers: any[] = []) => {
       <Container
         containerName={container.name}
         containerImage={container.image}
+        cpuUsage={container.cpuUsage}
+        memUsage={container.memUsage}
         key={container.name}
       />
     );
