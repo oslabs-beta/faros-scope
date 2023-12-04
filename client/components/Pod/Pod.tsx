@@ -28,19 +28,27 @@ export const Pod = ({
       <div className="pod">
         <div className="podName">{podName}</div>
         <div className="podMetrics">
-          <div className="podCpu">Cpu: {cpuUsagePct.toFixed(2)}%</div>
+          <div className="podCpu">CPU: {cpuUsagePct.toFixed(2)}%</div>
           <div className="podMemory">Memory: {memUsagePct.toFixed(2)}%</div>
         </div>
+        <label className="containersLabel">Containers</label>
+        {/* <hr></hr> */}
           {podData.containers && (
             podData.containers.map((container)=>{
               const key = `${container.name}/${podName}`;
-              const { cpuUsage, memUsage } = useSelectorState.metricsMap.metrics[key] || { cpuUsage: 0, memUsage: 0 }
+              const { cpuUsagePct, memUsagePct } = useSelectorState.metricsMap.metrics[key] || { cpuUsage: 0, memUsage: 0 }
               return (
-                <div>
-                  <div>{container.name}</div>
-                  <div>{container.image}</div>
-                  <div>{cpuUsage}</div>
-                  <div>{memUsage}</div>
+                <div className="containerBox">
+                  <label className='containerTitle'>{container.name}</label>
+                  <div className="infoDiv">
+                  <div>CPU: {cpuUsagePct.toFixed(2)}%</div>
+                  <div>Memory: {memUsagePct.toFixed(2)}%</div>
+                  <div>Image: 
+                    <div className="imageBox">
+                    {container.image}
+                    </div>
+                  </div>
+                  </div>
                 </div>
               )
             })

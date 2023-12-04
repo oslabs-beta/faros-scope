@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 const formatPods = (
   pods: any[] = [],
-  interval: number = 7,
+  interval: number = 6,
   clickFunc?: (...args: any) => any,
   ) => {
 
