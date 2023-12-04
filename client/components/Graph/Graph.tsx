@@ -16,22 +16,18 @@ import GridProvider from '../context/GridContext';
  */
 export const Graph = () => {
 
+    // ^ data is being returned from the result of getClusterInfoQuery in Main 
+    const { data, isSuccess } = metricsApi.endpoints.getClusterInfo.useQueryState(undefined, {})
 
-    // const selectCluster = useMemo(() => {
-    //     return createSelector(res => res.data)
-    // }); 
-    // ^ if we are making a query to get clusterInfo, we should be able to use the result from the query to get the clusterInfo here
-    const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
+    console.log('useQueryStateResult', data);
 
   const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
-
-    // console.log('RESPONSE', data);
-    // console.log('NESTEDCLUSTERINFO', nestedClusterInfo);
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
 
+    // TODO: Handle if query is not sucessful 
   return (
     <GridProvider>
       <Draggable>

@@ -45,6 +45,9 @@ export const metricsApi = createApi({
       }),
       getClusterMetricsMap: builder.query({
         query: () => 'clusterMetricsMap'
+      }),
+        getMessage: builder.query({
+            query: (channel) => `message/${channel}`, 
       })
     }),
 });

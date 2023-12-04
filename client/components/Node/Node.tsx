@@ -27,8 +27,6 @@ const Node = ({ node, dimensions }: NodeInterface) => {
     setModalOpen(true);
   };
 
-    console.log('NODE', node); 
-
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
   const { theme } = useTheme();
   console.log(node);

@@ -1,1 +1,0 @@
-export {NotPod} from './NotPod'

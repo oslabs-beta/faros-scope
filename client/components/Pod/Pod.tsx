@@ -43,16 +43,7 @@ export const Pod = ({
                 </div>
               )
             })
-
-
-
-
           )}
-
-
-
-
-
       </div>
     </div>
   );

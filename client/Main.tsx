@@ -4,12 +4,17 @@ import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import { NavBar } from './components/NavBar/index';
 
-import { useDispatch } from 'react-redux';
-import {metricsApi, useGetClusterInfoQuery, useGetClusterMetricsMapQuery} from './redux/metricsApi';
+import { useGetClusterInfoQuery, useGetClusterMetricsMapQuery } from './redux/metricsApi';
+import {initializeSocket} from './redux/socketService';
 
+    // ^ initialize socket connection
+initializeSocket();
 // This is the main component that is rendered by the client.
 const Main = () => {
 
+
+   
+    // ^ Begin polling for cluster info and metrics 
     const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
     const {data: MetricsMap} = useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000}); 
 
