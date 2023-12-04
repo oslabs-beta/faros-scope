@@ -27,6 +27,16 @@ const Graph = () => {
   //     ]
   //   })
   // })
+
+  const [node,setNodes] = useState([])
+  useEffect(() => {
+    const getNodes = async () => {
+      const response = await fetch('http://34.27.144.68:8000/clusterInfo')
+      const data = await response.json()
+      setNodes(data)
+    }
+    getNodes()
+  },[])
   const nodes = [
     {name:'Node 1', 
       pods: [

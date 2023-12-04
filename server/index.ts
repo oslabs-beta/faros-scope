@@ -2,6 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import Router from './routers/router';
 import path from 'path';
 import { Sequelize } from 'sequelize';
+import cors from 'cors'
 
 import 'dotenv/config';
 
@@ -13,6 +14,7 @@ const URI = process.env.PG_URI || '';
 const sequelize = new Sequelize(URI); // Example for postgres
 
 // middleware
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client')));
