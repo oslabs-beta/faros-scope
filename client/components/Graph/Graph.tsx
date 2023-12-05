@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';
 import { useTheme } from '../context/Theme';
