@@ -22,6 +22,7 @@ function formatNodes(arr: any[] = [], interval: number = 4) {
     maxHeight: '15em',
   };
 
+    console.log('INSIDE FORMATE NODE', arr)
   let i = 0;
   while (i < arr.length) {
     const nodesSlice = arr.slice(i, i + interval);
