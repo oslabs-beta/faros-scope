@@ -92,7 +92,6 @@ export const Draggable = ({ children }: DraggableProps) => {
 
     //* Once user clicks, begin dragging
     const handleMouseDown = (e: MouseEvent): void => {
-      console.log('scrollable', scrollable);
       if (!scrollable) return;
       dragging = true;
       startX = e.clientX;
