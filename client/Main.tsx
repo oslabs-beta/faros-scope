@@ -39,6 +39,7 @@ const Main = () => {
   //   return () => newSocket.close();
   // }, []);
     useSocket('http://104.154.129.231:8000/')
+    // useSocket('http://localhost:9090/')
 
     // ^ Begin polling for cluster info and metrics 
     const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
@@ -98,7 +99,7 @@ const Main = () => {
 
   return (
     <div className="Main">
-      <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+          <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
         <DragOverlay>
           <NavBar orientation={orientation} />
         </DragOverlay>

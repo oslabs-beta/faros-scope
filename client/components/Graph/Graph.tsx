@@ -1,13 +1,9 @@
-import { useRef, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useRef } from 'react';
 import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';
 import '../../css/Graph.scss';
 import { useTheme } from '../context/Theme';
-// import query
-import { createSelector } from '@reduxjs/toolkit'
-import { useGetClusterInfoQuery } from '../../redux/metricsApi';
 import GridProvider from '../context/GridContext';
 
 /**

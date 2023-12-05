@@ -1,6 +1,4 @@
 import { Pod } from '../components/Pod/index';
-import { useGetPodStatsQuery, useGetClusterMetricsMapQuery } from '../redux/metricsApi';
-import { useSelector } from 'react-redux';
 
 /**
  * Formats the pods of a node into a list of JSX elements.

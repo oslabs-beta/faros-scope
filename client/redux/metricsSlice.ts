@@ -24,10 +24,23 @@ export interface  Metrics {
     cpuUsagePct: number;
 }
 
+export interface ClusterEvent {
+    apiVerson: string; 
+    kind: string;
+    metadata: { uid: string; [key: string]: any}; 
+}
+
+interface ClusterEventsState { 
+    [kind: string]: ClusterEvent[];
+}
+
 export const nodesAdapter = createEntityAdapter<Node>();
 export const podsAdapter = createEntityAdapter<Pod>();
 export const containersAdapter = createEntityAdapter<Container>();
 export const metricsAdapter = createEntityAdapter<Metrics>();
+export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
+    selectId: (clusterEvent) => clusterEvent.metadata.uid,
+});
 
 export const nodesSlice = createSlice({
     name: 'nodes',
@@ -72,9 +85,21 @@ export const metricsMapSlice = createSlice({
             state.metrics = payload.payload;
             // metricsAdapter.setAll(state, payload )
         })
-    }
-})
+    },
+}); 
 
+export const clusterEvents = createSlice({
+    name: 'clusterEvents',
+    initialState: clusterEventsAdapter.getInitialState(),
+    reducers: {
+        addClusterEvent: clusterEventsAdapter.addOne,
+        addClusterEvents: clusterEventsAdapter.addMany,
+        removeClusterEvent: clusterEventsAdapter.removeOne,
+    },
+});
+
+export const { addClusterEvent, addClusterEvents, removeClusterEvent } = clusterEvents.actions;
+// export const { selectAll: selectAllEvents, selectById: selectEventById} = clusterEventsAdapter.getSelectors(state => state.clusterEvents);
 export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state.nodes); 
 export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors(state => state.pods);
 export const { selectAll: selectAllContainers, selectById: selectContainerById } = containersAdapter.getSelectors(state => state.containers);
