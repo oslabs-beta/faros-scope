@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { metricsApi } from '../../redux/metricsApi';
 import formatNodes from '../../util/formatNodes';
 import { Draggable } from '../Draggable/Draggable';
 import { useTheme } from '../context/Theme';
@@ -14,14 +15,14 @@ import { useGetClusterInfoQuery } from '../../redux/metricsApi';
  * @returns ReactNode
  */
 export const Graph = () => {
-  const { data, isSuccess } = useGetClusterInfoQuery(undefined, {});
-  const { setGridScrollable } = useGrid();
-  const nestedClusterInfo = isSuccess && data ? formatNodes(data, 8) : null;
 
-  // https://redux-toolkit.js.org/rtk-query/api/created-api/endpoints#matchers
-  // const state = useSelector(
-  //   metricsApi.endpoints.getClusterInfo.select(undefined),
-  // );
+  const { setGridScrollable } = useGrid();
+
+  const { data, isSuccess } = metricsApi.endpoints.getClusterInfo.useQueryState(undefined, {})
+
+  console.log('useQueryStateResult', data);
+
+const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
 
   const handleFocus = () => {
     setGridScrollable(false);

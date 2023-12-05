@@ -50,6 +50,7 @@
     "sass-loader": "^13.3.2",
     "sequelize": "^6.35.0",
     "sequelize-typescript": "^2.1.5",
+    "socket.io-client": "^4.7.2",
     "sqlite3": "^5.1.6",
     "style-loader": "^3.3.3"
   },
