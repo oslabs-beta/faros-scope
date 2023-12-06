@@ -1,0 +1,1 @@
+export { ColoredText } from './ColoredText';

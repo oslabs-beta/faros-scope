@@ -12,6 +12,7 @@
   background-size: 2.2em 2.2em;
   // facilitates the movement of the background image when the user drags the graph
   background-attachment: local;
+  // animation: grid-glow-flicker 1s ease-in-out infinite;
   background-image: 
     // horizontal lines
     linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
@@ -82,14 +83,14 @@
   scale: 1;
 }
 
-@keyframes opacity-flicker {
+@keyframes grid-glow-flicker {
   0% {
-    opacity: 0.2;
-  }
-  50% {
     opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
   100% {
-    opacity: 0.2;
+    opacity: 1;
   }
 }

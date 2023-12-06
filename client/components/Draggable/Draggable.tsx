@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTheme } from '../context/Theme';
-import { setScale } from '../../util/animationsUtil';
 import { useGrid } from '../context/GridContext';
 import { useToast } from '@chakra-ui/toast';
 import { useDraggable } from './useDraggable';
@@ -46,6 +45,8 @@ export const Draggable = ({ children }: DraggableProps) => {
     scrollable,
     toast,
   );
+
+  console.log(draggableContainer.current?.scrollWidth);
 
   return (
     <div ref={draggableContainer} className={`draggableContainer ${theme}`}>
