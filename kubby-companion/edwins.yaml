@@ -1,0 +1,64 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /Users/edvinmorlu/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Sun, 26 Nov 2023 23:02:56 EST
+        provider: minikube.sigs.k8s.io
+        version: v1.32.0
+      name: cluster_info
+    server: https://127.0.0.1:52418
+  name: minikube
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMVENDQXBXZ0F3SUJBZ0lSQUlnaDRzQ25uM0lXdFUzMlJTUVUrcTh3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa05USXhZamsyWlRRdFlXTmtNeTAwTXpFekxXSXhNR010TVdFMVl6TTJZVGN5WlRjdwpNQ0FYRFRJek1URXlOakl3TlRVeE9Wb1lEekl3TlRNeE1URTRNakUxTlRFNVdqQXZNUzB3S3dZRFZRUURFeVExCk1qRmlPVFpsTkMxaFkyUXpMVFF6TVRNdFlqRXdZeTB4WVRWak16WmhOekpsTnpBd2dnR2lNQTBHQ1NxR1NJYjMKRFFFQkFRVUFBNElCandBd2dnR0tBb0lCZ1FEV1kva2sra1lnNDkxcm5MT2trN2hYaTdqdVVubExESkhqVXFsQgo2cm9pZng5R0ZBVXRjQ2ZiY2drWE53NmRVaVRhakpXaXhnUGg0WmJKT3pvWXlrR0ZnYkRRNkowOXMrNWt2dW43CkNyYkRPZEV6UlRPcWt1aVNMUXA1L3g5Z0Fwb1ZCT2NSRXlhdlVSTXVuKzZLc3pLS0N4VnFwYVNJR05CaUpteVoKZjZDZndrLytoREc2am9SWXJsVHNaZ2pDWlVjd1JraGNad29wOTZ6SS92cU9vc28rcmo4dHkvQVhXZHBDOG50Lwp5b0FBNzZWazlsNFRCdU5yZk5QNnBaeUU3OHJGM1QzOUpzSzdrWWtoTEZFOW0vVDcrQktmTCszK2hldHZlVW5SCnQvekN0MFluNUpwRGNoNGc2S1JBOHpXNGw5S0FDaWltdWpla3hleENKWEJ4RDRWalM2MkF5Q1RaS0Q2YU5yKzIKQjI3b3dyZExwT29XekpmNDREQkZ6c0c1MUlKZWlvVVhLbDJHdEE3VnVCSGhiaFZ2bnVUeWVCaGR4WmRSWkFyawp4QlE1Q0dzYWhKYnc2WHBrV2FsQWFDUm1iUlNKMS90ZEIyWUtwUnhvWFpJbDBzNHJOcVVENU5NdndPTEE5YVRyClRUeFcxRnFaVm5WQlpFcXdOSnFUVCt4amtiRUNBd0VBQWFOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1BOEcKQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUVGQnFvU2ZWK2tWSGhueTZKSUlkMkF4NzFLOVF3TUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQmdRQUR0UjZVV3RvcjQ3clNBeTZTaXFjUCtLajF0T0RFNUxMRDgzU1RzK1ByCnNid2pNZ0lwUmx6Wlp4S0lDVk54dnhpekltbkFVc1p5c2xUQ3ZyS0hleWN4VlNKK1NKbTNVaXFKaXNOV1RrTGkKZUdvTEg3VFJNTG9ycTFZckk1b0JocG1vVHNnU1p5Z1FWbi9pUXZxN2p5NElHbWlsZFZ4RVd2V2J3ZFpWNDhrMQpueENBVTRvWHdiSTVHTGwvazdKSWdScmpPd2xGR2JuNUZHZ01kaWp3MUNJdW9FeWZ1bjNjZVAyZnZWaWszNEJkClJwcG11UFhQanhFRGY5TGV5MVBacVRGcktYMU54TEFrNThyVUcrS3JDeE1xUFd1NlY1RlJyRGZmOXNZN0wzakYKaG1jMnFVclFHa29xSUFyR0J1MVBBNVlPM2FiN3JFa2E0dEEvRU1nbmw1RG4wdmdGQTJ1dXVJVjNRTCtIT1ZFLwpqZWZyYXlsK1ZFVGtrdkFyZ2hqRzhkd21Lai92ekRjeW9sV3F1S3RsR0VFVWRoU1g1bmxPbUw5SmxzQkp1WWtiClBkTzlCclFoK2RKNUJtdUNHOFJES05UUXNTcitqWmcvZTgzRHc0VG9xbXIvSThpRnRQOURoNWZuTWNvdHhWVTkKVzVyUE55Q0V5VFoxYTJQbGpUL29NMTg9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://35.224.202.96
+  name: gke_faros-scope_us-central1_edwins-cluster
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMVENDQXBXZ0F3SUJBZ0lSQU0zNzNDeTFFVEFmRHp2RmhJNjNTc0l3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa056TXhOemM0WWpBdE9HTTNZaTAwWlRZNUxUa3hNamd0Wm1FMll6RXhabUkyTUdFMwpNQ0FYRFRJek1URXlOekEyTURZeE1sb1lEekl3TlRNeE1URTVNRGN3TmpFeVdqQXZNUzB3S3dZRFZRUURFeVEzCk16RTNOemhpTUMwNFl6ZGlMVFJsTmprdE9URXlPQzFtWVRaak1URm1Zall3WVRjd2dnR2lNQTBHQ1NxR1NJYjMKRFFFQkFRVUFBNElCandBd2dnR0tBb0lCZ1FDMDIyYkJBMVFMSTZoMUF2YnR4aStnb28yVFZ4T1duREV5Y2NMWAorT29UaFNWTG15K0xvcUpRdG9NV2g5M0UyQU9SeDBUTWRhWVFkY0ZDc2JrNTc5dEIzWUNCcVRURmpuWVNFbzFYCm8zODNoMFd2S0tuSXJiYW9hS1kvMmQ5cExNWlMyclJGZHJTU1dXT1Y5djNiUmZYaVI5ZCsrd2dxVDNMcDYwcUwKTENBc3J6S2xJcXI5Q1NYMDFmOHJuNHU3d3B5RDJzTU96QXJYSG5sMUczby9HUnJoakduTDdDTG5sK0l3YTVsbQpDMEp3NW1wa2NCSGdCUUpVRDY0Vm5pSHpWcVZabEhNSEZHZDN4TXQ1cnVGU0tobDJoeXliVUpFR0RqMmtMQ1hmCkN3THc3Z3VuYkZZTHhyZU0vQjhRNnMyaW5ocHlpaURXUFBtSVAwR25OVndRQmNlR3NybTlnUWtUZTQ4eTRMTHEKam1hWll2RUYwV3pQK1VxS2xsZVlDay9DR2MxN3hhaS9sOEw5RDRIc2lZTlFlSktTQzNBNzYyTUd4Q3dPYmU3WgpTaytwTkFVK2gzZUJqNlNVTWQxYVpPWU1oNjFoNXNDRWNHTGdTdEhRS0lHMW9qcy8zWTdZeDBkWTJnMHA4ZDRlClRjQnlrT2Y2TGhrRE12cWtOZm5jUHVob0tZa0NBd0VBQWFOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1BOEcKQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUVGSzErdG9IM05DcDZUbVlYWXIyWDdNS3F4bHRNTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQmdRQjFRemxrY3NwUVdubUxyMDNrTkVVTnZINXNHamFLOWo2QUJjVnZiZlRNCmgzV09vMjlwNW43c2pnNTlzelZIMWJQakxxb2NNVHlOVW9GL0I0ZysxcWwvREk1T2xLNERlNzJFUHJWZTVQdlMKb3g2ZVNnUWNzUTVHeTJQNlp6T3QvYVpYcXdSRVZiUE11NUhvZ0JZdmRyMW1NOVRWVmdTTEg5VCtYcHBBL3dFZwpsRWRaeDREOFdqbnFPdUE4QkNCV0k4RDB4M1RJd3laeThEVkZTQmxZb0FwN3gzeTRxQzFjNkd0WXhGam1Ha0pZCmJqNVNvMVpvYTZIR2lkMEhZSDJJM2xMdzhpamhsbWcwZ3h1Z3NyL1d3ZlE2S0hIc3dFYi95eTFHbE1ZcXdSR0EKUk9QN0FsMG0vZnp6R0pYMXczc1p2djFqdG5rR3dGTlQwbUpOeXdjSFE1ajIvU0gzTGRvb3AwZ0hrcEJkYlNSYQplZlZCUEZjb2krYUJid1JaR3l5N05PWHBsenFjai9VenFKZ0NzNkNxZ002K0hxVUlFVFdIZ3dVbHNVZEI0VkZECmJ2OHc0T0UveXpDVklncmxQSlBHV1Vic2xGdzRnQkJoWlZRSjBYaTBwNGg0MjJjQ1VXWlhGQ3Z3cDVWbVJSYUYKTGZQbkxuOGNMZzhZcVhsb1haeDY4TjQ9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://34.29.171.25
+  name: gke_faros-scope_us-central1-c_edwins-cluster
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Sun, 26 Nov 2023 23:02:56 EST
+        provider: minikube.sigs.k8s.io
+        version: v1.32.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+- context:
+    cluster: gke_faros-scope_us-central1_edwins-cluster
+    user: gke_faros-scope_us-central1_edwins-cluster
+  name: gke_faros-scope_us-central1_edwins-cluster
+- context:
+    cluster: gke_faros-scope_us-central1-c_edwins-cluster
+    user: gke_faros-scope_us-central1-c_edwins-cluster
+  name: gke_faros-scope_us-central1-c_edwins-cluster
+current-context: gke_faros-scope_us-central1-c_edwins-cluster
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /Users/edvinmorlu/.minikube/profiles/minikube/client.crt
+    client-key: /Users/edvinmorlu/.minikube/profiles/minikube/client.key
+- name: gke_faros-scope_us-central1_edwins-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      command: gke-gcloud-auth-plugin
+      installHint: Install gke-gcloud-auth-plugin for use with kubectl by following
+        https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+      provideClusterInfo: true
+- name: gke_faros-scope_us-central1-c_edwins-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      command: gke-gcloud-auth-plugin
+      installHint: Install gke-gcloud-auth-plugin for use with kubectl by following
+        https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+      provideClusterInfo: true
