@@ -1,0 +1,54 @@
+@import 'Variables.scss';
+@import 'Base.scss';
+
+.notificationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding: 1em;
+    top: 2ch;
+    left: 6ch;
+    gap: 1em;
+    background-color: $background-color-dark;
+    background-image: linear-gradient(
+    #1a1a1a,
+    rgba(255, 255, 255, 0.165) 0em,
+    transparent 8em
+  );
+    border: 1px solid $diamond-blue;
+    box-shadow: 0px 0px 5px 1.5px #277aff;
+    border-radius: 8px;
+    min-width: 15em;
+    max-width: 25em;
+    min-height: fit-content;
+    max-height: 15em;
+    z-index: 30;
+    overflow: scroll;
+}
+
+.notificationMessage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 18em;
+    min-height: 3em;
+    gap: 2em;
+    z-index: 31;
+    background-color: black;
+    border: 1px solid $diamond-blue;
+    border-radius: 8px;
+    color: white;
+}
+
+.notificationTitle{
+    align-self: center;
+    color: white;
+    text-shadow: 0px 0px 5px #000000;
+}
+
+.logText{
+    color: $base-orange;
+}

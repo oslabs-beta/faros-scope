@@ -8,6 +8,7 @@ import GridProvider from './components/context/GridContext';
 import { useGetClusterInfoQuery, useGetClusterMetricsMapQuery } from './redux/metricsApi';
 import { useSocket } from './redux/bobbySocketService';
 import io from "socket.io-client";
+import NotifDisplay from './components/NotifDisplay/NotifDisplay';
 
 
 
@@ -102,10 +103,11 @@ const Main = () => {
   return (
     <div className="Main">
       <GridProvider>
+        <NotifDisplay/>
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCenter}
-        >
+          >
           <DragOverlay>
             <NavBar orientation={orientation} />
           </DragOverlay>
