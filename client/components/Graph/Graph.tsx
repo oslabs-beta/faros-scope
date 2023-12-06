@@ -25,11 +25,11 @@ export const Graph = () => {
 const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
 
   const handleFocus = () => {
-    setGridScrollable(false);
+    // setGridScrollable(false);
   };
 
   const handleBlur = () => {
-    setGridScrollable(true);
+    // setGridScrollable(true);
   };
 
   //* reference to the draggable div, which is the container for the graph

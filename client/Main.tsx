@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
-import DropPositions from './components/reusable/reactdnd/DropPositions';
 import { NavBar } from './components/NavBar/index';
+import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
+import {
+  useGetClusterInfoQuery,
+  useGetClusterMetricsMapQuery,
+} from './redux/metricsApi';
+import { useSocket } from './redux/bobbySocketService';
+import { ChakraProvider } from '@chakra-ui/react';
+import DropPositions from './components/reusable/reactdnd/DropPositions';
 import GridProvider from './components/context/GridContext';
 
-import { useGetClusterInfoQuery, useGetClusterMetricsMapQuery } from './redux/metricsApi';
-import { useSocket } from './redux/bobbySocketService';
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
-
-
-    // ^ initialize socket connection
+// ^ initialize socket connection
 // initializeSocket();
 // This is the main component that is rendered by the client.
 const Main = () => {
-
   // const [webSocket, setSocket] = useState(null);
   // useEffect(() => {
   //   // Connect to Socket.IO server
@@ -40,12 +41,16 @@ const Main = () => {
 
   //   return () => newSocket.close();
   // }, []);
-    useSocket('http://104.154.129.231:8000/')
-    // useSocket('http://localhost:9090/')
+  useSocket('http://104.154.129.231:8000/');
+  // useSocket('http://localhost:9090/')
 
-    // ^ Begin polling for cluster info and metrics 
-    const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
-    const {data: MetricsMap} = useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000}); 
+  // ^ Begin polling for cluster info and metrics
+  const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {
+    pollingInterval: 25000,
+  });
+  const { data: MetricsMap } = useGetClusterMetricsMapQuery(undefined, {
+    pollingInterval: 5000,
+  });
 
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
   const [parent, setParent] = useState(getStoredPosition());
@@ -111,7 +116,9 @@ const Main = () => {
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        <Outlet />
+        <ChakraProvider>
+            <Outlet />
+        </ChakraProvider>
       </GridProvider>
     </div>
   );

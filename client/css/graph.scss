@@ -8,7 +8,6 @@
   overflow: hidden;
   border-radius: 0px;
   transition: all 0.5s ease-in-out;
-  cursor: grab;
   // resolution of the background image
   background-size: 2.2em 2.2em;
   // facilitates the movement of the background image when the user drags the graph
@@ -33,9 +32,6 @@
       // vertical lines
       linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
   }
-  &:active {
-    cursor: grabbing;
-  }
 }
 
 .graph {
@@ -52,12 +48,14 @@
     border: 1px solid rgb(0, 0, 0);
     box-shadow: 0px 0px 15px 0px $diamond-blue;
   }
+
   &.light {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgb(255, 255, 255);
   }
+
   &:focus {
-    border: 3px solid $diamond-blue;
+    border: 1px solid $diamond-blue;
   }
 }
 
