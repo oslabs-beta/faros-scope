@@ -39,6 +39,7 @@ const Main = () => {
   //   return () => newSocket.close();
   // }, []);
     useSocket('http://104.154.129.231:8000/')
+    // useSocket('http://localhost:8000/')
 
     // ^ Begin polling for cluster info and metrics 
     const { data: ClusterInfo } = useGetClusterInfoQuery(undefined, {pollingInterval: 25000});
