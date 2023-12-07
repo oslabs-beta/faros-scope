@@ -29,12 +29,14 @@ export const useSocket = (url) => {
         
         newSocket.on('podModified', (data) => {
             data.eventType = 'Pod Modified';
-          console.log('Pod Modified: ', data)
+            console.log('Pod Modified: ', data)
+            store.dispatch(addClusterEvent(data))
         })
         
         newSocket.on('podDeleted', (data) => {
             data.eventType = 'Pod Deleted';
-          console.log('Pod Deleted: ', data)
+            console.log('Pod Deleted: ', data)
+            store.dispatch(addClusterEvent(data))
         })
 
         return () => newSocket.close();
