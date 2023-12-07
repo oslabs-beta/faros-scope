@@ -127,8 +127,6 @@ export const useDraggable = (
     if (draggableInner.current) {
       //* add event listener for scrolling with mouse wheel for scaling
       draggableInner.current.addEventListener('wheel', handleWheel);
-      // Reset user-select property on component unmount
-      draggableInner.current.style.userSelect = '';
     }
 
     //* set the most significant child of graph to the draggableContent
