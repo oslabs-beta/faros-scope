@@ -6,7 +6,6 @@ export const Landing = () => {
   return (
     <div className="landingMain">
       <div className="landingContent">
-        {/* <hr className="break-full-width" /> */}
         <div className="landingBody">
           <div className="landingBodyContent">
             <nav className="landingNav"></nav>
@@ -16,7 +15,7 @@ export const Landing = () => {
               </h1>
               <h2>
                 Faros is a web application that helps users visualize their{' '}
-                <ColoredText color="Blue">Kubernetes</ColoredText> clusters and
+                <ColoredText color="Blue">Kubernetes</ColoredText> Clusters and
                 their resources with{' '}
                 <ColoredText color="Orange">Real-Time</ColoredText> updates.
               </h2>

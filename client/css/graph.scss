@@ -46,17 +46,19 @@
   padding: 1rem;
   &.dark {
     background-color: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgb(0, 0, 0);
-    box-shadow: 0px 0px 15px 0px $diamond-blue;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: $pronounced-shadow;
   }
 
   &.light {
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: $pronounced-shadow;
   }
 
-  &:focus {
-    border: 1px solid $diamond-blue;
+  &:hover {
+    box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
+    scale: 1.05;      
   }
 }
 

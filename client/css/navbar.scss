@@ -8,7 +8,9 @@
 #navDragImg {
   max-width: 40px;
   max-height: 40px;
+  margin: 0.2rem;
   transition: all 0.2s ease-in-out;
+  border-radius: 5px;
   &:hover {
     animation: hover-up-down-3D 1s infinite ease-in-out;
     transform: translateY(-2px);

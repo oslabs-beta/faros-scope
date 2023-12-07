@@ -117,7 +117,7 @@ const Main = () => {
           <DropPositions parent={parent} />
         </DndContext>
         <ChakraProvider>
-            <Outlet />
+          <Outlet />
         </ChakraProvider>
       </GridProvider>
     </div>

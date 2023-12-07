@@ -23,7 +23,7 @@
     // vertical glow right side
     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   background-repeat: repeat;
-  animation: move-gradient-landing 15s linear infinite;
+  animation: move-gradient-landing 25s linear infinite;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
@@ -83,7 +83,7 @@
   backdrop-filter: blur(4px);
   color: white;
   position: relative;
-  border: 2px solid rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: $pronounced-shadow;
   width: 100%;
