@@ -46,8 +46,6 @@ export const Draggable = ({ children }: DraggableProps) => {
     toast,
   );
 
-  console.log(draggableContainer.current?.scrollWidth);
-
   return (
     <div ref={draggableContainer} className={`draggableContainer ${theme}`}>
       <div ref={draggableContent} className="draggableContent">

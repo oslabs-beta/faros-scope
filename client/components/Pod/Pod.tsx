@@ -16,7 +16,7 @@ export const Pod = ({
   clickFunc,
 }: PodProps) => {
   const useSelectorState = useSelector((state: RootState) => state.metricsMap);
-    const { cpuUsagePct, memUsagePct } = useSelectorState.metricsMap[podName] || { cpuUsage: 0, memUsage: 0 };
+  const { cpuUsagePct, memUsagePct } = useSelectorState?.metricsMap[podName] || { cpuUsage: 0, memUsage: 0 };
 
   const podCPU = cpuUsagePct?.toFixed(2) || 0;
   const podMemory = memUsagePct?.toFixed(2) || 0;
@@ -70,8 +70,7 @@ export const Pod = ({
         {podData.containers &&
           podData.containers.map((container: any) => {
             const key = `${container.name}/${podName}`;
-            const { cpuUsagePct, memUsagePct } = useSelectorState?.metricsMap
-              ?.metrics[key] || { cpuUsage: 0, memUsage: 0 };
+            const { cpuUsagePct, memUsagePct } = useSelectorState?.metricsMap[key] || { cpuUsage: 0, memUsage: 0 };
 
             const containerCPU = cpuUsagePct?.toFixed(2) || 0;
             const containerMemory = memUsagePct?.toFixed(2) || 0;
