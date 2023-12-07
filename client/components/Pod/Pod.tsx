@@ -1,6 +1,6 @@
-import formatContainers from '../../util/formatContainers';
 import '../../css/base.scss';
 import { useSelector } from 'react-redux';
+import { RootState} from '../../redux/store';
 
 interface PodProps {
   podName: string;
@@ -15,11 +15,8 @@ export const Pod = ({
   animationDelay,
   clickFunc,
 }: PodProps) => {
-  const useSelectorState = useSelector((state) => state);
-  console.log('Selector State Pods', useSelectorState);
-  const { cpuUsagePct, memUsagePct } = useSelectorState?.metricsMap?.metrics[
-    podName
-  ] || { cpuUsage: 0, memUsage: 0 };
+  const useSelectorState = useSelector((state: RootState) => state.metricsMap);
+    const { cpuUsagePct, memUsagePct } = useSelectorState.metricsMap[podName] || { cpuUsage: 0, memUsage: 0 };
 
   const podCPU = cpuUsagePct?.toFixed(2) || 0;
   const podMemory = memUsagePct?.toFixed(2) || 0;

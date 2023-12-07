@@ -5,10 +5,7 @@ import { Draggable } from '../Draggable/Draggable';
 import { useTheme } from '../context/Theme';
 import { useGrid } from '../context/GridContext';
 import '../../css/Graph.scss';
-// import { useSelector } from 'react-redux';
-// import { metricsApi } from '../../redux/metricsApi';
-// import query
-import { useGetClusterInfoQuery } from '../../redux/metricsApi';
+
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
