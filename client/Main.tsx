@@ -11,7 +11,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 import DropPositions from './components/reusable/reactdnd/DropPositions';
 import GridProvider from './components/context/GridContext';
 
-import io from 'socket.io-client';
+import { useGetClusterInfoQuery, useGetClusterMetricsMapQuery } from './redux/metricsApi';
+import { useSocket } from './redux/bobbySocketService';
+import io from "socket.io-client";
+import NotifDisplay from './components/NotifDisplay/NotifDisplay';
+
+
 
 // ^ initialize socket connection
 // initializeSocket();
@@ -107,10 +112,11 @@ const Main = () => {
   return (
     <div className="Main">
       <GridProvider>
+        <NotifDisplay/>
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCenter}
-        >
+          >
           <DragOverlay>
             <NavBar orientation={orientation} />
           </DragOverlay>
