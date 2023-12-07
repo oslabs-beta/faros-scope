@@ -8,8 +8,6 @@ interface ContainerProps {
 const Container = ({
   containerName,
   containerImage,
-  cpuUsage,
-  memUsage,
 }: ContainerProps) => {
   return (
     // Rename Class
