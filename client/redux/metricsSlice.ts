@@ -1,18 +1,22 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import { metricsApi } from './metricsApi'
+import {RootState} from './store'
 
 export interface Node {
     id: string; 
+    nodeName: string;
     pods: Pod[];
 }
 export interface Pod {
-id: string; 
+    id: string; 
+    name: string;
     nodeId: string;
     containers: Container[];
 }
 
 export interface Container {
     id: string;
+    name: string;
     podId: string;
     image: string; 
 }
@@ -24,14 +28,15 @@ export interface  Metrics {
     cpuUsagePct: number;
 }
 
+export interface Entity {
+
+}
+
 export interface ClusterEvent {
     apiVerson: string; 
     kind: string;
-    metadata: { uid: string; [key: string]: any}; 
-}
-
-interface ClusterEventsState { 
-    [kind: string]: ClusterEvent[];
+    metadata: { uid: string;[key: string]: any }; 
+    entities: Entity[];
 }
 
 export const nodesAdapter = createEntityAdapter<Node>();
@@ -76,14 +81,20 @@ export const containersSlice = createSlice({
     },
 });
 
+export interface MetricsMap {
+    metricsMap?: {[key: string]: any}
+}
+const initialState: any = {
+    metricsMap: {}
+} 
+
 export const metricsMapSlice = createSlice({
     name: 'metricsMap', 
-    initialState: {}, 
+    initialState: initialState , 
     reducers: {}, 
     extraReducers: (builder) => {
         builder.addMatcher(metricsApi.endpoints.getClusterMetricsMap.matchFulfilled, (state, payload) => {
-            state.metrics = payload.payload;
-            // metricsAdapter.setAll(state, payload )
+            state.metricsMap = payload.payload;
         })
     },
 }); 
@@ -100,6 +111,6 @@ export const clusterEvents = createSlice({
 
 export const { addClusterEvent, addClusterEvents, removeClusterEvent } = clusterEvents.actions;
 // export const { selectAll: selectAllEvents, selectById: selectEventById} = clusterEventsAdapter.getSelectors(state => state.clusterEvents);
-export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors(state => state.nodes); 
-export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors(state => state.pods);
-export const { selectAll: selectAllContainers, selectById: selectContainerById } = containersAdapter.getSelectors(state => state.containers);
+export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors((state: RootState) => state.nodes); 
+export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors((state:  RootState) => state.pods);
+export const { selectAll: selectAllContainers, selectById: selectContainerById } = containersAdapter.getSelectors((state: RootState) => state.containers);

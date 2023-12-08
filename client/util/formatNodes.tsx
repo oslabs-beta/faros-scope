@@ -1,7 +1,4 @@
 import Node from '../components/Node/Node';
-import { useMemo } from 'react';
-import { useSelector } from 'react-redux'; 
-import { createSelector } from '@reduxjs/toolkit';
 //* example arr input:
 //* [
 //*   { name: '1'},

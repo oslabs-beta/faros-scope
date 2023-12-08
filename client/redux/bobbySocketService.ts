@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import io from "socket.io-client";
-import { useDispatch } from 'react-redux'
+import{ io, Socket} from "socket.io-client";
 import { addClusterEvent } from "./metricsSlice";
 import store from './store'
+
 // Custom Hook for Socket.IO
-export const useSocket = (url) => {
-    const [socket, setSocket] = useState(null);
+export const useSocket = (url: string): Socket | null  => {
+
+    const [socket, setSocket] = useState< Socket | null >(null);
 
     useEffect(() => {
         // Connect to Socket.IO server
-        const newSocket = io(url);
+        const newSocket: Socket  = io(url);
 
         setSocket(newSocket);
 
@@ -23,18 +24,25 @@ export const useSocket = (url) => {
 
         newSocket.on('podAdded', (data) => {
             console.log('Pod Added: ', data)
+            data.eventType = 'Pod Added';
             store.dispatch(addClusterEvent(data))
         })
         
         newSocket.on('podModified', (data) => {
-          console.log('Pod Modified: ', data)
+            data.eventType = 'Pod Modified';
+            console.log('Pod Modified: ', data)
+            store.dispatch(addClusterEvent(data))
         })
         
         newSocket.on('podDeleted', (data) => {
-          console.log('Pod Deleted: ', data)
+            data.eventType = 'Pod Deleted';
+            console.log('Pod Deleted: ', data)
+            store.dispatch(addClusterEvent(data))
         })
 
-        return () => newSocket.close();
+        // return () =>{ newSocket.close(); }
+
+        return () =>{ newSocket.disconnect();}
         
     }, [url]);
 

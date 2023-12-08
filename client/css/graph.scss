@@ -8,11 +8,11 @@
   overflow: hidden;
   border-radius: 0px;
   transition: all 0.5s ease-in-out;
-  cursor: grab;
   // resolution of the background image
   background-size: 2.2em 2.2em;
   // facilitates the movement of the background image when the user drags the graph
   background-attachment: local;
+  // animation: grid-glow-flicker 1s ease-in-out infinite;
   background-image: 
     // horizontal lines
     linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
@@ -33,9 +33,6 @@
       // vertical lines
       linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
   }
-  &:active {
-    cursor: grabbing;
-  }
 }
 
 .graph {
@@ -49,15 +46,19 @@
   padding: 1rem;
   &.dark {
     background-color: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgb(0, 0, 0);
-    box-shadow: 0px 0px 15px 0px $diamond-blue;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: $pronounced-shadow;
   }
+
   &.light {
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: $pronounced-shadow;
   }
-  &:focus {
-    border: 3px solid $diamond-blue;
+
+  &:hover {
+    box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
+    scale: 1.05;      
   }
 }
 
@@ -84,14 +85,14 @@
   scale: 1;
 }
 
-@keyframes opacity-flicker {
+@keyframes grid-glow-flicker {
   0% {
-    opacity: 0.2;
-  }
-  50% {
     opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
   100% {
-    opacity: 0.2;
+    opacity: 1;
   }
 }

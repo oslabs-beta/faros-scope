@@ -5,10 +5,7 @@ import { Draggable } from '../Draggable/Draggable';
 import { useTheme } from '../context/Theme';
 import { useGrid } from '../context/GridContext';
 import '../../css/Graph.scss';
-// import { useSelector } from 'react-redux';
-// import { metricsApi } from '../../redux/metricsApi';
-// import query
-import { useGetClusterInfoQuery } from '../../redux/metricsApi';
+
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
@@ -25,11 +22,11 @@ export const Graph = () => {
 const nestedClusterInfo = isSuccess && data ? formatNodes(data.nodes, 8) : null;
 
   const handleFocus = () => {
-    setGridScrollable(false);
+    // setGridScrollable(false);
   };
 
   const handleBlur = () => {
-    setGridScrollable(true);
+    // setGridScrollable(true);
   };
 
   //* reference to the draggable div, which is the container for the graph

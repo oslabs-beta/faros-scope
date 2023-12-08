@@ -11,7 +11,7 @@ const GridContext = createContext({} as GridContextProps);
 const GridProvider = ({ children }: { children: React.ReactNode }) => {
   const [significantChild, setSignificantChild] =
     useState<HTMLElement | null>();
-  const [scrollable, setScrollable] = useState(true);
+  const [scrollable, setScrollable] = useState(false);
 
   function setMostSignificantChild(child: HTMLElement | null) {
     setSignificantChild(child);

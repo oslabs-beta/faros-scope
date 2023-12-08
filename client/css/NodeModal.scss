@@ -29,7 +29,7 @@ $border-height: 25px;
   animation-fill-mode: forwards;
 }
 
-.nodeModalThemedContainer {
+#nodeModalThemedContainer {
   border-radius: 8px;
 }
 
@@ -81,6 +81,9 @@ $border-height: 25px;
 }
 
 .closeButton {
+  display: grid;
+  align-items: center;
+  justify-items: center;
   border-radius: 50%;
   width: 25px;
   height: 25px;

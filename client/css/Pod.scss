@@ -72,7 +72,7 @@
   white-space: nowrap;
 }
 
-.containersLabel{
+.containersLabel {
   font-size: 1.4em;
   font-weight: 200;
 }
@@ -81,21 +81,21 @@
   // padding: .7em;
   width: 100%;
   height: fit-content;
-  border: .6em solid rgba(255, 255, 255, 0.162);
-  border-radius: 4px;
+  border: 0.4em solid rgba(255, 255, 255, 0.162);
+  border-radius: 2px;
   margin-bottom: 1em;
-  word-break: break-all; 
+  word-break: break-all;
   .containerTitle {
     padding-bottom: 1.6em;
     margin-bottom: 1em;
     font-size: 1.5em;
   }
-  .infoDiv{
-    margin-top: .5em;
+  .infoDiv {
+    margin-top: 0.5em;
   }
-  .imageBox{
-  height: 4em;
-  overflow:auto;
+  .imageBox {
+    height: 4em;
+    overflow: auto;
   }
 }
 
@@ -106,20 +106,45 @@
   width: min-content;
   height: min-content;
   transition: all 0.5s ease-in-out;
-	background: $healthyGradient;
-	background-size: 400% 400%;
-  animation: 
-    expand-card-deck 1s ease-in-out,
-    wave 2s ease-in-out,
+  background: $healthyGradient;
+  background-size: 400% 400%;
+  animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
     move-gradient 4s ease-in-out infinite;
-    
-  // background-size: 1.2em 1.2em;
+
   background-repeat: repeat;
-  // background-position: 0% 50%;
   animation-fill-mode: backwards;
   border-radius: 10px;
   margin: 0.5rem;
   background-color: rgba(31, 31, 31, 0.55);
+  &.healthyPod {
+    background: $healthyGradient;
+    background-size: 400% 400%;
+    animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
+      move-gradient 4s ease-in-out infinite;
+
+    background-repeat: repeat;
+    animation-fill-mode: backwards;
+  }
+
+  &.warningPod {
+    background: $warningGradient;
+    background-size: 400% 400%;
+    animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
+      move-gradient 4s ease-in-out infinite;
+
+    background-repeat: repeat;
+    animation-fill-mode: backwards;
+  }
+
+  &.unhealthyPod {
+    background: $unhealthyGradient;
+    background-size: 400% 400%;
+    animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
+      move-gradient 4s ease-in-out infinite;
+
+    background-repeat: repeat;
+    animation-fill-mode: backwards;
+  }
 }
 
 .podsContainer {
@@ -129,7 +154,7 @@
   border: none;
   padding: 0 1.5rem;
   hr {
-    height:100%;
+    height: 100%;
     width: 100%;
   }
 }
@@ -141,7 +166,7 @@
   width: 18rem;
   height: 20rem;
   margin: 0.5rem;
-  gap: .1em;
+  gap: 0.1em;
   border: 1.5px solid rgb(255, 255, 255);
   border-radius: 4px;
   background-color: $background-color-dark;
@@ -209,7 +234,6 @@
   pointer-events: all;
 }
 
-
 @keyframes wave {
   0% {
     transform: translateY(0);
@@ -245,8 +269,6 @@
     background-position: 0% 50%;
   }
 }
-
-
 
 // @import 'Variables';
 // @import 'Base';

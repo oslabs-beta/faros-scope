@@ -1,5 +1,5 @@
-@import "variables";
-@import "base";
+@import 'variables';
+@import 'base';
 
 .landingMain {
   position: relative;
@@ -23,7 +23,9 @@
     // vertical glow right side
     linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   background-repeat: repeat;
-  animation: move-gradient-landing 2s linear .1s infinite;
+  animation: move-gradient-landing 5s linear .1s infinite;
+  // animation: move-gradient-landing 25s linear infinite;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 
 
@@ -33,8 +35,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(25deg, rgba(0, 0, 0, 0.084), rgba(255, 255, 255, 0));
-  backdrop-filter: blur(4px);
 }
 
 .landingNav {
@@ -55,6 +55,9 @@
   border: 1px solid white;
   box-shadow: $pronounced-shadow;
   transition: all 0.5s ease-in-out;
+  animation: opacity 1s ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: 0.5s;
   &:hover {
     box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
     scale: 1.05;
@@ -68,13 +71,26 @@
   align-items: center;
   text-align: center;
   border-radius: 5px;
-  padding: 1em;
+  padding: 2em;
   width: 100%;
   height: 100%;
 }
 
 .landingBodyContent {
+  @include flex-vertical;
+  background-image: linear-gradient(
+    25deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0)
+  );
+  backdrop-filter: blur(4px);
   color: white;
+  position: relative;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: $pronounced-shadow;
+  width: 100%;
+  height: 100%;
 }
 
 .break-full-width {
@@ -89,8 +105,10 @@
 @keyframes move-gradient-landing {
   0% {
     background-position: -2.2em -2.2em;
+    // background-position: 5% 5%;
   }
   100% {
     background-position: 4.4em 2.2em;
+    // background-position: 100% 100%;
   }
 }

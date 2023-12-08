@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import formatPods from '../../util/formatPods';
 import { useTheme } from '../context/Theme';
-import 
+
 import '../../css/Graph.scss';
 import '../../css/Pod.scss';
 
