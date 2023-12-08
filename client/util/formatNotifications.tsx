@@ -8,19 +8,30 @@ import Notification from "../components/NotifDisplay/Notification"
  * 
  */
 interface Log {
-    ids: Array,
-    entities: Array
+    apiVersion: string;
+    eventType: string;
+    kind: string;
+    metadata: { [key: string]: any };
+    spec: { [key: string]: any };
+    status: { [key: string]: any };
+    [key: string]: any;   
+}
+
+interface NewLog {
+    name: string;
+    logText: string;
 }
 
 
-const formatNotifications = (logs: object) => {
-    const result :[] = [];
-    console.log('Current Logs ----->', logs)
+const formatNotifications = (log : Log) => {
+    const result : NewLog[] = [];
+    console.log('Current Logs ----->', log)
 
-    for(const obj in logs){
-        const newLog = {};
-        newLog.name = logs[obj].metadata.name;
-        newLog.logText = logs[obj].eventType;
+    for(const obj in log){
+        const newLog : NewLog = {
+        name : log[obj].metadata.name,
+        logText : log[obj].eventType
+        }
         result.push(newLog);
     }
     console.log('preNotfi --->', result)
