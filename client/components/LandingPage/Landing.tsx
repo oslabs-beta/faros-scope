@@ -1,22 +1,47 @@
+import { Link } from 'react-router-dom';
+import { ColoredText } from '../reusable/text/ColoredText';
 import '../../css/Landing.scss';
 
 export const Landing = () => {
   return (
     <div className="landingMain">
       <div className="landingContent">
-        <nav className="landingNav">
-
-        </nav>
-        {/* <hr className="break-full-width" /> */}
         <div className="landingBody">
           <div className="landingBodyContent">
-            <h1>Welcome to Faros</h1>
-            <h2>
-              Faros is a web application that allows users to visualize their Kubernetes clusters and their resources.
-            </h2>
+            <nav className="landingNav"></nav>
+            <header className="landingHeader">
+              <h1>
+                Welcome to <ColoredText color="Red">Faros</ColoredText>
+              </h1>
+              <h2>
+                Faros is a web application that helps users visualize their{' '}
+                <ColoredText color="Blue">Kubernetes</ColoredText> Clusters and
+                their resources with{' '}
+                <ColoredText color="Orange">Real-Time</ColoredText> updates.
+              </h2>
+              <h3>
+                We're devoted to providing our users a{' '}
+                <ColoredText color="Orange">Simple</ColoredText> and{' '}
+                <ColoredText color="Orange">Responsive</ColoredText> User
+                Experience while giving them as much{' '}
+                <ColoredText color="Orange">information</ColoredText> and{' '}
+                <ColoredText color="Orange">control</ColoredText> over their
+                clusters as possible.
+              </h3>
+              <h3>
+                Take control of your{' '}
+                <ColoredText color="Blue">Kubernetes</ColoredText> Cluster
+                today!
+              </h3>
+            </header>
+            <Link to="/">
+              {' '}
+              {/* TODO: Change to /login when it's ready */}
+              <button className="landingButton">Get Started</button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

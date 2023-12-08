@@ -50,6 +50,14 @@
   background-color: $background-color-light;
 }
 
+.textShadowLight {
+  text-shadow: 2px 2px 2px black;
+}
+
+.textShadowLighter {
+  text-shadow: 1px 1px 1px black;
+}
+
 .Opacity-In {
   animation: opacity 1s ease-in-out;
   animation-fill-mode: forwards;
@@ -135,17 +143,24 @@
   position: relative;
 }
 
+$inline-blue: #24b0df;
+$inline-red: #db3523;
+$inline-orange: #f4a227;
+
 .inlineOrangeText {
-  color: $base-orange;
+  color: $inline-orange;
+  text-shadow: 2px 2px 2px black;
   display: inline;
 }
 
 .inlineBlueText {
-  color: $base-blue;
+  color: $inline-blue;
+  text-shadow: 2px 2px 2px black;
   display: inline;
 }
 
 .inlineRedText {
-  color: $base-red;
+  color: $inline-red;
+  text-shadow: 2px 2px 2px black;
   display: inline;
 }

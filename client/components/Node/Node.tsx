@@ -48,7 +48,8 @@ const Node = ({ node, dimensions }: NodeInterface) => {
           <div className="nodeContent">
             <div className="nodeName">{node.nodeName}</div>
             <label className="podCount">
-              Pods: <span className='inlineOrangeText'>{node.pods.length}</span>
+              Pods:&nbsp;
+              <span className="inlineOrangeText">{node.pods.length}</span>
             </label>
           </div>
           {/* pass node's name or similar relationship info to indetify,

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import io from "socket.io-client";
-import { useDispatch } from 'react-redux'
+import{ io, Socket} from "socket.io-client";
 import { addClusterEvent } from "./metricsSlice";
 import store from './store'
+
 // Custom Hook for Socket.IO
-export const useSocket = (url) => {
-    const [socket, setSocket] = useState(null);
+export const useSocket = (url: string): Socket | null  => {
+
+    const [socket, setSocket] = useState< Socket | null >(null);
 
     useEffect(() => {
         // Connect to Socket.IO server
-        const newSocket = io(url);
+        const newSocket: Socket  = io(url);
 
         setSocket(newSocket);
 
@@ -39,7 +40,9 @@ export const useSocket = (url) => {
             store.dispatch(addClusterEvent(data))
         })
 
-        return () => newSocket.close();
+        // return () =>{ newSocket.close(); }
+
+        return () =>{ newSocket.disconnect();}
         
     }, [url]);
 

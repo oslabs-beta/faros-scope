@@ -1,10 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
-import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
-import { nodesAdapter } from './metricsSlice';
 import { Pod, Node, Container } from './metricsSlice'
 
-const initialState = nodesAdapter.getInitialState();
 export const metricsApi = createApi({
     reducerPath: 'metricsApi', 
     baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
@@ -17,12 +13,12 @@ export const metricsApi = createApi({
             let pods: Pod[] =[]; 
             let containers: Container[] = [];
 
-            response.forEach(node => {
-              nodes.push({ id: node.nodeName, ...node });
-              node.pods.forEach(pod => {
-                pods.push({ id: pod.name, nodeId: node.nodeName, ...pod });
-                pod.containers.forEach(container => {
-                  containers.push({ id: container.name, podId: pod.name, ...container });
+            response.forEach((node:Node) => {
+              nodes.push({  ...node, id: node.nodeName});
+              node.pods.forEach((pod: Pod) => {
+                pods.push({...pod, id: pod.name, nodeId: node.nodeName  });
+                pod.containers.forEach((container: Container) => {
+                  containers.push({...container , id: container.name, podId: pod.name, });
                 });
               });
             });
