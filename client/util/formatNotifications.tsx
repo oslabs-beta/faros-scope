@@ -1,3 +1,4 @@
+import { setTimeout } from "timers/promises";
 import Notification from "../components/NotifDisplay/Notification"
 
 /**
@@ -6,6 +7,11 @@ import Notification from "../components/NotifDisplay/Notification"
  * @returns A list of JSX elements
  * 
  */
+interface Log {
+    ids: Array,
+    entities: Array
+}
+
 
 const formatNotifications = (logs: object) => {
     const result :[] = [];
@@ -25,7 +31,15 @@ const formatNotifications = (logs: object) => {
             />
         )
     })
-    return notifsArr;
+    // Timer Typescript issues
+    // const timer = () => {
+    //     const cb = (arr) => {
+    //         arr.pop();
+    //     }
+    //     setTimeout(cb, 10000);
+    // }
+    // serious duct tape
+    return notifsArr.reverse();
 
 }
 

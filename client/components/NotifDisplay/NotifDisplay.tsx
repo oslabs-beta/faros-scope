@@ -14,10 +14,12 @@ const NotifDisplay = () => {
     }
 
   return (
+    <div className="outerNotifContainer">
+        <h2 className="notificationTitle">Notifications</h2>
       <div className="notificationContainer">
-            <h2 className="notificationTitle">Notifications</h2>
-            {filteredLogHistory}
-        </div>
+        {filteredLogHistory}
+      </div>
+    </div>
   )
 }
 
