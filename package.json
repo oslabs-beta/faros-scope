@@ -23,6 +23,8 @@
   "homepage": "https://github.com/oslabs-beta/faros-scope#readme",
   "dependencies": {
     "@babel/register": "^7.22.15",
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/toast": "^7.0.2",
     "@dnd-kit/core": "^6.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@reduxjs/toolkit": "^1.9.7",

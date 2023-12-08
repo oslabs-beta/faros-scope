@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
-import DropPositions from './components/reusable/reactdnd/DropPositions';
 import { NavBar } from './components/NavBar/index';
+import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
+import { ChakraProvider } from '@chakra-ui/react';
+import DropPositions from './components/reusable/reactdnd/DropPositions';
 import GridProvider from './components/context/GridContext';
 import { useGetClusterInfoQuery, useGetClusterMetricsMapQuery } from './redux/metricsApi';
 import { useSocket } from './redux/bobbySocketService';
+import io from "socket.io-client";
+import NotifDisplay from './components/NotifDisplay/NotifDisplay';
+
+
 
 const Main = () => {
 
@@ -70,16 +75,19 @@ const Main = () => {
   return (
     <div className="Main">
       <GridProvider>
+        <NotifDisplay/>
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCenter}
-        >
+          >
           <DragOverlay>
             <NavBar orientation={orientation} />
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        <Outlet />
+        <ChakraProvider>
+          <Outlet />
+        </ChakraProvider>
       </GridProvider>
     </div>
   );

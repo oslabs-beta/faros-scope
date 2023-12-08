@@ -28,3 +28,10 @@ body {
   padding: 0;
   overflow: hidden;
 }
+
+a {
+  text-decoration: none;
+  width: fit-content;
+  height: fit-content;
+  color: inherit;
+}
