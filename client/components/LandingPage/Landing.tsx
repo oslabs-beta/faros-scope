@@ -8,11 +8,16 @@ export const Landing = () => {
       <div className="landingContent">
         <div className="landingBody">
           <div className="landingBodyContent">
-            <nav className="landingNav"></nav>
+            {/* <nav className="landingNav"></nav> */}
+            <h1 id='farosText'>
+              <ColoredText color="Red">
+                Faros
+              </ColoredText>
+            </h1>
             <header className="landingHeader">
-              <h1>
+              {/* <h1>
                 Welcome to <ColoredText color="Red">Faros</ColoredText>
-              </h1>
+              </h1> */}
               <h2>
                 Faros is a web application that helps users visualize their{' '}
                 <ColoredText color="Blue">Kubernetes</ColoredText> Clusters and
