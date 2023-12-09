@@ -16,8 +16,13 @@ const NotifDisplay = () => {
         filteredLogHistory = formatNotifications(logHistory);
     }
 
+    const showNotifications = (): void => {
+      const notificationDiv = document.getElementsByClassName('notificationContainer')
+      
+    }
+
   return (
-    <div className="outerNotifContainer">
+    <div className="outerNotifContainer" onClick={():void=>console.log('hi')}>
         <h2 className="notificationTitle">Notifications</h2>
       <div className="notificationContainer">
         {filteredLogHistory}
