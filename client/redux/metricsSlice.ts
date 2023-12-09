@@ -99,6 +99,18 @@ export const metricsMapSlice = createSlice({
     },
 }); 
 
+export const addClusterEventWithCustomId = (data, id) => (dispatch) => {
+    const newId = `${data.metadata.uid}-${id}`
+    const modifiedData = {
+        ...data,
+        metadata: {
+            ...data.metadata,
+            uid: newId
+        }
+    }
+    dispatch(clusterEvents.actions.addClusterEvent(modifiedData))
+}
+
 export const clusterEvents = createSlice({
     name: 'clusterEvents',
     initialState: clusterEventsAdapter.getInitialState(),

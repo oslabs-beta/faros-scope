@@ -1,3 +1,4 @@
+import { setTimeout } from "timers/promises";
 import Notification from "../components/NotifDisplay/Notification"
 
 /**
@@ -6,15 +7,31 @@ import Notification from "../components/NotifDisplay/Notification"
  * @returns A list of JSX elements
  * 
  */
+interface Log {
+    apiVersion: string;
+    eventType: string;
+    kind: string;
+    metadata: { [key: string]: any };
+    spec: { [key: string]: any };
+    status: { [key: string]: any };
+    [key: string]: any;   
+}
 
-const formatNotifications = (logs: object) => {
-    const result :[] = [];
-    console.log('Current Logs ----->', logs)
+interface NewLog {
+    name: string;
+    logText: string;
+}
 
-    for(const obj in logs){
-        const newLog = {};
-        newLog.name = logs[obj].metadata.name;
-        newLog.logText = logs[obj].eventType;
+
+const formatNotifications = (log : Log) => {
+    const result : NewLog[] = [];
+    console.log('Current Logs ----->', log)
+
+    for(const obj in log){
+        const newLog : NewLog = {
+        name : log[obj].metadata.name,
+        logText : log[obj].eventType
+        }
         result.push(newLog);
     }
     console.log('preNotfi --->', result)
@@ -25,7 +42,15 @@ const formatNotifications = (logs: object) => {
             />
         )
     })
-    return notifsArr;
+    // Timer Typescript issues
+    // const timer = () => {
+    //     const cb = (arr) => {
+    //         arr.pop();
+    //     }
+    //     setTimeout(cb, 10000);
+    // }
+    // serious duct tape
+    return notifsArr.reverse();
 
 }
 
