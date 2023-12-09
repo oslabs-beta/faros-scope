@@ -1,4 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
+import history from 'connect-history-api-fallback'
 import Router from './routers/router';
 import path from 'path';
 import { Sequelize } from 'sequelize';
@@ -13,20 +14,28 @@ const URI = process.env.PG_URI || '';
 const sequelize = new Sequelize(URI); // Example for postgres
 
 // middleware
+app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../build')));
+// app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.use('/api', Router)
 
 // catch all route handler
-app.use('*', (req: Request, res: Response): void => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+app.use('*', (_req: Request, res: Response): void => {
+  res.sendFile(path.join(__dirname, '../build' ,'/client/index.html'));
 });
 
 // global error handler
-app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong' });
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction): void => {
+  const defaultError = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' }
+  } 
+  const errorObj = { ...defaultError, ...(err instanceof Error ? { message: { err: err.message } } : err) };
+  console.log(errorObj.log);
+  res.status(errorObj.status).json(errorObj.message); 
 });
 
 app.listen(PORT, () => {

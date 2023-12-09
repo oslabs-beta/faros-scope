@@ -1,9 +1,10 @@
-@import './variables.scss';
+@import './Variables.scss';
 
 @mixin flex-horizontal {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 @mixin flex-vertical {
@@ -26,29 +27,140 @@
 }
 
 .outerContainer {
-  @include flex-vertical;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
+  height: 100%;
+  width: 100%;
   background-color: #222222;
   color: #ededed;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
-  overflow: hidden;
 }
 
 .innerContainer {
-  @include flex-vertical;
+  position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 .dark {
   background-color: $background-color-dark;
-  color: $dark-text;
 }
 
 .light {
   background-color: $background-color-light;
-  color: $light-text;
+}
+
+.textShadowLight {
+  text-shadow: 2px 2px 2px black;
+}
+
+.textShadowLighter {
+  text-shadow: 1px 1px 1px black;
+}
+
+.Opacity-In {
+  animation: opacity 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.Opacity-Out {
+  animation: opacity-reverse 2s ease-in-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes hover-up-down {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity-reverse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hover-up-down-3D {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes navLinkBlueShadow {
+  0% {
+    box-shadow: 0 0 0px #287aff;
+  }
+  50% {
+    box-shadow: 0 0 8px #287aff;
+    text-shadow: 0px 0px 10px #287aff;
+  }
+  100% {
+    box-shadow: 0 0 0px #287aff;
+  }
+}
+
+@keyframes scale-up-down {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.Main {
+  @include flex-vertical;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+$inline-blue: #24b0df;
+$inline-red: #db3523;
+$inline-orange: #f4a227;
+
+.inlineOrangeText {
+  color: $inline-orange;
+  text-shadow: 2px 2px 2px black;
+  display: inline;
+}
+
+.inlineBlueText {
+  color: $inline-blue;
+  text-shadow: 2px 2px 2px black;
+  display: inline;
+}
+
+.inlineRedText {
+  color: $inline-red;
+  text-shadow: 2px 2px 2px black;
+  display: inline;
 }

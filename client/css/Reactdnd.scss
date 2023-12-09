@@ -1,0 +1,153 @@
+@import 'base';
+@import 'variables';
+
+.navPositions {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.outerDroppable {
+  @include flex-horizontal;
+  position: relative;
+  pointer-events: all;
+  // height: fit-content;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+#topNavPosition {
+  @include flex-horizontal;
+  position: relative;
+  width: 100%;
+  top: 0;
+}
+
+#bottomNavPosition {
+  @include flex-horizontal;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+#leftNavPosition {
+  @include flex-horizontal;
+  position: relative;
+  height: 100%;
+  width: 50px;
+  top: 0;
+}
+
+#rightNavPosition {
+  @include flex-horizontal;
+  position: relative;
+  height: 100%;
+  width: 50px;
+  top: 0;
+}
+
+.styleTop {
+  position: absolute;
+  display: flex;
+  left: 0%;
+  top: 1.5rem;
+  height: 50px;
+  width: 100%;
+}
+
+.styleLeft {
+  position: absolute;
+  display: flex;
+  left: 5%;
+  top: 0%;
+  height: 100%;
+  width: 50px;
+  .outerDroppable {
+    height: 100%;
+  }
+}
+
+.styleBottom {
+  position: absolute;
+  display: flex;
+  left: 0%;
+  bottom: 1.5rem;
+  height: 50px;
+  width: 100%;
+}
+
+.styleRight {
+  position: absolute;
+  display: flex;
+  right: 5%;
+  top: 0%;
+  height: 100%;
+  width: 50px;
+  .outerDroppable {
+    height: 100%;
+  }
+}
+
+.draggableContainer {
+  pointer-events: all;
+}
+
+.outlineTop {
+  position: absolute;
+  background-color: $base-yellow;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 4.5em;
+  width: 27em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineLeft {
+  position: absolute;
+  background-color: $base-yellow;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18em;
+  width: 7.5em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineBottom {
+  position: absolute;
+  background-color: $base-yellow;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 4.5em;
+  width: 27em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.outlineRight {
+  position: absolute;
+  background-color: $base-yellow;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 18em;
+  width: 7.5em;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.dragButton {
+  background-color: transparent;
+  border: none;
+}
