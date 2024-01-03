@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/NotifDisplay.scss';
 
-const Notification = ( { data }) => {
+const Notification = ( { data }: any) => {
 
   return (
     <div className="notificationMessage">

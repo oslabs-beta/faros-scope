@@ -13,7 +13,6 @@ import NotifDisplay from './components/NotifDisplay/NotifDisplay';
 
 
 const Main = () => {
-
     useSocket('http://104.154.129.231:8000/')
 
     // ^ see if this works w/o variable declarations

@@ -5,6 +5,7 @@ import { Home } from './components/Home/index';
 import { Settings } from './components/Settings/index';
 import { Landing } from './components/LandingPage/index';
 import Main from './Main';
+import { ListView } from './components/List-View/index';
 
 const App = () => {
   const { theme } = useTheme();
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
+          <Route path="list-view" element={<ListView />} />
           <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/landing" element={<Landing />} />

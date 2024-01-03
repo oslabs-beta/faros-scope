@@ -4,6 +4,8 @@ import Dotenv from 'dotenv-webpack';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WepbackDevServerConfiguration } from 'webpack-dev-server';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin');
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WepbackDevServerConfiguration;
@@ -71,7 +73,13 @@ const config: Configuration = {
     }),
     new Dotenv(),
     new ReactRefreshWebpackPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    usedExports: true,
+  },
   devtool: 'source-map',
 };
 

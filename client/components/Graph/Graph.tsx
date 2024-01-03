@@ -24,13 +24,7 @@ export const Graph = () => {
   const nestedClusterInfo =
     isSuccess && data ? formatNodes(data.nodes, 8) : null;
 
-  const handleFocus = () => {
-    // setGridScrollable(false);
-  };
 
-  const handleBlur = () => {
-    // setGridScrollable(true);
-  };
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
@@ -38,9 +32,6 @@ export const Graph = () => {
   return (
     <Draggable>
       <div
-        onClick={handleFocus}
-        onBlur={handleBlur}
-        tabIndex={0}
         className={`graph ${theme}`}
         ref={graph}
       >
