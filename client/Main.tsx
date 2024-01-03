@@ -84,9 +84,9 @@ const Main = () => {
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        {/* <ChakraProvider> */}
+        <ChakraProvider>
           <Outlet />
-        {/* </ChakraProvider> */}
+        </ChakraProvider>
       </GridProvider>
     </div>
   );

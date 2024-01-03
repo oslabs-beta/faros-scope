@@ -7,9 +7,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './css/index.css';
 import './css/base.scss';
 import './css/variables.scss';
+import { create } from 'domain';
 
 const container = document.getElementById('root');
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -21,7 +21,6 @@ const theme = createTheme({
     grey: {
       50: '#fafafa',
       100: '#f5f5f5',
-      // ... other shades of grey
     },
   },
 });
