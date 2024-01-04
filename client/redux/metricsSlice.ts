@@ -122,7 +122,6 @@ export const clusterEvents = createSlice({
 });
 
 export const { addClusterEvent, addClusterEvents, removeClusterEvent } = clusterEvents.actions;
-// export const { selectAll: selectAllEvents, selectById: selectEventById} = clusterEventsAdapter.getSelectors(state => state.clusterEvents);
 export const { selectAll: selectAllNodes, selectById: selectNodeById } = nodesAdapter.getSelectors((state: RootState) => state.nodes); 
 export const { selectAll: selectAllPods, selectById: selectPodById } = podsAdapter.getSelectors((state:  RootState) => state.pods);
 export const { selectAll: selectAllContainers, selectById: selectContainerById } = containersAdapter.getSelectors((state: RootState) => state.containers);

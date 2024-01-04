@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './components/context/Theme';
-import { Home } from './components/Home/index';
-import { Settings } from './components/Settings/index';
-import { Landing } from './components/LandingPage/index';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './Main';
+import { Home } from './components/Home/index';
+import { Landing } from './components/LandingPage/index';
 import { ListView } from './components/List-View/index';
+import { Settings } from './components/Settings/index';
+import { useTheme } from './components/context/Theme';
 
 const App = () => {
   const { theme } = useTheme();
