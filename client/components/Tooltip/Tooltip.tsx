@@ -1,11 +1,11 @@
 import { useState, ReactNode } from 'react';
-import { useTheme } from '../context/Theme';
+import { useTheme } from '../../hooks';
 
 interface TooltipProps {
   text: string;
   children: ReactNode;
 }
-
+console.log('Tooltip.tsx');
 export const Tooltip = ({ children, text }: TooltipProps) => {
   const [show, setShow] = useState(false);
   const { theme } = useTheme();
@@ -27,3 +27,4 @@ export const Tooltip = ({ children, text }: TooltipProps) => {
     </div>
   );
 };
+console.log('Past Tooltip.tsx')

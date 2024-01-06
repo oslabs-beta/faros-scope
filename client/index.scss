@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
+
+* {
+  box-sizing: border-box;
+  transition: background-color 0.3s ease-in-out;
+  font-family: 'Baumans';
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255) rgba(0, 0, 0, 0.5);
+}
+
+body {
+  position: relative;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  width: fit-content;
+  height: fit-content;
+  color: inherit;
+}

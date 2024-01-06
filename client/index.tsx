@@ -1,6 +1,6 @@
 import App from './App';
-import Theme from './components/context/Theme';
-import store from './redux/store';
+import {ThemeProvider} from './context';
+import { store } from './store/store';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import './css/index.css';
@@ -13,9 +13,9 @@ if (container) {
   const root = createRoot(container);
   root.render(
     <Provider store={store}>
-      <Theme>
+      <ThemeProvider>
         <App />
-      </Theme>
+      </ThemeProvider>
     </Provider>,
   );
 }

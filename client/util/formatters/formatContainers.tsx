@@ -1,0 +1,20 @@
+import { Container } from '../../components';
+
+/**
+ * Formats the pods of a node into a list of JSX elements.
+ * @param containers - The pods of a node.
+ * @returns A list of JSX elements.
+ */
+export const formatContainers = (containers: any[] = []) => {
+  return containers.map((container: any) => {
+    return (
+      <Container
+        containerName={container.name}
+        containerImage={container.image}
+        cpuUsage={container.cpuUsage}
+        memUsage={container.memUsage}
+        key={container.name}
+      />
+    );
+  });
+};

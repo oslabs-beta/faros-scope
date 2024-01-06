@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './components/context/Theme';
-import { Home } from './components/Home/index';
-import { Settings } from './components/Settings/index';
-import { Landing } from './components/LandingPage/index';
-import Main from './Main';
+import { useTheme } from './hooks';
+import { HomePage } from './pages';
+import { SettingsPage } from './pages';
+import { LandingPage } from './pages';
+import { MainPage } from './pages';
 
 const App = () => {
   const { theme } = useTheme();
@@ -21,11 +21,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
-          <Route path="settings" element={<Settings />} />
+        <Route path="/" element={<MainPage />}>
+          <Route index element={<HomePage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
-        <Route path="/landing" element={<Landing />} />
+        <Route path="/landing" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );
