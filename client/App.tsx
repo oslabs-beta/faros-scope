@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './Main';
 import { Home } from './components/Home/index';
 import { Landing } from './components/LandingPage/index';
-import { ListView } from './components/List-View/index';
+import { ListViewDisplay } from './components/List-View/index';
 import { Settings } from './components/Settings/index';
 import { useTheme } from './components/context/Theme';
 
@@ -24,7 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
-          <Route path="list-view" element={<ListView />} />
+          <Route path="list-view" element={<ListViewDisplay />} />
           <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/landing" element={<Landing />} />

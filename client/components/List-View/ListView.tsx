@@ -4,52 +4,79 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-function createData(
-  name: string,
-  CPU: number,
-  Memory: number,
-) {
-  return { name, CPU, Memory };
-}
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1b1b1b',
+    },
+    secondary: {
+      main: '#ffffff',
+    },
+    grey: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+    },
+  },
+});
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Eclair', 262, 16.0),
-  createData('Cupcake', 305, 3.7),
-  createData('Gingerbread', 356, 16.0),
-];
+// interface for incoming PODS Data
+// interface podDataLV {
+//   podNames: [];
+// }
 
-export const ListView = () => {
+// TEMP STOR for incoming PROPS syntax
+// { podNames }: podDataLV
+
+export const ListView = ({ organizedData }) => {
+  const dataObj = organizedData;
+
   return (
-    // <Button variant="contained">Hello World</Button>
-    <TableContainer component="div">
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">CPU</TableCell>
-            <TableCell align="right">Memory</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
+    <ThemeProvider theme={theme}>
+      <TableContainer
+        component="div"
+        style={{ maxHeight: 300, overflowY: 'auto' }}
+      >
+        <Table
+          sx={{
+            minWidth: 650,
+            bgcolor: 'secondary.main',
+            color: 'primary.main',
+          }}
+          aria-label="simple table"
+        >
+          <TableHead>
             <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+              sx={{
+                '& > *': { bgcolor: 'secondary.main', color: 'primary.main' },
+              }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.CPU}</TableCell>
-              <TableCell align="right">{row.Memory}</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">CPU</TableCell>
+              <TableCell align="right">Memory</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {organizedData?.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">
+                  {`${row.metrics.cpuUsagePct?.toFixed(2)}%`}
+                </TableCell>
+                <TableCell align="right">
+                  {`${row.metrics.memUsagePct?.toFixed(2)}%`}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ThemeProvider>
   );
 };
