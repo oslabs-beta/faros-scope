@@ -2,13 +2,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './App';
-import { ThemeProvider } from './context';
-import { store } from './store/store';
-import { Provider } from 'react-redux';
-import { createRoot } from 'react-dom/client';
 import './css/index.css';
 import './css/variables.scss';
-import store from './redux/store';
+import { store } from './store/store';
 
 const container = document.getElementById('root');
 // const theme = createTheme({
