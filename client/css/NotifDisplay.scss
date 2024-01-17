@@ -10,21 +10,21 @@
   top: 2ch;
   left: 6ch;
   gap: 1em;
-  border: 1px solid $dark-border;
   border-radius: 8px;
-  min-width: 15em;
+  min-width: 20em;
   max-width: 25em;
-  min-height: fit-content;
   max-height: 15em;
+  min-height: fit-content;
   z-index: 30;
   overflow: scroll;
   transition: all 0.5s ease-in-out;
   &.dark {
     background-color: $base-blue;
+    border: 1.5px solid rgba($dark-border, 0.8);
   }
   &.light {
-    border: 1px solid $light-border;
     background-color: $base-blue;
+    border: 1.5px solid rgba($light-border, 1);
     box-shadow: $pronounced-shadow;
   }
 }
@@ -39,8 +39,7 @@
   min-height: 3em;
   gap: 2em;
   z-index: 31;
-  background-color: black;
-  border: 1px solid $diamond-blue;
+  background-color: rgba($base-blue, 0.5);
   border-radius: 8px;
   color: white;
 }

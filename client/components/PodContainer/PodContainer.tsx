@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {formatPods} from '../../util';
+import { formatPods } from '../../util';
 import { useTheme } from '../../hooks';
 
 import '../../css/graph.scss';

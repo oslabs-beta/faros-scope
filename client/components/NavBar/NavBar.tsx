@@ -78,7 +78,8 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'List View'
             )}
           </Link>
-          <button className={'navLink btn'} onClick={centerGrid}>
+          {/* DOESN'T WORK ON CHROME FOR SOME REASON, DEPRECATED FOR NOW  */}
+          {/* <button className={'navLink btn'} onClick={centerGrid}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -87,7 +88,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             ) : (
               'Center Grid'
             )}
-          </button>
+          </button> */}
         </div>
         <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
       </nav>
