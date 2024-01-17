@@ -33,7 +33,7 @@ export const PodContainer = ({ nodePods, podsViewRef }: Props) => {
         <span onClick={disableOverlay} className="podsViewOverlay"></span>
       )}
       <div className={`podsViewInner ${theme}`}>
-        <div className="podsContainer">{formatPods(nodePods, 6)}</div>
+        <div className="podsContainer">{formatPods(nodePods, 7)}</div>
       </div>
     </div>
   );

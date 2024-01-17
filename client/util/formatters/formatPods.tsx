@@ -8,7 +8,7 @@ import { Pod } from '../../components/Pod/index';
 
 export const formatPods = (
   pods: any[] = [],
-  interval: number = 6,
+  interval: number = 7,
   clickFunc?: (...args: any) => any,
 ) => {
   const result: any = [];
@@ -18,7 +18,7 @@ export const formatPods = (
     const elements = pods.slice(i, i + interval); // Get interval elements
 
     const row = elements.map((element: any, indx) => {
-      const animationDelay = `${2 + indx / 4 + i / 4}s`;
+      const animationDelay = `${indx / 5 + i / 20}s`;
       return (
         <Pod
           podName={element.name}

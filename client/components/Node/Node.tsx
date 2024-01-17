@@ -39,7 +39,7 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
   return (
     <div className="nodeContainer">
       <span className={`tooltip-text ${theme}`}>{node.nodeName}</span>
-      <div style={dimensions} className="borderNode">
+      <div style={dimensions} className={`borderNode ${theme}`}>
         <div className="Node" style={nodeStyle}>
           <img
             onClick={openModal}
@@ -48,7 +48,6 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
             style={{ maxWidth: '40px', maxHeight: '40px' }}
             alt="pod icon"
           />
-          {/* <span className="nodeOverlay"></span> */}
           <div className="nodeContent">
             <div className="nodeName">{node.nodeName}</div>
             <label className="podCount">

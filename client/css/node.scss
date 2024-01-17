@@ -1,34 +1,6 @@
 @import 'Variables.scss';
 @import 'Base.scss';
 
-@keyframes expand {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes shake-left-right {
-  0% {
-    transform: translateX(0px);
-  }
-
-  50% {
-    transform: translateX(5px);
-  }
-
-  100% {
-    transform: translateX(0px);
-  }
-}
-
 @keyframes hover-up-down-node {
   0% {
     transform: translateY(0px);
@@ -45,14 +17,12 @@
 
 .Node {
   @include flex-vertical;
-  // background-color: $background-color-dark;
   background-color: $background-color-dark;
   background-image: linear-gradient(
     #1a1a1a,
     rgba(255, 255, 255, 0.165) 0em,
     transparent 8em
   );
-  // background-image: linear-gradient(45, $base-yellow, $base-orange);
   clip-path: polygon(
     51% 2%,
     89% 21%,
@@ -62,12 +32,12 @@
     1% 60%,
     11% 21%
   );
-  scale: 0.95;
+  scale: 0.99;
 }
 
 .borderNode {
+  @include flex-vertical;
   position: relative;
-  background-color: black;
   border-radius: 20px;
   clip-path: polygon(
     51% 2%,
@@ -79,20 +49,14 @@
     11% 21%
   );
   transition: all 0.2s ease-in-out;
-}
-
-.nodeOverlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0px 0px 10px 1px rgb(255, 255, 255);
-  border-radius: 8px;
-  background-image: linear-gradient(
-    rgba(255, 255, 255, 0.165) 0em,
-    transparent 8em
-  );
-  transition: all 0.2s ease-in-out;
-  pointer-events: none;
+  &.dark {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid $dark-border;
+  }
+  &.light {
+    background-color: black;
+    border: 1px solid $light-border;
+  }
 }
 
 #podIcon {
@@ -162,10 +126,6 @@
     overflow-x: auto;
     white-space: nowrap;
     margin: 0.2em 0em;
-  }
-
-  *:hover {
-    cursor: text;
   }
 }
 

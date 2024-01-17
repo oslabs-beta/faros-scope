@@ -59,12 +59,12 @@
 }
 
 .Opacity-In {
-  animation: opacity 1s ease-in-out;
+  animation: opacity 0.5s ease-in-out;
   animation-fill-mode: forwards;
 }
 
 .Opacity-Out {
-  animation: opacity-reverse 2s ease-in-out;
+  animation: opacity-reverse 0.5s ease-in-out;
   animation-fill-mode: backwards;
 }
 

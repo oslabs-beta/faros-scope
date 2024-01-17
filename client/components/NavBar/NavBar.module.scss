@@ -157,21 +157,11 @@
 }
 
 .navLink:hover {
-  animation: hover-up-down-3D 1s infinite ease-in-out,
-    navLinkBlueShadow 1s infinite ease-in-out;
   align-items: center;
   color: #ededed;
   text-decoration: none;
-  margin-left: 1rem;
   cursor: pointer;
-  text-shadow: 0px 0px 5px #287aff;
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px #287aff;
+  scale: 1.05;
+  box-shadow: 0 0 5px #287aff;
   background-color: #16428961;
-}
-
-.navRight {
-  @include flex-horizontal;
-  margin-left: auto;
-  padding: 0;
 }

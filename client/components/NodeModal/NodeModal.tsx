@@ -6,8 +6,6 @@ import { exitAnimations } from '../../util';
 import { PodContainer } from '../PodContainer';
 import { ThemeContainer } from '../ThemeContainer';
 
-
-
 interface NodeModalInterface {
   Node: any;
   setModalOpen: Function;
