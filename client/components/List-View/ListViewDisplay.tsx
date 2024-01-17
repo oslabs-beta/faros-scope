@@ -8,6 +8,7 @@ export const ListViewDisplay = () => {
 
   const reshape = (data: any): any => {
     const cache = {};
+
     for (const item in data.metricsMap) {
       const dataObj = { name: item, metrics: data.metricsMap[item] };
       if (!cache[data.metricsMap[item].type]) {
