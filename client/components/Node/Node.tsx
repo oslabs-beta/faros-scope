@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Node.module.scss';
 import '../../css/NodeModal.scss';
+import '../../css/node.scss';
 import { NodeModal } from '../NodeModal';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../../hooks';

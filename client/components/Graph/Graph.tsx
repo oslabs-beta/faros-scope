@@ -4,6 +4,7 @@ import {formatNodes} from '../../util';
 import { Draggable } from '../Draggable/Draggable';
 import { useTheme } from '../../hooks';
 import './Graph.module.scss';
+import '../../css/graph.scss';
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.

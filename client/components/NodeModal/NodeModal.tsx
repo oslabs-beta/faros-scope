@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import '../../css/NodeModal.scss';
+// import '../../css/NodeModal.scss';
 import { useTheme } from '../../hooks';
 import { exitAnimations } from '../../util';
 // import { PodContainer, ThemeContainer } from '../index';
