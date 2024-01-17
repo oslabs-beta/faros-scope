@@ -1,0 +1,67 @@
+@import '../../css/base.scss';
+@import '../../css/variables.scss';
+
+.draggableContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border-radius: 0px;
+  transition: all 0.5s ease-in-out;
+  // resolution of the background image
+  background-size: 2.2em 2.2em;
+  // facilitates the movement of the background image when the user drags the graph
+  background-attachment: local;
+  // animation: grid-glow-flicker 1s ease-in-out infinite;
+  background-image: 
+    // horizontal lines
+    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+    // vertical lines
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+    // horizontal glow bottom side
+    linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // horizontal glow top side
+    linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // vertical glow left side
+    linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // vertical glow right side
+    linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+  &.light {
+    background-image: 
+    // horizontal lines
+      linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+      // vertical lines
+      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
+  }
+}
+
+.draggableInner {
+  transform-origin: center center;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  transition: all 0.5s ease-in-out;
+  scale: 1;
+}
+
+.draggableContent {
+  @include flex-vertical;
+  position: relative;
+  min-height: 100vh;
+  transition: all 0.5s ease-in-out;
+  transform-origin: 0% 0%;
+  overflow: hidden;
+  scale: 1;
+}
+
+@keyframes grid-glow-flicker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

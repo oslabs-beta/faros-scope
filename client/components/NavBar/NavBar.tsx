@@ -1,12 +1,13 @@
-import { useTheme } from '../context/Theme';
-import { SwitchButton } from '../SwitchButton/index';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { useGrid } from '../context/GridContext';
-import '../../css/Navbar.scss';
+import centerImage from '../../assets/center.png';
 import homeImage from '../../assets/icons8-home-512.png';
 import settingsImage from '../../assets/icons8-settings-512.png';
 import listImage from '../../assets/list.png';
-import centerImage from '../../assets/center.png';
+import '../../css/Navbar.scss';
+import { useGrid, useTheme } from '../../hooks';
+import { SwitchButton } from '../SwitchButton/index';
+import styles from './NavBar.module.scss';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -26,7 +27,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
 
   const centerGrid = () => {
     scrollToSignificantChild();
-  }
+  };
 
   return (
     <div
@@ -42,13 +43,13 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
       >
         <a
           id="App-Name-Header"
-          className="navLink"
+          className={styles.navLink}
           href="https://github.com/oslabs-beta/faros-scope"
         >
           {orientation === 'vertical' ? 'FA' : 'Faros'}
         </a>
-        <div className="nav-right">
-          <Link to={'/'} className="navLink">
+        <div className={'nav-right'}>
+          <Link to={'/'} className={styles.navLink}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -58,7 +59,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Home'
             )}
           </Link>
-          <Link to={'/settings'} className="navLink">
+          <Link to={'/settings'} className={styles.navLink}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -68,7 +69,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Settings'
             )}
           </Link>
-          <Link to={'/list-view'} className="navLink">
+          <Link to={'/list-view'} className={styles.navLink}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -78,7 +79,10 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'List View'
             )}
           </Link>
-          <button className="navLink btn" onClick={centerGrid}>
+          <button
+            className={classNames(styles.navLink, styles.btn)}
+            onClick={centerGrid}
+          >
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}

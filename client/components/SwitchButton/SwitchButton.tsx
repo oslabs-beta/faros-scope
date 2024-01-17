@@ -1,5 +1,5 @@
-import '../../css/Switchbutton.scss';
-import { useTheme } from '../context/Theme';
+import styles from './SwitchButton.module.scss';
+import { useTheme } from '../../hooks';
 import sun from '../../assets/sun.png';
 import moon from '../../assets/moon.png';
 
@@ -18,16 +18,19 @@ export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
   const { theme } = useTheme();
   //* Sun is the light theme, moon is the dark theme, image element uses a dynamic path, depending on the theme mode
   return (
-    <div className="switchContainer">
-      <div className="switchButton">
+    <div className={styles.switchContainer}>
+      <div className={styles.switchButton}>
         <input
           type="checkbox"
-          className="switchBar"
+          className={styles.switchBar}
           checked={checked}
           onChange={onChange}
         />
-        <span className="slider">
-          <img className="themeIcon" src={theme === 'dark' ? moon : sun} />
+        <span className={styles.slider}>
+          <img
+            className={styles.themeIcon}
+            src={theme === 'dark' ? moon : sun}
+          />
         </span>
       </div>
     </div>

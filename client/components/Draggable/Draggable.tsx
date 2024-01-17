@@ -1,14 +1,9 @@
-import { useRef, useState } from 'react';
-import { useTheme } from '../context/Theme';
-import { useGrid } from '../context/GridContext';
 import { useToast } from '@chakra-ui/toast';
-import { useDraggable } from './useDraggable';
-import '../../css/Graph.scss';
+import { useRef, useState } from 'react';
+import { useDraggable, useGrid, useTheme } from '../../hooks';
+import './Draggable.module.scss';
 
-// import styles from './Draggable.module.css';
-// import classNames from 'classNames';
-
-interface DraggableProps {
+interface Props {
   children: React.ReactNode;
 }
 
@@ -16,7 +11,7 @@ interface DraggableProps {
  * Draggable is a container that allows the user to drag the graph around.
  * @param children - The children of the Draggable component.
  **/
-export const Draggable = ({ children }: DraggableProps) => {
+export const Draggable = ({ children }: Props) => {
   //* references to the draggable div, which is the container for the graph
   const draggableContainer = useRef<HTMLDivElement>(null);
   const draggableInner = useRef<HTMLDivElement>(null);

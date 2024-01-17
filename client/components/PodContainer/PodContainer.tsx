@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import formatPods from '../../util/formatPods';
-import { useTheme } from '../context/Theme';
+import {formatPods} from '../../util';
+import { useTheme } from '../../hooks';
 
-import '../../css/Graph.scss';
+import '../../css/graph.scss';
 import '../../css/Pod.scss';
 
-interface PodContainerProps {
+interface Props {
   nodePods: any[];
   podsViewRef?: any;
 }
@@ -18,9 +18,7 @@ interface PodContainerProps {
  * @param nodePods - The pods of the node that was clicked on.
  * @param podsViewRef - A reference to the nodePodsView div.
  */
-export const PodContainer = ({ nodePods, podsViewRef }: PodContainerProps) => {
-
-
+export const PodContainer = ({ nodePods, podsViewRef }: Props) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const { theme } = useTheme();
 

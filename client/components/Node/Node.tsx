@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import '../../css/Node.scss';
-import NodeModal from './NodeModal';
+import './Node.module.scss';
+import '../../css/NodeModal.scss';
+import '../../css/node.scss';
+import { NodeModal } from '../NodeModal';
 import { createPortal } from 'react-dom';
-import { useTheme } from '../context/Theme';
+import { useTheme } from '../../hooks';
 import podIcon from '../../assets/icons8-box-64.png';
 
 interface NodeInterface {
@@ -21,7 +23,9 @@ interface NodeInterface {
  * @param dimensions - The dimensions of the node.
  * @returns ReactNode
  */
-const Node = ({ node, dimensions }: NodeInterface) => {
+
+console.log('Node.tsx');
+export const Node = ({ node, dimensions }: NodeInterface) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = (e: any) => {
     e.stopPropagation();
@@ -65,5 +69,3 @@ const Node = ({ node, dimensions }: NodeInterface) => {
     </div>
   );
 };
-
-export default Node;

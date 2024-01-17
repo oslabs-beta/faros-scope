@@ -1,2 +1,2 @@
 export { Node } from './Node'; 
-export {NodeModal} from './NodeModal'
+export {NodeModal} from '../index'
