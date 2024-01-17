@@ -1,16 +1,19 @@
 import { useRef } from 'react';
-import { metricsApi } from '../../services/api';
-import {formatNodes} from '../../util';
-import { Draggable } from '../Draggable/Draggable';
-import { useTheme } from '../../hooks';
-import './Graph.module.scss';
 import '../../css/graph.scss';
+import { useTheme } from '../../hooks';
+import { metricsApi } from '../../services/api';
+import { formatNodes } from '../../util';
+import { Draggable } from '../Draggable/Draggable';
+import { useGrid } from '../context/GridContext';
+import './Graph.module.scss';
 
 /**
  * A draggable graph component, this component houses Node.tsx components and allows the user to drag the graph around via the Draggable component.
  * @returns ReactNode
  */
 export const Graph = () => {
+  const { setGridScrollable } = useGrid();
+
   const { data, isSuccess } = metricsApi.endpoints.getClusterInfo.useQueryState(
     undefined,
     {},
@@ -26,7 +29,7 @@ export const Graph = () => {
   const { theme } = useTheme();
   return (
     <Draggable>
-      <div tabIndex={0} className={`graph ${theme}`} ref={graph}>
+      <div className={`graph ${theme}`} ref={graph}>
         {nestedClusterInfo}
       </div>
     </Draggable>

@@ -4,7 +4,7 @@ import { NavBar } from '../../components/NavBar/index';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 import { ChakraProvider } from '@chakra-ui/react';
 import DropPositions from '../../components/reusable/reactdnd/DropPositions';
-import {GridProvider} from '../../context';
+import { GridProvider } from '../../context';
 import {
   useGetClusterInfoQuery,
   useGetClusterMetricsMapQuery,

@@ -5,6 +5,7 @@ import { HomePage } from './pages';
 import { SettingsPage } from './pages';
 import { LandingPage } from './pages';
 import { MainPage } from './pages';
+import { ListViewDisplay } from './components/List-View/index';
 
 const App = () => {
   const { theme } = useTheme();
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />}>
           <Route index element={<HomePage />} />
+          <Route path="list-view" element={<ListViewDisplay />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="/landing" element={<LandingPage />} />
