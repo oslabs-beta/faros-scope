@@ -1,7 +1,6 @@
-import React from 'react';
 import '../../css/NotifDisplay.scss';
 
-const Notification = ({ data }) => {
+export const Notification = ({ data }) => {
   return (
     <div className="notificationMessage">
       <div>{data.name}</div>
@@ -9,5 +8,3 @@ const Notification = ({ data }) => {
     </div>
   );
 };
-
-export default Notification;

@@ -5,7 +5,7 @@ import { HomePage } from './pages';
 import { SettingsPage } from './pages';
 import { LandingPage } from './pages';
 import { MainPage } from './pages';
-import { ListViewDisplay } from './components/List-View/index';
+import { ListViewDisplay } from './components';
 
 const App = () => {
   const { theme } = useTheme();

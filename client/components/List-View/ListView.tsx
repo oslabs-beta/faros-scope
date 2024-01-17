@@ -4,22 +4,22 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1b1b1b',
-    },
-    secondary: {
-      main: '#ffffff',
-    },
-    grey: {
-      50: '#fafafa',
-      100: '#f5f5f5',
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#1b1b1b',
+//     },
+//     secondary: {
+//       main: '#ffffff',
+//     },
+//     grey: {
+//       50: '#fafafa',
+//       100: '#f5f5f5',
+//     },
+//   },
+// });
 
 // interface for incoming PODS Data
 // interface podDataLV {
@@ -33,7 +33,7 @@ export const ListView = ({ organizedData }) => {
   const dataObj = organizedData;
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <TableContainer
         component="div"
         style={{ maxHeight: 300, overflowY: 'auto' }}
@@ -77,6 +77,6 @@ export const ListView = ({ organizedData }) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </ThemeProvider>
+    </div>
   );
 };

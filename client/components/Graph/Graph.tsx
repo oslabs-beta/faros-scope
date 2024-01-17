@@ -4,7 +4,7 @@ import { useTheme } from '../../hooks';
 import { metricsApi } from '../../services/api';
 import { formatNodes } from '../../util';
 import { Draggable } from '../Draggable/Draggable';
-import { useGrid } from '../context/GridContext';
+// import { useGrid } from '../context/GridContext';
 import './Graph.module.scss';
 
 /**
@@ -12,7 +12,7 @@ import './Graph.module.scss';
  * @returns ReactNode
  */
 export const Graph = () => {
-  const { setGridScrollable } = useGrid();
+  // const { setGridScrollable } = useGrid();
 
   const { data, isSuccess } = metricsApi.endpoints.getClusterInfo.useQueryState(
     undefined,
