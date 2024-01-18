@@ -1,5 +1,5 @@
 import '../../css/NotifDisplay.scss';
-import {formatNotifications} from '../../util';
+import { formatNotifications } from '../../util';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
 
@@ -14,9 +14,11 @@ export const NotificationDisplay = () => {
   }
 
   return (
-    <div className="notificationContainer">
-      <h2 className="notificationTitle">Notifications</h2>
-      {filteredLogHistory}
+    <div className="outerNotifContainer">
+      <div className="notificationContainer">
+        <h2 className="notificationTitle">Notifications</h2>
+        {filteredLogHistory}
+      </div>
     </div>
   );
 };
