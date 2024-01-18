@@ -1,8 +1,9 @@
 import '../../css/NotifDisplay.scss';
-import {formatNotifications} from '../../util';
+import { formatNotifications } from '../../util';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
 import { useTheme } from '../../hooks/useTheme';
+// import { Notification } from '../Notification/Notification';
 
 export const NotificationDisplay = () => {
   const logHistory = useSelector(
@@ -18,6 +19,7 @@ export const NotificationDisplay = () => {
   return (
     <div className={`notificationContainer ${theme}`}>
       <h2 className="notificationTitle">Notifications</h2>
+      {/* <Notification data={{name: 'test', logText: 'test'}} /> */}
       {filteredLogHistory}
     </div>
   );

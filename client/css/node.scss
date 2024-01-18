@@ -23,39 +23,41 @@
     rgba(255, 255, 255, 0.165) 0em,
     transparent 8em
   );
-  clip-path: polygon(
-    51% 2%,
-    89% 21%,
-    99% 60%,
-    75% 99%,
-    26% 99%,
-    1% 60%,
-    11% 21%
-  );
+  border-radius: 50%;
+  // clip-path: polygon(
+  //   51% 2%,
+  //   89% 21%,
+  //   99% 60%,
+  //   75% 99%,
+  //   26% 99%,
+  //   1% 60%,
+  //   11% 21%
+  // );
   scale: 0.99;
 }
 
 .borderNode {
   @include flex-vertical;
   position: relative;
-  border-radius: 20px;
-  clip-path: polygon(
-    51% 2%,
-    89% 21%,
-    99% 60%,
-    75% 99%,
-    26% 99%,
-    1% 60%,
-    11% 21%
-  );
+  // border-radius: 20px;
+  border-radius: 50%;
+  // clip-path: polygon(
+  //   51% 2%,
+  //   89% 21%,
+  //   99% 60%,
+  //   75% 99%,
+  //   26% 99%,
+  //   1% 60%,
+  //   11% 21%
+  // );
   transition: all 0.2s ease-in-out;
   &.dark {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid $dark-border;
+    background-color: white;
+    border: 1px solid $light-border;
   }
   &.light {
     background-color: black;
-    border: 1px solid $light-border;
+    border: 1px solid $dark-border;
   }
 }
 
@@ -109,6 +111,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
+  margin: 0 0.5rem;
 }
 
 .nodeContent {

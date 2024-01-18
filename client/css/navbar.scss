@@ -96,8 +96,8 @@
   cursor: default;
   .nav-right {
     @include flex-horizontal;
-    background-color: rgba($background-color-dark, 0.5);
-    border-radius: 8px;
+    background-color: darken($base-blue, 10%);
+    border-radius: 20px;
     margin: 0.8rem;
   }
 }
@@ -116,8 +116,8 @@
   transition: all 0.2s ease-in-out;
   .nav-right {
     @include flex-vertical;
-    background-color: rgba($background-color-dark, 0.5);
-    border-radius: 8px;
+    background-color: darken($base-blue, 10%);
+    border-radius: 20px;
     margin: 0.8rem 0;
     padding: 0 1rem;
   }

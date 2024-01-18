@@ -1,3 +1,6 @@
+@import '../../css/variables.scss';
+@import '../../css/base.scss';
+
 .switchContainer {
   position: relative;
   margin: 0.1em;
@@ -19,41 +22,42 @@
   justify-content: center;
 }
 
-.switchBar[type='checkbox'] {
+.brightnessMode {
   position: relative;
   appearance: none;
   width: 100%;
   height: 100%;
-  background: #e4e4e4;
+  // background: #e4e4e4;
   border-radius: 50px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: 0.4s;
 }
 
 .slider {
   position: absolute;
-  width: 2.3em;
-  height: 2.3em;
-  top: -0.4em;
+  width: 2em;
+  height: 2em;
+  top: -0.3em;
   left: -0.5em;
-  background: #ffffff00;
-  border-radius: 50%;
-  // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  // border-radius: 50%;
+  // border: 1px solid $dark-border;
   transition: 0.4s ease-in-out;
   pointer-events: none;
 }
 
-.switchBar[type='checkbox']:checked {
-  background: #1f1f1f;
-}
+// .switchBar[type='checkbox']:checked {
+//   background: #1f1f1f;
+// }
 
 .switchBar[type='checkbox']:checked + .slider {
   left: 50%;
-  transform: scale3d(-1.2, 1, 1);
+  // transform: scale3d(-1.2, 1, 1);
   width: 2em;
-  height: 2.2em;
-  top: -0.4em;
+  height: 2em;
+  top: -0.3em;
+  // background: #ffffff;
 }
 
 .themeIcon {

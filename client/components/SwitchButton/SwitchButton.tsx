@@ -1,5 +1,7 @@
 import styles from './SwitchButton.module.scss';
-import { useTheme } from '../../hooks';
+import mode from '../../assets/brightness_mode.svg';
+import { useTheme } from '../../hooks/useTheme';
+import classNames from 'classnames';
 import sun from '../../assets/sun.png';
 import moon from '../../assets/moon.png';
 
@@ -14,24 +16,40 @@ interface SwitchButtonProps {
  * @param onChange
  * @returns ReactNode
  */
-export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
+export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
   const { theme } = useTheme();
-  //* Sun is the light theme, moon is the dark theme, image element uses a dynamic path, depending on the theme mode
   return (
     <div className={styles.switchContainer}>
       <div className={styles.switchButton}>
-        <input
-          type="checkbox"
-          className={styles.switchBar}
-          checked={checked}
-          onChange={onChange}
-        />
-        <span className={styles.slider}>
-          <img
-            className={styles.themeIcon}
-            src={theme === 'dark' ? moon : sun}
+        <label htmlFor="lightTheme">
+          <input
+            type="radio"
+            id="lightTheme"
+            className={classNames(
+              styles.brightnessModeLight,
+              styles.brightnessMode,
+            )}
+            value="light"
+            checked={theme === 'light'}
+            onChange={onChange}
           />
-        </span>
+          <img src={sun} alt="Light Theme" />
+        </label>
+
+        <label htmlFor="darkTheme">
+          <input
+            type="radio"
+            id="darkTheme"
+            className={classNames(
+              styles.brightnessModeLight,
+              styles.brightnessMode,
+            )}
+            value="dark"
+            checked={theme === 'dark'}
+            onChange={onChange}
+          />
+          <img src={moon} alt="Dark Theme" />
+        </label>
       </div>
     </div>
   );

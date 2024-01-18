@@ -128,9 +128,8 @@
   &.warningPod {
     background: $warningGradient;
     background-size: 400% 400%;
-    animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
+    animation: opacity 0.5s ease-in-out, wave 0.5s ease-in-out,
       move-gradient 4s ease-in-out infinite;
-
     background-repeat: repeat;
     animation-fill-mode: backwards;
   }
@@ -138,9 +137,8 @@
   &.unhealthyPod {
     background: $unhealthyGradient;
     background-size: 400% 400%;
-    animation: expand-card-deck 1s ease-in-out, wave 2s ease-in-out,
+    animation: opacity 0.5s ease-in-out, wave 0.5s ease-in-out,
       move-gradient 4s ease-in-out infinite;
-
     background-repeat: repeat;
     animation-fill-mode: backwards;
   }
