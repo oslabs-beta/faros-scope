@@ -15,8 +15,9 @@ interface Notif {
  *
  */
 
-export const formatNotifications = ({logs} : Props): JSX.Element[] => {
+export const formatNotifications = (logs : Props): JSX.Element[] => {
   const result: Notif[] = [];
+  console.log('here be them logs: ', logs)
 
   for (const obj in logs) {
     console.log('here is da obj', obj)
