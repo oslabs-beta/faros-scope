@@ -5,6 +5,7 @@ import { exitAnimations } from '../../util';
 // import { PodContainer, ThemeContainer } from '../index';
 import { PodContainer } from '../PodContainer';
 import { ThemeContainer } from '../ThemeContainer';
+import { ColoredText } from '../reusable/text/ColoredText';
 
 interface NodeModalInterface {
   Node: any;
@@ -24,7 +25,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const { theme } = useTheme();
   //* pods to format
   const nodePods = Node?.pods;
-
+  console.log(Node);
   //* Close modal when clicked outside of modal or x button is clicked
   const closeModal = (
     e:
@@ -65,6 +66,10 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             <button className="closeButton" onClick={closeModal}>
               X
             </button>
+          </span>
+          <span id="node-name">
+            <ColoredText color="White">Node:</ColoredText>{' '}
+            <ColoredText color="Orange">{Node.nodeName} </ColoredText>
           </span>
           <div className={`nodeModalPodsViewInner ${theme}`}>
             <ThemeContainer IDOverride="nodeModalThemedContainer">

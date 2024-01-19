@@ -1,0 +1,19 @@
+@import "../../../css/variables.scss";
+@import "../../../css/base.scss";
+
+.copyToClipboard {
+  display: inline;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  left: -1.25em;
+  top: 0.8em;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  padding: 0.2em;
+  border: none;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.1em) scale(1.1);
+  }
+}

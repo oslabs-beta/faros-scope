@@ -13,10 +13,10 @@ interface Props {
 export const formatNodes = (arr: any[] = [], interval: number = 4): Props => {
   const result: any = [];
   const dimensions = {
-    width: `${(arr.length % 2) + 9}em`,
-    height: `${(arr.length % 2) + 9}em`,
-    maxWidth: '15em',
-    maxHeight: '15em',
+    width: `${(arr.length % 2) + 15}em`,
+    height: `${(arr.length % 2) + 15}em`,
+    maxWidth: '20em',
+    maxHeight: '20em',
   };
 
   let i = 0;

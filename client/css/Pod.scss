@@ -11,11 +11,10 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
   animation-fill-mode: forwards;
   animation-duration: 1s;
-  background-image: linear-gradient(rgba(0, 0, 0) 0.1em, transparent 0.1em),
-    linear-gradient(90deg, rgba(0, 0, 0) 0.1em, transparent 0.1em);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0.1em, transparent 0.1em);
   background-size: 1em 1em;
   padding: 1rem;
   &.light {

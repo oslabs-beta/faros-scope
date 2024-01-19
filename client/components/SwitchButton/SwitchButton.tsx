@@ -1,9 +1,7 @@
 import styles from './SwitchButton.module.scss';
-import mode from '../../assets/brightness_mode.svg';
 import { useTheme } from '../../hooks/useTheme';
 import classNames from 'classnames';
-import sun from '../../assets/sun.png';
-import moon from '../../assets/moon.png';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 interface SwitchButtonProps {
   checked: boolean;
@@ -21,7 +19,7 @@ export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
   return (
     <div className={styles.switchContainer}>
       <div className={styles.switchButton}>
-        <label htmlFor="lightTheme">
+        <label className={styles.modeLabel} htmlFor="lightTheme">
           <input
             type="radio"
             id="lightTheme"
@@ -33,10 +31,10 @@ export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
             checked={theme === 'light'}
             onChange={onChange}
           />
-          <img src={sun} alt="Light Theme" />
+          <FaSun className={styles.sunIcon} />
         </label>
 
-        <label htmlFor="darkTheme">
+        <label className={styles.modeLabel} htmlFor="darkTheme">
           <input
             type="radio"
             id="darkTheme"
@@ -48,7 +46,7 @@ export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
             checked={theme === 'dark'}
             onChange={onChange}
           />
-          <img src={moon} alt="Dark Theme" />
+          <FaMoon className={styles.moonIcon} />
         </label>
       </div>
     </div>

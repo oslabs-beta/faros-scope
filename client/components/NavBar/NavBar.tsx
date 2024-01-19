@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import centerImage from '../../assets/center.png';
+// import centerImage from '../../assets/center.png';
 import homeImage from '../../assets/icons8-home-512.png';
 import settingsImage from '../../assets/icons8-settings-512.png';
 import listImage from '../../assets/list.png';
 import '../../css/Navbar.scss';
-import { useGrid, useTheme } from '../../hooks';
+import { useTheme } from '../../hooks';
 import { SwitchButton } from '../SwitchButton/index';
 // import styles from './NavBar.module.scss';
 
@@ -19,14 +19,14 @@ interface NavBarProps {
  */
 export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
   const { toggleTheme, theme } = useTheme();
-  const { scrollToSignificantChild } = useGrid();
+  // const { scrollToSignificantChild } = useGrid();
   const changeTheme = () => {
     toggleTheme();
   };
 
-  const centerGrid = () => {
-    scrollToSignificantChild();
-  };
+  // const centerGrid = () => {
+  //   scrollToSignificantChild();
+  // };
 
   return (
     <div

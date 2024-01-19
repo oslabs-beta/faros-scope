@@ -6,6 +6,7 @@ import { NodeModal } from '../NodeModal';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../../hooks';
 import podIcon from '../../assets/icons8-box-64.png';
+import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
 
 interface NodeInterface {
   node: any;
@@ -23,8 +24,6 @@ interface NodeInterface {
  * @param dimensions - The dimensions of the node.
  * @returns ReactNode
  */
-
-console.log('Node.tsx');
 export const Node = ({ node, dimensions }: NodeInterface) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = (e: any) => {
@@ -45,10 +44,13 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
             onClick={openModal}
             src={podIcon}
             id="podIcon"
-            style={{ maxWidth: '40px', maxHeight: '40px' }}
+            style={{ maxWidth: '80px', maxHeight: '80px' }}
             alt="pod icon"
           />
           <div className="nodeContent">
+            <CopyToClipboard
+              text={node.nodeName}
+            />
             <div className="nodeName">{node.nodeName}</div>
             <label className="podCount">
               Pods:&nbsp;
@@ -56,7 +58,6 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
             </label>
           </div>
           {/* pass node's name or similar relationship info to indetify,
-          
           exactly which node to access from global state to create bond */}
           {modalOpen &&
             createPortal(

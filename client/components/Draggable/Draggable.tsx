@@ -45,6 +45,9 @@ export const Draggable = ({ children }: Props) => {
     <div ref={draggableContainer} className={`draggableContainer ${theme}`}>
       <div ref={draggableContent} className="draggableContent">
         <div ref={draggableInner} className="draggableInner">
+          <div className={`node-graph-title-bar ${theme}`}>
+            <span className={`node-graph-title ${theme}`}>NODES</span>
+          </div>
           {children}
         </div>
       </div>
