@@ -10,7 +10,9 @@ const container = document.getElementById('root');
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1b1b1b',
+      main: '#222222',
+      light: '#ECECEC',
+      dark: '#ffffff',
     },
     secondary: {
       main: '#ffffff',

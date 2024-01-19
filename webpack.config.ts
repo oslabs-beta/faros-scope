@@ -24,27 +24,30 @@ const config: Configuration = {
       {
         test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-typescript', // separate TypeScript preset
-              ['@babel/preset-react', { runtime: 'automatic' }],
-            ],
+        use: [
+          'thread-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript', // separate TypeScript preset
+                ['@babel/preset-react', { runtime: 'automatic' }],
+              ],
+            },
           },
-        },
+        ],
       },
       {
         test: /\.s?css$/i,
-          use: [
-              'style-loader',
-              'css-loader',
-              {
-                  loader: 'postcss-loader',
-              }
-              , 'sass-loader'
-          ],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

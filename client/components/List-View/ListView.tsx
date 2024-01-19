@@ -1,64 +1,63 @@
+// ************** Non-pagination option**************
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-// import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TableFooter from '@mui/material/TableFooter';
+// import TablePagination from '@mui/material/TablePagination';
+import './ListView.scss';
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#1b1b1b',
-//     },
-//     secondary: {
-//       main: '#ffffff',
-//     },
-//     grey: {
-//       50: '#fafafa',
-//       100: '#f5f5f5',
-//     },
-//   },
-// });
+type MetricsItem = {
+  name: string;
+  cpuUsage: number;
+  cpuUsagePct: number;
+  memUsage: number;
+  memUsagePct: number;
+  type: string;
+};
 
-// interface for incoming PODS Data
-// interface podDataLV {
-//   podNames: [];
-// }
+type ListViewProps = {
+  metricsObject: MetricsItem[];
+};
 
-// TEMP STOR for incoming PROPS syntax
-// { podNames }: podDataLV
-
-export const ListView = ({ organizedData }) => {
-  const dataObj = organizedData;
+export const ListView = ({ metricsObject }: ListViewProps) => {
+  const dataObj = metricsObject;
+  console.log('LOOK HERE BOY --->', dataObj);
 
   return (
     <div>
       <TableContainer
         component="div"
-        style={{ maxHeight: 300, overflowY: 'auto' }}
+        style={{ maxHeight: 300, overflowY: 'auto', borderRadius: 9 }}
       >
         <Table
           sx={{
             minWidth: 650,
             bgcolor: 'secondary.main',
-            color: 'primary.main',
           }}
-          aria-label="simple table"
+          aria-label="custom pagination table"
         >
           <TableHead>
             <TableRow
               sx={{
-                '& > *': { bgcolor: 'secondary.main', color: 'primary.main' },
+                bgcolor: 'primary.light',
+                color: 'primary.main',
+                p: 24,
               }}
             >
-              <TableCell>Name</TableCell>
-              <TableCell align="right">CPU</TableCell>
-              <TableCell align="right">Memory</TableCell>
+              <TableCell sx={{ fontSize: 14 }}>Name</TableCell>
+              <TableCell sx={{ fontSize: 14 }} align="right">
+                CPU
+              </TableCell>
+              <TableCell sx={{ fontSize: 14 }} align="right">
+                Memory
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {organizedData?.map((row) => (
+            {dataObj?.map((row) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
@@ -67,14 +66,34 @@ export const ListView = ({ organizedData }) => {
                   {row.name}
                 </TableCell>
                 <TableCell align="right">
-                  {`${row.metrics.cpuUsagePct?.toFixed(2)}%`}
+                  {`${row.cpuUsagePct?.toFixed(2)}%`}
                 </TableCell>
                 <TableCell align="right">
-                  {`${row.metrics.memUsagePct?.toFixed(2)}%`}
+                  {`${row.memUsagePct?.toFixed(2)}%`}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              {/* <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              /> */}
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
     </div>
