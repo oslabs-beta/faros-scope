@@ -12,6 +12,7 @@ export const ListViewDisplay = () => {
 
   return (
     <div className="list-view">
+      {/* <CustomPaginationActionsTable /> */}
       <ListView metricsObject={metricsState.pod} />
       <ListView metricsObject={metricsState.container} />
     </div>

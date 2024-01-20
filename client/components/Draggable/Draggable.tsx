@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/toast';
+// import { useToast } from '@chakra-ui/toast';
 import { useRef, useState } from 'react';
 import { useDraggable, useGrid, useTheme } from '../../hooks';
 import './Draggable.module.scss';
@@ -26,7 +26,7 @@ export const Draggable = ({ children }: Props) => {
     setGridScrollable,
   } = useGrid();
   const { theme } = useTheme();
-  const toast = useToast();
+  // const toast = useToast();
 
   useDraggable(
     draggableContainer,
@@ -38,7 +38,7 @@ export const Draggable = ({ children }: Props) => {
     nodesScale,
     setNodesScale,
     scrollable,
-    toast,
+    // toast,
   );
 
   return (
