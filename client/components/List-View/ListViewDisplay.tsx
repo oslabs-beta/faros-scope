@@ -1,21 +1,19 @@
-import { ListView } from './ListView';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
 import { formatMetricsMap } from '../../util/formatters/formatMetricsMap';
+import { ListView } from './ListView';
 
 export const ListViewDisplay = () => {
-  const metricsState = useSelector((state: RootState) => state?.metricsMap);
-  let organizedData;
-  console.log('check for mettttts', metricsState);
+  let metricsState = useSelector((state: RootState) => state?.metricsMap);
+
   if (metricsState) {
-    organizedData = formatMetricsMap(metricsState);
+    metricsState = formatMetricsMap(metricsState);
   }
-  console.log('revisedData', organizedData);
 
   return (
     <div className="list-view">
-      <ListView metricsObject={organizedData.pod} />
-      <ListView metricsObject={organizedData.container} />
+      <ListView metricsObject={metricsState.pod} />
+      <ListView metricsObject={metricsState.container} />
     </div>
   );
 };

@@ -4,8 +4,12 @@ import Dotenv from 'dotenv-webpack';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WepbackDevServerConfiguration } from 'webpack-dev-server';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const TerserPlugin = require('terser-webpack-plugin');
+// const BundleAnalyzerPlugin =
+//   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+// const smp = new SpeedMeasurePlugin();
+
+// const TerserPlugin = require('terser-webpack-plugin');
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WepbackDevServerConfiguration;
@@ -14,6 +18,7 @@ interface Configuration extends WebpackConfiguration {
 const config: Configuration = {
   entry: './client/index.tsx',
   mode: 'development',
+  target: process.env.NODE_ENV !== 'production' ? 'web' : 'browserslist',
   output: {
     path: path.resolve(__dirname, 'build/client'),
     publicPath: '/',
@@ -25,7 +30,6 @@ const config: Configuration = {
         test: /\.(j|t)sx?$/,
         exclude: /(node_modules)/,
         use: [
-          'thread-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -78,11 +82,11 @@ const config: Configuration = {
     new ReactRefreshWebpackPlugin(),
     // new BundleAnalyzerPlugin(),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
-    usedExports: true,
-  },
+  // optimization: {
+  //   minimize: true,
+  //   minimizer: [new TerserPlugin()],
+  //   usedExports: true,
+  // },
   devtool: 'source-map',
 };
 

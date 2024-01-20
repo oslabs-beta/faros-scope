@@ -15,7 +15,6 @@ type Cache = {
 };
 
 export const formatMetricsMap = (data: ListViewDisplayProps): any => {
-  console.log('dataHERE ---->', data);
   const cache: Cache = {};
 
   for (const item in data.metricsMap) {
