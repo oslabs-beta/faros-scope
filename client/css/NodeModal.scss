@@ -49,20 +49,26 @@ $border-height: 25px;
   box-shadow: -20px -20px 1px 0px black;
   overflow: visible;
   &.dark {
-    border-top: 30px solid #2d2f30;
+    border-top: 35px solid #2d2f30;
   }
   &.light {
-    border-top: 30px solid #cfd8dc;
+    border-top: 35px solid #cfd8dc;
   }
 }
 
 #node-name {
+  @include flex-horizontal;
   position: absolute;
   left: 50%;
-  top: -2.1rem;
+  top: -2.2rem;
   z-index: 20;
   transform: translateX(-50%);
   font-size: 1.5rem;
+  svg {
+    position: relative;
+    top: -1rem;
+    color: white;
+  }
 }
 
 .CloseModalAnimation {
@@ -79,7 +85,7 @@ $border-height: 25px;
 .close {
   position: absolute;
   right: 5px;
-  top: -26.5px;
+  top: -26px;
   width: fit-content;
   height: fit-content;
 }

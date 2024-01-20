@@ -6,6 +6,7 @@ import { exitAnimations } from '../../util';
 import { PodContainer } from '../PodContainer';
 import { ThemeContainer } from '../ThemeContainer';
 import { ColoredText } from '../reusable/text/ColoredText';
+import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
 
 interface NodeModalInterface {
   Node: any;
@@ -68,7 +69,8 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             </button>
           </span>
           <span id="node-name">
-            <ColoredText color="White">Node:</ColoredText>{' '}
+            <CopyToClipboard text={Node.nodeName} />
+            <ColoredText color="White">Node: </ColoredText>{' '}
             <ColoredText color="Orange">{Node.nodeName} </ColoredText>
           </span>
           <div className={`nodeModalPodsViewInner ${theme}`}>

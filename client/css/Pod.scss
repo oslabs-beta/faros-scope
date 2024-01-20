@@ -18,10 +18,11 @@
   background-size: 1em 1em;
   padding: 1rem;
   &.light {
-    background-image: radial-gradient(
-      rgba($graph-blue, 1) 2px,
-      transparent 3px
-    );
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5) 0.1em,
+        transparent 0.1em
+      ),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0.1em, transparent 0.1em);
   }
 }
 
