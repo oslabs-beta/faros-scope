@@ -5,6 +5,7 @@ import { HomePage } from './pages';
 import { SettingsPage } from './pages';
 import { LandingPage } from './pages';
 import { MainPage } from './pages';
+import { GraphPage } from './pages/GraphPage/GraphPage';
 
 const App = () => {
   const { theme } = useTheme();
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<MainPage />}>
           <Route index element={<HomePage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="graph-view" element={<GraphPage />} />
         </Route>
         <Route path="/landing" element={<LandingPage />} />
       </Routes>

@@ -78,6 +78,16 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'List View'
             )}
           </Link>
+          <Link to={'/graph-view'} className={'navLink'}>
+            {orientation === 'vertical' ? (
+              <img
+                style={{ maxWidth: '35px', maxHeight: '35px' }}
+                src={listImage}
+              ></img>
+            ) : (
+              'Graph View'
+            )}
+          </Link>
           {/* DOESN'T WORK ON CHROME FOR SOME REASON, DEPRECATED FOR NOW  */}
           {/* <button className={'navLink btn'} onClick={centerGrid}>
             {orientation === 'vertical' ? (

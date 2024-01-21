@@ -33,7 +33,7 @@ export const ThemeContext = createContext<ThemeContextType>({
  *  );
  * };
  */
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const MarcoThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   localStorage.setItem('theme', theme);
 
