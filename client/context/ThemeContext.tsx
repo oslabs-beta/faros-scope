@@ -1,5 +1,5 @@
-import { useState, createContext, ReactNode } from 'react';
-import { ThemeContextType } from '../../types/types';
+// import { useState, createContext, ReactNode } from 'react';
+// import { ThemeContextType } from '../../types/types';
 
 /**
  * A context that provides the current theme and a function to toggle it
@@ -14,10 +14,10 @@ import { ThemeContextType } from '../../types/types';
  *  );
  * };
  */
-export const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
-  toggleTheme: () => {},
-});
+// export const ThemeContext = createContext<ThemeContextType>({
+//   theme: 'dark',
+//   toggleTheme: () => {},
+// });
 
 /**
  * A wrapper component that provides the current theme and a function to toggle it
@@ -33,21 +33,21 @@ export const ThemeContext = createContext<ThemeContextType>({
  *  );
  * };
  */
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
-  localStorage.setItem('theme', theme);
+// export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+//   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+//   localStorage.setItem('theme', theme);
 
-  const toggleTheme = () => {
-    console.log('toggle theme');
-    localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+//   const toggleTheme = () => {
+//     console.log('toggle theme');
+//     localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
+//     setTheme(theme === 'light' ? 'dark' : 'light');
+//   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-};
+//   return (
+//     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+//       {children}
+//     </ThemeContext.Provider>
+//   );
+// };
 
 

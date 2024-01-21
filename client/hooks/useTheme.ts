@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { ThemeContext } from '../context';
+// import { useContext } from 'react';
+// import { ThemeContext } from '../context';
 
 /**
  * A custom hook that returns the current theme and a function to toggle it
@@ -16,6 +16,6 @@ import { ThemeContext } from '../context';
  * };
  */
 
-export const useTheme = () => {
-  return useContext(ThemeContext);
-};
+// export const useTheme = () => {
+//   return useContext(ThemeContext);
+// };

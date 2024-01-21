@@ -17,7 +17,8 @@
   modalOverlay: HTMLElement,
   podsView: HTMLElement,
   setModalOpen: Function,
-) => {
+ ) => {
+     console.log('exitAnimations')
   if (
     e.target instanceof HTMLElement &&
     e.target.className !== 'nodeClickableOverlay'
