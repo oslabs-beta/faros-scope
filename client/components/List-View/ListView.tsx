@@ -8,11 +8,60 @@ import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import TableHead from '@mui/material/TableHead';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+
+//type MetricsItem = {
+//   name: string;
+//   cpuUsage: number;
+//   cpuUsagePct: number;
+//   memUsage: number;
+//   memUsagePct: number;
+//   type: string;
+// };
+
+interface Column {
+  id: 'name' | 'CPU Usage (%)' | 'CPU Usage' | 'Mem Usage' | 'Mem Usage (%)';
+  label: string;
+  minWidth?: number;
+  align?: 'right';
+  format?: (value: number) => string;
+}
+
+const columns: readonly Column[] = [
+  { id: 'name', label: 'Name', minWidth: 170 },
+  {
+    id: 'CPU Usage (%)',
+    label: 'CPU Usage (%)',
+    align: 'right',
+    minWidth: 100,
+  },
+  {
+    id: 'CPU Usage',
+    label: 'CPU Usage',
+    minWidth: 170,
+    align: 'right',
+    format: (value: number) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'Mem Usage (%)',
+    label: 'Mem Usage (%)',
+    minWidth: 170,
+    align: 'right',
+    format: (value: number) => value.toFixed(2),
+  },
+  {
+    id: 'Mem Usage',
+    label: 'Mem Usage',
+    minWidth: 170,
+    align: 'right',
+    format: (value: number) => value.toLocaleString('en-US'),
+  },
+];
 
 interface TablePaginationActionsProps {
   count: number;
@@ -26,11 +75,6 @@ interface TablePaginationActionsProps {
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const theme = useTheme();
-  function print() {
-    return console.log(theme);
-  }
-  print();
-  console.log(theme);
 
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -100,7 +144,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-//*** data */
+//*** Data Types  ***/
 type MetricsItem = {
   name: string;
   cpuUsage: number;
@@ -113,19 +157,11 @@ type MetricsItem = {
 type ListViewProps = {
   metricsObject: MetricsItem[];
 };
-// export const ListView = ({ metricsObject }: ListViewProps) => {
+
 export const ListView = ({ metricsObject }: ListViewProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dataObj = metricsObject;
-  console.log('LOOK HERE BOY --->', dataObj);
-
-  const theme = useTheme();
-  function print() {
-    return console.log(theme);
-  }
-  print();
-  console.log('currreent themmee', theme);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -136,7 +172,6 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
     newPage: number,
   ) => {
     setPage(newPage);
-    console.log(event);
   };
 
   const handleChangeRowsPerPage = (
@@ -147,10 +182,33 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
   };
 
   return (
-    <div>
+    <>
       {dataObj ? (
         <TableContainer>
-          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <Table
+            sx={{ minWidth: 500, bgcolor: 'secondary.main' }}
+            aria-label="custom pagination table"
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ fontSize: 20, fontWeight: 'fontWeightBold' }}>
+                  {dataObj[0]?.type[0]
+                    .toUpperCase()
+                    .concat(dataObj[0].type.slice(1))}
+                </TableCell>
+              </TableRow>
+              <TableRow sx={{ bgcolor: 'primary.light' }}>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
             <TableBody>
               {(rowsPerPage > 0
                 ? dataObj.slice(
@@ -167,7 +225,13 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
                     {`${row.cpuUsagePct?.toFixed(2)}%`}
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
+                    {`${row.cpuUsage}`}
+                  </TableCell>
+                  <TableCell style={{ width: 160 }} align="right">
                     {`${row.memUsagePct?.toFixed(2)}%`}
+                  </TableCell>
+                  <TableCell style={{ width: 160 }} align="right">
+                    {`${row.memUsage}`}
                   </TableCell>
                 </TableRow>
               ))}
@@ -202,108 +266,6 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </>
   );
 };
-
-// // ************** Non-pagination option**************
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import TableFooter from '@mui/material/TableFooter';
-// // import TablePagination from '@mui/material/TablePagination';
-// import './ListView.scss';
-
-// type MetricsItem = {
-//   name: string;
-//   cpuUsage: number;
-//   cpuUsagePct: number;
-//   memUsage: number;
-//   memUsagePct: number;
-//   type: string;
-// };
-
-// type ListViewProps = {
-//   metricsObject: MetricsItem[];
-// };
-
-// export const ListView = ({ metricsObject }: ListViewProps) => {
-//   const dataObj = metricsObject;
-//   console.log('LOOK HERE BOY --->', dataObj);
-
-//   return (
-//     <div>
-//       <TableContainer
-//         component="div"
-//         style={{ maxHeight: 300, overflowY: 'auto', borderRadius: 9 }}
-//       >
-//         <Table
-//           sx={{
-//             minWidth: 650,
-//             bgcolor: 'secondary.main',
-//           }}
-//           aria-label="custom pagination table"
-//         >
-//           <TableHead>
-//             <TableRow
-//               sx={{
-//                 bgcolor: 'primary.light',
-//                 color: 'primary.main',
-//                 p: 24,
-//               }}
-//             >
-//               <TableCell sx={{ fontSize: 14 }}>Name</TableCell>
-//               <TableCell sx={{ fontSize: 14 }} align="right">
-//                 CPU
-//               </TableCell>
-//               <TableCell sx={{ fontSize: 14 }} align="right">
-//                 Memory
-//               </TableCell>
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {dataObj?.map((row) => (
-//               <TableRow
-//                 key={row.name}
-//                 sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
-//               >
-//                 <TableCell component="th" scope="row">
-//                   {row.name}
-//                 </TableCell>
-//                 <TableCell align="right">
-//                   {`${row.cpuUsagePct?.toFixed(2)}%`}
-//                 </TableCell>
-//                 <TableCell align="right">
-//                   {`${row.memUsagePct?.toFixed(2)}%`}
-//                 </TableCell>
-//               </TableRow>
-//             ))}
-//           </TableBody>
-//           <TableFooter>
-//             <TableRow>
-//               {/* <TablePagination
-//                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-//                 colSpan={3}
-//                 count={rows.length}
-//                 rowsPerPage={rowsPerPage}
-//                 page={page}
-//                 SelectProps={{
-//                   inputProps: {
-//                     'aria-label': 'rows per page',
-//                   },
-//                   native: true,
-//                 }}
-//                 onPageChange={handleChangePage}
-//                 onRowsPerPageChange={handleChangeRowsPerPage}
-//                 ActionsComponent={TablePaginationActions}
-//               /> */}
-//             </TableRow>
-//           </TableFooter>
-//         </Table>
-//       </TableContainer>
-//     </div>
-//   );
-// };

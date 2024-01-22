@@ -2,5 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 20rem;
+  padding-top: 12rem;
+  overflow: visible;
+}
+
+.list-view-outer {
+  overflow: scroll;
 }
