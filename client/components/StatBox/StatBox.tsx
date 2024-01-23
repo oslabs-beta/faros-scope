@@ -1,7 +1,12 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { FlexBetween } from "../index"; 
 
-export const StatBox = ({ title, value }) => {
+interface Props {
+    title: string;
+    value?: string;
+}
+
+export const StatBox = ({ title, value="-" }: Props) => {
     const theme = useTheme();
     return (
         <Box

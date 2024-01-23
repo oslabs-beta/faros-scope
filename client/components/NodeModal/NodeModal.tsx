@@ -18,7 +18,6 @@ interface NodeModalInterface {
  * @param Node - The node that was clicked on.
  * @param setModalOpen - A function that sets the modal to open or closed.
  */
-console.log('NodeModal.tsx');
 export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);

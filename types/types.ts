@@ -1,4 +1,4 @@
-import { Model, InferAttributes, InferCreationAttributes } from 'sequelize';
+// import { Model, InferAttributes, InferCreationAttributes } from 'sequelize';
 
 import { rootReducer } from '../client/store/store';
 

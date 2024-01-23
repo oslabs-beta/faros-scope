@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 export const setAnimationDelay = (element: HTMLElement, delay: number): void => {
-    console.log('setAnimationDelay', element, delay)
   element.style.animationDelay = `${delay}s`;
 }
 
@@ -16,7 +15,6 @@ export const setArrayAnimationDelay = (
   origin: string,
 ): void =>  {
     let seconds = 0;
-    console.log('animationUtil', elements, origin); 
   if (origin === 'center') {
     const center = Math.floor(elements.length / 2);
     let i = center,
@@ -48,7 +46,6 @@ export const setArrayAnimationDelay = (
  * @returns An array of spans, each span containing a single letter.
  */
 export const formatLettersAsSpans = (text: string): ReactNode[] => {
-    console.log('formatLettersAsSpans', text)
   const letters = text.split('');
   const spans = letters.map((letter, index) => {
     return (
@@ -67,7 +64,6 @@ export const formatLettersAsSpans = (text: string): ReactNode[] => {
  * @returns void
  */
 export const setScale = (element: HTMLElement, scale: number): void => {
-    console.log('setScale', element, scale)
   element.style.transform = `scale(${scale})`;
 }
 
@@ -78,7 +74,6 @@ export const setScale = (element: HTMLElement, scale: number): void => {
  * @returns void
  */
 export const setArrayScal = (elements: HTMLElement[], scale: number): void => {
-    console.log('setArrayScale', elements, scale)
   elements.forEach((element) => {
     setScale(element, scale);
   });

@@ -2,16 +2,16 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import history from 'connect-history-api-fallback'
 import Router from './routers/router';
 import path from 'path';
-import { Sequelize } from 'sequelize';
+// import { Sequelize } from 'sequelize';
 
 import 'dotenv/config';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
-const URI = process.env.PG_URI || '';
+// const URI = process.env.PG_URI || '';
 
 // connect to db
-const sequelize = new Sequelize(URI); // Example for postgres
+// const sequelize = new Sequelize(URI); // Example for postgres
 
 // middleware
 app.use(history());
@@ -42,4 +42,4 @@ app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });
 
-export default sequelize;
+// export default sequelize;

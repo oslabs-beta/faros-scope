@@ -5,7 +5,7 @@ interface TooltipProps {
   text: string;
   children: ReactNode;
 }
-console.log('Tooltip.tsx');
+
 export const Tooltip = ({ children, text }: TooltipProps) => {
   const [show, setShow] = useState(false);
   const { theme } = useTheme();

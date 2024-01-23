@@ -26,11 +26,6 @@ interface TablePaginationActionsProps {
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const theme = useTheme();
-  function print() {
-    return console.log(theme);
-  }
-  print();
-  console.log(theme);
 
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -118,14 +113,8 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dataObj = metricsObject;
-  console.log('LOOK HERE BOY --->', dataObj);
 
   const theme = useTheme();
-  function print() {
-    return console.log(theme);
-  }
-  print();
-  console.log('currreent themmee', theme);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -136,7 +125,6 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
     newPage: number,
   ) => {
     setPage(newPage);
-    console.log(event);
   };
 
   const handleChangeRowsPerPage = (

@@ -20,7 +20,6 @@ export const formatNotifications = (logs): Props => {
     newLog.logText = logs[obj].eventType;
     result.push(newLog);
   }
-  console.log('preNotfi --->', result);
   const notifsArr = result.map((elm) => {
     return <Notification data={elm} />;
   });
