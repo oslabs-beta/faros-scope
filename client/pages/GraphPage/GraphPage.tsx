@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import './GraphPage.scss';
 import { LineChart } from '@mui/x-charts';
-import { useCustomTheme  } from '../../hooks/useCustomTheme';
+import { useCustomTheme } from '../../hooks/useCustomTheme';
 import { useTheme } from '@mui/material';
 interface ChartData {
   series: [{ data: number[]; label: string }];
-  xAxis: { data: string[]; scaleType: string };
+  xAxis: [{ data: string[]; scaleType: string }];
+}
+
+interface ResultData {
+  metric: { [key: string]: string };
+  values: []
 }
 
 // Get the current time in seconds (Unix timestamp)
@@ -17,6 +22,9 @@ const tenMinutesAgo = now - 60000 * 2;
 const getCluserUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=14`;
 const getNodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`;
 const networkByNodeURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`;
+const allPodNetworkURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`;
+const podContainerPacketsURL = `http://104.198.235.133/api/v1/query_range?query= topk(5, sum by (pod) (rate(container_network_receive_packets_total{pod!=""}[5m])))&start=${tenMinutesAgo}&end=${now}&step=60`;
+const nodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=${tenMinutesAgo}&end=${now}&step=150`;
 
 export const GraphPage = () => {
   const { theme } = useCustomTheme();
@@ -24,11 +32,12 @@ export const GraphPage = () => {
 
   useEffect(() => {
     (async function () {
-      await fetch(networkByNodeURL)
+      await fetch(allPodNetworkURL)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
+          console.log(data);
           const xDatas = data.data.result.map((result) =>
             result.values.map((point) => point[0]),
           );

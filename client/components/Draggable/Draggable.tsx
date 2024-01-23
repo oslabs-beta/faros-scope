@@ -26,7 +26,7 @@ export const Draggable = ({ children }: Props) => {
     setGridScrollable,
   } = useGrid();
   const { theme } = useCustomTheme();
-  const toast = useToast();
+  // const toast = useToast();
 
   useDraggable(
     draggableContainer,
@@ -38,7 +38,7 @@ export const Draggable = ({ children }: Props) => {
     nodesScale,
     setNodesScale,
     scrollable,
-    toast,
+    // toast,
   );
 
   return (
