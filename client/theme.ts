@@ -143,7 +143,8 @@ export const themeSettings = (mode:ThemeMode) => {
                         light: colors.grey[100]
                     },
                     background: {
-                        default: colors.primary[500]
+                        default: colors.primary[500],
+                        alt: colors.grey[100]
                     }
                 } : {
                     primary: {
@@ -158,7 +159,8 @@ export const themeSettings = (mode:ThemeMode) => {
                         light: colors.grey[100]
                     },
                     background: {
-                        default: "#fcfcfc"
+                        default: "#fcfcfc",
+                        alt: colors.grey[100]
                     }
                 })
         },

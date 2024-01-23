@@ -5,15 +5,11 @@ import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WepbackDevServerConfiguration } from 'webpack-dev-server';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-const smp = new SpeedMeasurePlugin();
-
-
 interface Configuration extends WebpackConfiguration {
   devServer?: WepbackDevServerConfiguration;
 }
 
-const config: Configuration = smp.wrap({
+const config: Configuration = {
     entry: './client/index.tsx',
     mode: 'development',
     target: process.env.NODE_ENV !== 'production' ? 'web' : 'browserslist',
@@ -80,6 +76,6 @@ const config: Configuration = smp.wrap({
         new ReactRefreshWebpackPlugin(),
     ],
     devtool: 'source-map',
-});
+};
 
 export default config;

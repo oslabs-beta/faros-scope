@@ -18,6 +18,6 @@
     "noUnusedParameters": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["server/**/*.ts", "./**/*.tsx", "types"],
+  "include": ["server/**/*.ts", "./**/*.tsx", "types", "client/index.tsx"],
   "exclude": ["node_modules"]
 }

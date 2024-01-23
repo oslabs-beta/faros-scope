@@ -7,6 +7,7 @@ import { LandingPage } from './pages';
 import { MainPage } from './pages';
 import { NodeView } from './pages';
 import { ListViewDisplay } from './components';
+import { MarcoThemeProvider } from './context';
 
 const App = () => {
   const [theme, colorMode] = useMode();
@@ -23,19 +24,21 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <Routes>
-            <Route path="/" element={<MainPage />}>
+      <MarcoThemeProvider>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <Routes>
+              <Route path="/" element={<MainPage />}>
               <Route index element={<HomePage />} />
               <Route path="list-view" element={<ListViewDisplay />} />
               <Route path="/node-view" element={<NodeView />} />
               <Route path="settings" element={<SettingsPage />} />
-            </Route>
-            <Route path="/landing" element={<LandingPage />} />
-          </Routes>
-        </ThemeProvider>
-      </ColorModeContext.Provider>
+              </Route>
+              <Route path="/landing" element={<LandingPage />} />
+            </Routes>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </MarcoThemeProvider>
     </BrowserRouter>
   );
 };

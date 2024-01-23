@@ -8,22 +8,6 @@ import './css/variables.scss';
 import { store } from './store/store';
 
 const container = document.getElementById('root');
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#222222',
-//       light: '#ECECEC',
-//       dark: '#ffffff',
-//     },
-//     secondary: {
-//       main: '#ffffff',
-//     },
-//     grey: {
-//       50: '#fafafa',
-//       100: '#f5f5f5',
-//     },
-//   },
-// });
 
 if (container) {
   const root = createRoot(container);
