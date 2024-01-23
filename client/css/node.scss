@@ -120,7 +120,7 @@
   flex-direction: column;
   justify-content: center;
   height: fit-content;
-  width: 14rem;
+  width: 19rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
@@ -139,6 +139,13 @@
   top: 0%;
   right: 0%;
   z-index: 100;
+}
+
+.nodeNameContainer {
+  @include flex-horizontal;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .nodeName {

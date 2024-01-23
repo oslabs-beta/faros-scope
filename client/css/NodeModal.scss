@@ -66,7 +66,7 @@ $border-height: 25px;
   font-size: 1.5rem;
   svg {
     position: relative;
-    top: -1rem;
+    // top: -1rem;
     color: white;
   }
 }
@@ -84,8 +84,8 @@ $border-height: 25px;
 
 .close {
   position: absolute;
-  right: 5px;
-  top: -26px;
+  right: 10px;
+  top: -30px;
   width: fit-content;
   height: fit-content;
 }

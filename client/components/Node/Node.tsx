@@ -48,10 +48,10 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
             alt="pod icon"
           />
           <div className="nodeContent">
-            <CopyToClipboard
-              text={node.nodeName}
-            />
-            <div className="nodeName">{node.nodeName}</div>
+            <div className="nodeNameContainer">
+              <CopyToClipboard text={node.nodeName} />
+              <div className="nodeName">{node.nodeName}</div>
+            </div>
             <label className="podCount">
               Pods:&nbsp;
               <span className="inlineOrangeText">{node.pods.length}</span>
