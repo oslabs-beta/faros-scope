@@ -14,17 +14,19 @@ const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 60000 * 2;
 
-const getCluserUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=14`;
+const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=14`;
 const getNodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`;
 const networkByNodeURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`;
 
 export const GraphPage = () => {
-  const { theme } = useCustomTheme();
+  const { theme:customTheme } = useCustomTheme();
+  const theme = useTheme(); 
+    console.log(theme);
   const [data, setData] = useState<ChartData | null>(null);
 
   useEffect(() => {
     (async function () {
-      await fetch(networkByNodeURL)
+      await fetch(getClusterUsageURL)
         .then((res) => {
           return res.json();
         })
@@ -63,11 +65,11 @@ export const GraphPage = () => {
   }, []);
 
   if (!data) {
-    return <div className={`page ${theme}`}>Loading</div>;
+    return <div className={`page ${customTheme}`}>Loading</div>;
   }
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${customTheme}`}>
       <LineChart
         series={data.series}
         xAxis={data.xAxis}
@@ -79,10 +81,10 @@ export const GraphPage = () => {
         theme={{
           ticks: {
             line: {
-              stroke: 'white',
+              stroke: theme.palette.secondary.main
             },
             text: {
-              fill: 'white',
+              fill: theme.palette.secondary.main
             },
           },
         }}
