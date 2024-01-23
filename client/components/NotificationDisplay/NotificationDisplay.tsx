@@ -7,6 +7,9 @@ export const NotificationDisplay = () => {
   const logHistory = useSelector(
     (state: RootState) => state.clusterEvents.entities,
   );
+  const currentState = useSelector((state: RootState) => state.clusterEvents);
+  console.log('Log history store', currentState);
+
   let filteredLogHistory;
 
   if (logHistory) {

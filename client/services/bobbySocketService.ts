@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { addClusterEvent } from '../store/slice';
-import {store} from '../store';
+import { store } from '../store';
 
 // Custom Hook for Socket.IO
 export const useSocket = (url: string): Socket | null => {
@@ -10,7 +10,6 @@ export const useSocket = (url: string): Socket | null => {
   useEffect(() => {
     // Connect to Socket.IO server
     const newSocket: Socket = io(url);
-
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
@@ -38,8 +37,6 @@ export const useSocket = (url: string): Socket | null => {
       console.log('Pod Deleted: ', data);
       store.dispatch(addClusterEvent(data));
     });
-
-    // return () =>{ newSocket.close(); }
 
     return () => {
       newSocket.disconnect();

@@ -8,7 +8,7 @@ export const podsAdapter = createEntityAdapter<Pod>();
 export const containersAdapter = createEntityAdapter<Container>();
 export const metricsAdapter = createEntityAdapter<Metrics>();
 export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
-  selectId: (clusterEvent) => clusterEvent.metadata.uid,
+  selectId: (clusterEvent) => clusterEvent.metadata.resourceVersion,
 });
 
 export const nodesSlice = createSlice({
