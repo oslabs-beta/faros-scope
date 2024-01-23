@@ -7,8 +7,8 @@ import { Node } from '../../components/Node/Node';
  * @param arr - The nodes of a cluster.
  * @returns A list of JSX elements.
  */
-export const formatNodes = (arr: any[] = [], interval: number = 4): JSX.Element[] => {
-  const result: any = [];
+export const formatNodes = (arr: Node[] = [], interval: number = 4): JSX.Element[] => {
+  const result: JSX.Element[] = [];
   const dimensions = {
     width: `${(arr.length % 2) + 9}em`,
     height: `${(arr.length % 2) + 9}em`,
