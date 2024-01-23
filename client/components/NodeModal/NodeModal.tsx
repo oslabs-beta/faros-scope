@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 // import '../../css/NodeModal.scss';
-import { useTheme } from '../../hooks';
+import { useCustomTheme } from '../../hooks';
 import { exitAnimations } from '../../util';
 // import { PodContainer, ThemeContainer } from '../index';
 import { PodContainer } from '../PodContainer';
@@ -23,7 +23,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   //* pods to format
   const nodePods = Node?.pods;
   console.log(Node);

@@ -4,7 +4,7 @@ import '../../css/NodeModal.scss';
 import '../../css/node.scss';
 import { NodeModal } from '../NodeModal';
 import { createPortal } from 'react-dom';
-import { useTheme } from '../../hooks';
+import { useCustomTheme } from '../../hooks';
 import podIcon from '../../assets/icons8-box-64.png';
 import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
 
@@ -32,7 +32,7 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
   };
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   // console.log(node);
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (

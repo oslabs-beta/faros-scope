@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './hooks';
+import { useCustomTheme } from './hooks';
 import { HomePage } from './pages';
 import { SettingsPage } from './pages';
 import { LandingPage } from './pages';
@@ -8,7 +8,7 @@ import { MainPage } from './pages';
 import { GraphPage } from './pages/GraphPage/GraphPage';
 
 const App = () => {
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   const body = document.querySelector('body');
 
   //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.

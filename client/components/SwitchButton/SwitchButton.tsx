@@ -1,5 +1,5 @@
 import styles from './SwitchButton.module.scss';
-import { useTheme } from '../../hooks/useTheme';
+import { useCustomTheme } from '../../hooks/useCustomTheme';
 import classNames from 'classnames';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
@@ -15,7 +15,7 @@ interface SwitchButtonProps {
  * @returns ReactNode
  */
 export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   return (
     <div className={styles.switchContainer}>
       <div className={styles.switchButton}>

@@ -1,12 +1,12 @@
 import '../../css/NotifDisplay.scss';
-import { useTheme } from '../../hooks/useTheme';
+import { useCustomTheme } from '../../hooks/useCustomTheme';
 
 interface Props {
     data: any;
 }
 
 export const Notification = ( { data }: Props) => {
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   return (
     <div className={`notificationMessage ${theme}`}>
     <div>{data.name}</div>
