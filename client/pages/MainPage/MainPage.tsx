@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/index';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
-// import { ChakraProvider } from '@chakra-ui/react';
 import DropPositions from '../../components/reusable/reactdnd/DropPositions';
 import { GridProvider } from '../../context';
 import {
@@ -10,7 +9,7 @@ import {
   useGetClusterMetricsMapQuery,
 } from '../../services/api';
 import { useSocket } from '../../services/bobbySocketService';
-import { NotificationDisplay } from '../../components';
+// import { NotificationDisplay } from '../../components';
 
 export const MainPage = () => {
   useSocket('http://104.154.129.231:8000/');
@@ -74,7 +73,7 @@ export const MainPage = () => {
   return (
     <div className="Main">
       <GridProvider>
-        <NotificationDisplay />
+        {/* <NotificationDisplay /> */}
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCenter}
@@ -84,9 +83,7 @@ export const MainPage = () => {
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        {/* <ChakraProvider> */}
         <Outlet />
-        {/* </ChakraProvider> */}
       </GridProvider>
     </div>
   );
