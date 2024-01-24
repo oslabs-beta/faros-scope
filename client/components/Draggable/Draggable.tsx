@@ -1,6 +1,6 @@
 // import { useToast } from '@chakra-ui/toast';
 import { useRef, useState } from 'react';
-import { useDraggable, useGrid, useTheme } from '../../hooks';
+import { useDraggable, useGrid, useCustomTheme } from '../../hooks';
 import './Draggable.module.scss';
 
 interface Props {
@@ -25,7 +25,7 @@ export const Draggable = ({ children }: Props) => {
     scrollable,
     setGridScrollable,
   } = useGrid();
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   // const toast = useToast();
 
   useDraggable(
@@ -45,6 +45,9 @@ export const Draggable = ({ children }: Props) => {
     <div ref={draggableContainer} className={`draggableContainer ${theme}`}>
       <div ref={draggableContent} className="draggableContent">
         <div ref={draggableInner} className="draggableInner">
+          <div className={`node-graph-title-bar ${theme}`}>
+            <span className={`node-graph-title ${theme}`}>NODES</span>
+          </div>
           {children}
         </div>
       </div>

@@ -1,3 +1,3 @@
 export { useDraggable } from './useDraggable';
-export { useTheme } from './useTheme';
+export { useCustomTheme } from './useCustomTheme';
 export {useGrid} from './useGrid';

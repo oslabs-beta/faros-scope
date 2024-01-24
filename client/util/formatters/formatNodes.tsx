@@ -10,10 +10,10 @@ import { Node as NodeType } from '../../../types/types';
 export const formatNodes = (arr: NodeType[] = [], interval: number = 4): JSX.Element[] => {
   const result: JSX.Element[] = [];
   const dimensions = {
-    width: `${(arr.length % 2) + 9}em`,
-    height: `${(arr.length % 2) + 9}em`,
-    maxWidth: '15em',
-    maxHeight: '15em',
+    width: `${(arr.length % 2) + 15}em`,
+    height: `${(arr.length % 2) + 15}em`,
+    maxWidth: '20em',
+    maxHeight: '20em',
   };
 
   let i = 0;

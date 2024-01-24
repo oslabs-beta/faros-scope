@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 // import '../../css/NodeModal.scss';
-import { useTheme } from '../../hooks';
+import { useCustomTheme } from '../../hooks';
 import { exitAnimations } from '../../util';
 // import { PodContainer, ThemeContainer } from '../index';
 import { PodContainer } from '../PodContainer';
 import { ThemeContainer } from '../ThemeContainer';
-
-
+import { ColoredText } from '../reusable/text/ColoredText';
+import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
 
 interface NodeModalInterface {
   Node: any;
@@ -22,10 +22,10 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   //* pods to format
   const nodePods = Node?.pods;
-
+  console.log(Node);
   //* Close modal when clicked outside of modal or x button is clicked
   const closeModal = (
     e:
@@ -66,6 +66,11 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             <button className="closeButton" onClick={closeModal}>
               X
             </button>
+          </span>
+          <span id="node-name">
+            <CopyToClipboard text={Node.nodeName} />
+            <ColoredText color="White">Node: </ColoredText>{' '}
+            <ColoredText color="Orange">{Node.nodeName} </ColoredText>
           </span>
           <div className={`nodeModalPodsViewInner ${theme}`}>
             <ThemeContainer IDOverride="nodeModalThemedContainer">

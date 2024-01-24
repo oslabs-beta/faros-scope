@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import {formatPods} from '../../util';
-import { useTheme } from '../../hooks';
+import { formatPods } from '../../util';
+import { useCustomTheme } from '../../hooks';
 
 import '../../css/graph.scss';
 import '../../css/Pod.scss';
@@ -20,7 +20,7 @@ interface Props {
  */
 export const PodContainer = ({ nodePods, podsViewRef }: Props) => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
 
   const disableOverlay = () => {
     setShowOverlay(false);
@@ -33,7 +33,7 @@ export const PodContainer = ({ nodePods, podsViewRef }: Props) => {
         <span onClick={disableOverlay} className="podsViewOverlay"></span>
       )}
       <div className={`podsViewInner ${theme}`}>
-        <div className="podsContainer">{formatPods(nodePods, 6)}</div>
+        <div className="podsContainer">{formatPods(nodePods, 7)}</div>
       </div>
     </div>
   );

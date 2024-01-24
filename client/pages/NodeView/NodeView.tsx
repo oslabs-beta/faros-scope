@@ -6,7 +6,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import {GridColDef} from '@mui/x-data-grid';
+import { GridColDef } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -21,18 +21,15 @@ import {
   Header,
   StatBox,
   CollapsiblePanel,
+  LineChart,
 } from '../../components';
-
-function getRowId(row) {
-  return row.internalId;
-}
 
 export const NodeView = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
-  const { data, isLoading, isSuccess } = useGetNodeViewQuery(undefined, {});
+  const { data, isLoading } = useGetNodeViewQuery(undefined, {});
   let podsFormattedData = [];
   let containersFormattedData = [];
 
@@ -54,100 +51,111 @@ export const NodeView = () => {
   }
 
   const columns: GridColDef[] = [
-    { field: 'nodeName', headerName: 'metadata.system.node_name', flex: 1, },
+    { field: 'nodeName', headerName: 'metadata.system.node_name', flex: 1 },
     { field: 'metricValue', headerName: 'Latest Value', flex: 1 },
   ];
 
   return (
-    <Box m="1.5rem 2.5rem">
-      <FlexBetween>
-        <Header title="Nodes View" subtitle="View all nodes in the network" />
-      </FlexBetween>
+    <div
+      className="node-view-container"
+      style={{ width: '100%', height: '100%' }}
+    >
+      <Box m="1.5rem 2.5rem">
+        <FlexBetween>
+          <Header title="Nodes View" subtitle="View all nodes in the network" />
+        </FlexBetween>
 
-      <Box
-        mt="20px"
-        display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="minmax(auto, auto)"
-        gap="20px"
-        sx={{
-          '& > div': { gridColumn: isNonMediumScreens ? undefined : 'span 12' },
-        }}
-      >
-        {/* ROW 1 */}
-        <StatBox
-          title="Total Nodes"
-          value={data && data.kube_nodes_total.metricValue}
-        />
-        <StatBox
-          title="Total Cores"
-          value={data && data.kube_total_cores.metricValue}
-        />
-        <StatBox
-          title="Allocatable Cores"
-          value={data && data.kube_total_allocatable_cores.metricValue}
-        />
-        <StatBox
-          title="Total Memory"
-          value={data && data.kube_total_memory.metricValue}
-        />
-        <StatBox
-          title="Allocatable Memory"
-          value={data && data.kube_total_allocatable_memory.metricValue}
-        />
-
-        {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
+          mt="20px"
+          display="grid"
+          gridTemplateColumns="repeat(auto, 1fr)"
+          gridAutoRows="minmax(auto, auto)"
+          gap="20px"
+          sx={{
+            '& > div': {
+              gridColumn: isNonMediumScreens ? undefined : 'span 12',
+            },
+          }}
         >
-          <CollapsiblePanel title="CPU and Memory"></CollapsiblePanel>
-        </Box>
+          {/* ROW 1 */}
+          <StatBox
+            title="Total Nodes"
+            value={data && data.kube_nodes_total.metricValue}
+          />
+          <StatBox
+            title="Total Cores"
+            value={data && data.kube_total_cores.metricValue}
+          />
+          <StatBox
+            title="Allocatable Cores"
+            value={data && data.kube_total_allocatable_cores.metricValue}
+          />
+          <StatBox
+            title="Total Memory"
+            value={data && data.kube_total_memory.metricValue}
+          />
+          <StatBox
+            title="Allocatable Memory"
+            value={data && data.kube_total_allocatable_memory.metricValue}
+          />
 
-        {/* ROW 3 */}
-        <Box
-          gridColumn="span 8"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-        >
-          <CollapsiblePanel title="Pod and Container Count">
-            <DataGrid
-              loading={isLoading || !data}
-              rows={containersFormattedData}
-              columns={columns}
-            ></DataGrid>
-            <DataGrid
-              loading={isLoading || !data}
-              rows={podsFormattedData}
-              columns={columns}
-            ></DataGrid>
-          </CollapsiblePanel>
-        </Box>
+          {/* ROW 2 */}
+          <Box
+            gridColumn="span 8"
+            backgroundColor={theme.palette.background.alt}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
+            <CollapsiblePanel title="CPU and Memory">
+              <LineChart />
+              <LineChart />
+              <LineChart />
+              <LineChart />
+            </CollapsiblePanel>
+          </Box>
 
-        {/* ROW 4 */}
-        <Box
-          gridColumn="span 8"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-        >
-          <CollapsiblePanel title="Bandwidth"></CollapsiblePanel>
-        </Box>
+          {/* ROW 3 */}
+          <Box
+            gridColumn="span 8"
+            backgroundColor={theme.palette.background.alt}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
+            <CollapsiblePanel title="Pod and Container Count">
+              <DataGrid
+                loading={isLoading || !data}
+                rows={containersFormattedData}
+                columns={columns}
+              ></DataGrid>
+              <DataGrid
+                loading={isLoading || !data}
+                rows={podsFormattedData}
+                columns={columns}
+              ></DataGrid>
+            </CollapsiblePanel>
+          </Box>
 
-        {/* ROW 5 */}
-        <Box
-          gridColumn="span 8"
-          backgroundColor={theme.palette.background.alt}
-          p="1rem"
-          borderRadius="0.55rem"
-        >
-          <CollapsiblePanel title="Rate of Packets">
-          </CollapsiblePanel>
+          {/* ROW 4 */}
+          <Box
+            gridColumn="span 8"
+            backgroundColor={theme.palette.background.alt}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
+            <CollapsiblePanel title="Bandwidth"></CollapsiblePanel>
+          </Box>
+
+          {/* ROW 5 */}
+          <Box
+            gridColumn="span 8"
+            backgroundColor={theme.palette.background.alt}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
+            <CollapsiblePanel title="Rate of Packets"></CollapsiblePanel>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { useTheme } from '../../hooks';
+import { useCustomTheme } from '../../hooks';
 
 /**
  * A basic container that uses the current theme for styling, and wraps its children in a centered div
@@ -14,7 +14,7 @@ export const ThemeContainer = ({
   children: ReactNode;
   IDOverride?: string;
 }) => {
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   return (
     <div id={IDOverride || ''} className={`outerContainer ${theme}`}>
       <div id={IDOverride || ''} className={`innerContainer ${theme}`}>

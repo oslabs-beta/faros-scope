@@ -4,7 +4,7 @@ import { useTheme } from '../../hooks';
 import { metricsApi } from '../../services/api';
 import { formatNodes } from '../../util';
 import { Draggable } from '../Draggable/Draggable';
-// import { useGrid } from '../context/GridContext';
+import { useCustomTheme } from '../../hooks';
 import './Graph.module.scss';
 
 /**
@@ -24,7 +24,7 @@ export const Graph = () => {
 
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
   return (
     <Draggable>
       <div className={`graph ${theme}`} ref={graph}>

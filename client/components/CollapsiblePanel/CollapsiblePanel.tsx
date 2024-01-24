@@ -21,12 +21,15 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
         >
           {title}
         </AccordionSummary>
-              <AccordionDetails
-                              sx={{
-                                display: "flex",
-                                gap: "1rem",
-                        }}  // TODO: Verify this is correct
-              >{children}</AccordionDetails>
+        <AccordionDetails
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '1rem',
+          }} // TODO: Verify this is correct
+        >
+          {children}
+        </AccordionDetails>
       </Accordion>
     </Box>
   );

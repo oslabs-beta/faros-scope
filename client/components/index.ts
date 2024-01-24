@@ -14,4 +14,5 @@ export {Header } from './Header';
 export { ListViewDisplay } from './List-View';
 export { FlexBetween } from './FlexBetween';
 export {StatBox} from './StatBox';
-export {CollapsiblePanel} from './CollapsiblePanel';
+export { CollapsiblePanel } from './CollapsiblePanel';
+export {LineChart} from './LineChart';
