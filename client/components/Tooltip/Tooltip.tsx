@@ -1,5 +1,5 @@
 import { useState, ReactNode } from 'react';
-import { useTheme } from '../../hooks';
+import { useCustomTheme } from '../../hooks';
 
 interface TooltipProps {
   text: string;
@@ -8,7 +8,7 @@ interface TooltipProps {
 
 export const Tooltip = ({ children, text }: TooltipProps) => {
   const [show, setShow] = useState(false);
-  const { theme } = useTheme();
+  const { theme } = useCustomTheme();
 
   const hideTooltip = () => {
     setShow(false);

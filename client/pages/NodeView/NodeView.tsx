@@ -20,19 +20,16 @@ import {
   FlexBetween,
   Header,
   StatBox,
-  CollapsiblePanel,
+    CollapsiblePanel,
+  LineChart
 } from '../../components';
-
-function getRowId(row) {
-  return row.internalId;
-}
 
 export const NodeView = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
-  const { data, isLoading, isSuccess } = useGetNodeViewQuery(undefined, {});
+  const { data, isLoading } = useGetNodeViewQuery(undefined, {});
   let podsFormattedData = [];
   let containersFormattedData = [];
 
@@ -103,7 +100,9 @@ export const NodeView = () => {
           p="1rem"
           borderRadius="0.55rem"
         >
-          <CollapsiblePanel title="CPU and Memory"></CollapsiblePanel>
+                  <CollapsiblePanel title="CPU and Memory">
+                      <LineChart/>
+          </CollapsiblePanel>
         </Box>
 
         {/* ROW 3 */}

@@ -17,15 +17,15 @@
     /* // horizontal lines */
     linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
     /* // vertical lines */
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em),
+    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
     /* // horizontal glow bottom side */
-    linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    /* // horizontal glow top side */
-    linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    /* // vertical glow left side */
-    linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    /* // vertical glow right side */
-    linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
+    // linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // /* // horizontal glow top side */
+    // linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // /* // vertical glow left side */
+    // linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
+    // /* // vertical glow right side */
+    // linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
   &.light {
     background-image: 
     /* // horizontal lines */
@@ -83,16 +83,4 @@
   transform-origin: 0% 0%;
   overflow: hidden;
   scale: 1;
-}
-
-@keyframes grid-glow-flicker {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
 }

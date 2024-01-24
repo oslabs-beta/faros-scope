@@ -195,4 +195,25 @@ export const useDraggable = (
   //     });
   //   }
   // }, [scrollable]);
+  // useEffect(() => {
+  //   if (!scrollable) {
+  //     toast({
+  //       title: 'Scrolling disabled',
+  //       description: 'Hold space to enable scrolling.',
+  //       status: 'warning',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   } else {
+  //     toast({
+  //       title: 'Scrolling enabled',
+  //       description: 'Release space to disable scrolling.',
+  //       status: 'success',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   }
+  // }, [scrollable]);
 };

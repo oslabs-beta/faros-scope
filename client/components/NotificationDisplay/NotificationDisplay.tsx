@@ -2,11 +2,14 @@ import '../../css/NotifDisplay.scss';
 import { formatNotifications } from '../../util';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
+import { useCustomTheme } from '../../hooks/useCustomTheme';
+// import { Notification } from '../Notification/Notification';
 
 export const NotificationDisplay = () => {
   const logHistory = useSelector(
     (state: RootState) => state.clusterEvents.entities,
   );
+  const { theme } = useCustomTheme();
   let filteredLogHistory;
 
   if (logHistory) {
@@ -14,11 +17,9 @@ export const NotificationDisplay = () => {
   }
 
   return (
-    <div className="outerNotifContainer">
-      <div className="notificationContainer">
-        <h2 className="notificationTitle">Notifications</h2>
-        {filteredLogHistory}
-      </div>
+    <div className={`notificationContainer ${theme}`}>
+      <h2 className="notificationTitle">Notifications</h2>
+      {filteredLogHistory}
     </div>
   );
 };
