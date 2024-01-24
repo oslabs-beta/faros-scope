@@ -14,7 +14,7 @@ export const setArrayAnimationDelay = (
   elements: HTMLElement[],
   origin: string,
 ): void =>  {
-  let seconds = 0;
+    let seconds = 0;
   if (origin === 'center') {
     const center = Math.floor(elements.length / 2);
     let i = center,
@@ -63,7 +63,7 @@ export const formatLettersAsSpans = (text: string): ReactNode[] => {
  * @param scale The scale to set.
  * @returns void
  */
-export const setScale=(element: HTMLElement, scale: number): void =>{
+export const setScale = (element: HTMLElement, scale: number): void => {
   element.style.transform = `scale(${scale})`;
 }
 
@@ -73,7 +73,7 @@ export const setScale=(element: HTMLElement, scale: number): void =>{
  * @param scale The scale to set.
  * @returns void
  */
-export const setArrayScal = (elements: HTMLElement[], scale: number): void=> {
+export const setArrayScal = (elements: HTMLElement[], scale: number): void => {
   elements.forEach((element) => {
     setScale(element, scale);
   });

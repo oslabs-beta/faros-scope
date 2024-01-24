@@ -24,7 +24,6 @@ interface NodeInterface {
  * @returns ReactNode
  */
 
-console.log('Node.tsx');
 export const Node = ({ node, dimensions }: NodeInterface) => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = (e: any) => {
@@ -34,7 +33,6 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
   const { theme } = useTheme();
-  // console.log(node);
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="nodeContainer">

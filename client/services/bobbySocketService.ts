@@ -21,20 +21,18 @@ export const useSocket = (url: string): Socket | null => {
     });
 
     newSocket.on('podAdded', (data) => {
-      console.log('Pod Added: ', data);
+
       data.eventType = 'Pod Added';
       store.dispatch(addClusterEvent(data));
     });
 
     newSocket.on('podModified', (data) => {
       data.eventType = 'Pod Modified';
-      console.log('Pod Modified: ', data);
       store.dispatch(addClusterEvent(data));
     });
 
     newSocket.on('podDeleted', (data) => {
       data.eventType = 'Pod Deleted';
-      console.log('Pod Deleted: ', data);
       store.dispatch(addClusterEvent(data));
     });
 

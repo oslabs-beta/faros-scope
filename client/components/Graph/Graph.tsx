@@ -19,8 +19,6 @@ export const Graph = () => {
     {},
   );
 
-  console.log('useQueryStateResult', data);
-
   const nestedClusterInfo =
     isSuccess && data ? formatNodes(data.nodes, 8) : null;
 

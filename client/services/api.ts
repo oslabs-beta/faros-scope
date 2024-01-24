@@ -33,6 +33,15 @@ export const metricsApi = createApi({
         };
       },
     }),
+    getNodeView: builder.query({
+        queryFn: async (arg, api, extraOptions, baseQuery) => {
+            console.log('Inside Query Fn')
+            const response = await fetch('http://34.16.79.211:80/node-view');
+            const data = await response.json();
+            console.log(data);
+            return {data: data}; 
+      },
+    }),
     getClusterMetrics: builder.query({
       query: () => 'clusterMetrics',
     }),
@@ -52,6 +61,7 @@ export const metricsApi = createApi({
 });
 
 export const {
+    useGetNodeViewQuery,
   useGetClusterInfoQuery,
   useGetNodeStatsQuery,
   useGetPodStatsQuery,

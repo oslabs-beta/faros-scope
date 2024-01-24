@@ -17,7 +17,7 @@
   modalOverlay: HTMLElement,
   podsView: HTMLElement,
   setModalOpen: Function,
-) => {
+ ) => {
   if (
     e.target instanceof HTMLElement &&
     e.target.className !== 'nodeClickableOverlay'
