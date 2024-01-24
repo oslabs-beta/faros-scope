@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Pod, Node, Container } from './metricsSlice';
+import { Pod, Node, Container } from '../../types/types';
 
 export const metricsApi = createApi({
   reducerPath: 'metricsApi',

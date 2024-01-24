@@ -5,7 +5,7 @@ import { RootState } from '../../../types/types';
 
 export const NotificationDisplay = () => {
   const logHistory = useSelector(
-    (state: RootState) => state.clusterEvents.entities,
+    (state: RootState): RootState["clusterEvents"]["entities"] => state.clusterEvents.entities,
   );
   const currentState = useSelector((state: RootState) => state.clusterEvents);
   console.log('Log history store', currentState);
@@ -13,6 +13,7 @@ export const NotificationDisplay = () => {
   let filteredLogHistory;
 
   if (logHistory) {
+    console.log(logHistory);
     filteredLogHistory = formatNotifications(logHistory);
   }
 

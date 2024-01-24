@@ -3,6 +3,10 @@ import { Notification } from '../../components';
 interface Props {
   logs: object;
 }
+interface Notif {
+  name: string,
+  logText: string
+}
 
 /**
  * Converts the clusterEvent object in redux in notification JSX elements
@@ -11,13 +15,17 @@ interface Props {
  *
  */
 
-export const formatNotifications = (logs): Props => {
-  const result: [] = [];
+export const formatNotifications = (logs : Props): JSX.Element[] => {
+  const result: Notif[] = [];
+  console.log('here be them logs: ', logs)
 
   for (const obj in logs) {
-    const newLog = {};
-    newLog.name = logs[obj].metadata.name;
-    newLog.logText = logs[obj].eventType;
+    console.log('here is da obj', obj)
+    const newLog: Notif = {
+      name: logs[obj].metadata.name,
+      logText: logs[obj].eventType
+    };
+
     result.push(newLog);
   }
   const notifsArr = result.map((elm) => {
