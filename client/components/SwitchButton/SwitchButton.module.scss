@@ -1,66 +1,95 @@
+@import '../../css/variables.scss';
+@import '../../css/base.scss';
+
 .switchContainer {
-    position: relative;
-    margin: 0em 0.5em;
-  }
-  
-  .switchButton {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.5em;
-    height: 1.5em;
-  }
-  
-  .check-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .switchBar[type='checkbox'] {
-    position: relative;
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    background: #e4e4e4;
-    border-radius: 50px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: 0.4s;
-  }
-  
-  .slider {
-    position: absolute;
-    width: 2.3em;
-    height: 2.3em;
-    top: -0.4em;
-    left: -0.5em;
-    background: #ffffff00;
+  position: relative;
+  margin: 0.1em;
+  border-radius: 20px;
+  background-color: darken($base-blue, 10%);
+  padding: 0.2em;
+}
+
+.switchContainer::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  left: 50%;
+  top: 0;
+}
+
+.switchButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brightnessMode {
+  position: absolute;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.4s;
+  &:checked + .sunIcon, &:checked + .moonIcon {
+    background-color: lighten($base-blue, 20%);
     border-radius: 50%;
-    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: 0.4s ease-in-out;
-    pointer-events: none;
+    padding: 0.1em;
+    margin: 0.05em;
   }
-  
-  .switchBar[type='checkbox']:checked {
-    background: #1f1f1f;
-  }
-  
-  .switchBar[type='checkbox']:checked + .slider {
-    left: 50%;
-    transform: scale3d(-1.2, 1, 1);
-    width: 2em;
-    height: 2.2em;
-    top: -0.4em;
-  }
-  
-  .themeIcon {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: 0.2s ease-in-out;
-    pointer-events: none;
-  }
-  
+}
+
+.sunIcon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.moonIcon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.modeLabel {
+  position: relative;
+  margin: 0 0.5em;
+}
+
+.slider {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  top: -0.3em;
+  left: -0.5em;
+  background: transparent;
+  transition: 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.switchBar[type='checkbox']:checked + .slider {
+  left: 50%;
+  width: 2em;
+  height: 2em;
+  top: -0.3em;
+}
+
+.themeIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}

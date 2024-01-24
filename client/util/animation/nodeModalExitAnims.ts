@@ -17,7 +17,7 @@
   modalOverlay: HTMLElement,
   podsView: HTMLElement,
   setModalOpen: Function,
-) => {
+ ) => {
   if (
     e.target instanceof HTMLElement &&
     e.target.className !== 'nodeClickableOverlay'
@@ -34,7 +34,7 @@
       modal.classList.remove('CloseModalAnimation');
       podsView.classList.remove('Opacity-Out');
       modalOverlay.classList.remove('Opacity-Out');
-    }, 1450);
+    }, 400);
   } else {
     setModalOpen(false);
   }

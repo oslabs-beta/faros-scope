@@ -1,0 +1,11 @@
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 12rem;
+  overflow: visible;
+}
+
+.list-view-outer {
+  overflow: scroll;
+}

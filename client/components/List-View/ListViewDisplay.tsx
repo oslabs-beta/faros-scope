@@ -1,32 +1,22 @@
-import { ListView } from './ListView';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../../types/types';
+import { formatMetricsMap } from '../../util/formatters/formatMetricsMap';
+import { ListView } from './ListView';
+import './ListView.scss';
 
 export const ListViewDisplay = () => {
-  const metricsState = useSelector((state: RootState) => state?.metricsMap);
-  console.log('Metrics Data', metricsState);
+  let metricsState = useSelector((state: RootState) => state?.metricsMap);
 
-  const reshape = (data: any): any => {
-    const cache = {};
+  if (metricsState) {
+    metricsState = formatMetricsMap(metricsState);
+  }
 
-    for (const item in data.metricsMap) {
-      const dataObj = { name: item, metrics: data.metricsMap[item] };
-      if (!cache[data.metricsMap[item].type]) {
-        cache[data.metricsMap[item].type] = [dataObj];
-      } else {
-        cache[data.metricsMap[item].type].push(dataObj);
-      }
-    }
-    return cache;
-  };
-  const organizedData = reshape(metricsState);
-  console.log('revisedData', organizedData);
-  //   const metricsData = metricsState
-  //podNames={podState}
   return (
-    <div>
-      <ListView organizedData={organizedData.pod} />
-      <ListView organizedData={organizedData.container} />
+    <div className="list-view-outer">
+      <div className="list-view">
+        <ListView metricsObject={metricsState.pod} />
+        <ListView metricsObject={metricsState.container} />
+      </div>
     </div>
   );
 };

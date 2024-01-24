@@ -59,12 +59,12 @@
 }
 
 .Opacity-In {
-  animation: opacity 1s ease-in-out;
+  animation: opacity 0.5s ease-in-out;
   animation-fill-mode: forwards;
 }
 
 .Opacity-Out {
-  animation: opacity-reverse 2s ease-in-out;
+  animation: opacity-reverse 0.5s ease-in-out;
   animation-fill-mode: backwards;
 }
 
@@ -210,6 +210,7 @@
 $inline-blue: #24b0df;
 $inline-red: #db3523;
 $inline-orange: #f4a227;
+$inline-white: #ededed;
 
 .inlineOrangeText {
   color: $inline-orange;
@@ -225,6 +226,12 @@ $inline-orange: #f4a227;
 
 .inlineRedText {
   color: $inline-red;
+  text-shadow: 2px 2px 2px black;
+  display: inline;
+}
+
+.inlineWhiteText {
+  color: $inline-white;
   text-shadow: 2px 2px 2px black;
   display: inline;
 }

@@ -11,7 +11,7 @@ export const useDraggable = (
   nodesScale: number,
   setNodesScale: React.Dispatch<React.SetStateAction<number>>,
   scrollable: boolean,
-  toast: any, // Adjust the type of 'toast' based on your specific usage
+  // toast: any, // Adjust the type of 'toast' based on your specific usage
 ) => {
   //* dragging boolean and start coordinates, start coordinates update continuously as the user drags the graph
   let dragging: boolean = false;
@@ -174,25 +174,46 @@ export const useDraggable = (
   }, [nodesScale]);
 
   //* Display toast message when scrolling is enabled/disabled
-  useEffect(() => {
-    if (!scrollable) {
-      toast({
-        title: 'Scrolling disabled',
-        description: 'Hold space to enable scrolling.',
-        status: 'warning',
-        duration: 4000,
-        isClosable: true,
-        position: 'top-right',
-      });
-    } else {
-      toast({
-        title: 'Scrolling enabled',
-        description: 'Release space to disable scrolling.',
-        status: 'success',
-        duration: 4000,
-        isClosable: true,
-        position: 'top-right',
-      });
-    }
-  }, [scrollable]);
+  // useEffect(() => {
+  //   if (!scrollable) {
+  //     toast({
+  //       title: 'Scrolling disabled',
+  //       description: 'Hold space to enable scrolling.',
+  //       status: 'warning',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   } else {
+  //     toast({
+  //       title: 'Scrolling enabled',
+  //       description: 'Release space to disable scrolling.',
+  //       status: 'success',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   }
+  // }, [scrollable]);
+  // useEffect(() => {
+  //   if (!scrollable) {
+  //     toast({
+  //       title: 'Scrolling disabled',
+  //       description: 'Hold space to enable scrolling.',
+  //       status: 'warning',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   } else {
+  //     toast({
+  //       title: 'Scrolling enabled',
+  //       description: 'Release space to disable scrolling.',
+  //       status: 'success',
+  //       duration: 4000,
+  //       isClosable: true,
+  //       position: 'top-right',
+  //     });
+  //   }
+  // }, [scrollable]);
 };

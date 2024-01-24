@@ -33,12 +33,12 @@ export const ThemeContext = createContext<ThemeContextType>({
  *  );
  * };
  */
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const MarcoThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   localStorage.setItem('theme', theme);
 
   const toggleTheme = () => {
-    console.log('toggle theme');
+
     localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -49,5 +49,4 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     </ThemeContext.Provider>
   );
 };
-
 
