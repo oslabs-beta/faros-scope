@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './GraphPage.scss';
 import { LineChart } from '@mui/x-charts';
-import { useCustomTheme } from '../../hooks/useCustomTheme';
 import { useTheme } from '@mui/material';
 interface ChartData {
   series: [{ data: number[]; label: string }];
@@ -36,9 +35,7 @@ const podContainerPacketsURL = `http://104.198.235.133/api/v1/query_range?query=
 const nodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=${tenMinutesAgo}&end=${now}&step=150`;
 
 export const GraphPage = () => {
-  const { theme: customTheme } = useCustomTheme();
-  const theme = useTheme();
-  console.log(theme);
+  const muiTheme = useTheme();
   const [data, setData] = useState<ChartData | null>(null);
 
   useEffect(() => {
@@ -82,11 +79,11 @@ export const GraphPage = () => {
   }, []);
 
   if (!data) {
-    return <div className={`page ${customTheme}`}>Loading</div>;
+    return <div className={`page ${muiTheme.palette.mode}`}>Loading</div>;
   }
   console.log(data.xAxis[0].data);
   return (
-    <div className={`page ${customTheme}`}>
+    <div className={`page ${muiTheme.palette.mode}`}>
       <LineChart
         series={data.series}
         xAxis={[{ data: data.xAxis[0].data, scaleType: 'time' }]}
@@ -97,15 +94,15 @@ export const GraphPage = () => {
           // height: '100% !important',
           marginTop: '100px',
           '& .MuiChartsAxis-root': {
-            stroke: customTheme === 'dark' ? '#fff' : '#000',
+            stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             '& .MuiChartsAxis-tick': {
-              stroke: customTheme === 'dark' ? '#fff' : '#000',
+              stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
             '& .MuiChartsAxis-tickLabel': {
-              fill: customTheme === 'dark' ? '#fff' : '#000',
+              fill: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
             '& .MuiChartsAxis-line': {
-              stroke: customTheme === 'dark' ? '#fff' : '#000',
+              stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
           },
         }}

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import './linechart.scss';
 import { LineChart as LChart } from '@mui/x-charts';
 import { useCustomTheme } from '../../hooks/useCustomTheme';
-import { useTheme, Box } from '@mui/material';
+import { useTheme } from '@mui/material';
 interface ChartData {
   series: [{ data: number[]; label: string }];
   xAxis: [{ data: string[]; scaleType: string }];
@@ -19,6 +19,7 @@ const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 60000 * 2;
 
+// const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))`;
 const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`;
 const getNodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`;
 const networkByNodeURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`;
@@ -27,9 +28,7 @@ const podContainerPacketsURL = `http://104.198.235.133/api/v1/query_range?query=
 const nodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=${tenMinutesAgo}&end=${now}&step=150`;
 
 export const LineChart = () => {
-  const { theme: customTheme } = useCustomTheme();
-  const theme = useTheme();
-  console.log(theme);
+  const muiTheme = useTheme();
   const [data, setData] = useState<ChartData | null>(null);
 
   useEffect(() => {
@@ -74,11 +73,11 @@ export const LineChart = () => {
   }, []);
 
   if (!data) {
-    return <div className={`page ${customTheme}`}>Loading</div>;
+    return <div className={`page ${muiTheme.palette.mode}`}>Loading</div>;
   }
 
   return (
-    <div className={`page ${customTheme}`}>
+    <div className={`page ${muiTheme.palette.mode}`}>
       <LChart
         series={data.series}
         xAxis={data.xAxis}
@@ -86,19 +85,19 @@ export const LineChart = () => {
           width: '100%',
           height: '100%',
           '& .MuiChartsAxis-root': {
-            stroke: customTheme === 'dark' ? '#fff' : '#000',
+            stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             '& .MuiChartsAxis-tick': {
-              stroke: customTheme === 'dark' ? '#fff' : '#000',
+              stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
             '& .MuiChartsAxis-tickLabel': {
-              fill: customTheme === 'dark' ? '#fff' : '#000',
+              fill: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
             '& .MuiChartsAxis-line': {
-              stroke: customTheme === 'dark' ? '#fff' : '#000',
+              stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',
             },
-            'svg': {
-              fill: customTheme === 'dark' ? 'red' : '#000',
-            }
+            svg: {
+              fill: muiTheme.palette.mode === 'dark' ? 'red' : '#000',
+            },
           },
         }}
       />

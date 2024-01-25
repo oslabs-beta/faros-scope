@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { useCustomTheme } from '../../hooks';
+import { ReactNode, useContext } from 'react';
+import { useTheme } from '@mui/material';
 
 /**
  * A basic container that uses the current theme for styling, and wraps its children in a centered div
@@ -14,10 +14,13 @@ export const ThemeContainer = ({
   children: ReactNode;
   IDOverride?: string;
 }) => {
-  const { theme } = useCustomTheme();
+  const muiTheme = useTheme();
   return (
-    <div id={IDOverride || undefined} className={`outerContainer ${theme}`}>
-      <div id={IDOverride || undefined} className={`innerContainer ${theme}`}>
+    <div id={IDOverride || undefined} className={`outerContainer ${muiTheme}`}>
+      <div
+        id={IDOverride || undefined}
+        className={`innerContainer ${muiTheme.palette.mode}`}
+      >
         {children}
       </div>
     </div>

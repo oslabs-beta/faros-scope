@@ -26,8 +26,7 @@ import {
 } from '../../components';
 
 export const NodeView = () => {
-  const theme = useTheme();
-  const { theme: customTheme } = useCustomTheme();
+  const muiTheme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
@@ -59,7 +58,7 @@ export const NodeView = () => {
 
   return (
     <div
-      className={`node-view-container ${customTheme}`}
+      className={`node-view-container ${muiTheme.palette.mode}`}
       style={{ width: '100%', height: '100%' }}
     >
       <Box m="1.5rem 2.5rem">
