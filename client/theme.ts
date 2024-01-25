@@ -6,6 +6,17 @@ type ThemeMode = 'light' | 'dark';
 export const tokens = (mode: ThemeMode) => ({
   ...(mode === 'dark'
     ? {
+        primary: {
+          100: '#ffffff',
+          200: '#a1a4ab',
+          300: '#727681',
+          400: '#1F2A40',
+          500: '#141b2d',
+          600: '#101624',
+          700: '#0c101b',
+          800: '#080b12',
+          900: '#000000',
+        },
         grey: {
           100: '#e0e0e0',
           200: '#c2c2c2',
@@ -16,17 +27,6 @@ export const tokens = (mode: ThemeMode) => ({
           700: '#3d3d3d',
           800: '#292929',
           900: '#141414',
-        },
-        primary: {
-          100: '#d0d1d5',
-          200: '#a1a4ab',
-          300: '#727681',
-          400: '#1F2A40',
-          500: '#141b2d',
-          600: '#101624',
-          700: '#0c101b',
-          800: '#080b12',
-          900: '#040509',
         },
         greenAccent: {
           100: '#dbf5ee',
@@ -63,6 +63,17 @@ export const tokens = (mode: ThemeMode) => ({
         },
       }
     : {
+        primary: {
+          100: '#000000',
+          200: '#080b12',
+          300: '#0c101b',
+          400: '#f2f0f0',
+          500: '#141b2d',
+          600: '#434957',
+          700: '#727681',
+          800: '#a1a4ab',
+          900: '#ffffff',
+        },
         grey: {
           100: '#141414',
           200: '#292929',
@@ -73,17 +84,6 @@ export const tokens = (mode: ThemeMode) => ({
           700: '#a3a3a3',
           800: '#c2c2c2',
           900: '#e0e0e0',
-        },
-        primary: {
-          100: '#040509',
-          200: '#080b12',
-          300: '#0c101b',
-          400: '#f2f0f0',
-          500: '#141b2d',
-          600: '#434957',
-          700: '#727681',
-          800: '#a1a4ab',
-          900: '#d0d1d5',
         },
         greenAccent: {
           100: '#0f2922',
@@ -130,8 +130,8 @@ export const themeSettings = (mode: ThemeMode) => {
       mode: mode,
       ...(mode === 'dark'
         ? {
-            primary: {
-              main: colors.primary[500],
+              primary: {
+              main: colors.primary[100],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -144,11 +144,14 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: colors.primary[500],
               alt: colors.grey[100],
-            },
+              },
+              typography:{
+                main: colors.primary[900]
+            }
           }
         : {
             primary: {
-              main: colors.primary[100],
+              main: colors.primary[900],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -161,7 +164,10 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: '#fcfcfc',
               alt: colors.grey[100],
-            },
+              },
+            typography:{
+                main: colors.primary[900]
+            }
           }),
     },
     typography: {
@@ -190,7 +196,7 @@ export const themeSettings = (mode: ThemeMode) => {
       h6: {
         fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
         fontSize: 14,
-      },
+        },
     },
   };
 };

@@ -1,15 +1,6 @@
-import { useEffect, useId } from 'react';
-import {
-  Box,
-  Button,
-  Typography,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
-import { tokens } from '../../theme';
-import { useCustomTheme } from '../../hooks/useCustomTheme';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -22,10 +13,7 @@ import {
 } from '../../components';
 
 export const NodeView = () => {
-  const muiTheme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
-  console.log('MODE', theme.palette.mode);
+  const theme = useTheme();
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
@@ -55,9 +43,13 @@ export const NodeView = () => {
   ];
 
   return (
-    <div
-      className={`node-view-container ${muiTheme.palette.mode}`}
-      style={{ width: '100%', height: '100%' }}
+    <Box
+      className={`node-view-container ${theme.palette.mode}`}
+      sx={{
+        height: '100%',
+        width: '100%',
+        overflow: 'auto',
+      }}
     >
       <Box m="1.5rem 2.5rem">
         <FlexBetween>
@@ -77,43 +69,51 @@ export const NodeView = () => {
           }}
         >
           {/* ROW 1 */}
-          <StatBox
-            title="Total Nodes"
-            value={data && data.kube_nodes_total.metricValue}
-          />
-          <StatBox
-            title="Total Cores"
-            value={data && data.kube_total_cores.metricValue}
-          />
-          <StatBox
-            title="Allocatable Cores"
-            value={data && data.kube_total_allocatable_cores.metricValue}
-          />
-          <StatBox
-            title="Total Memory"
-            value={data && data.kube_total_memory.metricValue}
-          />
-          <StatBox
-            title="Allocatable Memory"
-            value={data && data.kube_total_allocatable_memory.metricValue}
-          />
+          <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" gap="20px">
+            <StatBox
+              title="Total Nodes"
+              value={data && data.kube_nodes_total.metricValue}
+            />
+            <StatBox
+              title="Total Cores"
+              value={data && data.kube_total_cores.metricValue}
+            />
+            <StatBox
+              title="Allocatable Cores"
+              value={data && data.kube_total_allocatable_cores.metricValue}
+            />
+            <StatBox
+              title="Total Memory"
+              value={data && data.kube_total_memory.metricValue}
+            />
+            <StatBox
+              title="Allocatable Memory"
+              value={data && data.kube_total_allocatable_memory.metricValue}
+            />
+          </Box>
 
           {/* ROW 2 */}
           <Box
-            gridColumn="span 8"
+            // gridColumn="span 8"
             backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
             <CollapsiblePanel title="CPU and Memory">
-              <LineChart title={'CPU Usage'} URL={'clusterUsage'} />
-              <LineChart title={'Memory Usage'} URL={'clusterUsage'} />
+              <LineChart
+                title={'CPU Usage Per Node - Top 50'}
+                URL={'clusterUsage'}
+              />
+              <LineChart
+                title={'Memory Usage Per Node - Top 50'}
+                URL={'nodeUsage'}
+              />
             </CollapsiblePanel>
           </Box>
 
           {/* ROW 3 */}
           <Box
-            gridColumn="span 8"
+            // gridColumn="span 8"
             backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
@@ -134,25 +134,43 @@ export const NodeView = () => {
 
           {/* ROW 4 */}
           <Box
-            gridColumn="span 8"
+            // gridColumn="span 8"
             backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
-            <CollapsiblePanel title="Bandwidth"></CollapsiblePanel>
+            <CollapsiblePanel title="Bandwidth">
+              <LineChart
+                title={'Received Bandwidth Per Node - Top 50'}
+                URL={'receivedBandwidth'}
+              />
+              <LineChart
+                title={'Received Bandwidth Per Node - Top 50'}
+                URL={'podNetwork'}
+              />
+            </CollapsiblePanel>
           </Box>
 
           {/* ROW 5 */}
           <Box
-            gridColumn="span 8"
+            // gridColumn="span 8"
             backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
-            <CollapsiblePanel title="Rate of Packets"></CollapsiblePanel>
+            <CollapsiblePanel title="Rate of Packets">
+              {/* <LineChart
+                title={'Received packet count per node - Top 50'}
+                URL={'packetsReceived'}
+              /> */}
+              {/* <LineChart
+                title={'Transmitted packet count per node - Top 50'}
+                URL={'packetsTransmitted'}
+              /> */}
+            </CollapsiblePanel>
           </Box>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
