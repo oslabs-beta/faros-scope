@@ -9,7 +9,7 @@ export const NotificationDisplay = () => {
     (state: RootState): RootState['clusterEvents']['entities'] =>
       state.clusterEvents.entities,
   );
-  const theme = useTheme();
+  const muiTheme = useTheme();
 
   let filteredLogHistory;
 
@@ -18,8 +18,8 @@ export const NotificationDisplay = () => {
   }
 
   return (
-    <div className={`outerNotifContainer`}>
-      <div className="notificationContainer">
+    <div className={`outerNotifContainer ${muiTheme.palette.mode}`}>
+      <div className={`notificationContainer ${muiTheme.palette.mode}`}>
         <h2 className="notificationTitle">Notifications</h2>
         {filteredLogHistory}
       </div>
