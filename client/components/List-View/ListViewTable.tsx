@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { useCustomTheme } from '../../hooks/useCustomTheme';
+import { Button, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { ListViewHeader } from '../ListViewHeader';
+import Paper from '@mui/material/Paper';
 
 // Types
 type MetricsItem = {
@@ -29,14 +31,14 @@ const columns: GridColDef[] = [
   {
     field: 'cpuUsage',
     headerName: 'Cpu Usage',
-    width: 110,
+    width: 130,
     editable: true,
   },
   {
     field: 'cpuUsagePct',
-    headerName: 'cpuUsagePct',
+    headerName: 'CPU Usage (%)',
     type: 'number',
-    width: 110,
+    width: 130,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -46,14 +48,14 @@ const columns: GridColDef[] = [
     field: 'memUsage',
     headerName: 'memUsage',
     type: 'number',
-    width: 110,
+    width: 130,
     editable: true,
   },
   {
     field: 'memUsagePct',
-    headerName: 'memUsagePct',
+    headerName: 'Mem Usage (%)',
     type: 'number',
-    width: 110,
+    width: 130,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -61,11 +63,10 @@ const columns: GridColDef[] = [
   },
 ];
 
-export const ListView = ({ metricsObject }: ListViewProps) => {
+export const ListViewTable = ({ metricsObject }: ListViewProps) => {
   const metricsData = metricsObject;
-  const { theme: customTheme } = useCustomTheme();
-  let result = [];
-  console.log(metricsData);
+  const theme = useTheme();
+  console.log(theme);
 
   if (metricsData) {
     metricsData.map((elm, idx) => {
@@ -76,7 +77,18 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
   if (!metricsData) return <h1>Loading...</h1>;
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
+    <Box
+      sx={{
+        height: 400,
+        width: '100%',
+        border: 2,
+        borderRadius: '.55em',
+        // p: 10,
+        // BELOW IS WHERE WE CAN PROVIDE BACKGROUND TO BOX
+        // bgcolor: 'red',
+      }}
+    >
+      <ListViewHeader title={metricsData[0].type} />
       <DataGrid
         rows={metricsData}
         columns={columns}
@@ -90,6 +102,18 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
+        sx={{
+          fontSize: 16,
+          '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows, & .MuiTablePagination-select, & .MuiInputBase-input':
+            {
+              // Targeting specific elements within the pagination for finer control
+              fontSize: '1rem', // Adjust the font size
+              borderRadius: '.55em',
+            },
+        }}
+        // sx={{
+        //   fontSize: 16,
+        // }}
       />
     </Box>
   );

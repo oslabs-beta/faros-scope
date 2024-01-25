@@ -27,7 +27,7 @@ import {
 
 export const NodeView = () => {
   const muiTheme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  // const colors = tokens(theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
@@ -103,7 +103,7 @@ export const NodeView = () => {
           {/* ROW 2 */}
           <Box
             gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
+            // backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
@@ -118,7 +118,7 @@ export const NodeView = () => {
           {/* ROW 3 */}
           <Box
             gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
+            // backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
@@ -139,7 +139,7 @@ export const NodeView = () => {
           {/* ROW 4 */}
           <Box
             gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
+            // backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >
@@ -149,7 +149,7 @@ export const NodeView = () => {
           {/* ROW 5 */}
           <Box
             gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
+            // backgroundColor={theme.palette.background.alt}
             p="1rem"
             borderRadius="0.55rem"
           >

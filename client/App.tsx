@@ -10,26 +10,27 @@ import { MainPage } from './pages';
 import { NodeView } from './pages';
 import { ListViewDisplay } from './components';
 import { GraphPage } from './pages/GraphPage/GraphPage';
+import { ListViewPage } from './pages/ListViewPage/ListViewPage';
 
 const App = () => {
   const [theme, colorMode] = useMode();
   return (
     <BrowserRouter>
       {/* <MarcoThemeProvider> */}
-        <ColorModeContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-            <Routes>
-              <Route path="/" element={<MainPage />}>
-                <Route index element={<HomePage />} />
-                <Route path="list-view" element={<ListViewDisplay />} />
-                <Route path="node-view" element={<NodeView />} />
-                <Route path="settings" element={<SettingsPage />} />
-                <Route path="graph-view" element={<GraphPage />} />
-              </Route>
-              <Route path="landing" element={<LandingPage />} />
-            </Routes>
-          </ThemeProvider>
-        </ColorModeContext.Provider>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path="/" element={<MainPage />}>
+              <Route index element={<HomePage />} />
+              <Route path="list-view" element={<ListViewPage />} />
+              <Route path="node-view" element={<NodeView />} />
+              <Route path="settings" element={<SettingsPage />} />
+              <Route path="graph-view" element={<GraphPage />} />
+            </Route>
+            <Route path="landing" element={<LandingPage />} />
+          </Routes>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
       {/* </MarcoThemeProvider> */}
     </BrowserRouter>
   );
