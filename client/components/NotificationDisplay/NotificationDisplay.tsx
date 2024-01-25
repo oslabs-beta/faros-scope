@@ -18,9 +18,11 @@ export const NotificationDisplay = () => {
   }
 
   return (
-    <div className={`notificationContainer ${muiTheme.palette.mode}`}>
-      <h2 className="notificationTitle">Notifications</h2>
-      {filteredLogHistory}
+    <div className={`outerNotifContainer ${theme}`}>
+      <div className="notificationContainer">
+        <h2 className="notificationTitle">Notifications</h2>
+        {filteredLogHistory}
+      </div>
     </div>
   );
 };

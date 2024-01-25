@@ -99,9 +99,7 @@ export const MainPage = () => {
           </DragOverlay>
           {/* <DropPositions parent={parent} /> */}
         </DndContext>
-        {/* <ChakraProvider> */}
         <Outlet />
-        {/* </ChakraProvider> */}
       </GridProvider>
     </div>
   );

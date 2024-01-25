@@ -10,6 +10,7 @@ import { NodeView } from './pages';
 import { ListViewDisplay } from './components';
 import { GraphPage } from './pages/GraphPage/GraphPage';
 import { WorkloadView } from './pages';
+import { ListViewPage } from './pages/ListViewPage/ListViewPage';
 
 const App = () => {
   const [theme, colorMode] = useMode();
