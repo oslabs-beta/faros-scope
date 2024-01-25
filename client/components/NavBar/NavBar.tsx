@@ -61,7 +61,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'Home'
             )}
           </Link>
-          <Link to={'/settings'} className={'navLink'}>
+          {/* <Link to={'/settings'} className={'navLink'}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
@@ -70,7 +70,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             ) : (
               'Settings'
             )}
-          </Link>
+          </Link> */}
           <Link to={'/list-view'} className={'navLink'}>
             {orientation === 'vertical' ? (
               <img
@@ -81,14 +81,14 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
               'List View'
             )}
           </Link>
-          <Link to={'/graph-view'} className={'navLink'}>
+          <Link to={'/node-view'} className={'navLink'}>
             {orientation === 'vertical' ? (
               <img
                 style={{ maxWidth: '35px', maxHeight: '35px' }}
                 src={listImage}
               ></img>
             ) : (
-              'Graph View'
+              'Node View'
             )}
           </Link>
           {/* DOESN'T WORK ON CHROME FOR SOME REASON, DEPRECATED FOR NOW  */}

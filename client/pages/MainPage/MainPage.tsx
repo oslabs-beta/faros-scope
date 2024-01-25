@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/index';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
@@ -11,9 +11,11 @@ import {
 import { useSocket } from '../../services/bobbySocketService';
 import { NotificationDisplay } from '../../components';
 import { useTheme } from '@mui/material';
+import { ColorModeContext } from '../../theme';
 
 export const MainPage = () => {
   const muiTheme = useTheme();
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   useSocket('http://104.154.129.231:8000/');
   // ^ see if this works w/o variable declarations
@@ -72,6 +74,13 @@ export const MainPage = () => {
     setStoredPosition(over ? over.id : parent);
   }
 
+  useEffect(() => {
+    const storedMode = localStorage.getItem('theme');
+    if (muiTheme.palette.mode !== storedMode) {
+      toggleColorMode();
+    }
+  }, []);
+
   const body = document.querySelector('body');
   //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
   useEffect(() => {
@@ -84,6 +93,7 @@ export const MainPage = () => {
         body.classList.remove('dark');
       }
     }
+    localStorage.setItem('theme', muiTheme.palette.mode);
   }, [muiTheme.palette.mode]);
 
   return (
@@ -99,9 +109,7 @@ export const MainPage = () => {
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        {/* <ChakraProvider> */}
         <Outlet />
-        {/* </ChakraProvider> */}
       </GridProvider>
     </div>
   );
