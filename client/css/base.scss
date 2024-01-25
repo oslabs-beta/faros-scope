@@ -124,14 +124,6 @@
   }
 }
 
-.Main {
-  @include flex-vertical;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
 $inline-blue: #24b0df;
 $inline-red: #db3523;
 $inline-orange: #f4a227;

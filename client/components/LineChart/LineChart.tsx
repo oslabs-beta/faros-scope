@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-// import './GraphPage.scss';
+import './linechart.scss';
 import { LineChart as LChart } from '@mui/x-charts';
 import { useCustomTheme } from '../../hooks/useCustomTheme';
-import { useTheme } from '@mui/material';
+import { useTheme, Box } from '@mui/material';
 interface ChartData {
   series: [{ data: number[]; label: string }];
   xAxis: [{ data: string[]; scaleType: string }];
@@ -19,7 +19,7 @@ const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 60000 * 2;
 
-const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=14`;
+const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`;
 const getNodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`;
 const networkByNodeURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`;
 const allPodNetworkURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`;
@@ -78,30 +78,30 @@ export const LineChart = () => {
   }
 
   return (
-    <LChart
-      series={data.series}
-      xAxis={data.xAxis}
-      width={500}
-      height={350}
-      // style={{
-      //   marginTop: '100px',
-      // }}
-      sx={{
-        '& .MuiChartsAxis-root': {
-          // width: '100%',
-          // height: '100%',
-          stroke: customTheme === 'dark' ? '#fff' : '#000',
-          '& .MuiChartsAxis-tick': {
+    <div className={`page ${customTheme}`}>
+      <LChart
+        series={data.series}
+        xAxis={data.xAxis}
+        sx={{
+          width: '100%',
+          height: '100%',
+          '& .MuiChartsAxis-root': {
             stroke: customTheme === 'dark' ? '#fff' : '#000',
+            '& .MuiChartsAxis-tick': {
+              stroke: customTheme === 'dark' ? '#fff' : '#000',
+            },
+            '& .MuiChartsAxis-tickLabel': {
+              fill: customTheme === 'dark' ? '#fff' : '#000',
+            },
+            '& .MuiChartsAxis-line': {
+              stroke: customTheme === 'dark' ? '#fff' : '#000',
+            },
+            'svg': {
+              fill: customTheme === 'dark' ? 'red' : '#000',
+            }
           },
-          '& .MuiChartsAxis-tickLabel': {
-            fill: customTheme === 'dark' ? '#fff' : '#000',
-          },
-          '& .MuiChartsAxis-line': {
-            stroke: customTheme === 'dark' ? '#fff' : '#000',
-          },
-        },
-      }}
-    />
+        }}
+      />
+    </div>
   );
 };
