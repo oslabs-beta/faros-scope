@@ -18,7 +18,7 @@ export const NotificationDisplay = () => {
   }
 
   return (
-    <div className={`outerNotifContainer ${theme}`}>
+    <div className={`outerNotifContainer`}>
       <div className="notificationContainer">
         <h2 className="notificationTitle">Notifications</h2>
         {filteredLogHistory}
