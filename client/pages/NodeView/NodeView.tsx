@@ -68,7 +68,7 @@ export const NodeView = () => {
         <Box
           mt="20px"
           display="grid"
-          gridTemplateColumns="repeat(auto, 1fr)"
+          gridTemplateColumns="repeat(16, 1fr)"
           gridAutoRows="minmax(auto, auto)"
           gap="20px"
           sx={{

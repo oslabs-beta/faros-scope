@@ -4,8 +4,8 @@ interface Props {
   logs: object;
 }
 interface Notif {
-  name: string,
-  logText: string
+  name: string;
+  logText: string;
 }
 
 /**
@@ -15,15 +15,13 @@ interface Notif {
  *
  */
 
-export const formatNotifications = (logs : Props): JSX.Element[] => {
+export const formatNotifications = (logs: Props): JSX.Element[] => {
   const result: Notif[] = [];
-  console.log('here be them logs: ', logs)
 
   for (const obj in logs) {
-    console.log('here is da obj', obj)
     const newLog: Notif = {
       name: logs[obj].metadata.name,
-      logText: logs[obj].eventType
+      logText: logs[obj].eventType,
     };
 
     result.push(newLog);

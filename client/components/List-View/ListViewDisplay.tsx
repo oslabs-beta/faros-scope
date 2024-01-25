@@ -12,11 +12,9 @@ export const ListViewDisplay = () => {
   }
 
   return (
-    <div className="list-view-outer">
-      <div className="list-view">
-        <ListView metricsObject={metricsState.pod} />
-        <ListView metricsObject={metricsState.container} />
-      </div>
+    <div className="list-view">
+      <ListView metricsObject={metricsState.pod} />
+      <ListView metricsObject={metricsState.container} />
     </div>
   );
 };
