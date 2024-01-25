@@ -16,8 +16,8 @@ export const ThemeContainer = ({
 }) => {
   const { theme } = useCustomTheme();
   return (
-    <div id={IDOverride || ''} className={`outerContainer ${theme}`}>
-      <div id={IDOverride || ''} className={`innerContainer ${theme}`}>
+    <div id={IDOverride || undefined} className={`outerContainer ${theme}`}>
+      <div id={IDOverride || undefined} className={`innerContainer ${theme}`}>
         {children}
       </div>
     </div>

@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
+import { useCustomTheme } from '../../hooks/useCustomTheme';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -26,6 +27,7 @@ import {
 
 export const NodeView = () => {
   const theme = useTheme();
+  const { theme: customTheme } = useCustomTheme();
   const colors = tokens(theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
@@ -57,7 +59,7 @@ export const NodeView = () => {
 
   return (
     <div
-      className="node-view-container"
+      className={`node-view-container ${customTheme}`}
       style={{ width: '100%', height: '100%' }}
     >
       <Box m="1.5rem 2.5rem">

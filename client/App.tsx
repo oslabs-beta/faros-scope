@@ -20,8 +20,13 @@ const App = () => {
   //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
   useEffect(() => {
     if (body) {
-      body.classList.toggle('dark', customTheme === 'dark');
-      body.classList.toggle('light', customTheme === 'light');
+      if (customTheme === 'dark') {
+        body.classList.add('dark');
+        body.classList.remove('light');
+      } else if (customTheme === 'light') {
+        body.classList.add('light');
+        body.classList.remove('dark');
+      }
     }
   }, [customTheme]);
 
@@ -34,11 +39,11 @@ const App = () => {
               <Route path="/" element={<MainPage />}>
                 <Route index element={<HomePage />} />
                 <Route path="list-view" element={<ListViewDisplay />} />
-                <Route path="/node-view" element={<NodeView />} />
+                <Route path="node-view" element={<NodeView />} />
                 <Route path="settings" element={<SettingsPage />} />
                 <Route path="graph-view" element={<GraphPage />} />
               </Route>
-              <Route path="/landing" element={<LandingPage />} />
+              <Route path="landing" element={<LandingPage />} />
             </Routes>
           </ThemeProvider>
         </ColorModeContext.Provider>

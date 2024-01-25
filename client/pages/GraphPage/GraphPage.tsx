@@ -5,7 +5,7 @@ import { useCustomTheme } from '../../hooks/useCustomTheme';
 import { useTheme } from '@mui/material';
 interface ChartData {
   series: [{ data: number[]; label: string }];
-  xAxis: [{ data: string[]; scaleType: string }];
+  xAxis: [{ data: string[]; scaleType?: string }];
 }
 
 interface ResultData {
@@ -13,13 +13,22 @@ interface ResultData {
   values: [];
 }
 
+// Create a new Date object representing the current time
+let currentDate = new Date();
+
+// Calculate the time for 1 hour ago
+let oneHourAgo = new Date(currentDate.getTime() - 60 * 60 * 1000);
+
+// Get the epoch time (in seconds) for 1 hour ago
+let epochTimeOneHourAgo = Math.floor(oneHourAgo.getTime() / 1000);
+
 // Get the current time in seconds (Unix timestamp)
 const now = Math.floor(Date.now() / 1000);
 
 // Calculate the start time (10 minutes ago)
-const tenMinutesAgo = now - 60000 * 2;
+const tenMinutesAgo = now - 60000;
 
-const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=14`;
+const getClusterUsageURL = `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`;
 const getNodeUsageURL = `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`;
 const networkByNodeURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`;
 const allPodNetworkURL = `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`;
@@ -64,7 +73,6 @@ export const GraphPage = () => {
             series: seriesData,
             xAxis: [
               {
-                scaleType: 'utc',
                 data: xData,
               },
             ],
@@ -76,30 +84,18 @@ export const GraphPage = () => {
   if (!data) {
     return <div className={`page ${customTheme}`}>Loading</div>;
   }
-
+  console.log(data.xAxis[0].data);
   return (
     <div className={`page ${customTheme}`}>
       <LineChart
         series={data.series}
-        xAxis={data.xAxis}
-        width={2000}
-        height={1000}
-        style={{
-          marginTop: '100px',
-        }}
-        theme={{
-          ticks: {
-            line: {
-              // stroke: theme.palette.secondary.main
-              stroke: customTheme === 'dark' ? '#fff' : '#000',
-            },
-            text: {
-              // fill: theme.palette.secondary.main,
-              fill: customTheme === 'dark' ? '#fff' : '#000',
-            },
-          },
-        }}
+        xAxis={[{ data: data.xAxis[0].data, scaleType: 'time' }]}
+        // width={2000}
+        // height={1000}
         sx={{
+          // width: '100% !important',
+          // height: '100% !important',
+          marginTop: '100px',
           '& .MuiChartsAxis-root': {
             stroke: customTheme === 'dark' ? '#fff' : '#000',
             '& .MuiChartsAxis-tick': {

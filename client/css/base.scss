@@ -30,7 +30,6 @@
   position: relative;
   height: 100%;
   width: 100%;
-  background-color: #222222;
   color: #ededed;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
@@ -40,14 +39,6 @@
   position: relative;
   height: 100%;
   width: 100%;
-}
-
-.dark {
-  background-color: $background-color-dark;
-}
-
-.light {
-  background-color: $background-color-light;
 }
 
 .textShadowLight {
@@ -123,38 +114,6 @@
   }
 }
 
-@keyframes scale-up-down {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes text-flip-up {
-  0% {
-    transform: rotateX(90deg);
-  }
-
-  100% {
-    transform: rotateX(0deg);
-  }
-}
-
-@keyframes text-flip-down {
-  0% {
-    transform: rotateX(-90deg);
-  }
-
-  100% {
-    transform: rotateX(0deg);
-  }
-}
-
 @keyframes slide-in-left {
   0% {
     transform: translateX(-100%);
@@ -162,40 +121,6 @@
 
   100% {
     transform: translateX(0%);
-  }
-}
-
-@keyframes gelatine {
-  from,
-  to {
-    transform: scale(1, 1);
-  }
-  25% {
-    transform: scale(0.9, 1.1);
-  }
-  50% {
-    transform: scale(1.1, 0.9);
-  }
-  75% {
-    transform: scale(0.95, 1.05);
-  }
-}
-
-@keyframes bounce {
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0) rotate(0);
-  }
-  0% {
-    transform: translateY(-100vh) rotate(0);
-  }
-  40% {
-    transform: translateY(-7vh) rotate(-4deg);
-  }
-  60% {
-    transform: translateY(-2vh) rotate(2deg);
   }
 }
 
