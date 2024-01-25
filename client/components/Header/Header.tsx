@@ -1,5 +1,4 @@
 import { Typography, Box, useTheme } from '@mui/material';
-import { useCustomTheme } from '../../hooks';
 
 interface Props {
   title: string;
@@ -8,13 +7,13 @@ interface Props {
 
 export const Header = ({ title, subtitle }: Props) => {
   const theme = useTheme();
-  const { theme: customTheme } = useCustomTheme();
+  const muiTheme = useTheme();
   return (
     <Box>
       <Typography
         variant="h2"
         color={
-          customTheme === 'dark'
+          muiTheme.palette.mode === 'dark'
             ? theme.palette.neutral.light
             : theme.palette.neutral.dark
         }

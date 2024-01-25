@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Node.module.scss';
 import '../../css/NodeModal.scss';
 import '../../css/node.scss';
 import { NodeModal } from '../NodeModal';
 import { createPortal } from 'react-dom';
-import { useCustomTheme } from '../../hooks';
+import { useTheme } from '@mui/material';
 import podIcon from '../../assets/icons8-box-64.png';
 import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
 
@@ -32,12 +32,15 @@ export const Node = ({ node, dimensions }: NodeInterface) => {
   };
 
   const nodeStyle = { width: '8em', height: '8em', ...dimensions };
-  const { theme } = useCustomTheme();
+  const muiTheme = useTheme();
+  // console.log(node);
   //* Add onclick that adds a class to the node that makes send out a pulse engulfing the app
   return (
     <div className="nodeContainer">
-      <span className={`tooltip-text ${theme}`}>{node.nodeName}</span>
-      <div style={dimensions} className={`borderNode ${theme}`}>
+      <span className={`tooltip-text ${muiTheme.palette.mode}`}>
+        {node.nodeName}
+      </span>
+      <div style={dimensions} className={`borderNode ${muiTheme.palette.mode}`}>
         <div className="Node" style={nodeStyle}>
           <img
             onClick={openModal}
