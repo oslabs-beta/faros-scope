@@ -6,6 +6,7 @@ import './ListViewPage.scss';
 import { FlexBetween, Header } from '../../components';
 import { Box, useTheme } from '@mui/material';
 import { flexbox } from '@mui/system';
+import { NameSpaceTable } from '../../components/NameSpaceTable';
 
 export const ListViewPage = () => {
   const muiTheme = useTheme();
@@ -23,6 +24,7 @@ export const ListViewPage = () => {
       </FlexBetween>
       <ListViewTable metricsObject={metricsState.pod} />
       <ListViewTable metricsObject={metricsState.container} />
+      <NameSpaceTable />
     </Box>
     // </div>
   );
