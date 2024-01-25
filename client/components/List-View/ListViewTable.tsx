@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Button, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { ListViewHeader } from '../ListViewHeader';
 import Paper from '@mui/material/Paper';
 
@@ -85,7 +85,6 @@ export const ListViewTable = ({ metricsObject }: ListViewProps) => {
         borderRadius: '.55em',
         // p: 10,
         // BELOW IS WHERE WE CAN PROVIDE BACKGROUND TO BOX
-        // bgcolor: 'red',
       }}
     >
       <ListViewHeader title={metricsData[0].type} />

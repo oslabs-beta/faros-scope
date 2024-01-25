@@ -9,7 +9,7 @@ export const NotificationDisplay = () => {
     (state: RootState): RootState['clusterEvents']['entities'] =>
       state.clusterEvents.entities,
   );
-  const muiTheme = useTheme();
+  const theme = useTheme();
 
   let filteredLogHistory;
 

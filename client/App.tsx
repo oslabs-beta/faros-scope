@@ -21,7 +21,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />}>
             <Route index element={<HomePage />} />
-            <Route path="/list-view" element={<ListViewDisplay />} />
+            <Route path="list-view" element={<ListViewPage />} />
             <Route path="/node-view" element={<NodeView />} />
             <Route path="/workload-view" element={<WorkloadView />} />
             {/* <Route path="settings" element={<SettingsPage />} /> */}
