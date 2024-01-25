@@ -120,11 +120,11 @@
   flex-direction: column;
   justify-content: center;
   height: fit-content;
-  width: 19rem;
+  width: 18rem;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   div {
     height: fit-content;
     overflow-x: auto;
@@ -143,7 +143,6 @@
 
 .nodeNameContainer {
   @include flex-horizontal;
-  margin: 0;
   padding: 0;
   width: 100%;
 }

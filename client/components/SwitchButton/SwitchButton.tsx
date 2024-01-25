@@ -1,10 +1,9 @@
+import { useTheme } from '@mui/material';
 import styles from './SwitchButton.module.scss';
-import { useCustomTheme } from '../../hooks/useCustomTheme';
 import classNames from 'classnames';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 interface SwitchButtonProps {
-  checked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -15,7 +14,7 @@ interface SwitchButtonProps {
  * @returns ReactNode
  */
 export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
-  const { theme } = useCustomTheme();
+  const muiTheme = useTheme();
   return (
     <div className={styles.switchContainer}>
       <div className={styles.switchButton}>
@@ -28,7 +27,7 @@ export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
               styles.brightnessMode,
             )}
             value="light"
-            checked={theme === 'light'}
+            checked={muiTheme.palette.mode === 'light'}
             onChange={onChange}
           />
           <FaSun className={styles.sunIcon} />
@@ -43,7 +42,7 @@ export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
               styles.brightnessMode,
             )}
             value="dark"
-            checked={theme === 'dark'}
+            checked={muiTheme.palette.mode === 'dark'}
             onChange={onChange}
           />
           <FaMoon className={styles.moonIcon} />

@@ -1,28 +1,22 @@
 @import 'Variables.scss';
 @import 'Base.scss';
 
-
-.outerNotifContainer{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 2ch;
-    left: 18ch;
-    z-index: 32;
-    background-color: $base-blue;
-    // background-image: linear-gradient(
-    // #1a1a1a,
-    // rgba(255, 255, 255, 0.165) 0em,
-    // transparent 8em);
-    border: 1px solid $diamond-blue;
-    border-radius: 8px;
-    box-shadow: $pronounced-shadow;
-    transition: all 0.5s ease-in-out;
-    &:hover{
-        box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
-        scale: 1.05;
-    }
-
+.outerNotifContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2ch;
+  left: 18ch;
+  z-index: 32;
+  background-color: $base-blue;
+  border: 1px solid $diamond-blue;
+  border-radius: 8px;
+  box-shadow: $pronounced-shadow;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
+    scale: 1.05;
+  }
 }
 
 .notificationContainer {

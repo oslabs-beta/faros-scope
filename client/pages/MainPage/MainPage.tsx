@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/index';
 import { DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
@@ -9,11 +9,13 @@ import {
   useGetClusterMetricsMapQuery,
 } from '../../services/api';
 import { useSocket } from '../../services/bobbySocketService';
-// import { NotificationDisplay } from '../../components';
+import { NotificationDisplay } from '../../components';
+import { useTheme } from '@mui/material';
 
 export const MainPage = () => {
-  useSocket('http://104.154.129.231:8000/');
+  const muiTheme = useTheme();
 
+  useSocket('http://104.154.129.231:8000/');
   // ^ see if this works w/o variable declarations
   useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
   useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
@@ -69,6 +71,20 @@ export const MainPage = () => {
     setParent(over ? over.id : parent);
     setStoredPosition(over ? over.id : parent);
   }
+
+  const body = document.querySelector('body');
+  //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
+  useEffect(() => {
+    if (body) {
+      if (muiTheme.palette.mode === 'dark') {
+        body.classList.add('dark');
+        body.classList.remove('light');
+      } else if (muiTheme.palette.mode === 'light') {
+        body.classList.add('light');
+        body.classList.remove('dark');
+      }
+    }
+  }, [muiTheme.palette.mode]);
 
   return (
     <div className="Main">

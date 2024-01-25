@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-// import centerImage from '../../assets/center.png';
 import homeImage from '../../assets/icons8-home-512.png';
 import settingsImage from '../../assets/icons8-settings-512.png';
 import listImage from '../../assets/list.png';
 import '../../css/Navbar.scss';
-import { useCustomTheme } from '../../hooks';
 import { SwitchButton } from '../SwitchButton/index';
-// import styles from './NavBar.module.scss';
+import { useContext } from 'react';
+import { ColorModeContext } from '../../theme';
+import { useTheme } from '@mui/material';
 
 interface NavBarProps {
   styleOverride?: any;
@@ -18,10 +18,13 @@ interface NavBarProps {
  * @returns ReactNode
  */
 export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
-  const { toggleTheme, theme } = useCustomTheme();
+  const colorMode = useContext(ColorModeContext);
+  const muiTheme = useTheme();
   // const { scrollToSignificantChild } = useGrid();
+
   const changeTheme = () => {
-    toggleTheme();
+    colorMode.toggleColorMode();
+    // toggleTheme();
   };
 
   // const centerGrid = () => {
@@ -33,7 +36,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
       style={styleOverride}
       className={`navContainer ${
         orientation === 'vertical' ? 'vertical' : 'horizontal'
-      } ${theme}`}
+      } ${muiTheme.palette.mode}`}
     >
       <nav
         className={`NavBar ${
@@ -100,7 +103,7 @@ export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
             )}
           </button> */}
         </div>
-        <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+        <SwitchButton onChange={changeTheme} />
       </nav>
     </div>
   );

@@ -1,8 +1,6 @@
 import { useRef } from 'react';
-// import '../../css/NodeModal.scss';
-import { useCustomTheme } from '../../hooks';
+import { useTheme } from '@mui/material';
 import { exitAnimations } from '../../util';
-// import { PodContainer, ThemeContainer } from '../index';
 import { PodContainer } from '../PodContainer';
 import { ThemeContainer } from '../ThemeContainer';
 import { ColoredText } from '../reusable/text/ColoredText';
@@ -22,7 +20,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalOverlay = useRef(null);
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
-  const { theme } = useCustomTheme();
+  const muiTheme = useTheme();
   //* pods to format
   const nodePods = Node?.pods;
   console.log(Node);
@@ -60,7 +58,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
       <div className="nodeModalContainer">
         <div
           ref={nodeModalPodsViewRef}
-          className={`nodeModalPodsViewOuter ${theme}`}
+          className={`nodeModalPodsViewOuter ${muiTheme.palette.mode}`}
         >
           <span className="close">
             <button className="closeButton" onClick={closeModal}>
@@ -72,7 +70,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
             <ColoredText color="White">Node: </ColoredText>{' '}
             <ColoredText color="Orange">{Node.nodeName} </ColoredText>
           </span>
-          <div className={`nodeModalPodsViewInner ${theme}`}>
+          <div className={`nodeModalPodsViewInner ${muiTheme.palette.mode}`}>
             <ThemeContainer IDOverride="nodeModalThemedContainer">
               <PodContainer podsViewRef={podsViewRef} nodePods={nodePods} />
             </ThemeContainer>

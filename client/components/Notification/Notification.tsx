@@ -1,16 +1,17 @@
 import '../../css/NotifDisplay.scss';
-import { useCustomTheme } from '../../hooks/useCustomTheme';
+import { useTheme } from '@mui/material';
 
 interface Props {
     data: any;
 }
 
 export const Notification = ( { data }: Props) => {
-  const { theme } = useCustomTheme();
+  const muiTheme = useTheme();
   return (
-    <div className={`notificationMessage ${theme}`}>
-    <div>{data.name}</div>
-    <div className="logText">{data.logText}</div>
-    </div>)
+    <div className={`notificationMessage ${muiTheme.palette.mode}`}>
+      <div>{data.name}</div>
+      <div className="logText">{data.logText}</div>
+    </div>
+  );
   
 }

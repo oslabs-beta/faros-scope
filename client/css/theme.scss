@@ -1,0 +1,18 @@
+@import 'variables';
+@import 'base';
+
+.dark {
+  background-color: $background-color-dark;
+}
+
+.light {
+  background-color: $background-color-light;
+}
+
+.Main {
+  @include flex-vertical;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+}

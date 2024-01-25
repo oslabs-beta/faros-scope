@@ -38,7 +38,7 @@
   appearance: none;
   width: 100%;
   height: 100%;
-  border-radius: 50px;
+  border-radius: 50%;
   cursor: pointer;
   transition: 0.4s;
   &:checked + .sunIcon, &:checked + .moonIcon {
@@ -64,6 +64,7 @@
 }
 
 .modeLabel {
+  @include flex-vertical;
   position: relative;
   margin: 0 0.5em;
 }
