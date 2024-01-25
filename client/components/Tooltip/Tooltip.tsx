@@ -27,4 +27,3 @@ export const Tooltip = ({ children, text }: TooltipProps) => {
     </div>
   );
 };
-console.log('Past Tooltip.tsx')

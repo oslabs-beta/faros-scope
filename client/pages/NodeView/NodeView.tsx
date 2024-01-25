@@ -9,10 +9,6 @@ import {
 import { GridColDef } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
 import { useCustomTheme } from '../../hooks/useCustomTheme';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 import { useGetNodeViewQuery } from '../../services/api';
@@ -29,6 +25,8 @@ export const NodeView = () => {
   const theme = useTheme();
   const { theme: customTheme } = useCustomTheme();
   const colors = tokens(theme.palette.mode);
+
+  console.log('MODE', theme.palette.mode);
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
@@ -109,10 +107,8 @@ export const NodeView = () => {
             borderRadius="0.55rem"
           >
             <CollapsiblePanel title="CPU and Memory">
-              <LineChart />
-              <LineChart />
-              <LineChart />
-              <LineChart />
+              <LineChart title={'CPU Usage'} URL={'clusterUsage'} />
+              <LineChart title={'Memory Usage'} URL={'clusterUsage'} />
             </CollapsiblePanel>
           </Box>
 
@@ -128,12 +124,12 @@ export const NodeView = () => {
                 loading={isLoading || !data}
                 rows={containersFormattedData}
                 columns={columns}
-              ></DataGrid>
+              />
               <DataGrid
                 loading={isLoading || !data}
                 rows={podsFormattedData}
                 columns={columns}
-              ></DataGrid>
+              />
             </CollapsiblePanel>
           </Box>
 

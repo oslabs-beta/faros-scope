@@ -12,12 +12,10 @@ export const NotificationDisplay = () => {
       state.clusterEvents.entities,
   );
   const theme = useCustomTheme();
-  // const currentState = useSelector((state: RootState) => state.clusterEvents);
 
   let filteredLogHistory;
 
   if (logHistory) {
-    console.log(logHistory);
     filteredLogHistory = formatNotifications(logHistory);
   }
 

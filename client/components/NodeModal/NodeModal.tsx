@@ -23,10 +23,7 @@ export const NodeModal = ({ Node, setModalOpen }: NodeModalInterface) => {
   const nodeModalPodsViewRef = useRef(null);
   const podsViewRef = useRef(null);
   const { theme } = useCustomTheme();
-  //* pods to format
   const nodePods = Node?.pods;
-  console.log(Node);
-  //* Close modal when clicked outside of modal or x button is clicked
   const closeModal = (
     e:
       | React.MouseEvent<HTMLButtonElement, MouseEvent>

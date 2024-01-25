@@ -18,7 +18,6 @@ export const GridProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   function scrollToSignificantChild() {
-    console.log(significantChild);
     if (!significantChild) return;
     significantChild.scrollIntoView({
       behavior: 'smooth', // Change 'smooth' to 'auto'
