@@ -45,14 +45,15 @@ export const GraphPage = () => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+
           const xDatas = data.data.result.map((result) =>
             result.values.map((point) => point[0]),
           );
-          console.log(xDatas);
+
           const yDatas = data.data.result.map((result) =>
             result.values.map((point) => Number(point[1])),
           );
+            
           const labels = data.data.result.map(
             (result) => Object.values(result.metric)[0],
           );
@@ -61,7 +62,6 @@ export const GraphPage = () => {
             label: labels[i],
             showMark: false,
           }));
-          console.log(seriesData);
           const xData = data.data.result[0].values.map((point) => point[0]);
           const yData = data.data.result[0].values.map((point) =>
             Number(point[1]),
@@ -81,17 +81,13 @@ export const GraphPage = () => {
   if (!data) {
     return <div className={`page ${muiTheme.palette.mode}`}>Loading</div>;
   }
-  console.log(data.xAxis[0].data);
+
   return (
     <div className={`page ${muiTheme.palette.mode}`}>
       <LineChart
         series={data.series}
         xAxis={[{ data: data.xAxis[0].data, scaleType: 'time' }]}
-        // width={2000}
-        // height={1000}
         sx={{
-          // width: '100% !important',
-          // height: '100% !important',
           marginTop: '100px',
           '& .MuiChartsAxis-root': {
             stroke: muiTheme.palette.mode === 'dark' ? '#fff' : '#000',

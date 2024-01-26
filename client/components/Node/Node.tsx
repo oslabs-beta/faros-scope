@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react';
-import './Node.module.scss';
+import { useTheme } from '@mui/material';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import podIcon from '../../assets/icons8-box-64.png';
 import '../../css/NodeModal.scss';
 import '../../css/node.scss';
 import { NodeModal } from '../NodeModal';
-import { createPortal } from 'react-dom';
-import { useTheme } from '@mui/material';
-import podIcon from '../../assets/icons8-box-64.png';
 import { CopyToClipboard } from '../reusable/copy-to-clipboard/copy-to-clipboard';
+import './Node.module.scss';
 
 interface NodeInterface {
   node: any;

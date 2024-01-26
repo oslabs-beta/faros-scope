@@ -4,27 +4,25 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
 import { useTheme } from '@mui/material';
 
-// import { Notification } from '../Notification/Notification';
-
 export const NotificationDisplay = () => {
   const logHistory = useSelector(
     (state: RootState): RootState['clusterEvents']['entities'] =>
       state.clusterEvents.entities,
   );
   const muiTheme = useTheme();
-  // const currentState = useSelector((state: RootState) => state.clusterEvents);
 
   let filteredLogHistory;
 
   if (logHistory) {
-    console.log(logHistory);
     filteredLogHistory = formatNotifications(logHistory);
   }
 
   return (
-    <div className={`notificationContainer ${muiTheme.palette.mode}`}>
-      <h2 className="notificationTitle">Notifications</h2>
-      {filteredLogHistory}
+    <div className={`outerNotifContainer ${muiTheme.palette.mode}`}>
+      <div className={`notificationContainer ${muiTheme.palette.mode}`}>
+        <h2 className="notificationTitle">Notifications</h2>
+        {filteredLogHistory}
+      </div>
     </div>
   );
 };

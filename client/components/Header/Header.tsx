@@ -7,22 +7,17 @@ interface Props {
 
 export const Header = ({ title, subtitle }: Props) => {
   const theme = useTheme();
-  const muiTheme = useTheme();
   return (
     <Box>
       <Typography
         variant="h2"
-        color={
-          muiTheme.palette.mode === 'dark'
-            ? theme.palette.neutral.light
-            : theme.palette.neutral.dark
-        }
+        color={theme.palette.primary.main}
         fontWeight="bold"
         xs={{ mb: '5px' }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" color={theme.palette.secondary[300]}>
+      <Typography variant="h5" color={theme.palette.primary.main}>
         {subtitle}
       </Typography>
     </Box>

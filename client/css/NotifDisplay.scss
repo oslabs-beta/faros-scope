@@ -5,16 +5,22 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 2ch;
-  left: 18ch;
+  top: 1rem;
+  left: 1rem;
   z-index: 32;
-  background-color: $base-blue;
-  border: 1px solid $diamond-blue;
   border-radius: 8px;
-  box-shadow: $pronounced-shadow;
   transition: all 0.5s ease-in-out;
+  &.light {
+    background-color: $base-blue;
+    box-shadow: $pronounced-shadow;
+  }
+  &.dark {
+    background-color: $base-blue;
+    border: 1.5px solid rgba($dark-border, 0.8);
+  }
   &:hover {
     box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
+    border: 1.5px solid rgba($light-border, 0.8);
     scale: 1.05;
   }
 }
@@ -23,7 +29,6 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  position: absolute;
   padding: 1em;
   top: 2ch;
   left: 6ch;
@@ -36,15 +41,7 @@
   z-index: 30;
   overflow: scroll;
   transition: all 0.5s ease-in-out;
-  &.dark {
-    background-color: $base-blue;
-    border: 1.5px solid rgba($dark-border, 0.8);
-  }
-  &.light {
-    background-color: $base-blue;
-    border: 1.5px solid rgba($light-border, 1);
-    box-shadow: $pronounced-shadow;
-  }
+  background-color: transparent !important;
 }
 
 .notificationMessage {

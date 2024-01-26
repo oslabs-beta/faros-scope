@@ -24,7 +24,6 @@ export const PodContainer = ({ nodePods, podsViewRef }: Props) => {
 
   const disableOverlay = () => {
     setShowOverlay(false);
-    console.log('disableOverlay');
   };
 
   return (

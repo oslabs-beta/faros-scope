@@ -8,6 +8,7 @@ interface Props {
 
 export const StatBox = ({ title, value="-" }: Props) => {
     const theme = useTheme();
+    console.log('The theme', theme); 
     return (
         <Box
             gridColumn="span 1"
@@ -21,11 +22,11 @@ export const StatBox = ({ title, value="-" }: Props) => {
             borderRadius="0.55rem"
         >
             <FlexBetween>
-                <Typography variant="h6" sx={{color: theme.palette.secondary[100]}}>
+                <Typography variant="h6" sx={{color: theme.palette.typography.main}}>
                     {title}
                 </Typography>
             </FlexBetween>
-            <Typography variant="h6" fontWeight="600" sx={{ color: theme.palette.secondary[100] }}>
+            <Typography variant="h6" fontWeight="600" sx={{ color: theme.palette.typography.main }}>
                 {value}
             </Typography>
         </Box>

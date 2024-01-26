@@ -1,5 +1,6 @@
 import { Graph, ThemeContainer } from '../../components';
 import './Home.module.scss';
+import { NotificationDisplay } from '../../components';
 
 /**
  * The home page of the application, which contains the graph, main component of the app, landing page.
@@ -7,6 +8,7 @@ import './Home.module.scss';
 export const HomePage = () => {
   return (
     <ThemeContainer>
+      <NotificationDisplay />
       <Graph />
     </ThemeContainer>
   );

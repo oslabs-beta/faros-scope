@@ -99,7 +99,6 @@ export const MainPage = () => {
   return (
     <div className="Main">
       <GridProvider>
-        <NotificationDisplay />
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCenter}
