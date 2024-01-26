@@ -163,7 +163,7 @@ export const themeSettings = (mode: ThemeMode) => {
             },
             background: {
               default: '#fcfcfc',
-              alt: colors.grey[100],
+              secondary: colors.grey[100],
             },
             typography: {
               main: colors.primary[900],

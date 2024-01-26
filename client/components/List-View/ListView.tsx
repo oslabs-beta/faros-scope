@@ -15,15 +15,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
-//type MetricsItem = {
-//   name: string;
-//   cpuUsage: number;
-//   cpuUsagePct: number;
-//   memUsage: number;
-//   memUsagePct: number;
-//   type: string;
-// };
-
 interface Column {
   id: 'name' | 'CPU Usage (%)' | 'CPU Usage' | 'Mem Usage' | 'Mem Usage (%)';
   label: string;
@@ -62,7 +53,6 @@ const columns: readonly Column[] = [
     format: (value: number) => value.toLocaleString('en-US'),
   },
 ];
-
 interface TablePaginationActionsProps {
   count: number;
   page: number;

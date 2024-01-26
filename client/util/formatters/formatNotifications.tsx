@@ -18,8 +18,8 @@ interface Notif {
 export const formatNotifications = (logs : Props): JSX.Element[] => {
   const result: Notif[] = [];
 
-  for (const obj in logs) {
-    const newLog: Notif = {
+    for (const obj in logs) {
+      const newLog: Notif = {
       name: logs[obj].metadata.name,
       logText: logs[obj].eventType
     };

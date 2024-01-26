@@ -9,11 +9,11 @@ import {
   useGetClusterMetricsMapQuery,
 } from '../../services/api';
 import { useSocket } from '../../services/bobbySocketService';
-import { NotificationDisplay } from '../../components';
+// import { NotificationDisplay } from '../../components';
 import { useTheme } from '@mui/material';
 
 export const MainPage = () => {
-  const muiTheme = useTheme();
+  const theme = useTheme();
 
   useSocket('http://104.154.129.231:8000/');
   // ^ see if this works w/o variable declarations
@@ -76,15 +76,15 @@ export const MainPage = () => {
   //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
   useEffect(() => {
     if (body) {
-      if (muiTheme.palette.mode === 'dark') {
+      if (theme.palette.mode === 'dark') {
         body.classList.add('dark');
         body.classList.remove('light');
-      } else if (muiTheme.palette.mode === 'light') {
+      } else if (theme.palette.mode === 'light') {
         body.classList.add('light');
         body.classList.remove('dark');
       }
     }
-  }, [muiTheme.palette.mode]);
+  }, [theme.palette.mode]);
 
   return (
     <div className="Main">
@@ -99,9 +99,7 @@ export const MainPage = () => {
           </DragOverlay>
           <DropPositions parent={parent} />
         </DndContext>
-        {/* <ChakraProvider> */}
         <Outlet />
-        {/* </ChakraProvider> */}
       </GridProvider>
     </div>
   );

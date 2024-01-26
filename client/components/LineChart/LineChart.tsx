@@ -1,10 +1,10 @@
 import { useTheme, Typography } from '@mui/material';
 import { LineChart as LChart } from '@mui/x-charts';
-import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
-import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
+// import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
+// import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
-import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
+// import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
 import { useEffect, useState } from 'react';
 import './linechart.scss';
 interface ChartData {
@@ -28,7 +28,12 @@ const URLObject = {
   receivedBandwidth: `http://104.198.235.133/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
 };
 
-export const LineChart = ({ title, URL }) => {
+interface Props {
+    title: string;
+    URL: string;
+}
+
+const LineChart = ({ title, URL }: Props) => {
   const theme = useTheme();
   const [data, setData] = useState<ChartData | null>(null);
 
@@ -39,7 +44,6 @@ export const LineChart = ({ title, URL }) => {
           return res.json();
         })
         .then(({ data }) => {
-          console.log(data);
           const xDatas = data.result.map((result: any[]) =>
             result.values.map((point) => point[0]),
           );
@@ -140,3 +144,6 @@ export const LineChart = ({ title, URL }) => {
     </div>
   );
 };
+
+// Exporting as default for React lazy loading; React.lazy() only supports default exports
+export default LineChart;
