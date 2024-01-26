@@ -130,7 +130,7 @@ export const themeSettings = (mode: ThemeMode) => {
       mode: mode,
       ...(mode === 'dark'
         ? {
-              primary: {
+            primary: {
               main: colors.primary[100],
             },
             secondary: {
@@ -144,10 +144,10 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: colors.primary[500],
               alt: colors.grey[100],
-              },
-              typography:{
-                main: colors.primary[900]
-            }
+            },
+            typography: {
+              main: colors.primary[900],
+            },
           }
         : {
             primary: {
@@ -164,14 +164,14 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: '#fcfcfc',
               alt: colors.grey[100],
-              },
-            typography:{
-                main: colors.primary[900]
-            }
+            },
+            typography: {
+              main: colors.primary[900],
+            },
           }),
     },
     typography: {
-      fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+      fontFamily: ['Source Sans 3', 'Baumans', 'sans-serif'].join(','),
       fontSize: 12,
       h1: {
         fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
@@ -196,7 +196,7 @@ export const themeSettings = (mode: ThemeMode) => {
       h6: {
         fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
         fontSize: 14,
-        },
+      },
     },
   };
 };

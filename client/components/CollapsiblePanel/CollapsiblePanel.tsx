@@ -17,14 +17,33 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={title.replace(/\s+/g, '') + '-content'}
-          id={title.replace(/\s+/g, '') + '-header'}
+                  id={title.replace(/\s+/g, '') + '-header'}
+                  sx={{
+                      fontSize: "1.25rem",
+                      margin: "20px 20px 20px 0px",
+                      '& .MuiAccordionSummary-content': {
+                          margin: "20px 0 0 20px"
+                      },
+                      '& .css-o4b71y-MuiAccordionSummary-content.Mui-expanded': {
+                        margin: "20px 0 0px 20px"
+                      },
+                      '& .MuiAccordionSummary.Mui-expanded': {
+                        margin: "20px 0 0px 20px"
+                      }
+                  }}
+                //   sx={{
+                //     width: '100%',
+                //     height: '100%',
+                //     '& .MuiChartsAxis-root': {
+                //       stroke: 'black',
         >
           {title}
         </AccordionSummary>
         <AccordionDetails
           sx={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+                      gridTemplateColumns: '3fr 1fr',
+            gridTemplateRows: 'auto 1fr',
             gap: '1rem',
           }} // TODO: Verify this is correct
         >

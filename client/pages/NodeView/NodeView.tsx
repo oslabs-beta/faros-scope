@@ -118,17 +118,39 @@ export const NodeView = () => {
             p="1rem"
             borderRadius="0.55rem"
           >
-            <CollapsiblePanel title="Pod and Container Count">
+                      <CollapsiblePanel title="Pod and Container Count">
+                          <div style={{
+                              display: "flex",
+                              flexDirection: "column"
+                          }}>
+                              <p
+                                  style={{
+                                      paddingLeft: "1rem",
+                                      fontSize: "1rem"
+                              }}
+                              >Pod Count</p>
               <DataGrid
                 loading={isLoading || !data}
                 rows={containersFormattedData}
                 columns={columns}
-              />
+                              />
+                          </div>
+                          <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column"
+                        }}
+                          >
+                              <p style={{
+                              paddingLeft: "1rem",
+                              fontSize: "1rem"
+                          }}>Container Count</p>
               <DataGrid
                 loading={isLoading || !data}
                 rows={podsFormattedData}
                 columns={columns}
-              />
+                              />
+                              </div>
             </CollapsiblePanel>
           </Box>
 
@@ -159,14 +181,14 @@ export const NodeView = () => {
             borderRadius="0.55rem"
           >
             <CollapsiblePanel title="Rate of Packets">
-              {/* <LineChart
+              <LineChart
                 title={'Received packet count per node - Top 50'}
                 URL={'packetsReceived'}
-              /> */}
-              {/* <LineChart
+              /> 
+             <LineChart
                 title={'Transmitted packet count per node - Top 50'}
                 URL={'packetsTransmitted'}
-              /> */}
+              />
             </CollapsiblePanel>
           </Box>
         </Box>
