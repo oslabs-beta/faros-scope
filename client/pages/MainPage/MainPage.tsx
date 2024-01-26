@@ -95,9 +95,9 @@ export const MainPage = () => {
           collisionDetection={closestCenter}
         >
           <DragOverlay>
-            {/* <NavBar orientation={orientation} /> */}
+            <NavBar orientation={orientation} />
           </DragOverlay>
-          {/* <DropPositions parent={parent} /> */}
+          <DropPositions parent={parent} />
         </DndContext>
         {/* <ChakraProvider> */}
         <Outlet />

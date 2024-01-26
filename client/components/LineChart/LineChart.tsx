@@ -82,7 +82,7 @@ export const LineChart = ({ title, URL }) => {
       <div>
           <Typography sx={{
               color: "white",
-              fontSize: "1.15rem"
+              fontSize: "1.05rem"
           }}>
               {title}
           </Typography>

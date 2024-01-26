@@ -126,7 +126,7 @@ export const NodeView = () => {
                               <p
                                   style={{
                                       paddingLeft: "1rem",
-                                      fontSize: "1rem"
+                                      fontSize: "1.05rem",
                               }}
                               >Pod Count</p>
               <DataGrid
@@ -143,7 +143,7 @@ export const NodeView = () => {
                           >
                               <p style={{
                               paddingLeft: "1rem",
-                              fontSize: "1rem"
+                              fontSize: "1.05rem",
                           }}>Container Count</p>
               <DataGrid
                 loading={isLoading || !data}

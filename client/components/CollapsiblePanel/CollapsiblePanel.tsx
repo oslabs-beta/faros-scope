@@ -19,7 +19,7 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
           aria-controls={title.replace(/\s+/g, '') + '-content'}
                   id={title.replace(/\s+/g, '') + '-header'}
                   sx={{
-                    fontSize: "1.25rem",
+                    fontSize: "1.15rem",
                     '& .MuiAccordionSummary.Mui-expanded': {
                       margin: "20px 0 0px 20px"
                     }
