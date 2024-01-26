@@ -17,15 +17,15 @@ export const ListViewPage = () => {
   }
 
   return (
-    // <div className={`list-view ${muiTheme.palette.mode}`}>
-    <Box display="flex" flexDirection="column" gap="2rem">
-      <FlexBetween>
-        <Header title="List View" subtitle="View Pod and Container" />
-      </FlexBetween>
-      <ListViewTable metricsObject={metricsState.pod} />
-      <ListViewTable metricsObject={metricsState.container} />
-      <NameSpaceTable />
-    </Box>
-    // </div>
+    <div className={`list-view`}>
+      <Box display="flex" flexDirection="column" gap="2rem">
+        <FlexBetween>
+          <Header title="List View" subtitle="View Pod and Container" />
+        </FlexBetween>
+        <ListViewTable metricsObject={metricsState.pod} />
+        <ListViewTable metricsObject={metricsState.container} />
+        {/* <NameSpaceTable /> */}
+      </Box>
+    </div>
   );
 };

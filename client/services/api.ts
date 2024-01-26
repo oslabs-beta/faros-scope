@@ -46,26 +46,6 @@ export const metricsApi = createApi({
         return { data: data };
       },
     }),
-    getMemByContainerPod: builder.query({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
-        const response = await fetch(
-          `http://104.198.235.133/api/v1/query?query= sum by (pod) (container_memory_usage_bytes{pod!=""})`,
-        );
-
-        const data = await response.json();
-        return { data: data };
-      },
-    }),
-    getCpuByContainerPod: builder.query({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
-        const response = await fetch(
-          `http://104.198.235.133/api/v1/query?query= sum by (pod) (rate(container_cpu_usage_seconds_total{pod!=""}[5m]))`,
-        );
-
-        const moreData = await response.json();
-        return { moreData: moreData };
-      },
-    }),
     getClusterMetrics: builder.query({
       query: () => 'clusterMetrics',
     }),
@@ -107,5 +87,5 @@ export const {
   useGetPodStatsQuery,
   useGetClusterMetricsMapQuery,
   useGetMemByContainerPodQuery,
-  useGetCpuByContainerPodQuery
+  useGetCpuByContainerPodQuery,
 } = metricsApi;
