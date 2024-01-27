@@ -123,6 +123,49 @@ type ThemeMode = 'light' | 'dark';
 //       }),
 // });
 
+declare module '@mui/material/styles' {
+  interface Theme {
+    palette: {
+      mode: ThemeMode;
+      primary: {
+        main?: string;
+        alt?: string;
+        altMain?: {
+          100?: string;
+          200?: string;
+          300?: string;
+          400?: string;
+          500?: string;
+          600?: string;
+          700?: string;
+          800?: string;
+          900?: string;
+        };
+      };
+      secondary?: {
+        alt?: string;
+      };
+      neutral?: {
+        dark?: string;
+        main?: string;
+        light?: string;
+      };
+      background?: {
+        default?: string;
+        alt?: string;
+      };
+      typography?: {
+        main?: string;
+      };
+    };
+    status?: {
+      danger?: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  // interface ThemeOptions {}
+}
+
 // mui theme settings
 export const themeSettings = (mode: ThemeMode) => {
   // const colors = tokens(mode);
@@ -133,9 +176,22 @@ export const themeSettings = (mode: ThemeMode) => {
         ? {
             primary: {
               main: '#154084', // $base-blue
+              alt: '#9d2719', // $base-red
+              altMain: {
+                100: '#d0d9e6',
+                200: '#a1b3ce',
+                300: '#738cb5',
+                400: '#44669d',
+                500: '#154084',
+                600: '#11336a',
+                700: '#0d264f',
+                800: '#081a35',
+                900: '#040d1a',
+              },
             },
             secondary: {
               main: '#188fff', // $accent-blue
+              alt: '#e95f4d', // $accent-red
             },
             neutral: {
               dark: '#222222', // $background-color-dark
@@ -152,10 +208,10 @@ export const themeSettings = (mode: ThemeMode) => {
           }
         : {
             primary: {
-              main: '#9d2719', // $base-red
+              main: '#154084', // $base-blue
             },
             secondary: {
-              main: '#ff4d4d', // $accent-red
+              main: '#188fff', // $accent-blue
             },
             neutral: {
               dark: '#222222', // $background-color-dark

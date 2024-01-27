@@ -12,15 +12,11 @@
   &.light {
     background-color: $base-blue;
     box-shadow: $pronounced-shadow;
+    border: 1.5px solid rgba($light-border, 0.8);
   }
   &.dark {
     background-color: $base-blue;
     border: 1.5px solid rgba($dark-border, 0.8);
-  }
-  &:hover {
-    box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
-    border: 1.5px solid rgba($light-border, 0.8);
-    scale: 1.05;
   }
 }
 

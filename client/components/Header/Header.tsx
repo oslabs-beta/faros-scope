@@ -13,7 +13,6 @@ export const Header = ({ title, subtitle }: Props) => {
         variant="h2"
         color={theme.palette.primary.main}
         fontWeight="bold"
-        xs={{ mb: '5px' }}
       >
         {title}
       </Typography>
