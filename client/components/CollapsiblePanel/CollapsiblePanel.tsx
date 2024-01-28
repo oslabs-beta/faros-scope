@@ -13,7 +13,11 @@ interface Props {
 export const CollapsiblePanel = ({ title, children }: Props) => {
   return (
     <Box>
-      <Accordion>
+      <Accordion
+        sx={{
+          boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        }}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={title.replace(/\s+/g, '') + '-content'}
@@ -31,6 +35,7 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
           sx={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
+            gridTemplateRows: 'auto 1fr',
             gap: '1rem',
           }} // TODO: Verify this is correct
         >

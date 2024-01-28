@@ -1,0 +1,15 @@
+@import '../../css/variables.scss';
+
+.outer-graph {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  &.dark {
+    background-color: transparent;
+  }
+  &.light {
+    background-color: transparent;
+    box-shadow: $pronounced-shadow;
+  }
+}

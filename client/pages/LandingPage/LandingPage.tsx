@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ColoredText } from '../../components/reusable/text/ColoredText';
-import './Landing.module.scss'
+import './Landing.scss'
 
 export const LandingPage = () => {
   return (

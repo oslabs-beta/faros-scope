@@ -1,8 +1,7 @@
-// import { useToast } from '@chakra-ui/toast';
 import { useRef, useState } from 'react';
 import { useTheme } from '@mui/material';
 import { useDraggable, useGrid } from '../../hooks';
-import './Draggable.module.scss';
+import './Draggable.scss';
 
 interface Props {
   children: React.ReactNode;
@@ -47,12 +46,14 @@ export const Draggable = ({ children }: Props) => {
     >
       <div ref={draggableContent} className="draggableContent">
         <div ref={draggableInner} className="draggableInner">
-          <div className={`node-graph-title-bar ${muiTheme.palette.mode}`}>
-            <span className={`node-graph-title ${muiTheme.palette.mode}`}>
-              NODES
-            </span>
+          <div className={`outer-graph ${muiTheme.palette.mode}`}>
+            <div className={`node-graph-title-bar ${muiTheme.palette.mode}`}>
+              <span className={`node-graph-title ${muiTheme.palette.mode}`}>
+                NODES
+              </span>
+            </div>
+            {children}
           </div>
-          {children}
         </div>
       </div>
     </div>

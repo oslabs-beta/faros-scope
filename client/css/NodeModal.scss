@@ -1,5 +1,4 @@
-@import 'Variables';
-@import 'Base';
+@import 'variables';
 
 $border-width: 25px;
 $border-height: 25px;
@@ -52,7 +51,7 @@ $border-height: 25px;
     border-top: 45px solid #2d2f30;
   }
   &.light {
-    border-top: 45px solid #cfd8dc;
+    border-top: 45px solid #dddddd;
   }
 }
 

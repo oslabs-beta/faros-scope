@@ -1,4 +1,4 @@
-@import './Base.scss';
+@import './variables.scss';
 
 .navDragButton {
   max-width: 40px;
@@ -23,12 +23,13 @@
   position: relative;
   top: 0%;
   z-index: 1;
-  border: 1px solid $dark-border;
+  border-bottom: 1px solid $dark-border;
   border-radius: 20px;
   transition: all 0.2s ease-in-out;
   width: fit-content;
   height: fit-content;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  width: 100%;
   &:hover {
     #navDragContainer {
       opacity: 0.5;
@@ -39,9 +40,8 @@
     }
   }
   &.light {
-    border: 1px solid $light-border;
+    border-bottom: 1px solid $light-border;
     background-color: rgba(255, 255, 255, 0);
-    box-shadow: $pronounced-shadow;
   }
 }
 
@@ -81,11 +81,11 @@
 }
 
 .NavBar {
-  @include flex-horizontal;
-  height: 4rem;
-  width: fit-content;
-  background-color: #154084;
-  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  background-color: $base-blue;
+  backdrop-filter: blur(10px);
   color: #ededed;
   overflow: visible;
   padding: 1rem;
@@ -94,38 +94,22 @@
   transition: all 0.2s ease-in-out;
   cursor: default;
   .nav-right {
-    @include flex-horizontal;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     background-color: darken($base-blue, 10%);
     border-radius: 20px;
     margin: 0.8rem;
-  }
-}
-
-.NavBar.vertical {
-  @include flex-vertical;
-  height: fit-content;
-  width: min-content;
-  background-color: #154084;
-  border-radius: 20px;
-  color: #ededed;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  position: relative;
-  opacity: 1;
-  transition: all 0.2s ease-in-out;
-  .nav-right {
-    @include flex-vertical;
-    background-color: darken($base-blue, 10%);
-    border-radius: 20px;
-    margin: 0.8rem 0;
-    padding: 0 1rem;
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 #App-Name-Header {
   text-shadow: 0px 0px 5px #000000;
   font-family: 'Baumans';
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0;
 }
 
@@ -144,7 +128,7 @@
   transition: all 0.2s ease-in-out;
   border-radius: 8px;
   padding: 0.1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   &.btn {
     background-color: transparent;
     border: transparent;

@@ -13,7 +13,7 @@ import { WorkloadView } from './pages';
 import {Layout} from "./pages";
 
 const App = () => {
-    const [theme, colorMode] = useMode();
+  const [theme, colorMode] = useMode();
 
     return (
         <ColorModeContext.Provider value={{ ...colorMode, toggleColorMode: () => {} }}>

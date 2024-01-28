@@ -7,7 +7,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 
-// Use lazy to defer loading component’s code until it is rendered for the first time. 
+// Use lazy to defer loading component’s code until it is rendered for the first time.
 const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
 // TODO: Add error boundary
 
@@ -34,20 +34,20 @@ export const NodeView = () => {
   let containersFormattedData = [];
 
   if (data) {
-    // podsFormattedData = data.kube_pod_count_per_node.map((item, index) => ({
-    //   id: index,
-    //   metricName: item.metricName,
-    //   nodeName: item.labels.node,
-    //   metricValue: item.metricValue,
-    // }));
+    podsFormattedData = data.kube_pod_count_per_node.map((item, index) => ({
+      id: index,
+      metricName: item.metricName,
+      nodeName: item.labels.node,
+      metricValue: item.metricValue,
+    }));
 
-    // containersFormattedData = data.kube_container_count_per_node.map(
-    //   (item, index) => ({
-    //     id: index,
-    //     nodeName: item.labels.node,
-    //     metricValue: item.metricValue,
-    //   }),
-    // );
+    containersFormattedData = data.kube_container_count_per_node.map(
+      (item, index) => ({
+        id: index,
+        nodeName: item.labels.node,
+        metricValue: item.metricValue,
+      }),
+    );
   }
 
   const columns: GridColDef[] = [
@@ -103,17 +103,7 @@ export const NodeView = () => {
               title="Allocatable Memory"
               value={data && data.kube_total_allocatable_memory.metricValue}
             />
-                  </Box>
-                  
-                  <Paper sx={{
-                      height: 500,
-                      width: "100%",
-                        background:"white"
-                  }}>
-                      <Suspense fallback={<CircularProgress />}>
-                          {/* <NivoLineChart /> */}
-                        </Suspense>
-                  </Paper>
+          </Box>
 
           {/* ROW 2 */}
           <Box
