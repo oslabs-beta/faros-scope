@@ -34,7 +34,7 @@ export const metricsApi = createApi({
       },
     }),
     getNodeView: builder.query({
-        queryFn: async (arg, api, extraOptions, baseQuery) => {
+        queryFn: async () => { // Query function takes as arguments the query arg, the api object, any extra options passed to the query, and the baseQuery function
             const response = await fetch('http://34.16.79.211:80/node-view');
             const data = await response.json();
             return {data: data}; 

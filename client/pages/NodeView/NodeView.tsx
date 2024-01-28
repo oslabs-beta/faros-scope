@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 // ! Review React docs regarding ErrorBoundary
-import { ErrorBoundary } from "react-error-boundary";
+// import { ErrorBoundary } from "react-error-boundary";
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
@@ -12,7 +12,7 @@ const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
 // TODO: Add error boundary
 
 // ! DEMOING Nivo LineChart
-const NivoLineChart = lazy(() => import('../../components/NLineChart/NivoLineChart'));
+const NivoLineChart = lazy(() => import('../../components/NivoLineChart/NivoLineChart'));
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -28,25 +28,26 @@ export const NodeView = () => {
   const theme = useTheme();
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
-  const { data, isLoading } = useGetNodeViewQuery(undefined, {});
+    const { data, isLoading } = useGetNodeViewQuery(undefined, {});
+    console.log(data);
   let podsFormattedData = [];
   let containersFormattedData = [];
 
   if (data) {
-    podsFormattedData = data.kube_pod_count_per_node.map((item, index) => ({
-      id: index,
-      metricName: item.metricName,
-      nodeName: item.labels.node,
-      metricValue: item.metricValue,
-    }));
+    // podsFormattedData = data.kube_pod_count_per_node.map((item, index) => ({
+    //   id: index,
+    //   metricName: item.metricName,
+    //   nodeName: item.labels.node,
+    //   metricValue: item.metricValue,
+    // }));
 
-    containersFormattedData = data.kube_container_count_per_node.map(
-      (item, index) => ({
-        id: index,
-        nodeName: item.labels.node,
-        metricValue: item.metricValue,
-      }),
-    );
+    // containersFormattedData = data.kube_container_count_per_node.map(
+    //   (item, index) => ({
+    //     id: index,
+    //     nodeName: item.labels.node,
+    //     metricValue: item.metricValue,
+    //   }),
+    // );
   }
 
   const columns: GridColDef[] = [
@@ -60,7 +61,7 @@ export const NodeView = () => {
       sx={{
         height: '100%',
         width: '100%',
-        overflow: 'auto',
+        // overflow: 'auto',
       }}
     >
       <Box m="1.5rem 2.5rem">
@@ -110,7 +111,7 @@ export const NodeView = () => {
                         background:"white"
                   }}>
                       <Suspense fallback={<CircularProgress />}>
-                          <NivoLineChart />
+                          {/* <NivoLineChart /> */}
                         </Suspense>
                   </Paper>
 
@@ -125,16 +126,16 @@ export const NodeView = () => {
           >
             <CollapsiblePanel title="CPU and Memory">
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'CPU Usage Per Node - Top 50'}
                   URL={'clusterUsage'}
-                />
+                /> */}
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'Memory Usage Per Node - Top 50'}
                   URL={'nodeUsage'}
-                />
+                /> */}
               </Suspense>
             </CollapsiblePanel>
           </Box>
@@ -163,11 +164,11 @@ export const NodeView = () => {
                 >
                   Pod Count
                 </p>
-                <DataGrid
+                {/* <DataGrid
                   loading={isLoading || !data}
                   rows={containersFormattedData}
                   columns={columns}
-                />
+                /> */}
               </div>
               <div
                 style={{
@@ -183,11 +184,11 @@ export const NodeView = () => {
                 >
                   Container Count
                 </p>
-                <DataGrid
+                {/* <DataGrid
                   loading={isLoading || !data}
                   rows={podsFormattedData}
                   columns={columns}
-                />
+                /> */}
               </div>
             </CollapsiblePanel>
           </Box>
@@ -203,16 +204,16 @@ export const NodeView = () => {
           >
             <CollapsiblePanel title="Bandwidth">
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'Received Bandwidth Per Node - Top 50'}
                   URL={'receivedBandwidth'}
-                />
+                /> */}
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'Received Bandwidth Per Node - Top 50'}
                   URL={'podNetwork'}
-                />
+                /> */}
               </Suspense>
             </CollapsiblePanel>
           </Box>

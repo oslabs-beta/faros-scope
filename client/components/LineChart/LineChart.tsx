@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 // import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
 import { useEffect, useState } from 'react';
+import { ResponsiveLineCanvas } from '@nivo/line';
 import './linechart.scss';
 interface ChartData {
   series: [{ data: number[]; label: string }];
@@ -82,7 +83,6 @@ const LineChart = ({ title, URL }: Props) => {
   }, []);
 
   return (
-    // <div className={`page ${theme.palette.mode}`}>
       <div>
           <Typography sx={{
               color: "white",
@@ -90,16 +90,6 @@ const LineChart = ({ title, URL }: Props) => {
           }}>
               {title}
           </Typography>
-      {/* <p
-        styles={{
-          colors: 'white',
-          fontFamily: "Source Sans 3 !important",
-                  paddingLeft: '0.5rem',
-                    fontSize: '1rem',
-        }}
-      >
-        {title}
-      </p> */}
       <Paper
         sx={{
           width: '100%',
@@ -114,7 +104,18 @@ const LineChart = ({ title, URL }: Props) => {
       >
         {!data && <CircularProgress />}
         {data && (
-          <LChart
+            <ResponsiveLineCanvas/>
+        )}
+      </Paper>
+    </div>
+  );
+};
+
+// Exporting as default for React lazy loading; React.lazy() only supports default exports
+export default LineChart;
+
+/*
+    <LChart
             series={data.series}
             xAxis={data.xAxis}
             sx={{
@@ -138,12 +139,4 @@ const LineChart = ({ title, URL }: Props) => {
             }}
             slotProps={{ legend: { hidden: 'true' } }}
           />
-        )}
-        {/* </div> */}
-      </Paper>
-    </div>
-  );
-};
-
-// Exporting as default for React lazy loading; React.lazy() only supports default exports
-export default LineChart;
+*/

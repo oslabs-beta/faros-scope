@@ -15,4 +15,6 @@ export { ListViewDisplay } from './List-View';
 export { FlexBetween } from './FlexBetween';
 export {StatBox} from './StatBox';
 export { CollapsiblePanel } from './CollapsiblePanel';
-export {LineChart} from './LineChart';
+export { MockSidebar } from './MockSidebar';
+export { MockNavbar } from './MockNavbar';
+// export {LineChart} from './LineChart';

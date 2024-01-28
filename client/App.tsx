@@ -8,8 +8,9 @@ import { LandingPage } from './pages';
 import { MainPage } from './pages';
 import { NodeView } from './pages';
 import { ListViewDisplay } from './components';
-import { GraphPage } from './pages/GraphPage/GraphPage';
+// import { GraphPage } from './pages/GraphPage/GraphPage';
 import { WorkloadView } from './pages';
+import {Layout} from "./pages";
 
 const App = () => {
     const [theme, colorMode] = useMode();
@@ -25,7 +26,7 @@ const App = () => {
                         <Route path="/node-view" element={<NodeView />} />
                         <Route path="/workload-view" element={<WorkloadView />} />
                         {/* <Route path="settings" element={<SettingsPage />} /> */}
-                        <Route path="graph-view" element={<GraphPage />} />
+                        {/* <Route path="graph-view" element={<GraphPage />} /> */}
                     </Route>
                     <Route path="landing" element={<LandingPage />} />
                 </Routes>
