@@ -1,15 +1,24 @@
 import { useTheme, Typography } from '@mui/material';
-import { LineChart as LChart } from '@mui/x-charts';
-import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
-import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
-import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
 import { useEffect, useState } from 'react';
 import './linechart.scss';
-interface ChartData {
-  series: [{ data: number[]; label: string }];
-  xAxis: [{ data: string[]; scaleType: string }];
+import { ResponsiveLineCanvas } from '@nivo/line';
+
+interface RecievedData {
+  metric: { [key: string]: string };
+  values: number[][];
+}
+
+interface URLObject {
+  clusterUsage: string;
+  nodeUsage: string;
+  podNetwork: string;
+  packetsTransmitted: string;
+  packetsReceived: string;
+  nodeUsageURL: string;
+  receivedBandwidth: string;
+  [key: string]: string;
 }
 
 // Get the current time in seconds (Unix timestamp)
@@ -17,8 +26,7 @@ const now = Math.floor(Date.now() / 1000);
 
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 50000 * 2;
-
-const URLObject = {
+const URLObject: URLObject = {
   clusterUsage: `http://104.198.235.133:80/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
   nodeUsage: `http://104.198.235.133/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`,
   podNetwork: `http://104.198.235.133/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`,
@@ -28,9 +36,14 @@ const URLObject = {
   receivedBandwidth: `http://104.198.235.133/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
 };
 
-export const LineChart = ({ title, URL }) => {
+interface Props {
+  title: string;
+  URL: string;
+}
+
+const LineChart = ({ title, URL }: Props) => {
   const theme = useTheme();
-  const [data, setData] = useState<ChartData | null>(null);
+  const [data, setData] = useState<null>(null);
 
   useEffect(() => {
     (async function () {
@@ -39,46 +52,22 @@ export const LineChart = ({ title, URL }) => {
           return res.json();
         })
         .then(({ data }) => {
-          console.log(data);
-          const xDatas = data.result.map((result: any[]) =>
-            result.values.map((point) => point[0]),
-          );
-
-          const yDatas = data.result.map((result: any[]) =>
-            result.values.map((point) => Number(point[1])),
-          );
-
-          const labels = data.result.map(
-            (result) => Object.values(result.metric)[0],
-          );
-
-          const seriesData = yDatas.map((el, i) => ({
-            data: el,
-            label: labels[i],
-            showMark: false,
-          }));
-
-          const xData = data.result[0].values.map((point) => {
-            return new Date(point[0] * 1000);
+          const XY = data.result.map((result: RecievedData) => {
+            console.log(result);
+            const temp = result.values.map((point: number[]) => {
+              return { x: new Date(point[0]), y: Number(point[1]) };
+            });
+            return {
+              data: temp,
+              id: Object.values(result.metric)[0] || 'placeholder',
+            };
           });
-
-          const yData = data.result[0].values.map((point) => Number(point[1]));
-
-          setData({
-            series: seriesData,
-            xAxis: [
-              {
-                scaleType: 'time',
-                data: xData,
-              },
-            ],
-          });
+          setData(XY);
         });
     })();
   }, []);
 
   return (
-    // <div className={`page ${theme.palette.mode}`}>
     <div>
       <Typography
         sx={{
@@ -88,22 +77,13 @@ export const LineChart = ({ title, URL }) => {
       >
         {title}
       </Typography>
-      {/* <p
-        styles={{
-          colors: 'white',
-          fontFamily: "Source Sans 3 !important",
-                  paddingLeft: '0.5rem',
-                    fontSize: '1rem',
-        }}
-      >
-        {title}
-      </p> */}
       <Paper
         sx={{
           width: '100%',
           height: '40vh',
           borderRadius: '20px',
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: theme.palette.neutral.light,
+          color: 'black',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -112,33 +92,55 @@ export const LineChart = ({ title, URL }) => {
       >
         {!data && <CircularProgress />}
         {data && (
-          <LChart
-            series={data.series}
-            xAxis={data.xAxis}
-            sx={{
-              width: '100%',
-              height: '100%',
-              '& .MuiChartsAxis-root': {
-                fill: `${theme.palette.typography.main}`,
-                '& .MuiChartsAxis-tick': {
-                  stroke: 'black',
-                },
-                '& .MuiChartsAxis-tickLabel': {
-                  fill: `${theme.palette.typography.main}`,
-                },
-                '& .MuiChartsAxis-line': {
-                  stroke: 'black',
-                },
-                svg: {
-                  fill: 'black',
-                },
-              },
+          <ResponsiveLineCanvas
+            data={data}
+            curve='linear'
+            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            xScale={{
+              type: 'time',
+              format: '%Y-%m-%dT%H:%M:%S.%LZ',
+              precision: 'second',
             }}
-            slotProps={{ legend: { hidden: 'true' } }}
+
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              format: '%H:%M',
+              legendOffset: 36,
+              legendPosition: 'middle',
+            }}
+            legends={[
+              {
+                anchor: 'bottom-right',
+                direction: 'column',
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
           />
         )}
-        {/* </div> */}
       </Paper>
     </div>
   );
 };
+
+// Exporting as default for React lazy loading; React.lazy() only supports default exports
+export default LineChart;

@@ -9,10 +9,11 @@ export const Header = ({ title, subtitle }: Props) => {
   const theme = useTheme();
   return (
     <Box>
-      <Typography
+    <Typography 
         variant="h2"
         color={theme.palette.primary.main}
         fontWeight="bold"
+        sx={{ m: '5px' }}
       >
         {title}
       </Typography>

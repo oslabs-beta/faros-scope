@@ -1,13 +1,11 @@
-import { useEffect } from "react";
-
-interface TestPodProps {
+interface Props {
   x: number;
   y: number;
   r: number;
   fill?: string;
 }
 
-export const Hexagon = ({ x, y, r, fill }: TestPodProps) => {
+export const Hexagon = ({ x, y, r, fill }: Props) => {
   const points = getPoints();
 
   const polyStyle = {

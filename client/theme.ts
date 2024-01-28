@@ -150,7 +150,7 @@ declare module '@mui/material/styles' {
         main?: string;
         light?: string;
       };
-      background?: {
+      background: {
         default?: string;
         alt?: string;
       };

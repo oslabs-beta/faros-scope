@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { ColorModeContext, useMode } from './theme';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/system';
 import { CssBaseline } from '@mui/material';
 import { HomePage } from './pages';
 import { LandingPage, NodeView, MainPage } from './pages';

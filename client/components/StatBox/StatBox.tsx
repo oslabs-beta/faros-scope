@@ -8,7 +8,6 @@ interface Props {
 
 export const StatBox = ({ title, value="-" }: Props) => {
     const theme = useTheme();
-    console.log('The theme', theme); 
     return (
         <Box
         sx={{

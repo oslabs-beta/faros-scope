@@ -1,6 +1,20 @@
+import { lazy, Suspense } from 'react';
+// ! Review React docs regarding ErrorBoundary
+import { ErrorBoundary } from 'react-error-boundary';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
+import CircularProgress from '@mui/material/CircularProgress';
+import Paper from '@mui/material/Paper';
+
+// Use lazy to defer loading component’s code until it is rendered for the first time.
+const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
+// TODO: Add error boundary
+
+// ! DEMOING Nivo LineChart
+const NivoLineChart = lazy(
+  () => import('../../components/NLineChart/NivoLineChart'),
+);
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -9,7 +23,7 @@ import {
   Header,
   StatBox,
   CollapsiblePanel,
-  LineChart,
+  //   LineChart,
 } from '../../components';
 
 export const NodeView = () => {
@@ -21,6 +35,7 @@ export const NodeView = () => {
   let containersFormattedData = [];
 
   if (data) {
+    console.log('data', data);
     podsFormattedData = data.kube_pod_count_per_node.map((item, index) => ({
       id: index,
       metricName: item.metricName,
@@ -93,21 +108,39 @@ export const NodeView = () => {
           </Box>
 
           {/* ROW 2 */}
-          <Box>
+          <Box
+            component="div"
+            // gridColumn="span 8"
+            //   bgColor={theme.palette.background.secondary}
+            sx={{ backgroundColor: theme.palette.background.secondary }}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
             <CollapsiblePanel title="CPU and Memory">
-              <LineChart
-                title={'CPU Usage Per Node - Top 50'}
-                URL={'clusterUsage'}
-              />
-              <LineChart
-                title={'Memory Usage Per Node - Top 50'}
-                URL={'nodeUsage'}
-              />
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'CPU Usage Per Node - Top 50'}
+                  URL={'clusterUsage'}
+                />
+              </Suspense>
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'Memory Usage Per Node - Top 50'}
+                  URL={'nodeUsage'}
+                />
+              </Suspense>
             </CollapsiblePanel>
           </Box>
 
           {/* ROW 3 */}
-          <Box>
+          <Box
+            component="div"
+            // gridColumn="span 8"
+            // backgroundColor={theme.palette.background.secondary}
+            sx={{ backgroundColor: theme.palette.background.secondary }}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
             <CollapsiblePanel title="Pod and Container Count">
               <div
                 style={{
@@ -118,7 +151,7 @@ export const NodeView = () => {
                 <p
                   style={{
                     paddingLeft: '1rem',
-                    fontSize: '1rem',
+                    fontSize: '1.05rem',
                   }}
                 >
                   Pod Count
@@ -138,7 +171,7 @@ export const NodeView = () => {
                 <p
                   style={{
                     paddingLeft: '1rem',
-                    fontSize: '1rem',
+                    fontSize: '1.05rem',
                   }}
                 >
                   Container Count
@@ -153,30 +186,52 @@ export const NodeView = () => {
           </Box>
 
           {/* ROW 4 */}
-          <Box>
+          <Box
+            component="div"
+            // gridColumn="span 8"
+            //   backgroundColor={theme.palette.background.secondary}
+            sx={{ backgroundColor: theme.palette.background.secondary }}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
             <CollapsiblePanel title="Bandwidth">
-              <LineChart
-                title={'Received Bandwidth Per Node - Top 50'}
-                URL={'receivedBandwidth'}
-              />
-              <LineChart
-                title={'Received Bandwidth Per Node - Top 50'}
-                URL={'podNetwork'}
-              />
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'Received Bandwidth Per Node - Top 50'}
+                  URL={'receivedBandwidth'}
+                />
+              </Suspense>
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'Received Bandwidth Per Node - Top 50'}
+                  URL={'podNetwork'}
+                />
+              </Suspense>
             </CollapsiblePanel>
           </Box>
 
           {/* ROW 5 */}
-          <Box>
+          <Box
+            component="div"
+            // gridColumn="span 8"
+            // backgroundColor={theme.palette.background.secondary}
+            sx={{ backgroundColor: theme.palette.background.secondary }}
+            p="1rem"
+            borderRadius="0.55rem"
+          >
             <CollapsiblePanel title="Rate of Packets">
-              <LineChart
-                title={'Received packet count per node - Top 50'}
-                URL={'packetsReceived'}
-              />
-              <LineChart
-                title={'Transmitted packet count per node - Top 50'}
-                URL={'packetsTransmitted'}
-              />
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'Received packet count per node - Top 50'}
+                  URL={'packetsReceived'}
+                />
+              </Suspense>
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
+                  title={'Transmitted packet count per node - Top 50'}
+                  URL={'packetsTransmitted'}
+                />
+              </Suspense>
             </CollapsiblePanel>
           </Box>
         </Box>
