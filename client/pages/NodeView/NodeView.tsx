@@ -1,20 +1,13 @@
 import { lazy, Suspense } from 'react';
 // ! Review React docs regarding ErrorBoundary
-import { ErrorBoundary } from 'react-error-boundary';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
 import CircularProgress from '@mui/material/CircularProgress';
-import Paper from '@mui/material/Paper';
 
 // Use lazy to defer loading component’s code until it is rendered for the first time.
 const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
 // TODO: Add error boundary
-
-// ! DEMOING Nivo LineChart
-const NivoLineChart = lazy(
-  () => import('../../components/NLineChart/NivoLineChart'),
-);
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -135,8 +128,6 @@ export const NodeView = () => {
           {/* ROW 3 */}
           <Box
             component="div"
-            // gridColumn="span 8"
-            // backgroundColor={theme.palette.background.secondary}
             sx={{ backgroundColor: theme.palette.background.secondary }}
             p="1rem"
             borderRadius="0.55rem"

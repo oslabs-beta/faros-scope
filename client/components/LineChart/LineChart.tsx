@@ -2,8 +2,8 @@ import { useTheme, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
-import './linechart.scss';
 import { ResponsiveLineCanvas } from '@nivo/line';
+import './linechart.scss';
 
 interface RecievedData {
   metric: { [key: string]: string };

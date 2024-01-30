@@ -1,5 +1,5 @@
 import { Graph, ThemeContainer } from '../../components';
-import './Home.module.scss';
+import './Home.scss';
 import { NotificationDisplay } from '../../components';
 
 /**

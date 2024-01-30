@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { formatPods } from '../../util';
 import { useTheme } from '@mui/material';
-
-import '../../css/graph.scss';
-import '../../css/Pod.scss';
+import '../graph/graph.scss';
+import '../pod/Pod.scss';
 
 interface Props {
   nodePods: any[];

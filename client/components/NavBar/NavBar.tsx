@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../css/Navbar.scss';
+import './Navbar.scss';
 import { SwitchButton } from '../SwitchButton/index';
 import { useContext } from 'react';
 import { ColorModeContext } from '../../theme';

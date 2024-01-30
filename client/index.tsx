@@ -3,9 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
 import App from './App';
-import './css/index.css';
-import './css/variables.scss';
-import './css/theme.scss';
+import './index.css';
+import './variables.scss';
+import './theme.scss';
 import { store } from './store/store';
 
 const container = document.getElementById('root');

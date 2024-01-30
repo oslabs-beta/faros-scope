@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { useTheme } from '@mui/material';
 
 /**
@@ -16,7 +16,10 @@ export const ThemeContainer = ({
 }) => {
   const muiTheme = useTheme();
   return (
-    <div id={IDOverride || undefined} className={`outerContainer ${muiTheme}`}>
+    <div
+      id={IDOverride || undefined}
+      className={`outerContainer ${muiTheme.palette.mode}`}
+    >
       <div
         id={IDOverride || undefined}
         className={`innerContainer ${muiTheme.palette.mode}`}

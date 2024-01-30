@@ -145,7 +145,7 @@ declare module '@mui/material/styles' {
       secondary?: {
         alt?: string;
       };
-      neutral?: {
+      neutral: {
         dark?: string;
         main?: string;
         light?: string;

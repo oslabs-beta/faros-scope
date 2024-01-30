@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useTheme } from '@mui/material';
-import '../../css/graph.scss';
+// import './graph.scss';
 import { metricsApi } from '../../services/api';
 import { formatNodes } from '../../util';
 import { Draggable } from '../Draggable/Draggable';
@@ -24,7 +24,7 @@ export const Graph = () => {
   //* reference to the draggable div, which is the container for the graph
   const graph = useRef<HTMLDivElement>(null);
   const muiTheme = useTheme();
-  
+
   return (
     <Draggable>
       <div className={`graph ${muiTheme.palette.mode}`} ref={graph}>

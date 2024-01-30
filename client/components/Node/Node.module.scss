@@ -1,4 +1,4 @@
-@import '../../css/variables.scss';
+@import '../../variables.scss';
 
 @keyframes expand {
   0% {
@@ -97,18 +97,16 @@
 #podIcon {
   transition: all 0.2s ease-in-out;
   border: 1px solid $base-orange;
-  border-radius: 8px;
+  border-radius: 50%;
   background-color: #00000040;
   &:hover {
     cursor: pointer;
-    border-radius: 50%;
     animation: hover-up-down-3D 1s infinite ease-in-out,
       podIconOrangeShadow 1s infinite ease-in-out;
   }
 
   &:active {
     cursor: pointer;
-    border-radius: 50%;
     animation: podIconOrangeShadow 1s infinite ease-in-out,
       scale-up-down 1s infinite ease-in-out;
   }
