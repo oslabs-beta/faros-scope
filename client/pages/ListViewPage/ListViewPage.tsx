@@ -8,7 +8,7 @@ import { Box, useTheme } from '@mui/material';
 import { flexbox } from '@mui/system';
 import { NameSpaceTable } from '../../components/NameSpaceTable';
 
-export const ListViewPage = () => {
+const ListViewPage = () => {
   const muiTheme = useTheme();
   let metricsState = useSelector((state: RootState) => state?.metricsMap);
 
@@ -29,3 +29,5 @@ export const ListViewPage = () => {
     // </div>
   );
 };
+
+export default ListViewPage

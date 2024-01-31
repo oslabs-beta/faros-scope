@@ -11,6 +11,30 @@ export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
   selectId: (clusterEvent) => clusterEvent.metadata.resourceVersion,
 });
 
+const initialAppState = {
+    sidebarShow: false,
+}
+
+export const appState = createSlice({
+    name: 'state', 
+    initialState: initialAppState,
+    reducers: {
+        changeState: (state, {type, payload}) => {
+            console.log('changeState')
+   
+            console.log(payload.type);
+            switch (payload.type) {
+                case 'set':
+                    console.log('set')
+                  return { ...state, ...payload }
+                default:
+                    console.log('default')
+                  return state
+              }
+        }
+    }
+})
+
 export const nodesSlice = createSlice({
   name: 'nodes',
   initialState: nodesAdapter.getInitialState(),
@@ -95,3 +119,5 @@ export const {
   selectAll: selectAllContainers,
   selectById: selectContainerById,
 } = containersAdapter.getSelectors((state: RootState) => state.containers);
+
+export const {changeState} = appState.actions;

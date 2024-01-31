@@ -1,1 +1,0 @@
-export {MockSidebar} from './MockSidebar';

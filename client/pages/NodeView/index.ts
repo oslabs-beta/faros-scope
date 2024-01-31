@@ -1,1 +1,2 @@
-export { NodeView } from './NodeView';
+import NodeView from './NodeView';
+export { NodeView } ; 

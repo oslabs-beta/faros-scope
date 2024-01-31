@@ -6,10 +6,12 @@ import {
   containersSlice,
   metricsMapSlice,
   clusterEvents,
+  appState,
 } from './slice';
 
 export const rootReducer = combineReducers({
   [metricsApi.reducerPath]: metricsApi.reducer,
+  appState: appState.reducer,
   nodes: nodesSlice.reducer,
   pods: podsSlice.reducer,
   containers: containersSlice.reducer,

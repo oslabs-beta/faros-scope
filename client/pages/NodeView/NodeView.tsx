@@ -1,18 +1,21 @@
 import { lazy, Suspense } from 'react';
 // ! Review React docs regarding ErrorBoundary
+// TODO: Add error boundary
 // import { ErrorBoundary } from "react-error-boundary";
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
 import CircularProgress from '@mui/material/CircularProgress';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 
 // Use lazy to defer loading component’s code until it is rendered for the first time.
 const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
-// TODO: Add error boundary
+
 
 // ! DEMOING Nivo LineChart
-const NivoLineChart = lazy(() => import('../../components/NivoLineChart/NivoLineChart'));
+const NivoLineChart = lazy(
+  () => import('../../components/NivoLineChart/NivoLineChart'),
+);
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -24,12 +27,12 @@ import {
   //   LineChart,
 } from '../../components';
 
-export const NodeView = () => {
+const NodeView = () => {
   const theme = useTheme();
 
   const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
-    const { data, isLoading } = useGetNodeViewQuery(undefined, {});
-    console.log(data);
+  const { data, isLoading } = useGetNodeViewQuery(undefined, {});
+  console.log(data);
   let podsFormattedData = [];
   let containersFormattedData = [];
 
@@ -56,14 +59,7 @@ export const NodeView = () => {
   ];
 
   return (
-    <Box
-      className={`node-view-container ${theme.palette.mode}`}
-      sx={{
-        height: '100%',
-        width: '100%',
-        // overflow: 'auto',
-      }}
-    >
+    <Box className="NodeView" height="100%">
       <Box m="1.5rem 2.5rem">
         <FlexBetween>
           <Header title="Nodes View" subtitle="View all nodes in the network" />
@@ -72,17 +68,20 @@ export const NodeView = () => {
         <Box
           mt="20px"
           display="grid"
-          gridTemplateColumns="repeat(auto, 1fr)"
-          gridAutoRows="minmax(auto, auto)"
+            gridTemplateColumns="repeat(1fr)"
+            gridAutoRows="minmax(auto, auto)"
           gap="20px"
           sx={{
             '& > div': {
-              gridColumn: isNonMediumScreens ? undefined : 'span 12',
+                gridColumn: isNonMediumScreens ? undefined : 'span 12',
             },
           }}
         >
           {/* ROW 1 */}
-          <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" gap="20px">
+          <Box
+            display="grid"
+            gridTemplateColumns="repeat(5, 1fr)"  gap="20px"
+          >
             <StatBox
               title="Total Nodes"
               value={data && data.kube_nodes_total.metricValue}
@@ -154,11 +153,11 @@ export const NodeView = () => {
                 >
                   Pod Count
                 </p>
-                {/* <DataGrid
+                <DataGrid
                   loading={isLoading || !data}
                   rows={containersFormattedData}
                   columns={columns}
-                /> */}
+                />
               </div>
               <div
                 style={{
@@ -174,11 +173,11 @@ export const NodeView = () => {
                 >
                   Container Count
                 </p>
-                {/* <DataGrid
+                <DataGrid
                   loading={isLoading || !data}
                   rows={podsFormattedData}
                   columns={columns}
-                /> */}
+                />
               </div>
             </CollapsiblePanel>
           </Box>
@@ -219,16 +218,16 @@ export const NodeView = () => {
           >
             <CollapsiblePanel title="Rate of Packets">
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'Received packet count per node - Top 50'}
                   URL={'packetsReceived'}
-                />
+                /> */}
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
-                <LineChart
+                {/* <LineChart
                   title={'Transmitted packet count per node - Top 50'}
                   URL={'packetsTransmitted'}
-                />
+                /> */}
               </Suspense>
             </CollapsiblePanel>
           </Box>
@@ -237,3 +236,5 @@ export const NodeView = () => {
     </Box>
   );
 };
+
+export default NodeView;

@@ -4,7 +4,6 @@ import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
 import { ResponsiveLineCanvas } from '@nivo/line';
 import './linechart.scss';
-import { ResponsiveLineCanvas } from '@nivo/line';
 
 interface RecievedData {
   metric: { [key: string]: string };
@@ -45,6 +44,7 @@ interface Props {
 const LineChart = ({ title, URL }: Props) => {
   const theme = useTheme();
   const [data, setData] = useState<null>(null);
+  const [isLegendExpanded, setIsLegendExpanded] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -69,75 +69,71 @@ const LineChart = ({ title, URL }: Props) => {
   }, []);
 
   return (
-      <div>
-          <Typography sx={{
-              color: "white",
-              fontSize: "1.05rem"
-          }}>
-              {title}
-          </Typography>
-      <Paper
-        sx={{
+    <Paper
+      variant="outlined"
+      sx={{
           width: '100%',
-          height: '40vh',
-          borderRadius: '20px',
-          backgroundColor: theme.palette.neutral.light,
-          color: 'black',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
+        // height: '40vh',
+          borderRadius: '0.45rem',
+        backgroundColor: "white",
+        // backgroundColor: theme.palette.neutral.light,
+        color: 'black',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+          <Typography
+        sx={{
+          color: 'white',
+          fontSize: '1.05rem',
         }}
       >
-        {!data && <CircularProgress />}
-        {data && (
-          <ResponsiveLineCanvas
-            data={data}
-            curve='linear'
-            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-            xScale={{
-              type: 'time',
-              format: '%Y-%m-%dT%H:%M:%S.%LZ',
-              precision: 'second',
-            }}
+        {title}
+    </Typography> 
 
-            axisTop={null}
-            axisRight={null}
-            axisBottom={{
-              format: '%H:%M',
-              legendOffset: 36,
-              legendPosition: 'middle',
-            }}
-            legends={[
-              {
-                anchor: 'bottom-right',
-                direction: 'column',
-                justify: false,
-                translateX: 100,
-                translateY: 0,
-                itemsSpacing: 0,
-                itemDirection: 'left-to-right',
-                itemWidth: 80,
-                itemHeight: 20,
-                itemOpacity: 0.75,
-                symbolSize: 12,
-                symbolShape: 'circle',
-                symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                effects: [
-                  {
-                    on: 'hover',
-                    style: {
-                      itemBackground: 'rgba(0, 0, 0, .03)',
-                      itemOpacity: 1,
-                    },
-                  },
-                ],
-              },
-            ]}
-          />
-        )}
-      </Paper>
-    </div>
+      {!data && <CircularProgress />}
+      {data && (
+              <ResponsiveLineCanvas
+                  enableArea={true}
+                  enableGridX={false}
+          data={data}
+          curve="linear"
+                  //   margin={{ top: 10, right: 50, bottom: 50, left: 90 }}
+                  margin={{top: 5, right: 20, bottom: 40, left: 20}}
+          xScale={{
+            type: 'time',
+            format: '%Y-%m-%dT%H:%M:%S.%LZ',
+            precision: 'second',
+          }}
+        //   yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
+          axisTop={null}
+          axisLeft={null}
+          axisRight={{
+            tickValues: [
+                0,
+                500,
+                1000,
+                1500,
+                2000,
+                2500
+            ],
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            format: '.2s',
+            legendOffset: 0
+        }}
+          axisBottom={{
+            format: '%H:%M',
+            legendOffset: 36,
+            legendPosition: 'middle',
+          }}
+       
+        />
+      )}
+    </Paper>
   );
 };
 

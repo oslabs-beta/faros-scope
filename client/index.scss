@@ -1,37 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
-
-* {
-  box-sizing: border-box;
-  transition: background-color 0.3s ease-in-out;
-  font-family: 'Baumans';
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255) rgba(0, 0, 0, 0.5);
-}
-
-body {
-  position: relative;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
 html,
-body {
+body,
+#root,
+.app {
   height: 100%;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  overscroll-behavior: none;
 }
 
-#root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-a {
-  text-decoration: none;
-  width: fit-content;
-  height: fit-content;
-  color: inherit;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #7a7f9d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #21295c;
+}
+
+/* Handle on Hover */
+::-webkit-scrollbar-track:hover {
+  background: #21295c;
 }
