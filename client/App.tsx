@@ -4,7 +4,6 @@ import { ThemeProvider } from '@mui/system';
 import { CssBaseline } from '@mui/material';
 import { HomePage } from './pages';
 import { LandingPage, NodeView, MainPage } from './pages';
-import { GraphPage } from './pages/GraphPage/GraphPage';
 import { WorkloadView } from './pages';
 import { ListViewPage } from './pages/ListViewPage/ListViewPage';
 
@@ -21,7 +20,6 @@ const App = () => {
             <Route path="list-view" element={<ListViewPage />} />
             <Route path="node-view" element={<NodeView />} />
             <Route path="workload-view" element={<WorkloadView />} />
-            <Route path="graph-view" element={<GraphPage />} />
           </Route>
           <Route path="landing" element={<LandingPage />} />
         </Routes>

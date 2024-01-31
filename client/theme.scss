@@ -18,7 +18,7 @@
   overflow: auto;
 }
 
-.outerContainer {
+.styledContainer {
   position: relative;
   height: 100%;
   width: 100%;
@@ -26,12 +26,6 @@
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
   overflow: hidden;
-}
-
-.innerContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
 }
 
 .textShadowLight {

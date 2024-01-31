@@ -37,6 +37,7 @@
     "@mui/x-data-grid-generator": "^6.19.1",
     "@nivo/core": "^0.84.0",
     "@nivo/line": "^0.84.0",
+    "@nivo/network": "^0.84.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/express": "^4.17.21",

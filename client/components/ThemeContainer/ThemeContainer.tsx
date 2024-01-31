@@ -10,22 +10,20 @@ import { useTheme } from '@mui/material';
 export const ThemeContainer = ({
   children,
   IDOverride,
+  style,
 }: {
   children: ReactNode;
   IDOverride?: string;
+  style?: any;
 }) => {
   const muiTheme = useTheme();
   return (
     <div
+      style={style}
       id={IDOverride || undefined}
-      className={`outerContainer ${muiTheme.palette.mode}`}
+      className={`styledContainer ${muiTheme.palette.mode}`}
     >
-      <div
-        id={IDOverride || undefined}
-        className={`innerContainer ${muiTheme.palette.mode}`}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   );
 };

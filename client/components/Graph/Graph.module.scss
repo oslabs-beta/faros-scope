@@ -22,14 +22,18 @@
   border-radius: 0 0 20px 20px;
   animation: opacity 1s ease-in-out;
   padding: 1rem;
+  background-size: 1.6em 1.6em;
+  background-attachment: local;
   &.dark {
-    background-color: rgba(0, 0, 0, 0.2);
+    // background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid $dark-border;
     border-top: none;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0.1em, transparent 0.1em);
   }
 
   &.light {
-    background-color: rgba(255, 255, 255, 0);
+    // background-color: rgba(255, 255, 255, 0);
     border: 1px solid $light-border;
     border-top: none;
   }
