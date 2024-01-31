@@ -24,16 +24,16 @@
 
 .notificationContainer {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   padding: 1em;
   top: 2ch;
   left: 6ch;
   gap: 1em;
   border-radius: 20px;
+  width: 100%;
   min-width: fit-content;
   max-width: 25em;
-  max-height: 15em;
   min-height: fit-content;
   z-index: 30;
   overflow: scroll;

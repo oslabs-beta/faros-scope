@@ -20,6 +20,8 @@ export const Graph = () => {
   let startX = 0;
   let startY = 0;
 
+  console.log('data', data);
+
   const graphData: {
     nodes: {
       id: string;
@@ -38,7 +40,7 @@ export const Graph = () => {
         label: node.id,
         height: 1,
         size: 25,
-        color: 'white',
+        color: '#1284ff',
       };
     });
 
@@ -52,7 +54,6 @@ export const Graph = () => {
       });
     });
 
-    console.log('graphData.nodes', graphData.nodes);
     graphData.links = data.pods.map((pod) => {
       return {
         source: pod.id,
@@ -60,6 +61,7 @@ export const Graph = () => {
         distance: 150,
       };
     });
+    console.log('graphData', graphData);
   }
 
   useEffect(() => {
