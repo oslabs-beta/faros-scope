@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 // import './graph.scss';
 import { metricsApi } from '../../services/api';
 import GraphResponsiveNetwork from './GraphNetwork';
@@ -16,11 +16,6 @@ export const Graph = () => {
     {},
   );
   const draggableContainer = useRef<HTMLDivElement>(null);
-  // let dragging = false;
-  // let startX = 0;
-  // let startY = 0;
-
-  console.log('data', data);
 
   const graphData: {
     nodes: {
