@@ -1,4 +1,4 @@
-@import '../../css/variables.scss';
+@import '../../variables.scss';
 
 .draggableContainer {
   position: relative;
@@ -7,31 +7,10 @@
   overflow: hidden;
   border-radius: 0px;
   transition: all 0.5s ease-in-out;
-  /* // resolution of the background image */
-  background-size: 2.2em 2.2em;
-  /* // facilitates the movement of the background image when the user drags the graph */
+  background-size: 1.6em 1.6em;
   background-attachment: local;
-  /* // animation: grid-glow-flicker 1s ease-in-out infinite; */
-  background-image: 
-    /* // horizontal lines */
-    linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
-    /* // vertical lines */
-    linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
-    /* // horizontal glow bottom side */
-    // linear-gradient(rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    // /* // horizontal glow top side */
-    // linear-gradient(360deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    // /* // vertical glow left side */
-    // linear-gradient(270deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em),
-    // /* // vertical glow right side */
-    // linear-gradient(90deg, rgba($graph-blue, 0.5) 0.1em, transparent 0.5em);
-  &.light {
-    background-image: 
-    /* // horizontal lines */
-      linear-gradient(rgba($graph-blue, 1) 0.1em, transparent 0.2em),
-      /* // vertical lines */
-      linear-gradient(90deg, rgba($graph-blue, 1) 0.1em, transparent 0.2em);
-  }
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0.1em, transparent 0.1em);
 }
 
 .graph {
@@ -39,25 +18,24 @@
   width: fit-content;
   height: fit-content;
   transition: all 0.5s ease-in-out;
-  backdrop-filter: blur(8px);
-  border-radius: 8px;
+  backdrop-filter: blur(0.2rem);
+  border-radius: 0 0 20px 20px;
   animation: opacity 1s ease-in-out;
   padding: 1rem;
+  background-size: 1.6em 1.6em;
+  background-attachment: local;
   &.dark {
-    background-color: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgb(255, 255, 255);
-    box-shadow: $pronounced-shadow;
+    // background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid $dark-border;
+    border-top: none;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0.1em, transparent 0.1em);
   }
 
   &.light {
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(0, 0, 0);
-    box-shadow: $pronounced-shadow;
-  }
-
-  &:hover {
-    box-shadow: 15px 15px 1px 0 rgb(0, 0, 0);
-    scale: 1.05;      
+    // background-color: rgba(255, 255, 255, 0);
+    border: 1px solid $light-border;
+    border-top: none;
   }
 }
 
@@ -82,4 +60,53 @@
   transform-origin: 0% 0%;
   overflow: hidden;
   scale: 1;
+}
+
+@keyframes title-hover {
+  0% {
+    transform: translate(-50%, 0px);
+  }
+
+  50% {
+    transform: translate(-50%, 8px);
+  }
+
+  100% {
+    transform: translate(-50%, 0px);
+  }
+}
+
+.node-graph-title-bar {
+  @include flex-horizontal;
+  position: relative;
+  width: 100%;
+  height: 4rem;
+  border-radius: 20px 20px 0 0;
+  color: #ededed;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
+  animation: opacity 1s ease-in-out;
+  backdrop-filter: blur(0.2rem);
+  font-size: 3rem;
+  text-decoration: underline;
+
+  & .node-graph-title {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    animation: title-hover 4s infinite ease-in-out;
+  }
+
+  &.dark {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid $dark-border;
+  }
+
+  &.light {
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    border: 1px solid $light-border;
+  }
 }

@@ -1,37 +1,39 @@
-@import 'variables.scss';
+@import '../../variables.scss';
 
 .outerNotifContainer {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 32;
-  border-radius: 8px;
+  z-index: 1;
   transition: all 0.5s ease-in-out;
+  height: 100%;
+  width: fit-content;
   &.light {
     background-color: $base-blue;
     box-shadow: $pronounced-shadow;
     border: 1.5px solid rgba($light-border, 0.8);
+    border-top: none;
+    border-left: none;
   }
   &.dark {
     background-color: $base-blue;
     border: 1.5px solid rgba($dark-border, 0.8);
+    border-top: none;
+    border-left: none;
   }
 }
 
 .notificationContainer {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   padding: 1em;
   top: 2ch;
   left: 6ch;
   gap: 1em;
   border-radius: 20px;
-  min-width: 20em;
+  width: 100%;
+  min-width: fit-content;
   max-width: 25em;
-  max-height: 15em;
   min-height: fit-content;
   z-index: 30;
   overflow: scroll;

@@ -18,19 +18,14 @@
   overflow: auto;
 }
 
-.outerContainer {
+.styledContainer {
   position: relative;
   height: 100%;
   width: 100%;
   color: #ededed;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
-}
-
-.innerContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
+  overflow: hidden;
 }
 
 .textShadowLight {

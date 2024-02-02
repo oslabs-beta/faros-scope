@@ -1,6 +1,5 @@
 import { useTheme } from '@mui/material';
-import styles from './SwitchButton.module.scss';
-import classNames from 'classnames';
+import './SwitchButton.scss';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 interface SwitchButtonProps {
@@ -16,36 +15,30 @@ interface SwitchButtonProps {
 export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
   const muiTheme = useTheme();
   return (
-    <div className={styles.switchContainer}>
-      <div className={styles.switchButton}>
-        <label className={styles.modeLabel} htmlFor="lightTheme">
+    <div className={'switchContainer'}>
+      <div className={'switchButton'}>
+        <label className={'modeLabel'} htmlFor="lightTheme">
           <input
             type="radio"
             id="lightTheme"
-            className={classNames(
-              styles.brightnessModeLight,
-              styles.brightnessMode,
-            )}
+            className={'brightnessModeLight' + ' ' + 'brightnessMode'}
             value="light"
             checked={muiTheme.palette.mode === 'light'}
             onChange={onChange}
           />
-          <FaSun className={styles.sunIcon} />
+          <FaSun className={'sunIcon'} />
         </label>
 
-        <label className={styles.modeLabel} htmlFor="darkTheme">
+        <label className={'modeLabel'} htmlFor="darkTheme">
           <input
             type="radio"
             id="darkTheme"
-            className={classNames(
-              styles.brightnessModeLight,
-              styles.brightnessMode,
-            )}
+            className={'brightnessModeLight' + ' ' + 'brightnessMode'}
             value="dark"
             checked={muiTheme.palette.mode === 'dark'}
             onChange={onChange}
           />
-          <FaMoon className={styles.moonIcon} />
+          <FaMoon className={'moonIcon'} />
         </label>
       </div>
     </div>

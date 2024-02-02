@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import '../../variables.scss';
 
 .draggableContainer {
   position: relative;
@@ -15,23 +15,37 @@
 
 .graph {
   position: relative;
-  width: fit-content;
-  height: fit-content;
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  width: 100vw;
+  height: 100vh;
   transition: all 0.5s ease-in-out;
   backdrop-filter: blur(0.2rem);
   border-radius: 0 0 20px 20px;
   animation: opacity 1s ease-in-out;
-  padding: 1rem;
+  background-size: 1.5em 1.5em;
+  background-attachment: local;
+  overflow: hidden;
+  padding: 0;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
   &.dark {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid $dark-border;
-    border-top: none;
+    border-top: none; 
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0.1em, transparent 0.1em);
   }
 
   &.light {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid $light-border;
     border-top: none;
+    background-image: linear-gradient(rgb(0, 0, 0, 0.4) 0.1em, transparent 0.1em),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0.1em, transparent 0.1em);
   }
 }
 

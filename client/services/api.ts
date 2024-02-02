@@ -9,7 +9,7 @@ const tenMinutesAgo = now - 60000 * 2;
 
 export const metricsApi = createApi({
   reducerPath: 'metricsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://35.185.108.181:8000/' }),
   endpoints: (builder) => ({
     getClusterInfo: builder.query({
       query: () => 'clusterInfo',
@@ -107,5 +107,5 @@ export const {
   useGetPodStatsQuery,
   useGetClusterMetricsMapQuery,
   useGetMemByContainerPodQuery,
-  useGetCpuByContainerPodQuery
+  useGetCpuByContainerPodQuery,
 } = metricsApi;

@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { useTheme } from '@mui/material';
 
 /**
@@ -10,19 +10,20 @@ import { useTheme } from '@mui/material';
 export const ThemeContainer = ({
   children,
   IDOverride,
+  style,
 }: {
   children: ReactNode;
   IDOverride?: string;
+  style?: any;
 }) => {
   const muiTheme = useTheme();
   return (
-    <div id={IDOverride || undefined} className={`outerContainer ${muiTheme}`}>
-      <div
-        id={IDOverride || undefined}
-        className={`innerContainer ${muiTheme.palette.mode}`}
-      >
-        {children}
-      </div>
+    <div
+      style={style}
+      id={IDOverride || undefined}
+      className={`styledContainer ${muiTheme.palette.mode}`}
+    >
+      {children}
     </div>
   );
 };
