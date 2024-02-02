@@ -16,9 +16,9 @@ export const Graph = () => {
     {},
   );
   const draggableContainer = useRef<HTMLDivElement>(null);
-  let dragging = false;
-  let startX = 0;
-  let startY = 0;
+  // let dragging = false;
+  // let startX = 0;
+  // let startY = 0;
 
   console.log('data', data);
 
@@ -43,7 +43,7 @@ export const Graph = () => {
         id: 'default',
         label: 'default',
         height: 1.5,
-        size: 80,
+        size: 40,
         color: 'green',
       },
     ];
@@ -55,7 +55,7 @@ export const Graph = () => {
         id: node.id,
         label: node.id,
         height: 0,
-        size: 40,
+        size: 25,
         color: '#1284ff',
       });
 
@@ -72,7 +72,7 @@ export const Graph = () => {
         id: pod.id,
         nodeId: pod.nodeId,
         height: 0,
-        size: 25,
+        size: 15,
         color: 'cyan',
       });
 
@@ -88,7 +88,7 @@ export const Graph = () => {
         id: `${container.name}_${index}`,
         label: container.name,
         height: 0,
-        size: 15,
+        size: 10,
         color: 'yellow',
       });
 
@@ -100,88 +100,111 @@ export const Graph = () => {
     });
   }
 
-  useEffect(() => {
-    //* As user moves the mouse while dragging, update the scroll position
-    //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!dragging) return;
+  // useEffect(() => {
+  //   //* As user moves the mouse while dragging, update the scroll position
+  //   //* in the case of a mouse event, the event is a MouseEvent, which means e.clientX and e.clientY refer to the mouse position
+  //   const handleMouseMove = (e: MouseEvent) => {
+  //     if (!dragging) return;
 
-      //* calculate the change in mouse position from the previous position
-      const deltaX = startX - e.clientX;
-      const deltaY = startY - e.clientY;
+  //     //* calculate the change in mouse position from the previous position
+  //     const deltaX = startX - e.clientX;
+  //     const deltaY = startY - e.clientY;
 
-      //* update the scroll position of the graph
-      if (draggableContainer.current) {
-        const maxScrollLeft =
-          draggableContainer.current.scrollWidth -
-          draggableContainer.current.clientWidth;
-        const maxScrollTop =
-          draggableContainer.current.scrollHeight -
-          draggableContainer.current.clientHeight;
-        //* Limit scrolling to the visible content
-        const newScrollLeft = Math.max(
-          0,
-          Math.min(
-            draggableContainer.current.scrollLeft + deltaX,
-            maxScrollLeft,
-          ),
-        );
+  //     //* update the scroll position of the graph
+  //     if (draggableContainer.current) {
+  //       const maxScrollLeft =
+  //         draggableContainer.current.scrollWidth -
+  //         draggableContainer.current.clientWidth;
+  //       const maxScrollTop =
+  //         draggableContainer.current.scrollHeight -
+  //         draggableContainer.current.clientHeight;
+  //       //* Limit scrolling to the visible content
+  //       const newScrollLeft = Math.max(
+  //         0,
+  //         Math.min(
+  //           draggableContainer.current.scrollLeft + deltaX,
+  //           maxScrollLeft,
+  //         ),
+  //       );
 
-        const newScrollTop = Math.max(
-          0,
-          Math.min(draggableContainer.current.scrollTop + deltaY, maxScrollTop),
-        );
+  //       const newScrollTop = Math.max(
+  //         0,
+  //         Math.min(draggableContainer.current.scrollTop + deltaY, maxScrollTop),
+  //       );
 
-        //* update the scroll position
-        draggableContainer.current.scrollLeft = newScrollLeft;
-        draggableContainer.current.scrollTop = newScrollTop;
-      }
+  //       //* update the scroll position
+  //       draggableContainer.current.scrollLeft = newScrollLeft;
+  //       draggableContainer.current.scrollTop = newScrollTop;
+  //     }
 
-      //* update the start coordinates for next mouse move event
-      startX = e.clientX;
-      startY = e.clientY;
-    };
+  //     //* update the start coordinates for next mouse move event
+  //     startX = e.clientX;
+  //     startY = e.clientY;
+  //   };
 
-    //* Once user clicks, begin dragging
-    const handleMouseDown = (e: MouseEvent): void => {
-      e.preventDefault();
-      dragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-    };
+  //   //* Once user clicks, begin dragging
+  //   const handleMouseDown = (e: MouseEvent): void => {
+  //     e.preventDefault();
+  //     dragging = true;
+  //     startX = e.clientX;
+  //     startY = e.clientY;
+  //   };
 
-    //* Once user releases mouse, stop dragging
-    const handleMouseUp = (): void => {
-      dragging = false;
-    };
+  //   //* Once user releases mouse, stop dragging
+  //   const handleMouseUp = (): void => {
+  //     dragging = false;
+  //   };
 
-    //* initialize the graph
-    if (draggableContainer.current) {
-      //* add event listeners for dragging with mouse
-      draggableContainer.current.addEventListener('mouseup', handleMouseUp);
-      draggableContainer.current.addEventListener('mousedown', handleMouseDown);
-      draggableContainer.current.addEventListener('mousemove', handleMouseMove);
-    }
+  //   //* initialize the graph
+  //   if (draggableContainer.current) {
+  //     //* add event listeners for dragging with mouse
+  //     draggableContainer.current.addEventListener('mouseup', handleMouseUp);
+  //     draggableContainer.current.addEventListener('mousedown', handleMouseDown);
+  //     draggableContainer.current.addEventListener('mousemove', handleMouseMove);
+  //   }
 
-    //* Clean up event listeners when component unmounts
-    return () => {
-      if (draggableContainer.current) {
-        draggableContainer.current.removeEventListener(
-          'mousemove',
-          handleMouseMove,
-        );
-        draggableContainer.current.removeEventListener(
-          'mouseup',
-          handleMouseUp,
-        );
-        draggableContainer.current.removeEventListener(
-          'mousedown',
-          handleMouseDown,
-        );
-      }
-    };
-  }, []);
+  //   //* Clean up event listeners when component unmounts
+  //   return () => {
+  //     if (draggableContainer.current) {
+  //       draggableContainer.current.removeEventListener(
+  //         'mousemove',
+  //         handleMouseMove,
+  //       );
+  //       draggableContainer.current.removeEventListener(
+  //         'mouseup',
+  //         handleMouseUp,
+  //       );
+  //       draggableContainer.current.removeEventListener(
+  //         'mousedown',
+  //         handleMouseDown,
+  //       );
+  //     }
+  //   };
+  // }, []);
 
+  const tempData = {
+    nodes: [
+      {
+        id: 'Node 1',
+        height: 1,
+        size: 24,
+        color: 'rgb(97, 205, 187)',
+      },
+      {
+        id: 'Node 2',
+        height: 1,
+        size: 24,
+        color: 'rgb(97, 205, 187)',
+      },
+    ],
+    links: [
+      {
+        source: 'Node 1',
+        target: 'Node 2',
+        distance: 80,
+      },
+    ],
+  };
   return (
     <div ref={draggableContainer} className={`graph ${muiTheme.palette.mode}`}>
       {data && isSuccess && (
