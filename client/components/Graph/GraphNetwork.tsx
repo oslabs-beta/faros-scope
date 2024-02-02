@@ -1,7 +1,24 @@
-import { useEffect } from 'react';
-import { ResponsiveNetwork, ResponsiveNetworkCanvas } from '@nivo/network';
-import { useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { ResponsiveNetworkCanvas } from '@nivo/network';
+import { useTheme, Snackbar, Alert } from '@mui/material';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
+declare module '@nivo/network' {
+  interface InputNode {
+    id: string;
+    label: string;
+    size: number;
+    color: string;
+    height: number;
+    type: string;
+  }
+  interface InputLink {
+    source: string;
+    target: string;
+    distance: number;
+  }
+}
 
 const GraphResponsiveNetwork = ({
   data,
@@ -10,6 +27,7 @@ const GraphResponsiveNetwork = ({
 }: any) => {
   const muiTheme = useTheme();
   const containerRef = draggableContainer;
+  const [open, setOpen] = useState(false);
 
   // Calculate the height dynamically based on the length of data
   const calculatedHeight = lengthOfData * 10;
@@ -36,7 +54,7 @@ const GraphResponsiveNetwork = ({
       wheel={{ step: 100 }}
       centerOnInit={true}
     >
-      {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+      {() => (
         <TransformComponent
           wrapperStyle={{
             width: '100%',
@@ -68,17 +86,56 @@ const GraphResponsiveNetwork = ({
               distanceMin={20}
               linkThickness={(n) => 2 + 2 * n.target.data.height}
               pixelRatio={2}
-              // linkBlendMode="multiply"
               linkColor={() =>
                 muiTheme.palette.mode === 'dark' ? 'white' : 'black'
               }
               motionConfig="wobbly"
               nodeTooltip={(e) => (
-                <div style={{ color: 'black', backgroundColor: 'white' }}>
-                  {e.node.data.label || e.node.id}
+                <div
+                  style={{
+                    border: `2px solid ${muiTheme.palette.primary.main}`,
+                    padding: '10px',
+                    borderRadius: '20px',
+                    color: muiTheme.palette.background.default,
+                    backgroundColor: muiTheme.palette.background.inverted,
+                    textAlign: 'center',
+                  }}
+                >
+                  ID: {e.node.data.label || e.node.id} <br />
+                  Type: {e.node.data.type.toUpperCase()} <br />
+                  <span
+                    style={{
+                      color: muiTheme.palette.primary.main,
+                    }}
+                  >
+                    CLICK TO COPY ID
+                  </span>
                 </div>
               )}
+              onClick={(n) => {
+                console.log(n);
+                navigator.clipboard.writeText(
+                  n.id || n.data.id || n.data.label || '',
+                );
+                setOpen(true);
+              }}
             />
+            {createPortal(
+              <Snackbar
+                open={open}
+                onClose={() => setOpen(false)}
+                autoHideDuration={5000}
+              >
+                <Alert
+                  severity="success"
+                  variant="filled"
+                  sx={{ color: 'white' }}
+                >
+                  Copied to clipboard!
+                </Alert>
+              </Snackbar>,
+              document.body,
+            )}
           </div>
         </TransformComponent>
       )}

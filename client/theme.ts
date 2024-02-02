@@ -153,6 +153,7 @@ declare module '@mui/material/styles' {
       background: {
         default?: string;
         alt?: string;
+        inverted?: string;
       };
       typography?: {
         main?: string;
@@ -201,6 +202,7 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: '#222222', // $background-color-dark
               alt: '#1e1e1e', // $background-color-light
+              inverted: '#fcfcfc', // Default light background color
             },
             typography: {
               main: '#fcfcfc',
@@ -221,6 +223,7 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: '#fcfcfc', // Default light background color
               alt: '#ffffff', // $background-color-light
+              inverted: '#222222', // $background-color-dark
             },
             typography: {
               main: '#222222',
@@ -229,7 +232,7 @@ export const themeSettings = (mode: ThemeMode) => {
     },
     typography: {
       fontFamily: ['Source Sans 3', 'Baumans', 'sans-serif'].join(','),
-      fontSize: 12,
+      fontSize: 16,
       h1: {
         fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
         fontSize: 40,
