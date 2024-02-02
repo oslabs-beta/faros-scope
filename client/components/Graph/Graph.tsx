@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { metricsApi } from '../../services/api';
 import GraphResponsiveNetwork from './GraphNetwork';
 import './Graph.module.scss';
+import './Graph.scss';
 
 /**
  * Graph component

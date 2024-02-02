@@ -1,3 +1,9 @@
-export { exitAnimations, formatLettersAsSpans, setAnimationDelay, setArrayAnimationDelay, setArrayScal, setScale } from './animation';
-export { formatContainers, formatNotifications, formatPods } from './formatters';
-
+export {
+  exitAnimations,
+  formatLettersAsSpans,
+  setAnimationDelay,
+  setArrayAnimationDelay,
+  setArrayScal,
+  setScale,
+} from './animation';
+export { formatNotifications } from './formatters';
