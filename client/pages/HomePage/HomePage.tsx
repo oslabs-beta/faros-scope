@@ -8,7 +8,7 @@ import './Home.scss';
 export const HomePage = () => {
   return (
     <ThemeContainer style={{display: 'flex'}}>
-      <NotificationDisplay />
+      {/* <NotificationDisplay /> */}
       <Graph />
     </ThemeContainer>
   );

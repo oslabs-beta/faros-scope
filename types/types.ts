@@ -13,6 +13,7 @@ export interface Pod {
   id: string;
   name: string;
   nodeId: string;
+  namespaceId?: string;
   containers: Container[];
 }
 

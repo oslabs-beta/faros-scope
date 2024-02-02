@@ -31,37 +31,73 @@ export const Graph = () => {
       nodeId?: string;
       height?: number;
     }[];
-    links: { source: string; target: string }[];
+    links: {
+      source: string;
+      target?: string;
+      distance: number;
+    }[];
   } = {} as any;
   if (isSuccess && data && data.nodes) {
-    graphData.nodes = data.nodes.map((node) => {
-      return {
+    graphData.nodes = [
+      {
+        id: 'default',
+        label: 'default',
+        height: 1.5,
+        size: 80,
+        color: 'green',
+      },
+    ];
+    graphData.links = [];
+
+    //* push nodes
+    data.nodes.forEach((node) => {
+      graphData.nodes.push({
         id: node.id,
         label: node.id,
-        height: 1,
-        size: 25,
+        height: 0,
+        size: 40,
         color: '#1284ff',
-      };
+      });
+
+      graphData.links.push({
+        source: node.id,
+        target: 'default',
+        distance: 80,
+      });
     });
 
+    //* push pods
     data.pods.forEach((pod) => {
       graphData.nodes.push({
         id: pod.id,
         nodeId: pod.nodeId,
-        height: 1,
+        height: 0,
         size: 25,
         color: 'cyan',
       });
-    });
 
-    graphData.links = data.pods.map((pod) => {
-      return {
+      graphData.links.push({
         source: pod.id,
         target: pod.nodeId,
-        distance: 150,
-      };
+        distance: 80,
+      });
     });
-    console.log('graphData', graphData);
+
+    data.containers.forEach((container, index) => {
+      graphData.nodes.push({
+        id: `${container.name}_${index}`,
+        label: container.name,
+        height: 0,
+        size: 15,
+        color: 'yellow',
+      });
+
+      graphData.links.push({
+        source: `${container.name}_${index}`,
+        target: container.podId,
+        distance: 80,
+      });
+    });
   }
 
   useEffect(() => {
@@ -148,7 +184,15 @@ export const Graph = () => {
 
   return (
     <div ref={draggableContainer} className={`graph ${muiTheme.palette.mode}`}>
-      {data && isSuccess && <GraphResponsiveNetwork data={graphData} />}
+      {data && isSuccess && (
+        <GraphResponsiveNetwork
+          data={graphData}
+          lengthOfData={
+            data.nodes.length + data.pods.length + data.containers.length
+          }
+          draggableContainer={draggableContainer}
+        />
+      )}
     </div>
   );
 };
