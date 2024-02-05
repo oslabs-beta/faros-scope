@@ -5,7 +5,9 @@ const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 // const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
 const NodeView = React.lazy(() => import('./pages/NodeView/NodeView'));
+const ListView = React.lazy(() => import('./pages/ListViewPage/ListViewPage'));
 const NetworkView = React.lazy(() => import('./components/Graph/Graph'));
+
 
 // // Base
 // const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -56,7 +58,8 @@ const NetworkView = React.lazy(() => import('./components/Graph/Graph'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/node-view', name: 'NodeView', element: NodeView },
+    { path: '/node-view', name: 'NodeView', element: NodeView },
+    { path: '/list-view', name: 'ListView', element: ListView },
   { path: '/network-view', name: 'NetworkView', element: NetworkView },
   //   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   //   { path: '/theme/colors', name: 'Colors', element: Colors },

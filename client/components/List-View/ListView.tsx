@@ -148,7 +148,7 @@ type ListViewProps = {
   metricsObject: MetricsItem[];
 };
 
-export const ListView = ({ metricsObject }: ListViewProps) => {
+const ListView = ({ metricsObject }: ListViewProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dataObj = metricsObject;
@@ -259,3 +259,5 @@ export const ListView = ({ metricsObject }: ListViewProps) => {
     </>
   );
 };
+
+export default ListView;

@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { ColorModeContext, useMode } from './theme';
 import { ThemeProvider } from '@mui/system';
 import { CssBaseline, CircularProgress } from '@mui/material';
+import { CContainer, CSpinner } from '@coreui/react'
 // import { HomePage } from './pages';
 // import { SettingsPage } from './pages';
 // import { LandingPage } from './pages';
@@ -31,7 +32,7 @@ const Loader = () => {
         transform: 'translate(-50%, -50%)',
       }}
     >
-      <CircularProgress />
+        <CSpinner variant="grow" />
     </div>
   );
 };
