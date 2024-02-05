@@ -21,6 +21,7 @@ export const useSocket = (url: string): Socket | null => {
     });
 
     newSocket.on('podAdded', (data) => {
+      console.log('added POD');
 
       data.eventType = 'Pod Added';
       store.dispatch(addClusterEvent(data));

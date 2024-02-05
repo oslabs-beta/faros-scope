@@ -9,7 +9,7 @@ const tenMinutesAgo = now - 60000 * 2;
 
 export const metricsApi = createApi({
   reducerPath: 'metricsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://104.154.129.231:8000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://35.185.108.181:8000/' }),
   endpoints: (builder) => ({
     getClusterInfo: builder.query({
       query: () => 'clusterInfo',
@@ -41,8 +41,16 @@ export const metricsApi = createApi({
     }),
     getNodeView: builder.query({
       queryFn: async (arg, api, extraOptions, baseQuery) => {
-        const response = await fetch('http://34.16.79.211:80/node-view');
+        const response = await fetch('http://35.185.108.181:8000/node-view');
         const data = await response.json();
+        return { data: data };
+      },
+    }),
+    getContainerUsage: builder.query({
+      queryFn: async (arg, api, extraOptions, baseQuery) => {
+        const response = await fetch('http://34.139.156.110:80/usage-metrics');
+        const data = await response.json();
+        console.log(data);
         return { data: data };
       },
     }),
@@ -64,28 +72,11 @@ export const metricsApi = createApi({
   }),
 });
 
-// QUERIES TO BUILD
-// Container Usage By Pod (MEM)
-// `http://104.198.235.133/api/v1/query?query= sum by (pod) (container_memory_usage_bytes{pod!=""})`
-// Container Usage By Pod (CPU)
-//`http://104.198.235.133/api/v1/query?query= sum by (pod) (rate(container_cpu_usage_seconds_total{pod!=""}[5m]))`
-
-// Container Usage By Namespace (MEM)
-// `http://104.198.235.133/api/v1/query?query= sum by (namespace) (container_memory_usage_bytes{namespace!=""})`
-// Container Usage By Node (MEM)
-// `http://104.198.235.133/api/v1/query?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)`
-
-// Container Usage By Pod (Namespace)
-// `http://104.198.235.133/api/v1/query?query= sum by (namespace) (rate(container_cpu_usage_seconds_total{namespace!=""}[5m]))`
-// Container Usage By Pod (Node)
-// `http://104.198.235.133/api/v1/query?query= sum by (kubernetes_io_hostname) (rate(container_cpu_usage_seconds_total{}[5m]))`
-
 export const {
   useGetNodeViewQuery,
   useGetClusterInfoQuery,
   useGetNodeStatsQuery,
   useGetPodStatsQuery,
   useGetClusterMetricsMapQuery,
-  useGetMemByContainerPodQuery,
-  useGetCpuByContainerPodQuery,
+  useGetContainerUsageQuery,
 } = metricsApi;

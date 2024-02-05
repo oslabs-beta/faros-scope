@@ -5,16 +5,26 @@ import { ListViewTable } from '../../components/List-View/ListViewTable';
 import './ListViewPage.scss';
 import { FlexBetween, Header } from '../../components';
 import { Box, useTheme } from '@mui/material';
-import { flexbox } from '@mui/system';
 import { NameSpaceTable } from '../../components/NameSpaceTable';
+import { formatContainerUsage } from '../../util/formatters/formatContainerUsage';
+import { useGetContainerUsageQuery } from '../../services/api';
 
 export const ListViewPage = () => {
   const muiTheme = useTheme();
+  let cUsageData;
   let metricsState = useSelector((state: RootState) => state?.metricsMap);
+
+  const { data, isLoading } = useGetContainerUsageQuery(undefined, {});
+
+  if (data) {
+    cUsageData = formatContainerUsage(data);
+  }
 
   if (metricsState) {
     metricsState = formatMetricsMap(metricsState);
   }
+
+  if (!data) return;
 
   return (
     <div className={`list-view`}>
@@ -24,7 +34,9 @@ export const ListViewPage = () => {
         </FlexBetween>
         <ListViewTable metricsObject={metricsState.pod} />
         <ListViewTable metricsObject={metricsState.container} />
-        {/* <NameSpaceTable /> */}
+        <NameSpaceTable cUsageMetrics={cUsageData.namespace} />
+        <NameSpaceTable cUsageMetrics={cUsageData.pod} />
+        <NameSpaceTable cUsageMetrics={cUsageData.node} />
       </Box>
     </div>
   );

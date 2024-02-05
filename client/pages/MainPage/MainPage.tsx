@@ -15,7 +15,7 @@ import { useTheme } from '@mui/material';
 export const MainPage = () => {
   const muiTheme = useTheme();
 
-  useSocket('http://104.154.129.231:8000/');
+  useSocket('http://34.139.156.110:80/');
   // ^ see if this works w/o variable declarations
   useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
   useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
