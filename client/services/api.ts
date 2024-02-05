@@ -17,8 +17,9 @@ export const metricsApi = createApi({
         let nodes: Node[] = [];
         let pods: Pod[] = [];
         let containers: Container[] = [];
+          console.log('The Response', response)
 
-        response.forEach((node: Node) => {
+        response['nodes'].forEach((node: Node) => {
           nodes.push({ ...node, id: node.nodeName });
           node.pods.forEach((pod: Pod) => {
             pods.push({ ...pod, id: pod.name, nodeId: node.nodeName });
