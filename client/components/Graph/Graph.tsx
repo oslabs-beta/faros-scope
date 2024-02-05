@@ -10,12 +10,15 @@ import './Graph.scss';
  * Graph component
  * @returns ReactNode
  */
-export const Graph = () => {
+
+/* export */ const Graph = () => {
   const muiTheme = useTheme();
   const { data, isSuccess } = metricsApi.endpoints.getClusterInfo.useQueryState(
     undefined,
     {},
   );
+
+    console.log('Returned Data', data);
   const draggableContainer = useRef<HTMLDivElement>(null);
 
   const graphData: {
@@ -102,6 +105,8 @@ export const Graph = () => {
     });
   }
 
+    console.log('GraphData', graphData);
+
   return (
     <div ref={draggableContainer} className={`graph ${muiTheme.palette.mode}`}>
       {data && isSuccess && (
@@ -116,3 +121,5 @@ export const Graph = () => {
     </div>
   );
 };
+
+export default Graph; 

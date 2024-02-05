@@ -1,7 +1,7 @@
-// import { createContext, useState, useMemo } from 'react';
-// import { createTheme } from '@mui/material/styles';
+import { createContext, useState, useMemo } from 'react';
+import { createTheme } from '@mui/material/styles';
 
-// type ThemeMode = 'light' | 'dark';
+type ThemeMode = 'light' | 'dark';
 
 // export const tokens = (mode: ThemeMode) => ({
 //   ...(mode === 'dark'
@@ -169,23 +169,35 @@ declare module '@mui/material/styles' {
 
 // mui theme settings
 export const themeSettings = (mode: ThemeMode) => {
-  const colors = tokens(mode);
-
+  // const colors = tokens(mode);
   return {
     palette: {
       mode: mode,
       ...(mode === 'dark'
         ? {
             primary: {
-              main: colors.primary[100],
+              main: '#154084', // $base-blue
+              alt: '#9d2719', // $base-red
+              altMain: {
+                100: '#d0d9e6',
+                200: '#a1b3ce',
+                300: '#738cb5',
+                400: '#44669d',
+                500: '#154084',
+                600: '#11336a',
+                700: '#0d264f',
+                800: '#081a35',
+                900: '#040d1a',
+              },
             },
             secondary: {
-              main: colors.greenAccent[500],
+              main: '#188fff', // $accent-blue
+              alt: '#e95f4d', // $accent-red
             },
             neutral: {
-              dark: colors.grey[700],
-              main: colors.grey[500],
-              light: colors.grey[100],
+              dark: '#222222', // $background-color-dark
+              main: '#d0d0d0', // $background-color-light
+              light: '#fcfcfc', // Default light background color
             },
             background: {
               default: '#222222', // $background-color-dark
@@ -193,20 +205,20 @@ export const themeSettings = (mode: ThemeMode) => {
               inverted: '#fcfcfc', // Default light background color
             },
             typography: {
-              main: colors.primary[900],
+              main: '#fcfcfc',
             },
           }
         : {
             primary: {
-              main: colors.primary[900],
+              main: '#154084', // $base-blue
             },
             secondary: {
-              main: colors.greenAccent[500],
+              main: '#188fff', // $accent-blue
             },
             neutral: {
-              dark: colors.grey[700],
-              main: colors.grey[500],
-              light: colors.grey[100],
+              dark: '#222222', // $background-color-dark
+              main: '#d0d0d0', // $background-color-light
+              light: '#fcfcfc', // Default light background color
             },
             background: {
               default: '#fcfcfc', // Default light background color
@@ -214,7 +226,7 @@ export const themeSettings = (mode: ThemeMode) => {
               inverted: '#222222', // $background-color-dark
             },
             typography: {
-              main: colors.primary[900],
+              main: '#222222',
             },
           }),
     },

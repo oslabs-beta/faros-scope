@@ -5,7 +5,15 @@ import {
   AppHeader,
 } from '../components/index';
 
+// ! TEMPORARY IMPORT
+import {
+    useGetClusterInfoQuery,
+} from '../services/api';
+
 const DefaultLayout = () => {
+ // ! TEMPORARY
+    useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
+
   return (
     <div>
       <AppSidebar />

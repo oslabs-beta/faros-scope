@@ -12,7 +12,7 @@ import { CssBaseline, CircularProgress } from '@mui/material';
 // import { GraphPage } from './pages/GraphPage/GraphPage';
 // import { WorkloadView } from './pages';
 
-import './scss/style.scss'
+import './scss/style.scss';
 
 // Containers
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
@@ -21,13 +21,28 @@ const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 const NodeView = lazy(() => import('./pages/NodeView/NodeView'));
 const ListView = lazy(() => import('./pages/ListViewPage/ListViewPage'));
 
+const Loader = () => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <CircularProgress />
+    </div>
+  );
+};
+
 const App = () => {
   const [theme, colorMode] = useMode();
 
   return (
     <div className="app">
       <BrowserRouter>
-        <Suspense fallback={<CircularProgress />}>
+        <Suspense fallback={<Loader />}>
           <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
               <CssBaseline />

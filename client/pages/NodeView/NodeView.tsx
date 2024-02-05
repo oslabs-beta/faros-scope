@@ -12,9 +12,24 @@ const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
 
 
 // ! DEMOING Nivo LineChart
-const NivoLineChart = lazy(
-  () => import('../../components/NivoLineChart/NivoLineChart'),
-);
+// const NivoLineChart = lazy(
+//   () => import('../../components/NivoLineChart/NivoLineChart'),
+// );
+
+const Loader = () => {
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
+  };
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -113,7 +128,8 @@ const NodeView = () => {
             borderRadius="0.55rem"
           >
             <CollapsiblePanel title="CPU and Memory">
-              <Suspense fallback={<CircularProgress />}>
+                          <Suspense fallback={<CircularProg
+                              ress />}>
                 {/* <LineChart
                   title={'CPU Usage Per Node - Top 50'}
                   URL={'clusterUsage'}
