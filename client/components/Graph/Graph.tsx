@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 // import './graph.scss';
 import { metricsApi } from '../../services/api';
 import GraphResponsiveNetwork from './GraphNetwork';
@@ -26,10 +26,11 @@ import './Graph.scss';
       id: string;
       label?: string;
       size: number;
-      color: any;
+      color: string;
       nodeId?: string;
       height?: number;
       type: string;
+      image?: string;
     }[];
     links: {
       source: string;
@@ -37,39 +38,60 @@ import './Graph.scss';
       distance: number;
     }[];
   } = {} as any;
+
   if (isSuccess && data && data.nodes) {
+    console.log('data', data);
     //! TEMPORARY, PASS IN REAL NAMESPACE WHEN AVAILABLE
     graphData.nodes = [
       {
-        id: 'default',
-        label: 'default',
+        id: 'Cluster',
+        label: 'Cluster',
         height: 1.5,
         size: 40,
         color: 'green',
-        type: 'namespace',
+        type: 'cluster',
       },
     ];
-    graphData.links = [];
 
-    //* push nodes
-    data.nodes.forEach((node) => {
+    graphData.links = [];
+    for (const namespace in data.namespaces) {
       graphData.nodes.push({
-        id: node.id,
-        label: node.id,
+        id: namespace,
+        label: namespace,
         height: 0,
-        size: 25,
-        color: '#1284ff',
-        type: 'node',
+        size: 30,
+        color: 'orange',
+        type: 'namespace',
       });
 
       graphData.links.push({
-        source: node.id,
-        target: 'default',
-        distance: 80,
+        source: namespace,
+        target: 'Cluster',
+        distance: 50,
       });
-    });
+    }
 
-    //* push pods
+    for (const service in data.serviceToPodsMapping) {
+      graphData.nodes.push({
+        id: service,
+        label: service,
+        height: 0,
+        size: 20,
+        color: 'blue',
+        type: 'service',
+      });
+
+      if (service !== 'kubernetes') {
+        data.serviceToPodsMapping[service].forEach((pod: string) => {
+          graphData.links.push({
+            source: service,
+            target: pod,
+            distance: 125,
+          });
+        });
+      }
+    }
+
     data.pods.forEach((pod) => {
       graphData.nodes.push({
         id: pod.id,
@@ -82,8 +104,8 @@ import './Graph.scss';
 
       graphData.links.push({
         source: pod.id,
-        target: pod.nodeId,
-        distance: 80,
+        target: pod.namespace,
+        distance: 100,
       });
     });
 
@@ -94,13 +116,14 @@ import './Graph.scss';
         height: 0,
         size: 10,
         color: 'yellow',
+        image: container.image,
         type: 'container',
       });
 
       graphData.links.push({
         source: `${container.name}_${index}`,
         target: container.podId,
-        distance: 80,
+        distance: 100,
       });
     });
   }

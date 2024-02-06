@@ -97,93 +97,100 @@ const GraphResponsiveNetwork = ({
       wheel={{ step: 100 }}
       centerOnInit={true}
     >
-      {(utils) => (
-            //   <div>
-                //   <Controls {...utils} />
-          <TransformComponent
-            wrapperStyle={{
-              width: '100%',
-              height: '100%',
+      {() => (
+        <TransformComponent
+          wrapperStyle={{
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <div
+            style={{
+              height: `calc(100vh + ${calculatedHeight}px)`,
+              width: `calc(100vw + ${calculatedWidth}px)`,
+              position: 'relative',
+              zIndex: 999,
             }}
           >
-            <div
-              style={{
-                height: `calc(100vh + ${calculatedHeight}px)`,
-                width: `calc(100vw + ${calculatedWidth}px)`,
-                position: 'relative',
-                zIndex: 999,
+            <ResponsiveNetworkCanvas
+              data={data}
+              margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+              linkDistance={(e) => e.distance}
+              centeringStrength={1}
+              repulsivity={100}
+              nodeSize={(n) => n.size}
+              activeNodeSize={(n) => n.size * 2}
+              nodeColor={(e) => e.color}
+              nodeBorderWidth={5}
+              nodeBorderColor={{
+                from: 'color',
+                modifiers: [['darker', 0.8]],
               }}
-            >
-              <ResponsiveNetworkCanvas
-                data={data}
-                margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
-                linkDistance={(e) => e.distance}
-                centeringStrength={0.5}
-                repulsivity={80}
-                nodeSize={(n) => n.size}
-                activeNodeSize={(n) => n.size * 2}
-                nodeColor={(e) => e.color}
-                nodeBorderWidth={5}
-                nodeBorderColor={{
-                  from: 'color',
-                  modifiers: [['darker', 0.8]],
-                }}
-                distanceMin={20}
-                linkThickness={(n) => 2 + 2 * n.target.data.height}
-                pixelRatio={2}
-                linkColor={() =>
-                  muiTheme.palette.mode === 'dark' ? 'white' : 'black'
-                }
-                motionConfig="wobbly"
-                nodeTooltip={(e) => (
-                  <div
+              distanceMin={20}
+              linkThickness={(n) => 2 + 2 * n.target.data.height}
+              pixelRatio={2}
+              linkColor={(n) =>
+                n.source.data.type === 'namespace'
+                  ? 'green'
+                  : n.source.data.type === 'service'
+                  ? 'blue'
+                  : n.source.data.type === 'pod'
+                  ? 'orange'
+                  : n.source.data.type === 'container'
+                  ? 'cyan'
+                  : muiTheme.palette.mode === 'dark'
+                  ? 'white'
+                  : 'black'
+              }
+              motionConfig="wobbly"
+              nodeTooltip={(e) => (
+                <div
+                  style={{
+                    border: `2px solid ${muiTheme.palette.primary.main}`,
+                    padding: '10px',
+                    borderRadius: '20px',
+                    color: muiTheme.palette.background.default,
+                    backgroundColor: muiTheme.palette.background.inverted,
+                    textAlign: 'center',
+                  }}
+                >
+                  ID: {e.node.data.label || e.node.id} <br />
+                  Type: {e.node.data.type.toUpperCase()} <br />
+                  <span
                     style={{
-                      border: `2px solid ${muiTheme.palette.primary.main}`,
-                      padding: '10px',
-                      borderRadius: '20px',
-                      color: muiTheme.palette.background.default,
-                      backgroundColor: muiTheme.palette.background.inverted,
-                      textAlign: 'center',
+                      color: muiTheme.palette.primary.main,
                     }}
                   >
-                    ID: {e.node.data.label || e.node.id} <br />
-                    Type: {e.node.data.type.toUpperCase()} <br />
-                    <span
-                      style={{
-                        color: muiTheme.palette.primary.main,
-                      }}
-                    >
-                      CLICK TO COPY ID
-                    </span>
-                  </div>
-                )}
-                onClick={(n) => {
-                  console.log(n);
-                  navigator.clipboard.writeText(
-                    n.id || n.data.id || n.data.label || '',
-                  );
-                  setOpen(true);
-                }}
-              />
-              {createPortal(
-                <Snackbar
-                  open={open}
-                  onClose={() => setOpen(false)}
-                  autoHideDuration={5000}
-                >
-                  <Alert
-                    severity="success"
-                    variant="filled"
-                    sx={{ color: 'white' }}
-                  >
-                    Copied to clipboard!
-                  </Alert>
-                </Snackbar>,
-                document.body,
+                    CLICK TO COPY ID
+                  </span>
+                </div>
               )}
-            </div>
-          </TransformComponent>
-        // </div>
+              onClick={(n) => {
+                console.log(n);
+                navigator.clipboard.writeText(
+                  n.id || n.data.id || n.data.label || '',
+                );
+                setOpen(true);
+              }}
+            />
+            {createPortal(
+              <Snackbar
+                open={open}
+                onClose={() => setOpen(false)}
+                autoHideDuration={5000}
+              >
+                <Alert
+                  severity="success"
+                  variant="filled"
+                  sx={{ color: 'white' }}
+                >
+                  Copied to clipboard!
+                </Alert>
+              </Snackbar>,
+              document.body,
+            )}
+          </div>
+        </TransformComponent>
       )}
     </TransformWrapper>
   );
