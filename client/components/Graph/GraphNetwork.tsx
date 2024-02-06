@@ -88,6 +88,12 @@ const GraphResponsiveNetwork = ({
               pixelRatio={2}
               linkColor={(n) =>
                 n.source.data.type === 'namespace'
+                  ? 'green'
+                  : n.source.data.type === 'service'
+                  ? 'blue'
+                  : n.source.data.type === 'pod'
+                  ? 'orange'
+                  : n.source.data.type === 'container'
                   ? 'cyan'
                   : muiTheme.palette.mode === 'dark'
                   ? 'white'

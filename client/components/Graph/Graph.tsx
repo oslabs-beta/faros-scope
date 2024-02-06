@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 // import './graph.scss';
 import { metricsApi } from '../../services/api';
 import GraphResponsiveNetwork from './GraphNetwork';
@@ -17,13 +17,13 @@ export const Graph = () => {
     {},
   );
   const draggableContainer = useRef<HTMLDivElement>(null);
-  console.log('data', data);
+
   const graphData: {
     nodes: {
       id: string;
       label?: string;
       size: number;
-      color: any;
+      color: string;
       nodeId?: string;
       height?: number;
       type: string;
@@ -35,7 +35,9 @@ export const Graph = () => {
       distance: number;
     }[];
   } = {} as any;
+
   if (isSuccess && data && data.nodes) {
+    console.log('data', data);
     //! TEMPORARY, PASS IN REAL NAMESPACE WHEN AVAILABLE
     graphData.nodes = [
       {
@@ -46,41 +48,47 @@ export const Graph = () => {
         color: 'green',
         type: 'cluster',
       },
-      {
-        id: 'Namespace',
-        label: 'Namespace',
+    ];
+
+    graphData.links = [];
+    for (const namespace in data.namespaces) {
+      graphData.nodes.push({
+        id: namespace,
+        label: namespace,
         height: 0,
         size: 30,
         color: 'orange',
         type: 'namespace',
-      },
-    ];
-    graphData.links = [];
+      });
 
-    //? push nodes
-    // data.nodes.forEach((node) => {
-    //   graphData.nodes.push({
-    //     id: node.id,
-    //     label: node.id,
-    //     height: 0,
-    //     size: 25,
-    //     color: '#1284ff',
-    //     type: 'node',
-    //   });
+      graphData.links.push({
+        source: namespace,
+        target: 'Cluster',
+        distance: 50,
+      });
+    }
 
-    //   graphData.links.push({
-    //     source: node.id,
-    //     target: 'Cluster',
-    //     distance: 100,
-    //   });
+    for (const service in data.serviceToPodsMapping) {
+      graphData.nodes.push({
+        id: service,
+        label: service,
+        height: 0,
+        size: 20,
+        color: 'blue',
+        type: 'service',
+      });
 
-    //   graphData.links.push({
-    //     source: node.id,
-    //     target: 'Namespace',
-    //     distance: 50,
-    //   });
-    // });
-    //* push pods
+      if (service !== 'kubernetes') {
+        data.serviceToPodsMapping[service].forEach((pod: string) => {
+          graphData.links.push({
+            source: service,
+            target: pod,
+            distance: 125,
+          });
+        });
+      }
+    }
+
     data.pods.forEach((pod) => {
       graphData.nodes.push({
         id: pod.id,
@@ -93,8 +101,8 @@ export const Graph = () => {
 
       graphData.links.push({
         source: pod.id,
-        target: 'Namespace',
-        distance: 200,
+        target: pod.namespace,
+        distance: 100,
       });
     });
 
@@ -112,14 +120,8 @@ export const Graph = () => {
       graphData.links.push({
         source: `${container.name}_${index}`,
         target: container.podId,
-        distance: 80,
+        distance: 100,
       });
-    });
-
-    graphData.links.push({
-      source: 'Namespace',
-      target: 'Cluster',
-      distance: 50,
     });
   }
 

@@ -18,7 +18,7 @@ export const metricsApi = createApi({
         let pods: Pod[] = [];
         let containers: Container[] = [];
 
-        response.forEach((node: Node) => {
+        response.nodes.forEach((node: Node) => {
           nodes.push({ ...node, id: node.nodeName });
           node.pods.forEach((pod: Pod) => {
             pods.push({ ...pod, id: pod.name, nodeId: node.nodeName });
@@ -36,6 +36,8 @@ export const metricsApi = createApi({
           nodes: nodes,
           pods: pods,
           containers: containers,
+          serviceToPodsMapping: response.serviceToPodsMapping,
+          namespaces: response.namespaces,
         };
       },
     }),
