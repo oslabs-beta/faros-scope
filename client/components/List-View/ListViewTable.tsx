@@ -65,13 +65,13 @@ const columns: GridColDef[] = [
 export const ListViewTable = ({ metricsObject }: ListViewProps) => {
   const metricsData = metricsObject;
   const theme = useTheme();
-  console.log(theme);
-
+ 
   if (metricsData) {
     metricsData.map((elm, idx) => {
       return (elm.id = idx);
     });
   }
+
 
   if (!metricsData) return <h1>Loading...</h1>;
 

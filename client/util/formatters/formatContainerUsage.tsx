@@ -1,34 +1,52 @@
-import { useGetMemByContainerPodQuery } from '../../services/api';
-import { useGetCpuByContainerPodQuery } from '../../services/api';
+type containerUsageMetrics = {
+  pod: any;
+  namespace: any;
+  node: any;
+};
 
-// TYPES
-// type ListViewDisplayProps = {
-//     metricsMap: any;
-//   };
+type cUsageMetricsItem = {
+  [key: string]: {
+    MEM: number;
+    CPU: number;
+  };
+};
 
-//   type MetricsMapItem = {
-//     cpuUsage: number;
-//     cpuUsagePct: number;
-//     memUsage: number;
-//     memUsagePct: number;
-//     type: string;
-//   };
+type Cache = {
+  node: any;
+  pod: any;
+  namespace: any;
+};
 
-//   type Cache = {
-//     [key: string]: MetricsMapItem[];
-//   };
-
-export const formatContainerUsage = (): any => {
-  const { data, isLoading } = useGetMemByContainerPodQuery('', {});
-  const { data: moreData, stillLoading } = useGetCpuByContainerPodQuery('', {});
-  //   if (data) {
-  //     console.log('inside formater', data);
-  //   }
-
-  if (moreData) {
-    console.log('more data', moreData);
+export const formatContainerUsage = (data: containerUsageMetrics): any => {
+  const cache: Cache = { node: [], pod: [], namespace: [] };
+  if (data.pod) {
+    data.pod.forEach((item: cUsageMetricsItem, idx: number) => {
+      console.log(item);
+      const key = Object.keys(item)[0];
+      const spreadPod = { name: key, id: idx, type: 'pod', ...item[key] };
+      cache.pod.push(spreadPod);
+    });
   }
-  const cache = {};
 
+  if (data.node) {
+    data.node.forEach((item: cUsageMetricsItem, idx: number) => {
+      const key = Object.keys(item)[0];
+      const spreadNode = { name: key, id: idx, type: 'node', ...item[key] };
+      cache.node.push(spreadNode);
+    });
+  }
+
+  if (data.namespace) {
+    data.namespace.forEach((item: cUsageMetricsItem, idx: number) => {
+      const key = Object.keys(item)[0];
+      const spreadNamespace = {
+        name: key,
+        id: idx,
+        type: 'namespace',
+        ...item[key],
+      };
+      cache.namespace.push(spreadNamespace);
+    });
+  }
   return cache;
 };
