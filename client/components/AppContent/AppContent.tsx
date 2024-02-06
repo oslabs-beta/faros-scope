@@ -23,7 +23,7 @@ const Loader = () => {
 
 const AppContent = () => {
   return (
-    <CContainer className="px-4" lg>
+    <CContainer className="custom-container px-4" lg>
       <Suspense fallback={<Loader/>}>
         <Routes>
           {routes.map((route, idx) => {

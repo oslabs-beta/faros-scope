@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
-
+import React from 'react'
 import {
   CRow,
   CCol,
@@ -15,32 +13,12 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 
-const WidgetsDropdown = (props) => {
-  const widgetChartRef1 = useRef(null)
-  const widgetChartRef2 = useRef(null)
-
-  useEffect(() => {
-    document.documentElement.addEventListener('ColorSchemeChange', () => {
-      if (widgetChartRef1.current) {
-        setTimeout(() => {
-          widgetChartRef1.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-primary')
-          widgetChartRef1.current.update()
-        })
-      }
-
-      if (widgetChartRef2.current) {
-        setTimeout(() => {
-          widgetChartRef2.current.data.datasets[0].pointBackgroundColor = getStyle('--cui-info')
-          widgetChartRef2.current.update()
-        })
-      }
-    })
-  }, [widgetChartRef1, widgetChartRef2])
-
+const WidgetsDropdown = () => {
   return (
-    <CRow className={props.className} xs={{ gutter: 4 }}>
-      <CCol sm={6} xl={4} xxl={3}>
+    <CRow>
+      <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          className="mb-4"
           color="primary"
           value={
             <>
@@ -53,8 +31,8 @@ const WidgetsDropdown = (props) => {
           title="Users"
           action={
             <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="text-white p-0">
-                <CIcon icon={cilOptions} />
+              <CDropdownToggle color="transparent" caret={false} className="p-0">
+                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Action</CDropdownItem>
@@ -66,7 +44,6 @@ const WidgetsDropdown = (props) => {
           }
           chart={
             <CChartLine
-              ref={widgetChartRef1}
               className="mt-3 mx-3"
               style={{ height: '70px' }}
               data={{
@@ -90,9 +67,6 @@ const WidgetsDropdown = (props) => {
                 maintainAspectRatio: false,
                 scales: {
                   x: {
-                    border: {
-                      display: false,
-                    },
                     grid: {
                       display: false,
                       drawBorder: false,
@@ -129,8 +103,9 @@ const WidgetsDropdown = (props) => {
           }
         />
       </CCol>
-      <CCol sm={6} xl={4} xxl={3}>
+      <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          className="mb-4"
           color="info"
           value={
             <>
@@ -143,8 +118,8 @@ const WidgetsDropdown = (props) => {
           title="Income"
           action={
             <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="text-white p-0">
-                <CIcon icon={cilOptions} />
+              <CDropdownToggle color="transparent" caret={false} className="p-0">
+                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Action</CDropdownItem>
@@ -156,7 +131,6 @@ const WidgetsDropdown = (props) => {
           }
           chart={
             <CChartLine
-              ref={widgetChartRef2}
               className="mt-3 mx-3"
               style={{ height: '70px' }}
               data={{
@@ -180,9 +154,6 @@ const WidgetsDropdown = (props) => {
                 maintainAspectRatio: false,
                 scales: {
                   x: {
-                    border: {
-                      display: false,
-                    },
                     grid: {
                       display: false,
                       drawBorder: false,
@@ -218,12 +189,13 @@ const WidgetsDropdown = (props) => {
           }
         />
       </CCol>
-      <CCol sm={6} xl={4} xxl={3}>
+      <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          className="mb-4"
           color="warning"
           value={
             <>
-              2.49%{' '}
+              2.49{' '}
               <span className="fs-6 fw-normal">
                 (84.7% <CIcon icon={cilArrowTop} />)
               </span>
@@ -232,8 +204,8 @@ const WidgetsDropdown = (props) => {
           title="Conversion Rate"
           action={
             <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="text-white p-0">
-                <CIcon icon={cilOptions} />
+              <CDropdownToggle color="transparent" caret={false} className="p-0">
+                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Action</CDropdownItem>
@@ -290,8 +262,9 @@ const WidgetsDropdown = (props) => {
           }
         />
       </CCol>
-      <CCol sm={6} xl={4} xxl={3}>
+      <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          className="mb-4"
           color="danger"
           value={
             <>
@@ -304,8 +277,8 @@ const WidgetsDropdown = (props) => {
           title="Sessions"
           action={
             <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="text-white p-0">
-                <CIcon icon={cilOptions} />
+              <CDropdownToggle color="transparent" caret={false} className="p-0">
+                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
                 <CDropdownItem>Action</CDropdownItem>
@@ -366,9 +339,6 @@ const WidgetsDropdown = (props) => {
                     },
                   },
                   y: {
-                    border: {
-                      display: false,
-                    },
                     grid: {
                       display: false,
                       drawBorder: false,
@@ -386,11 +356,6 @@ const WidgetsDropdown = (props) => {
       </CCol>
     </CRow>
   )
-}
-
-WidgetsDropdown.propTypes = {
-  className: PropTypes.string,
-  withCharts: PropTypes.bool,
 }
 
 export default WidgetsDropdown

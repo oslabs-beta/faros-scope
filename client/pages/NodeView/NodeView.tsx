@@ -10,26 +10,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 // Use lazy to defer loading component’s code until it is rendered for the first time.
 const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
 
-
 // ! DEMOING Nivo LineChart
 // const NivoLineChart = lazy(
 //   () => import('../../components/NivoLineChart/NivoLineChart'),
 // );
-
-const Loader = () => {
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        <CircularProgress />
-      </div>
-    );
-  };
 
 import { useGetNodeViewQuery } from '../../services/api';
 
@@ -68,8 +52,20 @@ const NodeView = () => {
   }
 
   const columns: GridColDef[] = [
-    { field: 'nodeName', headerName: 'metadata.system.node_name', flex: 1 },
-    { field: 'metricValue', headerName: 'Latest Value', flex: 1 },
+    {
+      field: 'nodeName',
+      headerName: 'metadata.system.node_name',
+      headerAlign: 'left',
+      flex: 1,
+      align: 'right',
+    },
+    {
+      field: 'metricValue',
+      headerName: 'Latest Value',
+      headerAlign: 'center',
+      flex: 1,
+      align: 'right',
+    },
   ];
 
   return (
@@ -82,20 +78,17 @@ const NodeView = () => {
         <Box
           mt="20px"
           display="grid"
-            gridTemplateColumns="repeat(1fr)"
-            gridAutoRows="minmax(auto, auto)"
+          gridTemplateColumns="repeat(1fr)"
+          gridAutoRows="minmax(auto, auto)"
           gap="20px"
           sx={{
             '& > div': {
-                gridColumn: isNonMediumScreens ? undefined : 'span 12',
+              gridColumn: isNonMediumScreens ? undefined : 'span 12',
             },
           }}
         >
           {/* ROW 1 */}
-          <Box
-            display="grid"
-            gridTemplateColumns="repeat(5, 1fr)"  gap="20px"
-          >
+          <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" gap="20px">
             <StatBox
               title="Total Nodes"
               value={data && data.kube_nodes_total.metricValue}
@@ -128,17 +121,17 @@ const NodeView = () => {
             borderRadius="0.55rem"
           >
             <CollapsiblePanel title="CPU and Memory">
-                          <Suspense fallback={<CircularProgress />}>
-                {/* <LineChart
+              <Suspense fallback={<CircularProgress />}>
+                <LineChart
                   title={'CPU Usage Per Node - Top 50'}
                   URL={'clusterUsage'}
-                /> */}
+                />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
-                {/* <LineChart
+                <LineChart
                   title={'Memory Usage Per Node - Top 50'}
                   URL={'nodeUsage'}
-                /> */}
+                />
               </Suspense>
             </CollapsiblePanel>
           </Box>

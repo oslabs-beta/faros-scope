@@ -41,37 +41,41 @@ const Widgets = () => {
     <CCard className="mb-4">
       <CCardHeader>Widgets</CCardHeader>
       <CCardBody>
-        <DocsExample href="components/widgets/#cwidgetstatsa">
+        <DocsExample href="/components/widgets/#cwidgetstatsa">
           <WidgetsDropdown />
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsb">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+        <DocsExample href="/components/widgets/#cwidgetstatsb">
+          <CRow>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 progress={{ color: 'success', value: 89.9 }}
                 text="Lorem ipsum dolor sit amet enim."
                 title="Widget title"
                 value="89.9%"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 value="12.124"
                 title="Widget title"
                 progress={{ color: 'info', value: 89.9 }}
                 text="Lorem ipsum dolor sit amet enim."
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 value="$98.111,00"
                 title="Widget title"
                 progress={{ color: 'warning', value: 89.9 }}
                 text="Lorem ipsum dolor sit amet enim."
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 value="2 TB"
                 title="Widget title"
                 progress={{ color: 'primary', value: 89.9 }}
@@ -80,10 +84,11 @@ const Widgets = () => {
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsb">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+        <DocsExample href="/components/widgets/#cwidgetstatsb">
+          <CRow>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 color="success"
                 inverse
                 value="89.9%"
@@ -92,8 +97,9 @@ const Widgets = () => {
                 text="Lorem ipsum dolor sit amet enim."
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 color="info"
                 inverse
                 value="12.124"
@@ -102,8 +108,9 @@ const Widgets = () => {
                 text="Lorem ipsum dolor sit amet enim."
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 color="warning"
                 inverse
                 value="$98.111,00"
@@ -112,8 +119,9 @@ const Widgets = () => {
                 text="Lorem ipsum dolor sit amet enim."
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsB
+                className="mb-4"
                 color="primary"
                 inverse
                 value="2 TB"
@@ -124,9 +132,9 @@ const Widgets = () => {
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatse">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol sm={4} md={3} xl={2}>
+        <DocsExample href="/components/widgets/#cwidgetstatse">
+          <CRow>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartBar
@@ -193,11 +201,12 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
-            <CCol sm={4} md={3} xl={2}>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartBar
@@ -264,11 +273,12 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
-            <CCol sm={4} md={3} xl={2}>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartBar
@@ -335,11 +345,12 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
-            <CCol sm={4} md={3} xl={2}>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartLine
@@ -414,11 +425,12 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
-            <CCol sm={4} md={3} xl={2}>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartLine
@@ -493,11 +505,12 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
-            <CCol sm={4} md={3} xl={2}>
+            <CCol sm={4} lg={2}>
               <CWidgetStatsE
                 chart={
                   <CChartLine
@@ -572,40 +585,45 @@ const Widgets = () => {
                     }}
                   />
                 }
+                className="mb-4"
                 title="title"
                 value="1,123"
               />
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsf">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+        <DocsExample href="/components/widgets/#cwidgetstatsf">
+          <CRow>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilSettings} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="primary"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilUser} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="info"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilMoon} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="warning"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilBell} size="xl" />}
                 title="income"
                 value="$1.999,50"
@@ -614,17 +632,18 @@ const Widgets = () => {
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsf">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+        <DocsExample href="/components/widgets/#cwidgetstatsf">
+          <CRow>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilSettings} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="primary"
                 footer={
                   <CLink
-                    className="font-weight-bold font-xs text-body-secondary"
+                    className="font-weight-bold font-xs text-medium-emphasis"
                     href="https://coreui.io/"
                     rel="noopener norefferer"
                     target="_blank"
@@ -635,15 +654,16 @@ const Widgets = () => {
                 }
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilLaptop} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="info"
                 footer={
                   <CLink
-                    className="font-weight-bold font-xs text-body-secondary"
+                    className="font-weight-bold font-xs text-medium-emphasis"
                     href="https://coreui.io/"
                     rel="noopener norefferer"
                     target="_blank"
@@ -654,15 +674,16 @@ const Widgets = () => {
                 }
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilMoon} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="warning"
                 footer={
                   <CLink
-                    className="font-weight-bold font-xs text-body-secondary"
+                    className="font-weight-bold font-xs text-medium-emphasis"
                     href="https://coreui.io/"
                     rel="noopener norefferer"
                     target="_blank"
@@ -673,15 +694,16 @@ const Widgets = () => {
                 }
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilBell} size="xl" />}
                 title="income"
                 value="$1.999,50"
                 color="danger"
                 footer={
                   <CLink
-                    className="font-weight-bold font-xs text-body-secondary"
+                    className="font-weight-bold font-xs text-medium-emphasis"
                     href="https://coreui.io/"
                     rel="noopener norefferer"
                     target="_blank"
@@ -694,10 +716,11 @@ const Widgets = () => {
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsf">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+        <DocsExample href="/components/widgets/#cwidgetstatsf">
+          <CRow>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilSettings} size="xl" />}
                 padding={false}
                 title="income"
@@ -705,8 +728,9 @@ const Widgets = () => {
                 color="primary"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilUser} size="xl" />}
                 padding={false}
                 title="income"
@@ -714,8 +738,9 @@ const Widgets = () => {
                 color="info"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilMoon} size="xl" />}
                 padding={false}
                 title="income"
@@ -723,8 +748,9 @@ const Widgets = () => {
                 color="warning"
               />
             </CCol>
-            <CCol xs={12} sm={6} xl={4} xxl={3}>
+            <CCol xs={12} sm={6} lg={3}>
               <CWidgetStatsF
+                className="mb-3"
                 icon={<CIcon width={24} icon={cilBell} size="xl" />}
                 padding={false}
                 title="income"
@@ -734,13 +760,13 @@ const Widgets = () => {
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsd">
+        <DocsExample href="/components/widgets/#cwidgetstatsd">
           <WidgetsBrand />
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsd">
+        <DocsExample href="/components/widgets/#cwidgetstatsd">
           <WidgetsBrand withCharts />
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsc">
+        <DocsExample href="/components/widgets/#cwidgetstatsc">
           <CCardGroup className="mb-4">
             <CWidgetStatsC
               icon={<CIcon icon={cilPeople} height={36} />}
@@ -774,61 +800,67 @@ const Widgets = () => {
             />
           </CCardGroup>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsc">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={6} lg={4} xxl={2}>
+        <DocsExample href="/components/widgets/#cwidgetstatsc">
+          <CRow>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilPeople} height={36} />}
                 value="87.500"
                 title="Visitors"
                 progress={{ color: 'info', value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilUserFollow} height={36} />}
                 value="385"
                 title="New Clients"
                 progress={{ color: 'success', value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilBasket} height={36} />}
                 value="1238"
                 title="Products sold"
                 progress={{ color: 'warning', value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilChartPie} height={36} />}
                 value="28%"
                 title="Returning Visitors"
                 progress={{ color: 'primary', value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilSpeedometer} height={36} />}
                 value="5:34:11"
                 title="Avg. Time"
                 progress={{ color: 'danger', value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 icon={<CIcon icon={cilSpeech} height={36} />}
                 value="972"
-                title="Comments"
+                title="comments"
                 progress={{ color: 'info', value: 75 }}
+                className="mb-4"
               />
             </CCol>
           </CRow>
         </DocsExample>
-        <DocsExample href="components/widgets/#cwidgetstatsc">
-          <CRow xs={{ gutter: 4 }}>
-            <CCol xs={6} lg={4} xxl={2}>
+        <DocsExample href="/components/widgets/#cwidgetstatsc">
+          <CRow>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="info"
                 icon={<CIcon icon={cilPeople} height={36} />}
@@ -836,9 +868,10 @@ const Widgets = () => {
                 title="Visitors"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="success"
                 icon={<CIcon icon={cilUserFollow} height={36} />}
@@ -846,9 +879,10 @@ const Widgets = () => {
                 title="New Clients"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="warning"
                 icon={<CIcon icon={cilBasket} height={36} />}
@@ -856,9 +890,10 @@ const Widgets = () => {
                 title="Products sold"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={36} />}
@@ -866,9 +901,10 @@ const Widgets = () => {
                 title="Returning Visitors"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="danger"
                 icon={<CIcon icon={cilSpeedometer} height={36} />}
@@ -876,16 +912,18 @@ const Widgets = () => {
                 title="Avg. Time"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
-            <CCol xs={6} lg={4} xxl={2}>
+            <CCol sm={6} md={2}>
               <CWidgetStatsC
                 color="info"
                 icon={<CIcon icon={cilSpeech} height={36} />}
                 value="972"
-                title="Comments"
+                title="comments"
                 inverse
                 progress={{ value: 75 }}
+                className="mb-4"
               />
             </CCol>
           </CRow>

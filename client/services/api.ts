@@ -41,7 +41,7 @@ export const metricsApi = createApi({
     }),
     getNodeView: builder.query({
       queryFn: async (arg, api, extraOptions, baseQuery) => {
-        const response = await fetch('http://34.16.79.211:80/node-view');
+        const response = await fetch('http://34.139.156.110/node-view');
         const data = await response.json();
         return { data: data };
       },
