@@ -73,8 +73,8 @@ const GraphResponsiveNetwork = ({
               data={data}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
               linkDistance={(e) => e.distance}
-              centeringStrength={0.5}
-              repulsivity={80}
+              centeringStrength={1}
+              repulsivity={100}
               nodeSize={(n) => n.size}
               activeNodeSize={(n) => n.size * 2}
               nodeColor={(e) => e.color}
@@ -86,8 +86,18 @@ const GraphResponsiveNetwork = ({
               distanceMin={20}
               linkThickness={(n) => 2 + 2 * n.target.data.height}
               pixelRatio={2}
-              linkColor={() =>
-                muiTheme.palette.mode === 'dark' ? 'white' : 'black'
+              linkColor={(n) =>
+                n.source.data.type === 'namespace'
+                  ? 'green'
+                  : n.source.data.type === 'service'
+                  ? 'blue'
+                  : n.source.data.type === 'pod'
+                  ? 'orange'
+                  : n.source.data.type === 'container'
+                  ? 'cyan'
+                  : muiTheme.palette.mode === 'dark'
+                  ? 'white'
+                  : 'black'
               }
               motionConfig="wobbly"
               nodeTooltip={(e) => (
