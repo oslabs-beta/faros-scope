@@ -12,3 +12,4 @@ export {AppBreadcrumb} from './AppBreadcrumb';
 export { AppFooter } from './AppFooter';
 export {AppSidebar} from './AppSidebar';
 export {AppContent} from './AppContent';
+export {DataGridWithHeader} from './DataGridWithHeader';

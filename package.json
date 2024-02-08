@@ -8,7 +8,7 @@
     "buildClient": "webpack",
     "buildServer": "tsc -p tsconfig.json",
     "build": "npm run buildClient && npm run buildServer",
-    "dev": "concurrently --kill-others \"nodemon ./server/index.ts\" \"webpack serve --mode development --env development\"",
+    "dev": "concurrently --kill-others \"nodemon ./server/index.ts\" \"webpack serve --mode development --env development\" ",
     "start": "node build/server/index.js"
   },
   "repository": {
