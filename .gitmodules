@@ -1,0 +1,3 @@
+[submodule "faros-scope"]
+	path = faros-scope
+	url = https://github.com/oslabs-beta/faros-scope.git
