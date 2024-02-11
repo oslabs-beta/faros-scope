@@ -1,47 +1,33 @@
-import React from 'react'
 import classNames from 'classnames'
 
 import {
-  CAvatar,
-  CButton,
-  CButtonGroup,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCol,
-  CProgress,
-  CRow,
-  CTable,
-  CTableBody,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-} from '@coreui/react'
+    cibFacebook,
+    cibGoogle,
+    cibLinkedin,
+    cibTwitter,
+    cilCloudDownload,
+    cilPeople,
+    cilUser,
+    cilUserFemale,
+} from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cibGoogle,
-  cibFacebook,
-  cibLinkedin,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
-  cibTwitter,
-  cilCloudDownload,
-  cilPeople,
-  cilUser,
-  cilUserFemale,
-} from '@coreui/icons'
+    CButton,
+    CButtonGroup,
+    CCard,
+    CCardBody,
+    CCardFooter,
+    CCardHeader,
+    CCol,
+    CProgress,
+    CRow,
+    CTable,
+    CTableBody,
+    CTableDataCell,
+    CTableHead,
+    CTableHeaderCell,
+    CTableRow,
+} from '@coreui/react'
 
 // import avatar1 from 'src/assets/images/avatars/1.jpg'
 // import avatar2 from 'src/assets/images/avatars/2.jpg'
@@ -195,7 +181,7 @@ const Dashboard = () => {
               <CButtonGroup className="float-end me-3">
                 {['Day', 'Month', 'Year'].map((value) => (
                   <CButton
-                    color="outline-secondary"x
+                    color="outline-secondary"
                     key={value}
                     className="mx-0"
                     active={value === 'Month'}

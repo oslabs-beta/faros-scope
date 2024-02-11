@@ -11,10 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useGetContainerUsageQuery = exports.useGetClusterMetricsMapQuery = exports.useGetPodStatsQuery = exports.useGetNodeStatsQuery = exports.useGetClusterInfoQuery = exports.useGetNodeViewQuery = exports.metricsApi = void 0;
 const react_1 = require("@reduxjs/toolkit/query/react");
-// Get the current time in seconds (Unix timestamp)
-const now = Math.floor(Date.now() / 1000);
-// Calculate the start time (10 minutes ago)
-const tenMinutesAgo = now - 60000 * 2;
 exports.metricsApi = (0, react_1.createApi)({
     reducerPath: 'metricsApi',
     baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: 'http://35.185.108.181:8000/' }),
@@ -44,14 +40,14 @@ exports.metricsApi = (0, react_1.createApi)({
             },
         }),
         getNodeView: builder.query({
-            queryFn: (arg, api, extraOptions, baseQuery) => __awaiter(void 0, void 0, void 0, function* () {
+            queryFn: () => __awaiter(void 0, void 0, void 0, function* () {
                 const response = yield fetch('http://34.139.156.110/node-view');
                 const data = yield response.json();
                 return { data: data };
             }),
         }),
         getContainerUsage: builder.query({
-            queryFn: (arg, api, extraOptions, baseQuery) => __awaiter(void 0, void 0, void 0, function* () {
+            queryFn: () => __awaiter(void 0, void 0, void 0, function* () {
                 const response = yield fetch('http://34.139.156.110:80/usage-metrics');
                 const data = yield response.json();
                 console.log(data);

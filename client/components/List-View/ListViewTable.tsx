@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useTheme } from '@mui/material';
 import { ListViewHeader } from '../ListViewHeader';
 import Paper from '@mui/material/Paper';
 
@@ -64,7 +63,6 @@ const columns: GridColDef[] = [
 
 export const ListViewTable = ({ metricsObject }: ListViewProps) => {
   const metricsData = metricsObject;
-  const theme = useTheme();
  
   if (metricsData) {
     metricsData.map((elm, idx) => {

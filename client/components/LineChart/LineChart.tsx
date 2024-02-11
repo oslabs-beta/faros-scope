@@ -1,9 +1,8 @@
-import { useTheme, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { useEffect, useState } from 'react';
 import { ResponsiveLineCanvas } from '@nivo/line';
+import { useEffect, useState } from 'react';
 import './linechart.scss';
 
 interface RecievedData {
@@ -152,7 +151,6 @@ const LineChart = ({ title, URL }: Props) => {
               from: 'color',
               modifiers: [['darker', 0.3]],
             }}
-            useMesh={true}
             enableSlices={false}
             //
             colors={{ scheme: 'spectral' }}

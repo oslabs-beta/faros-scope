@@ -1,12 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Pod, Node, Container } from '../../types/types';
 
-// Get the current time in seconds (Unix timestamp)
-const now = Math.floor(Date.now() / 1000);
-
-// Calculate the start time (10 minutes ago)
-const tenMinutesAgo = now - 60000 * 2;
-
 export const metricsApi = createApi({
   reducerPath: 'metricsApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://35.185.108.181:8000/' }),
@@ -42,14 +36,14 @@ export const metricsApi = createApi({
       },
     }),
     getNodeView: builder.query({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
+      queryFn: async () => {
         const response = await fetch('http://34.139.156.110/node-view');
         const data = await response.json();
         return { data: data };
       },
     }),
     getContainerUsage: builder.query({
-      queryFn: async (arg, api, extraOptions, baseQuery) => {
+      queryFn: async () => {
         const response = await fetch('http://34.139.156.110:80/usage-metrics');
         const data = await response.json();
         console.log(data);

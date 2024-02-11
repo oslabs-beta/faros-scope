@@ -12,14 +12,15 @@ export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
 });
 
 const initialAppState = {
-    sidebarShow: false,
+    sidebarShow: true,
+    sidebarUnfoldable: false,
 }
 
 export const appState = createSlice({
     name: 'state', 
     initialState: initialAppState,
     reducers: {
-        changeState: (state, {type, payload}) => {
+        changeState: (state, {payload}) => {
             console.log('changeState')
    
             console.log(payload.type);

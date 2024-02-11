@@ -6,10 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NameSpaceTable = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const Box_1 = __importDefault(require("@mui/material/Box"));
-const x_data_grid_1 = require("@mui/x-data-grid");
-const material_1 = require("@mui/material");
-const ListViewHeader_1 = require("../ListViewHeader");
 const Paper_1 = __importDefault(require("@mui/material/Paper"));
+const x_data_grid_1 = require("@mui/x-data-grid");
+const ListViewHeader_1 = require("../ListViewHeader");
 const columns = [
     { field: 'id', headerName: 'ID', width: 50 },
     {
@@ -43,7 +42,6 @@ const columns = [
 ];
 //export const ListViewTable = ({ metricsObject }: ListViewProps) => {
 const NameSpaceTable = ({ cUsageMetrics }) => {
-    const theme = (0, material_1.useTheme)();
     // console.log('INSIDE NAMESPACE', cUsageMetrics);
     if (!cUsageMetrics)
         return (0, jsx_runtime_1.jsx)("h1", { children: "Loading..." });

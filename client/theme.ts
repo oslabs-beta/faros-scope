@@ -1,7 +1,7 @@
-import { createContext, useState, useMemo } from 'react';
-import { createTheme } from '@mui/material/styles';
+import { createContext, useState, useMemo } from "react";
+import { createTheme } from "@mui/material/styles";
 
-type ThemeMode = 'light' | 'dark';
+type ThemeMode = "light" | "dark";
 
 // export const tokens = (mode: ThemeMode) => ({
 //   ...(mode === 'dark'
@@ -123,7 +123,7 @@ type ThemeMode = 'light' | 'dark';
 //       }),
 // });
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface Theme {
     palette: {
       mode: ThemeMode;
@@ -155,7 +155,7 @@ declare module '@mui/material/styles' {
         alt?: string;
         inverted?: string;
       };
-      typography?: {
+      typography: {
         main?: string;
       };
     };
@@ -173,88 +173,88 @@ export const themeSettings = (mode: ThemeMode) => {
   return {
     palette: {
       mode: mode,
-      ...(mode === 'dark'
+      ...(mode === "dark"
         ? {
             primary: {
-              main: '#154084', // $base-blue
-              alt: '#9d2719', // $base-red
+              main: "#154084", // $base-blue
+              alt: "#9d2719", // $base-red
               altMain: {
-                100: '#d0d9e6',
-                200: '#a1b3ce',
-                300: '#738cb5',
-                400: '#44669d',
-                500: '#154084',
-                600: '#11336a',
-                700: '#0d264f',
-                800: '#081a35',
-                900: '#040d1a',
+                100: "#d0d9e6",
+                200: "#a1b3ce",
+                300: "#738cb5",
+                400: "#44669d",
+                500: "#154084",
+                600: "#11336a",
+                700: "#0d264f",
+                800: "#081a35",
+                900: "#040d1a",
               },
             },
             secondary: {
-              main: '#188fff', // $accent-blue
-              alt: '#e95f4d', // $accent-red
+              main: "#188fff", // $accent-blue
+              alt: "#e95f4d", // $accent-red
             },
             neutral: {
-              dark: '#222222', // $background-color-dark
-              main: '#d0d0d0', // $background-color-light
-              light: '#fcfcfc', // Default light background color
+              dark: "#222222", // $background-color-dark
+              main: "#d0d0d0", // $background-color-light
+              light: "#fcfcfc", // Default light background color
             },
             background: {
-              default: '#222222', // $background-color-dark
-              alt: '#1e1e1e', // $background-color-light
-              inverted: '#fcfcfc', // Default light background color
+              default: "#222222", // $background-color-dark
+              alt: "#1e1e1e", // $background-color-light
+              inverted: "#fcfcfc", // Default light background color
             },
             typography: {
-              main: '#fcfcfc',
+              main: "#fcfcfc",
             },
           }
         : {
             primary: {
-              main: '#154084', // $base-blue
+              main: "#154084", // $base-blue
             },
             secondary: {
-              main: '#188fff', // $accent-blue
+              main: "#188fff", // $accent-blue
             },
             neutral: {
-              dark: '#222222', // $background-color-dark
-              main: '#d0d0d0', // $background-color-light
-              light: '#fcfcfc', // Default light background color
+              dark: "#222222", // $background-color-dark
+              main: "#d0d0d0", // $background-color-light
+              light: "#fcfcfc", // Default light background color
             },
             background: {
-              default: '#fcfcfc', // Default light background color
-              alt: '#ffffff', // $background-color-light
-              inverted: '#222222', // $background-color-dark
+              default: "#fcfcfc", // Default light background color
+              alt: "#ffffff", // $background-color-light
+              inverted: "#222222", // $background-color-dark
             },
             typography: {
-              main: '#222222',
+              main: "#222222",
             },
           }),
     },
     typography: {
-      fontFamily: ['Source Sans 3', 'Baumans', 'sans-serif'].join(','),
+      fontFamily: ["Source Sans 3", "Baumans", "sans-serif"].join(","),
       fontSize: 16,
       h1: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ['Source Sans 3', 'sans-serif'].join(','),
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
         fontSize: 14,
       },
     },
@@ -263,22 +263,22 @@ export const themeSettings = (mode: ThemeMode) => {
 
 // context for color mode
 export const ColorModeContext = createContext({
-  toggleColorMode: () => {},
+    toggleColorMode: () => {},
 });
 
 export const useMode = () => {
-  const [mode, setMode] = useState<ThemeMode>('light');
+  const [mode, setMode] = useState<ThemeMode>("light");
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
+        setMode((prev) => (prev === "light" ? "dark" : "light"));
       },
     }),
-    [],
+    []
   );
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
-  return [theme, colorMode];
+    return { theme, colorMode };
 };

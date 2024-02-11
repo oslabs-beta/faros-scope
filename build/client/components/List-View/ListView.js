@@ -97,7 +97,7 @@ const ListView = ({ metricsObject }) => {
     const dataObj = metricsObject;
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataObj.length) : 0;
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (_event, newPage) => {
         setPage(newPage);
     };
     const handleChangeRowsPerPage = (event) => {

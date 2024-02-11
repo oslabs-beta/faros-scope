@@ -1,5 +1,4 @@
 import { useState, createContext } from 'react';
-
 interface GridContextProps {
   scrollToSignificantChild: () => void;
   setMostSignificantChild: (child: HTMLElement | null) => void;

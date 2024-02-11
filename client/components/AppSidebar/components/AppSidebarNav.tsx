@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import { CBadge } from '@coreui/react'
 
-export const AppSidebarNav = ({ items }) => {
+export const AppSidebarNav = ({ items }: any) => {
   const location = useLocation()
-  const navLink = (name, icon, badge, indent = false) => {
+  const navLink = (name: string, icon: any, badge?: any, indent = false) => {
     return (
       <>
         {icon
@@ -17,7 +17,7 @@ export const AppSidebarNav = ({ items }) => {
               </span>
             )}
         {name && name}
-        {badge && (
+        {badge  && (
           <CBadge color={badge.color} className="ms-auto">
             {badge.text}
           </CBadge>
@@ -26,7 +26,7 @@ export const AppSidebarNav = ({ items }) => {
     )
   }
 
-  const navItem = (item, index, indent = false) => {
+  const navItem = (item: any, index: number, indent = false) => {
     const { component, name, badge, icon, ...rest } = item
     const Component = component
     return (
@@ -42,7 +42,7 @@ export const AppSidebarNav = ({ items }) => {
       </Component>
     )
   }
-  const navGroup = (item, index) => {
+  const navGroup = (item: any, index: number) => {
     const { component, name, icon, items, to, ...rest } = item
     const Component = component
     return (
@@ -54,7 +54,7 @@ export const AppSidebarNav = ({ items }) => {
         visible={location.pathname.startsWith(to)}
         {...rest}
       >
-        {item.items?.map((item, index) =>
+        {item.items?.map((item: any, index: number) =>
           item.items ? navGroup(item, index) : navItem(item, index, true),
         )}
       </Component>
@@ -64,7 +64,7 @@ export const AppSidebarNav = ({ items }) => {
   return (
     <React.Fragment>
       {items &&
-        items.map((item, index) => (item.items ? navGroup(item, index) : navItem(item, index)))}
+        items.map((item: any, index: number) => (item.items ? navGroup(item, index) : navItem(item, index)))}
     </React.Fragment>
   )
 }

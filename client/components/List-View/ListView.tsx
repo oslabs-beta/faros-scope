@@ -158,7 +158,7 @@ const ListView = ({ metricsObject }: ListViewProps) => {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataObj.length) : 0;
 
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+    _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
     setPage(newPage);

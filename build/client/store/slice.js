@@ -12,13 +12,14 @@ exports.clusterEventsAdapter = (0, toolkit_1.createEntityAdapter)({
     selectId: (clusterEvent) => clusterEvent.metadata.resourceVersion,
 });
 const initialAppState = {
-    sidebarShow: false,
+    sidebarShow: true,
+    sidebarUnfoldable: false,
 };
 exports.appState = (0, toolkit_1.createSlice)({
     name: 'state',
     initialState: initialAppState,
     reducers: {
-        changeState: (state, { type, payload }) => {
+        changeState: (state, { payload }) => {
             console.log('changeState');
             console.log(payload.type);
             switch (payload.type) {

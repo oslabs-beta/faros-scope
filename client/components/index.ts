@@ -1,8 +1,7 @@
 export { ThemeContainer } from './ThemeContainer';
 export { Graph } from './Graph';
 export { SwitchButton } from './SwitchButton';
-export { Notification } from './Notification';
-export { NotificationDisplay } from './Notification';
+// export { Notification,NotificationDisplay } from './Notification';
 export { Header } from './Header';
 export { FlexBetween } from './FlexBetween';
 export { StatBox } from './StatBox';

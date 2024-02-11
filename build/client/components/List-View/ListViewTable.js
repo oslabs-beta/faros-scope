@@ -7,7 +7,6 @@ exports.ListViewTable = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const Box_1 = __importDefault(require("@mui/material/Box"));
 const x_data_grid_1 = require("@mui/x-data-grid");
-const material_1 = require("@mui/material");
 const ListViewHeader_1 = require("../ListViewHeader");
 const Paper_1 = __importDefault(require("@mui/material/Paper"));
 const columns = [
@@ -54,7 +53,6 @@ const columns = [
 ];
 const ListViewTable = ({ metricsObject }) => {
     const metricsData = metricsObject;
-    const theme = (0, material_1.useTheme)();
     if (metricsData) {
         metricsData.map((elm, idx) => {
             return (elm.id = idx);

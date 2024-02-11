@@ -2,7 +2,8 @@
   "name": "faros-scope",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index",
+  "types": "index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildClient": "webpack",

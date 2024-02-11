@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 // import React from 'react'
-const icons_react_1 = __importDefault(require("@coreui/icons-react"));
 const icons_1 = require("@coreui/icons");
+const icons_react_1 = __importDefault(require("@coreui/icons-react"));
 const react_1 = require("@coreui/react");
 const _nav = [
     {

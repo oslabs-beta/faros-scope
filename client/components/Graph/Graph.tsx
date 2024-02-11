@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 // import './graph.scss';
 import { metricsApi } from '../../services/api';
 import GraphResponsiveNetwork from './GraphNetwork';

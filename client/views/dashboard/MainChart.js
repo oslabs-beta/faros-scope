@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle } from '@coreui/utils'

@@ -1,24 +1,23 @@
-import {useContext} from 'react';
-import { ColorModeContext } from '../../theme';
-import { useTheme } from '@mui/material';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { cilBell, cilEnvelopeOpen, cilList, cilMenu, cilMoon, cilSun } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
 import {
-  CContainer,
-  CHeader,
-  CHeaderBrand,
-  CHeaderDivider,
-  CHeaderNav,
-  CHeaderToggler,
-  CNavLink,
-    CNavItem,
+    CContainer,
     CDropdown,
+    CDropdownItem,
     CDropdownMenu,
     CDropdownToggle,
-    CDropdownItem
+    CHeader,
+    CHeaderDivider,
+    CHeaderNav,
+    CHeaderToggler,
+    CNavItem,
+    CNavLink
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-import { cilBell, cilEnvelopeOpen, cilList, cilMenu, cilMoon, cilSun } from '@coreui/icons';
+import { useTheme } from '@mui/material';
+import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { ColorModeContext } from '../../theme';
 
 import { AppBreadcrumb } from '../index';
 // import { AppHeaderDropdown } from './components';
@@ -26,21 +25,24 @@ import { AppBreadcrumb } from '../index';
 
 import { changeState } from '../../store/slice';
 
+import {RootState} from '../../../types/types'
+
 const AppHeader = () => {
     //   let location = useLocation();
     
-    const colorMode = useContext(ColorModeContext);
-const theme = useTheme(); 
+    // type assertion; assert to typescript that ColorModeContext is an object with the method toggleColorMode
+    const colorMode = useContext(ColorModeContext)
+    const theme = useTheme(); 
 
     const changeTheme = () => colorMode.toggleColorMode();
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const sidebarShow = useSelector((state) => state.appState.sidebarShow);
+    const sidebarShow = useSelector((state: RootState) => state.appState.sidebarShow);
 
-  const toggleSidebar = () => {
-    dispatch(changeState({ type: 'set', sidebarShow: !sidebarShow }));
-  };
+    const toggleSidebar = () => {
+        dispatch(changeState({ type: 'set', sidebarShow: !sidebarShow }));
+    };
 
   return (
     <CHeader position="sticky" className="mb-4">
@@ -52,9 +54,9 @@ const theme = useTheme();
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderBrand className="mx-auto d-md-none" to="/">
-          {/* <CIcon icon={logo} height={48} alt="Logo" /> */}
-        </CHeaderBrand>
+        {/* <CHeaderBrand className="mx-auto d-md-none" to="/">
+          <CIcon icon={logo} height={48} alt="Logo" />
+        </CHeaderBrand> */}
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
             <CNavLink to="/dashboard" component={NavLink}>

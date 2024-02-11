@@ -5,7 +5,7 @@ import { ResponsiveNetwork } from '@nivo/network';
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const GraphResponsiveNetwork = ({ data /* see data tab */ }) => (
+const GraphResponsiveNetwork = ({ data /* see data tab */ }: any) => (
   <div
     style={{
       height: '100%',

@@ -1,22 +1,9 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { useTheme } from '@mui/material';
-import { ListViewHeader } from '../ListViewHeader';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { ListViewHeader } from '../ListViewHeader';
 
-// Types
-type usageData = {
-  name: string;
-  CPU: number;
-  MEM: number;
-  id?: number;
-};
 
-type cUsageMetrics = {
-  [key: string]: any;
-};
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 50 },
@@ -50,8 +37,7 @@ const columns: GridColDef[] = [
   },
 ];
 //export const ListViewTable = ({ metricsObject }: ListViewProps) => {
-export const NameSpaceTable = ({ cUsageMetrics }: cUsageMetrics) => {
-  const theme = useTheme();
+export const NameSpaceTable = ({ cUsageMetrics }: any) => {
   // console.log('INSIDE NAMESPACE', cUsageMetrics);
   if (!cUsageMetrics) return <h1>Loading...</h1>;
 

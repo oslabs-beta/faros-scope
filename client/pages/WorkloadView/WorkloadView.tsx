@@ -1,21 +1,21 @@
-import { Box, useTheme, useMediaQuery } from '@mui/material';
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import {
   CollapsiblePanel,
   FlexBetween,
   Header,
   StatBox,
-} from '../../components';
+} from "../../components";
 
 export const WorkloadView = () => {
   const theme = useTheme();
-  const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
+  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
 
   return (
     <Box
       sx={{
-        height: '100%',
-        width: '100%',
-        overflow: 'auto',
+        height: "100%",
+        width: "100%",
+        overflow: "auto",
       }}
     >
       <Box m="1.5rem 2.5rem">
@@ -33,12 +33,12 @@ export const WorkloadView = () => {
           gridAutoRows="minmax(auto, auto)"
           gap="20px"
           sx={{
-            '& > div': {
-              gridColumn: isNonMediumScreens ? undefined : 'span 12',
+            "& > div": {
+              gridColumn: isNonMediumScreens ? undefined : "span 12",
             },
           }}
         >
-          <Box display="grid" gridTemplateColumns="repeat(6, 1fr)" gap="20px" >
+          <Box display="grid" gridTemplateColumns="repeat(6, 1fr)" gap="20px">
             <StatBox title="Total Pods" />
             <StatBox title="Total Containers" />
             <StatBox title="Avg CPU Usage / Limit" />
@@ -48,10 +48,11 @@ export const WorkloadView = () => {
           </Box>
 
           <Box
-            // gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
-            p="1rem"
-            borderRadius="0.55rem"
+            sx={{
+              backgroundColor: theme.palette.background.alt,
+              p: "1rem",
+              borderRadius: "0.55rem",
+            }}
           >
             <CollapsiblePanel title="CPU">
               "I am a CollapsiblePanel"
@@ -59,10 +60,12 @@ export const WorkloadView = () => {
           </Box>
 
           <Box
-            // gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
-            p="1rem"
-            borderRadius="0.55rem"
+            sx={{
+              // gridColumn:"span 8"
+              backgroundColor: theme.palette.background.alt,
+              p: "1rem",
+              borderRadius: "0.55rem",
+            }}
           >
             <CollapsiblePanel title="Memory (non-evictable)">
               "I am a CollapsiblePanel"
@@ -70,10 +73,12 @@ export const WorkloadView = () => {
           </Box>
 
           <Box
-            // gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
-            p="1rem"
-            borderRadius="0.55rem"
+            sx={{
+              // gridColumn:"span 8"
+              backgroundColor: theme.palette.background.alt,
+              p: "1rem",
+              borderRadius: "0.55rem",
+            }}
           >
             <CollapsiblePanel title="Bandwidth">
               "I am a CollapsiblePanel"
@@ -81,10 +86,12 @@ export const WorkloadView = () => {
           </Box>
 
           <Box
-            // gridColumn="span 8"
-            backgroundColor={theme.palette.background.alt}
-            p="1rem"
-            borderRadius="0.55rem"
+            sx={{
+              // gridColumn:"span 8"
+              backgroundColor: theme.palette.background.alt,
+              p: "1rem",
+              borderRadius: "0.55rem",
+            }}
           >
             <CollapsiblePanel title="Rate of packets">
               "I am a CollapsiblePanel"

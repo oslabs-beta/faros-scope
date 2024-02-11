@@ -15,10 +15,8 @@ const material_1 = require("@mui/material");
 const NavBar = ({ styleOverride }) => {
     const colorMode = (0, react_1.useContext)(theme_1.ColorModeContext);
     const muiTheme = (0, material_1.useTheme)();
-    // const { scrollToSignificantChild } = useGrid();
     const changeTheme = () => {
         colorMode.toggleColorMode();
-        // toggleTheme();
     };
     // const centerGrid = () => {
     //   scrollToSignificantChild();

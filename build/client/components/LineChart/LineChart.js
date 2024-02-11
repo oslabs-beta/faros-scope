@@ -16,26 +16,34 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const material_1 = require("@mui/material");
 const CircularProgress_1 = __importDefault(require("@mui/material/CircularProgress"));
 const Paper_1 = __importDefault(require("@mui/material/Paper"));
-const react_1 = require("react");
 const line_1 = require("@nivo/line");
+const react_1 = require("react");
 require("./linechart.scss");
 // Get the current time in seconds (Unix timestamp)
 const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 50000 * 2;
 const URLObject = {
-    clusterUsage: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
-    nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[5m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=14`,
+    clusterUsage: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
+    // ! by changing query from 5  to 10 minutes increase range of time of sample
+    nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=120`,
     podNetwork: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`,
     packetsTransmitted: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`,
     packetsReceived: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (pod) (rate(container_network_receive_packets_total{pod!=""}[5m]))&start=${tenMinutesAgo}&end=${now}&step=60`,
     nodeUsageURL: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=${tenMinutesAgo}&end=${now}&step=150`,
     receivedBandwidth: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
 };
+const commonProperties = {
+    //   width: 900,
+    //   height: 400,
+    margin: { top: 20, right: 20, bottom: 60, left: 80 },
+    animate: true,
+    enableSlices: 'x',
+};
 const LineChart = ({ title, URL }) => {
-    const theme = (0, material_1.useTheme)();
+    //   const theme = useTheme();
     const [data, setData] = (0, react_1.useState)(null);
-    const [isLegendExpanded, setIsLegendExpanded] = (0, react_1.useState)(false);
+    //   const [isLegendExpanded, setIsLegendExpanded] = useState(false);
     (0, react_1.useEffect)(() => {
         (function () {
             return __awaiter(this, void 0, void 0, function* () {
@@ -45,9 +53,9 @@ const LineChart = ({ title, URL }) => {
                 })
                     .then(({ data }) => {
                     const XY = data.result.map((result) => {
-                        console.log(result);
+                        console.log(`${title} ${URL}`, result);
                         const temp = result.values.map((point) => {
-                            return { x: new Date(point[0]), y: Number(point[1]) };
+                            return { x: new Date(point[0] * 1000).toISOString(), y: Number(point[1]) };
                         });
                         return {
                             data: temp,
@@ -59,47 +67,55 @@ const LineChart = ({ title, URL }) => {
             });
         })();
     }, []);
+    console.log(`THIS IS THE ${title} ${URL} DATA`, data);
     return ((0, jsx_runtime_1.jsxs)(Paper_1.default, { variant: "outlined", sx: {
+            position: 'relative',
             width: '100%',
-            // height: '40vh',
+            aspectRatio: '1/1',
+            height: '50vh',
             borderRadius: '0.45rem',
-            backgroundColor: "white",
+            backgroundColor: 'white',
             // backgroundColor: theme.palette.neutral.light,
             color: 'black',
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            // justifyContent: 'center',
+            // alignItems: 'center',
             flexDirection: 'column',
+            overFlow: 'visible',
         }, children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { sx: {
-                    color: 'white',
+                    color: 'black',
                     fontSize: '1.05rem',
-                }, children: title }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, { enableArea: true, enableGridX: false, data: data, curve: "linear", 
-                //   margin={{ top: 10, right: 50, bottom: 50, left: 90 }}
-                margin: { top: 5, right: 20, bottom: 40, left: 20 }, xScale: {
-                    type: 'time',
-                    format: '%Y-%m-%dT%H:%M:%S.%LZ',
-                    precision: 'second',
-                }, 
-                //   yScale={{ type: 'linear', stacked: true, min: 'auto', max: 'auto' }}
-                axisTop: null, axisLeft: null, axisRight: {
-                    tickValues: [
-                        0,
-                        500,
-                        1000,
-                        1500,
-                        2000,
-                        2500
-                    ],
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    format: '.2s',
-                    legendOffset: 0
-                }, axisBottom: {
-                    format: '%H:%M',
-                    legendOffset: 36,
-                    legendPosition: 'middle',
-                } }))] }));
+                    height: '100%',
+                }, children: title }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)("div", { style: {
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    top: '10%',
+                }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { data: data, xScale: {
+                        type: 'time',
+                        format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+                        useUTC: true,
+                        precision: 'second',
+                    }, xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z", yScale: {
+                        type: 'linear',
+                        // stacked: boolean('stacked', false),
+                    }, axisLeft: {
+                        legend: 'linear scale',
+                        legendOffset: 12,
+                    }, axisBottom: {
+                        format: '%S.%L',
+                        tickValues: 'every 1 minute',
+                        legend: 'time',
+                        legendOffset: -12,
+                    }, curve: "natural", 
+                    // enablePointLabel={true}
+                    // pointSymbol={CustomSymbol}
+                    pointSize: 0, pointBorderWidth: 0, pointBorderColor: {
+                        from: 'color',
+                        modifiers: [['darker', 0.3]],
+                    }, enableSlices: false, 
+                    //
+                    colors: { scheme: 'spectral' } })) }))] }));
 };
 // Exporting as default for React lazy loading; React.lazy() only supports default exports
 exports.default = LineChart;

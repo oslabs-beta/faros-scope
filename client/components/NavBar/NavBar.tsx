@@ -6,7 +6,8 @@ import { ColorModeContext } from '../../theme';
 import { useTheme } from '@mui/material';
 
 interface NavBarProps {
-  styleOverride?: any;
+    styleOverride?: any;
+    orientation?: string;
 }
 
 /**
@@ -14,13 +15,11 @@ interface NavBarProps {
  * @returns ReactNode
  */
 export const NavBar = ({ styleOverride }: NavBarProps) => {
-  const colorMode = useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext)
   const muiTheme = useTheme();
-  // const { scrollToSignificantChild } = useGrid();
 
   const changeTheme = () => {
     colorMode.toggleColorMode();
-    // toggleTheme();
   };
 
   // const centerGrid = () => {

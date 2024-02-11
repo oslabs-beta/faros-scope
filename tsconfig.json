@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
@@ -18,6 +19,6 @@
     "noUnusedParameters": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["server/**/*.ts", "./**/*.tsx", "types", "client/index.tsx"],
+  "include": ["server/**/*.ts", "./**/*.tsx", "types", "client/index.tsx", "client/views/widgets/Widgets.js", "client/views/widgets/WidgetsDropdown.js", "client/views/widgets/WidgetsBrand.js", "client/views/dashboard/MainChart.js", "client/views/dashboard/Dashboard.js"],
   "exclude": ["node_modules"]
 }
