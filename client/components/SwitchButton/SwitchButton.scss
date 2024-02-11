@@ -1,0 +1,95 @@
+@import '../../variables.scss';
+
+.switchContainer {
+  position: relative;
+  margin: 0.1em;
+  border-radius: 20px;
+  background-color: darken($base-blue, 10%);
+  padding: 0.2em;
+}
+
+.switchContainer::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  left: 50%;
+  top: 0;
+}
+
+.switchButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brightnessMode {
+  position: absolute;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.4s;
+  &:checked + .sunIcon, &:checked + .moonIcon {
+    background-color: lighten($base-blue, 20%);
+    border-radius: 50%;
+    padding: 0.1em;
+    margin: 0.05em;
+  }
+}
+
+.sunIcon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.moonIcon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.modeLabel {
+  @include flex-vertical;
+  position: relative;
+  margin: 0 0.5em;
+}
+
+.slider {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  top: -0.3em;
+  left: -0.5em;
+  background: transparent;
+  transition: 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.switchBar[type='checkbox']:checked + .slider {
+  left: 50%;
+  width: 2em;
+  height: 2em;
+  top: -0.3em;
+}
+
+.themeIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease-in-out;
+  pointer-events: none;
+}
