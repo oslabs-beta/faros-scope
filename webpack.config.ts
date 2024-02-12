@@ -61,7 +61,7 @@ const config: Configuration = {
             publicPath: '/client',
             directory: path.resolve(__dirname, 'client'),
         },
-        historyApiFallback: true,
+        // historyApiFallback: true,
         proxy: {
             '/': 'http://localhost:3000',
         },

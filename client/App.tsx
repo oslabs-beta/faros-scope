@@ -1,9 +1,9 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { ColorModeContext, useMode } from './theme';
-import { ThemeProvider } from '@mui/system';
-import { CssBaseline } from '@mui/material';
-import { CSpinner } from '@coreui/react';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { ColorModeContext, useMode } from "./theme";
+import { ThemeProvider } from "@mui/system";
+import { CssBaseline } from "@mui/material";
+import { CSpinner } from "@coreui/react";
 // import { HomePage } from './pages';
 // import { SettingsPage } from './pages';
 // import { LandingPage } from './pages';
@@ -13,28 +13,28 @@ import { CSpinner } from '@coreui/react';
 // import { GraphPage } from './pages/GraphPage/GraphPage';
 // import { WorkloadView } from './pages';
 
-import './scss/style.scss';
+import "./scss/style.scss";
 
 // Containers
-const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
+import DefaultLayout from "./layout/DefaultLayout";
 
 const Loader = () => {
   return (
     <div
       style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
       }}
     >
-        <CSpinner variant="grow" />
+      <CSpinner variant="grow" />
     </div>
   );
 };
 
 const App = () => {
-    const { theme, colorMode } = useMode();
+  const { theme, colorMode } = useMode();
 
   return (
     <div className="app">
@@ -42,18 +42,18 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Routes>
-                    <Route path="*" element={<DefaultLayout />} />
-                    {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
-                    {/* <Route path="/dashboard" element={<HomePage />} /> */}
-                    {/* <Route path="/dashboard" element={<ListViewDisplay />} /> */}
-                    {/* <Route path="/node-view" element={<NodeView />} /> */}
-                    {/* <Route path="/workload-view" element={<WorkloadView />} /> */}
-                    {/* <Route path="settings" element={<SettingsPage />} /> */}
-                    {/* </Route> */}
-                    {/* <Route path="landing" element={<LandingPage />} /> */}
-                </Routes>
+              <CssBaseline />
+              <Routes>
+                <Route path="/*" element={<DefaultLayout />} />
+                {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
+                {/* <Route path="/dashboard" element={<HomePage />} />
+                <Route path="/dashboard" element={<ListViewDisplay />} />
+                <Route path="/node-view" element={<NodeView />} />
+                <Route path="/workload-view" element={<WorkloadView />} />
+                <Route path="settings" element={<SettingsPage />} />
+                </Route>
+                <Route path="landing" element={<LandingPage />} /> */}
+              </Routes>
             </ThemeProvider>
           </ColorModeContext.Provider>
         </Suspense>
