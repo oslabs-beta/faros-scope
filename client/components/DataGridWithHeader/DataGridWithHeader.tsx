@@ -22,6 +22,7 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
         "& .MuiDataGrid-toolbarContainer": {
           borderTop: "1px solid #e0e0e0",
           borderBottom: "1px solid #e0e0e0",
+          height: "40px",
         },
         "& .MuiDataGrid-columnHeaders": {
           backgroundColor: "lightgray",
@@ -38,10 +39,11 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
       <Typography
         style={{
           display: "flex",
+          fontWeight: "bold",
           alignItems: "center",
           marginLeft: "1rem",
-          fontSize: "1.05rem",
-          height: "10%",
+          fontSize: "1.15rem",
+          height: "36px",
           textAlign: "center",
         }}
       >
@@ -51,7 +53,10 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
         loading={isLoading || !data}
         rows={data}
         columns={columns}
-        components={{ Toolbar: GridToolbar }}
+              components={{ Toolbar: GridToolbar }}
+            //   pageSize={5}
+              paginationModel={{pageSize: 5, page: 0}}
+        columnHeaderHeight={40}
       />
     </Box>
   );

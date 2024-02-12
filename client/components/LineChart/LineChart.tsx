@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import Paper from '@mui/material/Paper';
-import { ResponsiveLineCanvas } from '@nivo/line';
-import { useEffect, useState } from 'react';
-import './linechart.scss';
+import { Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import Paper from "@mui/material/Paper";
+import { ResponsiveLineCanvas } from "@nivo/line";
+import { useEffect, useState } from "react";
+import "./linechart.scss";
 
 interface RecievedData {
   metric: { [key: string]: string };
@@ -27,9 +27,9 @@ const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 50000 * 2;
 const URLObject: URLObject = {
-  clusterUsage: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
+  clusterUsage: `/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
   // ! by changing query from 5  to 10 minutes increase range of time of sample
-    nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=120`,
+  nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=120`,
   podNetwork: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`,
   packetsTransmitted: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`,
   packetsReceived: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (pod) (rate(container_network_receive_packets_total{pod!=""}[5m]))&start=${tenMinutesAgo}&end=${now}&step=60`,
@@ -43,16 +43,24 @@ interface Props {
 }
 
 const commonProperties = {
-//   width: 900,
-//   height: 400,
-  margin: { top: 20, right: 20, bottom: 60, left: 80 },
-  animate: true,
-  enableSlices: 'x',
+    // width: 900,
+    height: 400,
+    margin: { top: 20, right: 20, bottom: 60, left: 80 },
+    pointSize: 8,
+    pointColor: { theme: 'background' },
+    pointBorderWidth: 2,
+    pointBorderColor: { theme: 'background' },
 };
+//   //   width: 900,
+//   //   height: 400,
+//   margin: { top: 20, right: 20, bottom: 60, left: 80 },
+// //   animate: true,
+// //   enableSlices: "x",
 
 const LineChart = ({ title, URL }: Props) => {
   //   const theme = useTheme();
-  const [data, setData] = useState<null>(null);
+    const [data, setData] = useState<null>(null);
+    const [chartSettings, setChartSettings] = useState(); 
   //   const [isLegendExpanded, setIsLegendExpanded] = useState(false);
 
   useEffect(() => {
@@ -65,11 +73,14 @@ const LineChart = ({ title, URL }: Props) => {
           const XY = data.result.map((result: RecievedData) => {
             console.log(`${title} ${URL}`, result);
             const temp = result.values.map((point: number[]) => {
-              return { x: new Date(point[0] * 1000).toISOString(), y: Number(point[1]) };
+              return {
+                x: new Date(point[0] * 1000).toISOString(),//.slice(11,-5),
+                y: Number(point[1]),
+              };
             });
             return {
               data: temp,
-              id: Object.values(result.metric)[0] || 'placeholder',
+              id: Object.values(result.metric)[0] || "placeholder",
             };
           });
           setData(XY);
@@ -83,78 +94,86 @@ const LineChart = ({ title, URL }: Props) => {
     <Paper
       variant="outlined"
       sx={{
-        position: 'relative',
-        width: '100%',
-        aspectRatio: '1/1',
-        height: '50vh',
-        borderRadius: '0.45rem',
-        backgroundColor: 'white',
+        position: "relative",
+        width: "100%",
+        aspectRatio: "1/1",
+        height: "50vh",
+        borderRadius: "0.45rem",
+        backgroundColor: "white",
         // backgroundColor: theme.palette.neutral.light,
-        color: 'black',
-        display: 'flex',
+        color: "black",
+        display: "flex",
         // justifyContent: 'center',
         // alignItems: 'center',
-        flexDirection: 'column',
-        overFlow: 'visible',
+        flexDirection: "column",
+        overFlow: "visible",
       }}
     >
       <Typography
-        sx={{
-          color: 'black',
-          fontSize: '1.05rem',
-          height: '100%',
+              sx={{
+            margin: '0 16px',
+          color: "black",
+          fontSize: "1.15rem",
+          height: "100%",
         }}
       >
         {title}
-      </Typography>
+          </Typography>
+          
+          
 
       {!data && <CircularProgress />}
       {data && (
         <div
           style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            top: '10%',
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            top: "10%",
           }}
         >
-          <ResponsiveLineCanvas
-            {...commonProperties}
-            data={data}
+      <ResponsiveLineCanvas
+                      {...commonProperties}
+                      data={data}
+            //   type: "time",
+            //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+            //   useUTC: true,
+            //   precision: "second",
+            // }}
             xScale={{
-              type: 'time',
-                format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-              useUTC: true,
-              precision: 'second',
+                type: 'linear',
+                format:"%Y-%m-%dT%H:%M:%S.%L%Z",
+                precision: 'minute',
             }}
             xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
             yScale={{
-              type: 'linear',
-              // stacked: boolean('stacked', false),
+                type: 'linear',
+                min: "auto",
+                max: 'auto',
+                // stacked: boolean('stacked', false),
             }}
             axisLeft={{
-              legend: 'linear scale',
-              legendOffset: 12,
+                legend: 'linear scale',
+                legendOffset: 12,
             }}
-            axisBottom={{
-              format: '%S.%L',
-              tickValues: 'every 1 minute',
-              legend: 'time',
-              legendOffset: -12,
-            }}
-            curve="natural"
-            // enablePointLabel={true}
-            // pointSymbol={CustomSymbol}
-            pointSize={0}
-            pointBorderWidth={0}
+            axisBottom={undefined}
+            // axisBottom={{
+            //     format: '%H:%M:%S',
+            //     tickValues: 'every  5 minutes',
+            //     legend: 'time scale',
+            //     legendOffset: -12,
+            // }}
+            enablePointLabel={true}
+            pointSize={16}
+            pointBorderWidth={1}
             pointBorderColor={{
-              from: 'color',
-              modifiers: [['darker', 0.3]],
+                from: 'color',
+                modifiers: [['darker', 0.3]],
             }}
-            enableSlices={false}
-            //
-            colors={{ scheme: 'spectral' }}
-          />
+            useMesh={true}
+                      enableSlices={false}
+                      colors={{ scheme: "spectral" }}
+                  />
         </div>
       )}
     </Paper>
@@ -165,6 +184,45 @@ const LineChart = ({ title, URL }: Props) => {
 export default LineChart;
 
 /*
+
+          <ResponsiveLineCanvas
+            {...commonProperties}
+            data={data}
+            // xScale={{
+            //   type: "time",
+            //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+            //   useUTC: true,
+            //   precision: "second",
+            // }}
+            // xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
+            // yScale={{
+            //   type: "linear",
+            //   // stacked: boolean('stacked', false),
+            // }}
+            // axisLeft={{
+            //   legend: "linear scale",
+            //   legendOffset: 12,
+            // }}
+            // axisBottom={{
+            //   format: '%S.%L',
+            //   tickValues: 'every 1 minute',
+            //   legend: 'time',
+            //   legendOffset: -12,
+            // }}
+            // curve="natural"
+            // enablePointLabel={true}
+            // pointSymbol={CustomSymbol}
+            // pointSize={0}
+            // pointBorderWidth={0}
+            // pointBorderColor={{
+            //   from: "color",
+            //   modifiers: [["darker", 0.3]],
+            // }}
+            // enableSlices={false}
+            // colors={{ scheme: "spectral" }}
+          />
+
+
 <ResponsiveLineCanvas
 data={data}
 margin={{ top: 5, right: 60, bottom: 40, left: 60 }} // Adjust left margin for potential axisLeft use

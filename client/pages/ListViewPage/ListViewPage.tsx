@@ -7,7 +7,7 @@ import { FlexBetween, Header } from "../../components";
 import { Box } from "@mui/material";
 import { NameSpaceTable } from "../../components/NameSpaceTable";
 import { formatContainerUsage } from "../../util/formatters/formatContainerUsage";
-import { useGetContainerUsageQuery } from "../../services/api";
+import { useGetClusterInfoQuery, useGetContainerUsageQuery } from "../../services/api";
 import { lazy } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 
@@ -50,10 +50,15 @@ const columns: GridColDef[] = [
 const ListViewPage = () => {
   let cUsageData;
   let metricsState = useSelector((state: RootState) => state?.metricsMap);
+console.log('Metrics State', metricsState); 
+    const { data } = useGetContainerUsageQuery(undefined, {});
+    const { data: clusterInfo } = useGetClusterInfoQuery(undefined, {});
 
-  const { data } = useGetContainerUsageQuery(undefined, {});
+    if (clusterInfo) {
+        console.log('ClusterInfo', clusterInfo);
+    }
+    if (data) {
 
-  if (data) {
     cUsageData = formatContainerUsage(data);
   }
 
@@ -63,6 +68,10 @@ const ListViewPage = () => {
 
     console.log(metricsState);
 
+    const capitalizeFirstLetter = (s) => {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
   if (!data) return;
 
   return (
@@ -71,28 +80,28 @@ const ListViewPage = () => {
         <FlexBetween>
           <Header title="List View" subtitle="View Pod and Container" />
         </FlexBetween>
-        <ListViewTable metricsObject={metricsState.pod} />
+        {/* <ListViewTable metricsObject={metricsState.pod} />
         <ListViewTable metricsObject={metricsState.container} />
-        <NameSpaceTable cUsageMetrics={cUsageData.namespace} />
+        <NameSpaceTable cUsageMetrics={cUsageData.namespace} /> */}
 
         {/* <NameSpaceTable cUsageMetrics={cUsageData.pod} />
               <NameSpaceTable cUsageMetrics={cUsageData.node} /> */}
         <DataGridWithHeader
-          title={cUsageData.namespace[0].type}
+          title={capitalizeFirstLetter(cUsageData.namespace[0].type)}
           columns={columns}
           data={cUsageData.namespace}
           isLoading={false}
         />
 
         <DataGridWithHeader
-          title={cUsageData.pod[0].type}
+          title={capitalizeFirstLetter(cUsageData.pod[0].type)}
           columns={columns}
           data={cUsageData.pod}
           isLoading={false}
         />
 
         <DataGridWithHeader
-          title={cUsageData.node[0].type}
+          title={capitalizeFirstLetter(cUsageData.node[0].type)}
           columns={columns}
           data={cUsageData.node}
           isLoading={false}

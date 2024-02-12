@@ -1,76 +1,78 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from "react";
 // ! Review React docs regarding ErrorBoundary
 // TODO: Add error boundary
 // import { ErrorBoundary } from "react-error-boundary";
-import { Box, useMediaQuery, useTheme } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import { GridColDef } from '@mui/x-data-grid';
+import { Box, useMediaQuery, useTheme } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import { GridColDef } from "@mui/x-data-grid";
 
 // Use lazy to defer loading component’s code until it is rendered for the first time.
-const LineChart = lazy(() => import('../../components/LineChart/LineChart'));
+const LineChart = lazy(() => import("../../components/LineChart/LineChart"));
 const DataGridWithHeader = lazy(
-  () => import('../../components/DataGridWithHeader/DataGridWithHeader'),
+  () => import("../../components/DataGridWithHeader/DataGridWithHeader")
 );
 
-import { useGetNodeViewQuery } from '../../services/api';
+import { useGetNodeViewQuery } from "../../services/api";
 
 import {
   CollapsiblePanel,
   FlexBetween,
   Header,
   StatBox,
-} from '../../components';
+} from "../../components";
 
 const columns: GridColDef[] = [
   {
-    field: 'nodeName',
-    headerName: 'metadata.system.node_name',
-    headerAlign: 'left',
+    field: "nodeName",
+    headerName: "metadata.system.node_name",
+    headerAlign: "left",
     flex: 1,
-    align: 'left',
+    align: "left",
   },
   {
-    field: 'metricValue',
-    headerName: 'Latest Value',
-    headerAlign: 'center',
+    field: "metricValue",
+    headerName: "Latest Value",
+    headerAlign: "center",
     width: 150,
     //   flex: 1,
-    align: 'right',
+    align: "right",
   },
 ];
 
 const NodeView = () => {
   const theme = useTheme();
 
-  const isNonMediumScreens = useMediaQuery('(min-width: 1200px)');
+  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
   console.log(data);
   let podsFormattedData = [];
   let containersFormattedData = [];
 
   if (data) {
-    podsFormattedData = data.kube_pod_count_per_node.map((item: any, index: number) => ({
-      id: index,
-      metricName: item.metricName,
-      nodeName: item.labels.node,
-      metricValue: item.metricValue,
-    }));
+    podsFormattedData = data.kube_pod_count_per_node.map(
+      (item: any, index: number) => ({
+        id: index,
+        metricName: item.metricName,
+        nodeName: item.labels.node,
+        metricValue: item.metricValue,
+      })
+    );
 
     containersFormattedData = data.kube_container_count_per_node.map(
       (item: any, index: number) => ({
         id: index,
         nodeName: item.labels.node,
         metricValue: item.metricValue,
-      }),
+      })
     );
   }
 
   return (
-    <Box className="NodeView" height="100%">
+    <Box className="NodeView" height="100%" width="100%">
       <Box m="1.5rem 2.5rem">
-        <FlexBetween>
+        {/* <FlexBetween>
           <Header title="Nodes View" subtitle="View all nodes in the network" />
-        </FlexBetween>
+        </FlexBetween> */}
 
         <Box
           mt="20px"
@@ -79,13 +81,13 @@ const NodeView = () => {
           gridAutoRows="minmax(auto, auto)"
           gap="20px"
           sx={{
-            '& > div': {
-              gridColumn: isNonMediumScreens ? undefined : 'span 12',
+            "& > div": {
+              gridColumn: isNonMediumScreens ? undefined : "span 12",
             },
           }}
         >
           {/* ROW 1 */}
-          <Box display="grid" gridTemplateColumns="repeat(5, 1fr)" gap="20px">
+          <Box display="grid" gridTemplateColumns="repeat(auto-fill, 200px);" gap="20px">
             <StatBox
               title="Total Nodes"
               value={data && data.kube_nodes_total.metricValue}
@@ -120,14 +122,14 @@ const NodeView = () => {
             <CollapsiblePanel title="CPU and Memory">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'CPU Usage Per Node - Top 50'}
-                  URL={'clusterUsage'}
+                  title={"CPU Usage Per Node - Top 50"}
+                  URL={"clusterUsage"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'Memory Usage Per Node - Top 50'}
-                  URL={'nodeUsage'}
+                  title={"Memory Usage Per Node - Top 50"}
+                  URL={"nodeUsage"}
                 />
               </Suspense>
             </CollapsiblePanel>
@@ -142,13 +144,13 @@ const NodeView = () => {
           >
             <CollapsiblePanel title="Pod and Container Count">
               <DataGridWithHeader
-                title={'Pod Count'}
+                title={"Pod Count"}
                 columns={columns}
                 data={podsFormattedData}
                 isLoading={isLoading}
               />
               <DataGridWithHeader
-                title={'Container Count'}
+                title={"Container Count"}
                 columns={columns}
                 data={containersFormattedData}
                 isLoading={isLoading}
@@ -168,14 +170,14 @@ const NodeView = () => {
             <CollapsiblePanel title="Bandwidth">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'Received Bandwidth Per Node - Top 50'}
-                  URL={'receivedBandwidth'}
+                  title={"Received Bandwidth Per Node - Top 50"}
+                  URL={"receivedBandwidth"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'Received Bandwidth Per Node - Top 50'}
-                  URL={'podNetwork'}
+                  title={"Received Bandwidth Per Node - Top 50"}
+                  URL={"podNetwork"}
                 />
               </Suspense>
             </CollapsiblePanel>
@@ -193,14 +195,14 @@ const NodeView = () => {
             <CollapsiblePanel title="Rate of Packets">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'Received packet count per node - Top 50'}
-                  URL={'packetsReceived'}
+                  title={"Received packet count per node - Top 50"}
+                  URL={"packetsReceived"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={'Transmitted packet count per node - Top 50'}
-                  URL={'packetsTransmitted'}
+                  title={"Transmitted packet count per node - Top 50"}
+                  URL={"packetsTransmitted"}
                 />
               </Suspense>
             </CollapsiblePanel>
