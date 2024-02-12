@@ -44,15 +44,15 @@ const App = () => {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Routes>
-                <Route path="*" element={<DefaultLayout />} />
+                <Route path="/*" element={<DefaultLayout />} />
                 {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
-                {/* <Route path="/dashboard" element={<HomePage />} /> */}
-                {/* <Route path="/dashboard" element={<ListViewDisplay />} /> */}
-                {/* <Route path="/node-view" element={<NodeView />} /> */}
-                {/* <Route path="/workload-view" element={<WorkloadView />} /> */}
-                {/* <Route path="settings" element={<SettingsPage />} /> */}
-                {/* </Route> */}
-                {/* <Route path="landing" element={<LandingPage />} /> */}
+                {/* <Route path="/dashboard" element={<HomePage />} />
+                <Route path="/dashboard" element={<ListViewDisplay />} />
+                <Route path="/node-view" element={<NodeView />} />
+                <Route path="/workload-view" element={<WorkloadView />} />
+                <Route path="settings" element={<SettingsPage />} />
+                </Route>
+                <Route path="landing" element={<LandingPage />} /> */}
               </Routes>
             </ThemeProvider>
           </ColorModeContext.Provider>

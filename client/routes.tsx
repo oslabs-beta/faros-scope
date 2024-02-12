@@ -9,11 +9,11 @@ const NetworkView = React.lazy(() => import("./components/Graph/Graph"));
 //   { path: '/theme', name: 'Theme', element: Colors, exact: true },
 
 const routes = [
-  { path: "/", exact: true , name: "Home" },
+  // { path: "/*", /*exact: true ,*/ name: "Home" },
   { path: "/dashboard", name: "Dashboard", element: Dashboard },
-  { path: "/node-view", name: "NodeView", element: NodeView },
-  { path: "/list-view", name: "ListView", element: ListView },
-  { path: "/network-view", name: "NetworkView", element: NetworkView },
+  { path: "/node-view", name: "Node View", element: NodeView },
+  { path: "/list-view", name: "List View", element: ListView },
+  { path: "/network-view", name: "Network View", element: NetworkView },
 ];
 
 export default routes;

@@ -21,8 +21,8 @@ const Loader = () => {
 
 const AppContent = () => {
   return (
-    <CContainer className="custom-container px-4" lg>
-      <Suspense fallback={<Loader />}>
+    <CContainer className="custom-container px-0 w-100" fluid>
+      <Suspense fallback={<Loader/>}>
         <Routes>
           {routes.map((route, idx) => {
             return (
