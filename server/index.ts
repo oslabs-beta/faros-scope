@@ -8,6 +8,7 @@ import 'dotenv/config';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
+
 // const URI = process.env.PG_URI || '';
 
 // connect to db
@@ -17,13 +18,13 @@ const PORT = process.env.PORT || 3000;
 app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../client')));
 // app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.use('/api', Router)
 
 // catch all route handler
 app.use('*', (_req: Request, res: Response): void => {
-  res.sendFile(path.join(__dirname, '../build' ,'/client/index.html'));
+  res.sendFile(path.join(__dirname,'../client/index.html'));
 });
 
 // global error handler

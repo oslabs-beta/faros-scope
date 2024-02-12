@@ -10,7 +10,7 @@ const react_1 = require("react");
 const api_1 = require("../../services/api");
 const GraphNetwork_1 = __importDefault(require("./GraphNetwork"));
 require("./Graph.module.scss");
-require("./Graph.scss");
+require("./graph.scss");
 /**
  * Graph component
  * @returns ReactNode
