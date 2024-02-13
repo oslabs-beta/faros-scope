@@ -44,7 +44,7 @@ const App = () => {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Routes>
-                <Route path="/*" element={<DefaultLayout />} />
+                <Route path="*" element={<DefaultLayout />} />
                 {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
                 {/* <Route path="/dashboard" element={<HomePage />} />
                 <Route path="/dashboard" element={<ListViewDisplay />} />

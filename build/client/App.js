@@ -40,13 +40,13 @@ const react_2 = require("@coreui/react");
 // import { WorkloadView } from './pages';
 require("./scss/style.scss");
 // Containers
-const DefaultLayout = (0, react_1.lazy)(() => Promise.resolve().then(() => __importStar(require('./layout/DefaultLayout'))));
+const DefaultLayout = (0, react_1.lazy)(() => Promise.resolve().then(() => __importStar(require("./layout/DefaultLayout"))));
 const Loader = () => {
     return ((0, jsx_runtime_1.jsx)("div", { style: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
         }, children: (0, jsx_runtime_1.jsx)(react_2.CSpinner, { variant: "grow" }) }));
 };
 const App = () => {

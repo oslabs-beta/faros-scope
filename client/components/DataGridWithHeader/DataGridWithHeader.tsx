@@ -53,10 +53,23 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
         loading={isLoading || !data}
         rows={data}
         columns={columns}
-              components={{ Toolbar: GridToolbar }}
-            //   pageSize={5}
-              paginationModel={{pageSize: 5, page: 0}}
+        components={{ Toolbar: GridToolbar }}
+        sx={{
+          minHeight: "400px",
+          maxHeight: "400px",
+        }}
         columnHeaderHeight={40}
+
+        // initialState={{
+        //   pagination: {
+        //     paginationModel: {
+        //           pageSize: 7,
+        //         },
+        //     },
+        // }}
+        // pageSizeOptions:{[5, 10]}
+        //   paginationModel={{pageSize: 5, page: 0}}
+        //   rowsPerPageOptions={[5]}
       />
     </Box>
   );

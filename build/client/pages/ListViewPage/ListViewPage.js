@@ -26,11 +26,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_redux_1 = require("react-redux");
 const formatMetricsMap_1 = require("../../util/formatters/formatMetricsMap");
-const ListViewTable_1 = require("../../components/List-View/ListViewTable");
+// import { ListViewTable } from "../../components/List-View/ListViewTable";
 require("./ListViewPage.scss");
-const components_1 = require("../../components");
+// import { FlexBetween, Header } from "../../components";
 const material_1 = require("@mui/material");
-const NameSpaceTable_1 = require("../../components/NameSpaceTable");
+// import { NameSpaceTable } from "../../components/NameSpaceTable";
 const formatContainerUsage_1 = require("../../util/formatters/formatContainerUsage");
 const api_1 = require("../../services/api");
 const react_1 = require("react");
@@ -69,7 +69,12 @@ const columns = [
 const ListViewPage = () => {
     let cUsageData;
     let metricsState = (0, react_redux_1.useSelector)((state) => state === null || state === void 0 ? void 0 : state.metricsMap);
+    console.log("Metrics State", metricsState);
     const { data } = (0, api_1.useGetContainerUsageQuery)(undefined, {});
+    const { data: clusterInfo } = (0, api_1.useGetClusterInfoQuery)(undefined, {});
+    if (clusterInfo) {
+        console.log("ClusterInfo", clusterInfo);
+    }
     if (data) {
         cUsageData = (0, formatContainerUsage_1.formatContainerUsage)(data);
     }
@@ -77,8 +82,11 @@ const ListViewPage = () => {
         metricsState = (0, formatMetricsMap_1.formatMetricsMap)(metricsState);
     }
     console.log(metricsState);
+    const capitalizeFirstLetter = (s) => {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    };
     if (!data)
         return;
-    return ((0, jsx_runtime_1.jsx)("div", { className: `list-view`, children: (0, jsx_runtime_1.jsxs)(material_1.Box, { display: "flex", flexDirection: "column", gap: "2rem", children: [(0, jsx_runtime_1.jsx)(components_1.FlexBetween, { children: (0, jsx_runtime_1.jsx)(components_1.Header, { title: "List View", subtitle: "View Pod and Container" }) }), (0, jsx_runtime_1.jsx)(ListViewTable_1.ListViewTable, { metricsObject: metricsState.pod }), (0, jsx_runtime_1.jsx)(ListViewTable_1.ListViewTable, { metricsObject: metricsState.container }), (0, jsx_runtime_1.jsx)(NameSpaceTable_1.NameSpaceTable, { cUsageMetrics: cUsageData.namespace }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: cUsageData.namespace[0].type, columns: columns, data: cUsageData.namespace, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: cUsageData.pod[0].type, columns: columns, data: cUsageData.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: cUsageData.node[0].type, columns: columns, data: cUsageData.node, isLoading: false })] }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: `list-view`, children: (0, jsx_runtime_1.jsxs)(material_1.Box, { display: "flex", flexDirection: "column", gap: "2rem", children: [(0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter(cUsageData.namespace[0].type), columns: columns, data: cUsageData.namespace, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter(cUsageData.pod[0].type), columns: columns, data: cUsageData.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter(cUsageData.node[0].type), columns: columns, data: cUsageData.node, isLoading: false })] }) }));
 };
 exports.default = ListViewPage;

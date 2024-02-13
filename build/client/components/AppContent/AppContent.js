@@ -34,18 +34,14 @@ const react_2 = require("@coreui/react");
 const routes_1 = __importDefault(require("../../routes"));
 const Loader = () => {
     return ((0, jsx_runtime_1.jsx)("div", { style: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
         }, children: (0, jsx_runtime_1.jsx)(react_2.CSpinner, { variant: "grow" }) }));
 };
 const AppContent = () => {
-    return ((0, jsx_runtime_1.jsx)(react_2.CContainer, { className: "custom-container px-4", lg: true, children: (0, jsx_runtime_1.jsx)(react_1.Suspense, { fallback: (0, jsx_runtime_1.jsx)(Loader, {}), children: (0, jsx_runtime_1.jsxs)(react_router_dom_1.Routes, { children: [routes_1.default.map((route, idx) => {
-                        return (route.element && ((0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: route.path, 
-                            //   exact={route.exact}
-                            //   name={route.name}
-                            element: (0, jsx_runtime_1.jsx)(route.element, {}) }, idx)));
+    return ((0, jsx_runtime_1.jsx)(react_2.CContainer, { className: "custom-container w-100", fluid: true, children: (0, jsx_runtime_1.jsx)(react_1.Suspense, { fallback: (0, jsx_runtime_1.jsx)(Loader, {}), children: (0, jsx_runtime_1.jsxs)(react_router_dom_1.Routes, { children: [routes_1.default.map((route, idx) => {
+                        return (route.element && ((0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: route.path, exact: route.exact, name: route.name, element: (0, jsx_runtime_1.jsx)(route.element, {}) }, idx)));
                     }), (0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: "/", element: (0, jsx_runtime_1.jsx)(react_router_dom_1.Navigate, { to: "dashboard", replace: true }) })] }) }) }));
 };
 exports.default = react_1.default.memo(AppContent);

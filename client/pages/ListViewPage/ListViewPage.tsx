@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../types/types";
 import { formatMetricsMap } from "../../util/formatters/formatMetricsMap";
-import { ListViewTable } from "../../components/List-View/ListViewTable";
+// import { ListViewTable } from "../../components/List-View/ListViewTable";
 import "./ListViewPage.scss";
-import { FlexBetween, Header } from "../../components";
+// import { FlexBetween, Header } from "../../components";
 import { Box } from "@mui/material";
-import { NameSpaceTable } from "../../components/NameSpaceTable";
+// import { NameSpaceTable } from "../../components/NameSpaceTable";
 import { formatContainerUsage } from "../../util/formatters/formatContainerUsage";
-import { useGetClusterInfoQuery, useGetContainerUsageQuery } from "../../services/api";
+import {
+  useGetClusterInfoQuery,
+  useGetContainerUsageQuery,
+} from "../../services/api";
 import { lazy } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 
@@ -50,15 +53,14 @@ const columns: GridColDef[] = [
 const ListViewPage = () => {
   let cUsageData;
   let metricsState = useSelector((state: RootState) => state?.metricsMap);
-console.log('Metrics State', metricsState); 
-    const { data } = useGetContainerUsageQuery(undefined, {});
-    const { data: clusterInfo } = useGetClusterInfoQuery(undefined, {});
+  console.log("Metrics State", metricsState);
+  const { data } = useGetContainerUsageQuery(undefined, {});
+  const { data: clusterInfo } = useGetClusterInfoQuery(undefined, {});
 
-    if (clusterInfo) {
-        console.log('ClusterInfo', clusterInfo);
-    }
-    if (data) {
-
+  if (clusterInfo) {
+    console.log("ClusterInfo", clusterInfo);
+  }
+  if (data) {
     cUsageData = formatContainerUsage(data);
   }
 
@@ -66,26 +68,21 @@ console.log('Metrics State', metricsState);
     metricsState = formatMetricsMap(metricsState);
   }
 
-    console.log(metricsState);
+  console.log(metricsState);
 
-    const capitalizeFirstLetter = (s) => {
-        return s.charAt(0).toUpperCase() + s.slice(1);
-    }
+  const capitalizeFirstLetter = (s: string) => {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
 
   if (!data) return;
 
   return (
     <div className={`list-view`}>
       <Box display="flex" flexDirection="column" gap="2rem">
-        <FlexBetween>
+        {/* <FlexBetween>
           <Header title="List View" subtitle="View Pod and Container" />
-        </FlexBetween>
-        {/* <ListViewTable metricsObject={metricsState.pod} />
-        <ListViewTable metricsObject={metricsState.container} />
-        <NameSpaceTable cUsageMetrics={cUsageData.namespace} /> */}
+        </FlexBetween> */}
 
-        {/* <NameSpaceTable cUsageMetrics={cUsageData.pod} />
-              <NameSpaceTable cUsageMetrics={cUsageData.node} /> */}
         <DataGridWithHeader
           title={capitalizeFirstLetter(cUsageData.namespace[0].type)}
           columns={columns}

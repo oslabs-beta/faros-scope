@@ -34,16 +34,21 @@ const URLObject = {
     receivedBandwidth: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
 };
 const commonProperties = {
-    //   width: 900,
-    //   height: 400,
+    // width: 900,
+    height: 400,
     margin: { top: 20, right: 20, bottom: 60, left: 80 },
-    animate: true,
-    enableSlices: 'x',
+    pointSize: 8,
+    pointColor: { theme: 'background' },
+    pointBorderWidth: 2,
+    pointBorderColor: { theme: 'background' },
 };
+//   //   width: 900,
+//   //   height: 400,
+//   margin: { top: 20, right: 20, bottom: 60, left: 80 },
+// //   animate: true,
+// //   enableSlices: "x",
 const LineChart = ({ title, URL }) => {
-    //   const theme = useTheme();
     const [data, setData] = (0, react_1.useState)(null);
-    //   const [isLegendExpanded, setIsLegendExpanded] = useState(false);
     (0, react_1.useEffect)(() => {
         (function () {
             return __awaiter(this, void 0, void 0, function* () {
@@ -55,11 +60,14 @@ const LineChart = ({ title, URL }) => {
                     const XY = data.result.map((result) => {
                         console.log(`${title} ${URL}`, result);
                         const temp = result.values.map((point) => {
-                            return { x: new Date(point[0] * 1000).toISOString(), y: Number(point[1]) };
+                            return {
+                                x: new Date(point[0] * 1000).toISOString(),
+                                y: Number(point[1]),
+                            };
                         });
                         return {
                             data: temp,
-                            id: Object.values(result.metric)[0] || 'placeholder',
+                            id: Object.values(result.metric)[0] || "placeholder",
                         };
                     });
                     setData(XY);
@@ -67,55 +75,59 @@ const LineChart = ({ title, URL }) => {
             });
         })();
     }, []);
-    console.log(`THIS IS THE ${title} ${URL} DATA`, data);
     return ((0, jsx_runtime_1.jsxs)(Paper_1.default, { variant: "outlined", sx: {
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '1/1',
-            height: '50vh',
-            borderRadius: '0.45rem',
-            backgroundColor: 'white',
+            position: "relative",
+            width: "100%",
+            aspectRatio: "1/1",
+            height: "50vh",
+            borderRadius: "0.45rem",
+            backgroundColor: "white",
             // backgroundColor: theme.palette.neutral.light,
-            color: 'black',
-            display: 'flex',
+            color: "black",
+            display: "flex",
             // justifyContent: 'center',
             // alignItems: 'center',
-            flexDirection: 'column',
-            overFlow: 'visible',
+            flexDirection: "column",
+            overFlow: "visible",
         }, children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { sx: {
-                    color: 'black',
-                    fontSize: '1.05rem',
-                    height: '100%',
+                    margin: '0 16px',
+                    color: "black",
+                    fontSize: "1.15rem",
+                    height: "100%",
                 }, children: title }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)("div", { style: {
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    top: '10%',
-                }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { data: data, xScale: {
-                        type: 'time',
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    top: "10%",
+                }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { data: data, 
+                    //   type: "time",
+                    //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+                    //   useUTC: true,
+                    //   precision: "second",
+                    // }}
+                    xScale: {
+                        type: 'linear',
                         format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-                        useUTC: true,
-                        precision: 'second',
+                        precision: 'minute',
                     }, xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z", yScale: {
                         type: 'linear',
+                        min: "auto",
+                        max: 'auto',
                         // stacked: boolean('stacked', false),
                     }, axisLeft: {
                         legend: 'linear scale',
                         legendOffset: 12,
-                    }, axisBottom: {
-                        format: '%S.%L',
-                        tickValues: 'every 1 minute',
-                        legend: 'time',
-                        legendOffset: -12,
-                    }, curve: "natural", 
-                    // enablePointLabel={true}
-                    // pointSymbol={CustomSymbol}
-                    pointSize: 0, pointBorderWidth: 0, pointBorderColor: {
+                    }, axisBottom: undefined, 
+                    // axisBottom={{
+                    //     format: '%H:%M:%S',
+                    //     tickValues: 'every  5 minutes',
+                    //     legend: 'time scale',
+                    //     legendOffset: -12,
+                    // }}
+                    enablePointLabel: true, pointSize: 16, pointBorderWidth: 1, pointBorderColor: {
                         from: 'color',
                         modifiers: [['darker', 0.3]],
-                    }, enableSlices: false, 
-                    //
-                    colors: { scheme: 'spectral' } })) }))] }));
+                    }, useMesh: true, enableSlices: false, colors: { scheme: "spectral" } })) }))] }));
 };
 // Exporting as default for React lazy loading; React.lazy() only supports default exports
 exports.default = LineChart;

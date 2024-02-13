@@ -30,14 +30,15 @@ const react_1 = __importDefault(require("react"));
 const Dashboard = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./views/dashboard/Dashboard"))));
 const NodeView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./pages/NodeView/NodeView"))));
 const ListView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./pages/ListViewPage/ListViewPage"))));
-const NetworkView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./components/Graph/Graph"))));
+const Graph = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./components/Graph/Graph"))));
+// const NetworkView = React.lazy(() => import("./components/Graph/Graph"));
 // example
 //   { path: '/theme', name: 'Theme', element: Colors, exact: true },
 const routes = [
     { path: "/*", /*exact: true ,*/ name: "Home" },
     { path: "/dashboard", name: "Dashboard", element: Dashboard },
-    { path: "/node-view", name: "NodeView", element: NodeView },
-    { path: "/list-view", name: "ListView", element: ListView },
-    { path: "/network-view", name: "NetworkView", element: NetworkView },
+    { path: "/node-view", name: "Node View", element: NodeView },
+    { path: "/list-view", name: "List View", element: ListView },
+    { path: "/network-view", name: "Network View", element: Graph },
 ];
 exports.default = routes;

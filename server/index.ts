@@ -2,6 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import history from 'connect-history-api-fallback'
 import Router from './routers/router';
 import path from 'path';
+import morgan from 'morgan';
 // import { Sequelize } from 'sequelize';
 
 import 'dotenv/config';
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 // const sequelize = new Sequelize(URI); // Example for postgres
 
 // middleware
+app.use(morgan('tiny'))
 app.use(history());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

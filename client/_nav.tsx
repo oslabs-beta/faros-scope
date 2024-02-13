@@ -10,7 +10,7 @@ const _nav = [
   {
     component: CNavItem,
     name: "Monitoring",
-    to: "/list-view",
+    to: "/dashboard",
     icon: <PiMonitorFill className="nav-icon" />,
   },
   {
@@ -44,11 +44,11 @@ const _nav = [
         name: "Workload View",
         to: "/workload-view",
       },
-      //   {
-      //     component: CNavItem,
-      //     name: "Nodes and Pods Cluster",
-      //     to: "/nodes-pods-cluster-view",
-      //   },
+        {
+          component: CNavItem,
+          name: "List View",
+          to: "/list-view",
+        },
     ],
   },
   //   {

@@ -16,8 +16,8 @@ import { useGetNodeViewQuery } from "../../services/api";
 
 import {
   CollapsiblePanel,
-  FlexBetween,
-  Header,
+//   FlexBetween,
+//   Header,
   StatBox,
 } from "../../components";
 
@@ -87,7 +87,11 @@ const NodeView = () => {
           }}
         >
           {/* ROW 1 */}
-          <Box display="grid" gridTemplateColumns="repeat(auto-fill, 200px);" gap="20px">
+          <Box
+            display="grid"
+            gridTemplateColumns="repeat(auto-fill, 200px);"
+            gap="20px"
+          >
             <StatBox
               title="Total Nodes"
               value={data && data.kube_nodes_total.metricValue}

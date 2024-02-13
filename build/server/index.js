@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const connect_history_api_fallback_1 = __importDefault(require("connect-history-api-fallback"));
 const router_1 = __importDefault(require("./routers/router"));
 const path_1 = __importDefault(require("path"));
+const morgan_1 = __importDefault(require("morgan"));
 // import { Sequelize } from 'sequelize';
 require("dotenv/config");
 const app = (0, express_1.default)();
@@ -15,15 +16,17 @@ const PORT = process.env.PORT || 3000;
 // connect to db
 // const sequelize = new Sequelize(URI); // Example for postgres
 // middleware
+app.use((0, morgan_1.default)('tiny'));
 app.use((0, connect_history_api_fallback_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '../client')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../build')));
 // app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 app.use('/api', router_1.default);
 // catch all route handler
 app.use('*', (_req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../client/index.html'));
+    res.sendFile(path_1.default.join(__dirname, '../build/index.html'));
 });
 // global error handler
 app.use((err, _req, res, _next) => {

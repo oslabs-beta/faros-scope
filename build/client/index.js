@@ -14,5 +14,7 @@ require("./index.css");
 require("./variables.scss");
 require("./theme.scss");
 const store_1 = require("./store/store");
-const container = document.getElementById('root');
-container ? (0, client_1.createRoot)(container).render((0, jsx_runtime_1.jsx)(react_1.StrictMode, { children: (0, jsx_runtime_1.jsx)(react_redux_1.Provider, { store: store_1.store, children: (0, jsx_runtime_1.jsx)(App_1.default, {}) }) })) : null;
+const container = document.getElementById("root");
+container
+    ? (0, client_1.createRoot)(container).render((0, jsx_runtime_1.jsx)(react_1.StrictMode, { children: (0, jsx_runtime_1.jsx)(react_redux_1.Provider, { store: store_1.store, children: (0, jsx_runtime_1.jsx)(App_1.default, {}) }) }))
+    : null;
