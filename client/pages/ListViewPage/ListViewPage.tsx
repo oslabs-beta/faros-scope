@@ -1,32 +1,32 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../types/types";
-import { formatMetricsMap } from "../../util/formatters/formatMetricsMap";
-import { ListViewTable } from "../../components/List-View/ListViewTable";
-import "./ListViewPage.scss";
-import { FlexBetween, Header } from "../../components";
-import { Box } from "@mui/material";
-import { NameSpaceTable } from "../../components/NameSpaceTable";
-import { formatContainerUsage } from "../../util/formatters/formatContainerUsage";
-import { useGetContainerUsageQuery } from "../../services/api";
-import { lazy } from "react";
-import { GridColDef } from "@mui/x-data-grid";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../types/types';
+import { formatMetricsMap } from '../../util/formatters/formatMetricsMap';
+import { ListViewTable } from '../../components/List-View/ListViewTable';
+import './ListViewPage.scss';
+import { FlexBetween, Header } from '../../components';
+import { Box } from '@mui/material';
+import { NameSpaceTable } from '../../components/NameSpaceTable';
+import { formatContainerUsage } from '../../util/formatters/formatContainerUsage';
+import { useGetContainerUsageQuery } from '../../services/api';
+import { lazy } from 'react';
+import { GridColDef } from '@mui/x-data-grid';
 
 const DataGridWithHeader = lazy(
-  () => import("../../components/DataGridWithHeader/DataGridWithHeader")
+  () => import('../../components/DataGridWithHeader/DataGridWithHeader')
 );
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 50 },
+  { field: 'id', headerName: 'ID', width: 50 },
   {
-    field: "name",
-    headerName: "Name",
+    field: 'name',
+    headerName: 'Name',
     width: 160,
     flex: 1,
     editable: true,
   },
   {
-    field: "CPU",
-    headerName: "CPU (%)",
+    field: 'CPU',
+    headerName: 'CPU (%)',
     width: 130,
     flex: 1,
     editable: true,
@@ -35,9 +35,9 @@ const columns: GridColDef[] = [
     },
   },
   {
-    field: "MEM",
-    headerName: "MEM (bytes)",
-    type: "number",
+    field: 'MEM',
+    headerName: 'MEM (bytes)',
+    type: 'number',
     width: 130,
     flex: 1,
     editable: true,
@@ -61,7 +61,7 @@ const ListViewPage = () => {
     metricsState = formatMetricsMap(metricsState);
   }
 
-    console.log(metricsState);
+  console.log(metricsState);
 
   if (!data) return;
 
