@@ -10,6 +10,7 @@ import { formatContainerUsage } from '../../util/formatters/formatContainerUsage
 import { useGetContainerUsageQuery } from '../../services/api';
 import { lazy } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
+import React from 'react';
 
 const DataGridWithHeader = lazy(
   () => import('../../components/DataGridWithHeader/DataGridWithHeader')
@@ -74,9 +75,8 @@ const ListViewPage = () => {
         <ListViewTable metricsObject={metricsState.pod} />
         <ListViewTable metricsObject={metricsState.container} />
         <NameSpaceTable cUsageMetrics={cUsageData.namespace} />
-
-        {/* <NameSpaceTable cUsageMetrics={cUsageData.pod} />
-              <NameSpaceTable cUsageMetrics={cUsageData.node} /> */}
+        <NameSpaceTable cUsageMetrics={cUsageData.pod} />
+        <NameSpaceTable cUsageMetrics={cUsageData.node} />
         <DataGridWithHeader
           title={cUsageData.namespace[0].type}
           columns={columns}
