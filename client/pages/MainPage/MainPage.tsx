@@ -16,8 +16,8 @@ export const MainPage = () => {
 
   useSocket('http://34.139.156.110:80/');
   // ^ see if this works w/o variable declarations
-  useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
-  useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
+  // useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
+  // useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
 
   // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
   useEffect(() => {

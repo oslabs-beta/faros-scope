@@ -12,29 +12,29 @@ export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
 });
 
 const initialAppState = {
-    sidebarShow: true,
-    sidebarUnfoldable: false,
-}
+  sidebarShow: true,
+  sidebarUnfoldable: false,
+};
 
 export const appState = createSlice({
-    name: 'state', 
-    initialState: initialAppState,
-    reducers: {
-        changeState: (state, {payload}) => {
-            console.log('changeState')
-   
-            console.log(payload.type);
-            switch (payload.type) {
-                case 'set':
-                    console.log('set')
-                  return { ...state, ...payload }
-                default:
-                    console.log('default')
-                  return state
-              }
-        }
-    }
-})
+  name: 'state',
+  initialState: initialAppState,
+  reducers: {
+    changeState: (state, { payload }) => {
+      console.log('changeState');
+
+      console.log(payload.type);
+      switch (payload.type) {
+        case 'set':
+          console.log('set');
+          return { ...state, ...payload };
+        default:
+          console.log('default');
+          return state;
+      }
+    },
+  },
+});
 
 export const nodesSlice = createSlice({
   name: 'nodes',
@@ -45,7 +45,7 @@ export const nodesSlice = createSlice({
       metricsApi.endpoints.getClusterInfo.matchFulfilled,
       (state, { payload: { nodes } }) => {
         nodesAdapter.setAll(state, nodes);
-      },
+      }
     );
   },
 });
@@ -59,7 +59,7 @@ export const podsSlice = createSlice({
       metricsApi.endpoints.getClusterInfo.matchFulfilled,
       (state, { payload: { pods } }) => {
         podsAdapter.setAll(state, pods);
-      },
+      }
     );
   },
 });
@@ -73,7 +73,7 @@ export const containersSlice = createSlice({
       metricsApi.endpoints.getClusterInfo.matchFulfilled,
       (state, { payload: { containers } }) => {
         containersAdapter.setAll(state, containers);
-      },
+      }
     );
   },
 });
@@ -93,8 +93,9 @@ export const metricsMapSlice = createSlice({
     builder.addMatcher(
       metricsApi.endpoints.getClusterMetricsMap.matchFulfilled,
       (state, payload) => {
+        console.log('BANGERS', payload);
         state.metricsMap = payload.payload;
-      },
+      }
     );
   },
 });
@@ -121,4 +122,4 @@ export const {
   selectById: selectContainerById,
 } = containersAdapter.getSelectors((state: RootState) => state.containers);
 
-export const {changeState} = appState.actions;
+export const { changeState } = appState.actions;

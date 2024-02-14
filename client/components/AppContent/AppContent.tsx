@@ -1,17 +1,21 @@
-import React, { Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { CContainer, CSpinner } from "@coreui/react";
+import React, { Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { CContainer, CSpinner } from '@coreui/react';
+import {
+  useGetClusterInfoQuery,
+  useGetClusterMetricsMapQuery,
+} from '../../services/api';
 
 // routes config
-import routes from "../../routes";
+import routes from '../../routes';
 
 const Loader = () => {
   return (
     <div
       style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
       }}
     >
       <CSpinner variant="grow" />
@@ -20,9 +24,10 @@ const Loader = () => {
 };
 
 const AppContent = () => {
+  // useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
   return (
     <CContainer className="custom-container px-4 w-100" fluid>
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           {routes.map((route, idx) => {
             return (

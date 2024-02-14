@@ -21,7 +21,6 @@ export const formatContainerUsage = (data: containerUsageMetrics): any => {
   const cache: Cache = { node: [], pod: [], namespace: [] };
   if (data.pod) {
     data.pod.forEach((item: cUsageMetricsItem, idx: number) => {
-      console.log(item);
       const key = Object.keys(item)[0];
       const spreadPod = { name: key, id: idx, type: 'pod', ...item[key] };
       cache.pod.push(spreadPod);
