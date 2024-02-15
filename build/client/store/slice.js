@@ -16,25 +16,25 @@ const initialAppState = {
     sidebarUnfoldable: false,
 };
 exports.appState = (0, toolkit_1.createSlice)({
-    name: 'state',
+    name: "state",
     initialState: initialAppState,
     reducers: {
         changeState: (state, { payload }) => {
-            console.log('changeState');
+            console.log("changeState");
             console.log(payload.type);
             switch (payload.type) {
-                case 'set':
-                    console.log('set');
+                case "set":
+                    console.log("set");
                     return Object.assign(Object.assign({}, state), payload);
                 default:
-                    console.log('default');
+                    console.log("default");
                     return state;
             }
-        }
-    }
+        },
+    },
 });
 exports.nodesSlice = (0, toolkit_1.createSlice)({
-    name: 'nodes',
+    name: "nodes",
     initialState: exports.nodesAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
@@ -44,7 +44,7 @@ exports.nodesSlice = (0, toolkit_1.createSlice)({
     },
 });
 exports.podsSlice = (0, toolkit_1.createSlice)({
-    name: 'pods',
+    name: "pods",
     initialState: exports.podsAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
@@ -54,7 +54,7 @@ exports.podsSlice = (0, toolkit_1.createSlice)({
     },
 });
 exports.containersSlice = (0, toolkit_1.createSlice)({
-    name: 'containers',
+    name: "containers",
     initialState: exports.containersAdapter.getInitialState(),
     reducers: {},
     extraReducers: (builder) => {
@@ -67,17 +67,18 @@ const initialState = {
     metricsMap: {},
 };
 exports.metricsMapSlice = (0, toolkit_1.createSlice)({
-    name: 'metricsMap',
+    name: "metricsMap",
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addMatcher(api_1.metricsApi.endpoints.getClusterMetricsMap.matchFulfilled, (state, payload) => {
+            console.log("BANGERS", payload);
             state.metricsMap = payload.payload;
         });
     },
 });
 exports.clusterEvents = (0, toolkit_1.createSlice)({
-    name: 'clusterEvents',
+    name: "clusterEvents",
     initialState: exports.clusterEventsAdapter.getInitialState(),
     reducers: {
         addClusterEvent: exports.clusterEventsAdapter.addOne,

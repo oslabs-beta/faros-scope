@@ -30,16 +30,21 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = __importStar(require("react"));
 const react_router_dom_1 = require("react-router-dom");
 const react_2 = require("@coreui/react");
+// import {
+//   useGetClusterInfoQuery,
+//   useGetClusterMetricsMapQuery,
+// } from '../../services/api';
 // routes config
 const routes_1 = __importDefault(require("../../routes"));
 const Loader = () => {
     return ((0, jsx_runtime_1.jsx)("div", { style: {
-            position: "absolute",
-            top: "50%",
-            left: "50%",
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
         }, children: (0, jsx_runtime_1.jsx)(react_2.CSpinner, { variant: "grow" }) }));
 };
 const AppContent = () => {
+    // useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
     return ((0, jsx_runtime_1.jsx)(react_2.CContainer, { className: "custom-container px-4 w-100", fluid: true, children: (0, jsx_runtime_1.jsx)(react_1.Suspense, { fallback: (0, jsx_runtime_1.jsx)(Loader, {}), children: (0, jsx_runtime_1.jsxs)(react_router_dom_1.Routes, { children: [routes_1.default.map((route, idx) => {
                         return (route.element && ((0, jsx_runtime_1.jsx)(react_router_dom_1.Route, { path: route.path, 
                             //   exact={route.exact}

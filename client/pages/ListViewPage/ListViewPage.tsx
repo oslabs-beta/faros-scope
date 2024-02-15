@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../types/types';
 import { formatMetricsMap } from '../../util/formatters/formatMetricsMap';
-import { ListViewTable } from '../../components/List-View/ListViewTable';
+// import { ListViewTable } from '../../components/List-View/ListViewTable';
 import './ListViewPage.scss';
 import { Box } from '@mui/material';
 import { formatContainerUsage } from '../../util/formatters/formatContainerUsage';
@@ -144,7 +144,7 @@ const ListViewPage = () => {
   console.log('Metrics State ===>', metricsState?.metricsMap);
   const { data } = useGetContainerUsageQuery(undefined, {});
   useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
-  const { data: clusterInfo } = useGetClusterInfoQuery(undefined, {});
+  const { data: _clusterInfo } = useGetClusterInfoQuery(undefined, {});
 
   if (data) {
     cUsageData = formatContainerUsage(data);

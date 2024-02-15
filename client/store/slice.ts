@@ -1,7 +1,7 @@
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-import { metricsApi } from '../services/api';
-import { RootState } from '../../types/types';
-import { Node, Pod, Container, Metrics, ClusterEvent } from '../../types/types';
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { metricsApi } from "../services/api";
+import { RootState } from "../../types/types";
+import { Node, Pod, Container, Metrics, ClusterEvent } from "../../types/types";
 
 export const nodesAdapter = createEntityAdapter<Node>();
 export const podsAdapter = createEntityAdapter<Pod>();
@@ -12,24 +12,24 @@ export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
 });
 
 const initialAppState = {
-    sidebarShow: false,
-    sidebarUnfoldable: false,
-}
+  sidebarShow: false,
+  sidebarUnfoldable: false,
+};
 
 export const appState = createSlice({
-  name: 'state',
+  name: "state",
   initialState: initialAppState,
   reducers: {
     changeState: (state, { payload }) => {
-      console.log('changeState');
+      console.log("changeState");
 
       console.log(payload.type);
       switch (payload.type) {
-        case 'set':
-          console.log('set');
+        case "set":
+          console.log("set");
           return { ...state, ...payload };
         default:
-          console.log('default');
+          console.log("default");
           return state;
       }
     },
@@ -37,7 +37,7 @@ export const appState = createSlice({
 });
 
 export const nodesSlice = createSlice({
-  name: 'nodes',
+  name: "nodes",
   initialState: nodesAdapter.getInitialState(),
   reducers: {},
   extraReducers: (builder) => {
@@ -51,7 +51,7 @@ export const nodesSlice = createSlice({
 });
 
 export const podsSlice = createSlice({
-  name: 'pods',
+  name: "pods",
   initialState: podsAdapter.getInitialState(),
   reducers: {},
   extraReducers: (builder) => {
@@ -65,7 +65,7 @@ export const podsSlice = createSlice({
 });
 
 export const containersSlice = createSlice({
-  name: 'containers',
+  name: "containers",
   initialState: containersAdapter.getInitialState(),
   reducers: {},
   extraReducers: (builder) => {
@@ -86,14 +86,14 @@ const initialState: any = {
 };
 
 export const metricsMapSlice = createSlice({
-  name: 'metricsMap',
+  name: "metricsMap",
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
       metricsApi.endpoints.getClusterMetricsMap.matchFulfilled,
       (state, payload) => {
-        console.log('BANGERS', payload);
+        console.log("BANGERS", payload);
         state.metricsMap = payload.payload;
       }
     );
@@ -101,7 +101,7 @@ export const metricsMapSlice = createSlice({
 });
 
 export const clusterEvents = createSlice({
-  name: 'clusterEvents',
+  name: "clusterEvents",
   initialState: clusterEventsAdapter.getInitialState(),
   reducers: {
     addClusterEvent: clusterEventsAdapter.addOne,

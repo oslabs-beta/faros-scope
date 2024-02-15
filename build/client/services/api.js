@@ -13,7 +13,7 @@ exports.useGetContainerUsageQuery = exports.useGetClusterMetricsMapQuery = expor
 const react_1 = require("@reduxjs/toolkit/query/react");
 exports.metricsApi = (0, react_1.createApi)({
     reducerPath: 'metricsApi',
-    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: 'http://35.185.108.181:8000/' }),
+    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: 'http://34.139.156.110:80/' }),
     endpoints: (builder) => ({
         getClusterInfo: builder.query({
             query: () => 'clusterInfo',
@@ -41,7 +41,7 @@ exports.metricsApi = (0, react_1.createApi)({
         }),
         getNodeView: builder.query({
             queryFn: () => __awaiter(void 0, void 0, void 0, function* () {
-                const response = yield fetch('http://34.139.156.110/node-view');
+                const response = yield fetch('http://34.139.156.110:80/node-view');
                 const data = yield response.json();
                 return { data: data };
             }),

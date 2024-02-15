@@ -6,7 +6,10 @@ const react_1 = require("react");
 const react_router_dom_1 = require("react-router-dom");
 const index_1 = require("../../components/NavBar/index");
 const context_1 = require("../../context");
-const api_1 = require("../../services/api");
+// import {
+//   useGetClusterInfoQuery,
+//   useGetClusterMetricsMapQuery,
+// } from '../../services/api';
 const bobbySocketService_1 = require("../../services/bobbySocketService");
 const material_1 = require("@mui/material");
 const theme_1 = require("../../theme");
@@ -15,8 +18,8 @@ const MainPage = () => {
     const { toggleColorMode } = (0, react_1.useContext)(theme_1.ColorModeContext);
     (0, bobbySocketService_1.useSocket)('http://34.139.156.110:80/');
     // ^ see if this works w/o variable declarations
-    (0, api_1.useGetClusterInfoQuery)(undefined, { pollingInterval: 25000 });
-    (0, api_1.useGetClusterMetricsMapQuery)(undefined, { pollingInterval: 5000 });
+    // useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
+    // useGetClusterMetricsMapQuery(undefined, { pollingInterval: 5000 });
     // Outlet is a special component that is used to render nested routes, default is the index route, which is the home page.
     (0, react_1.useEffect)(() => {
         const storedMode = localStorage.getItem('theme');

@@ -2,10 +2,10 @@ import { useEffect, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/index';
 import { GridProvider } from '../../context';
-import {
-  useGetClusterInfoQuery,
-  useGetClusterMetricsMapQuery,
-} from '../../services/api';
+// import {
+//   useGetClusterInfoQuery,
+//   useGetClusterMetricsMapQuery,
+// } from '../../services/api';
 import { useSocket } from '../../services/bobbySocketService';
 import { useTheme } from '@mui/material';
 import { ColorModeContext } from '../../theme';

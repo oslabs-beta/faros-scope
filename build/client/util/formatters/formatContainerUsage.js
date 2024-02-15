@@ -5,7 +5,6 @@ const formatContainerUsage = (data) => {
     const cache = { node: [], pod: [], namespace: [] };
     if (data.pod) {
         data.pod.forEach((item, idx) => {
-            console.log(item);
             const key = Object.keys(item)[0];
             const spreadPod = Object.assign({ name: key, id: idx, type: 'pod' }, item[key]);
             cache.pod.push(spreadPod);

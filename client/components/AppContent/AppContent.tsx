@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { CContainer, CSpinner } from '@coreui/react';
-import {
-  useGetClusterInfoQuery,
-  useGetClusterMetricsMapQuery,
-} from '../../services/api';
+// import {
+//   useGetClusterInfoQuery,
+//   useGetClusterMetricsMapQuery,
+// } from '../../services/api';
 
 // routes config
 import routes from '../../routes';
