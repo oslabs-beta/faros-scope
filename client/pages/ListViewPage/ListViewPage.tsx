@@ -19,10 +19,12 @@ const DataGridWithHeader = lazy(
 
 // Columns for Container Usage by NameSpace
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', flex: 1 },
+  { field: 'id', headerName: 'ID', width: 100 },
   {
     field: 'name',
     headerName: 'Name',
+    headerAlign: 'left',
+    align: 'left',
     // width: 160,
     flex: 1,
     editable: true,
@@ -30,7 +32,8 @@ const columns: GridColDef[] = [
   {
     field: 'CPU',
     headerName: 'CPU (num cores)',
-    // width: 130,
+    headerAlign: 'center',
+    align: 'center',
     flex: 1,
     editable: true,
     valueGetter: (params) => {
@@ -40,6 +43,8 @@ const columns: GridColDef[] = [
   {
     field: 'MEM',
     headerName: 'MEM (bytes)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
     // width: 130,
     flex: 1,
@@ -52,24 +57,28 @@ const columns: GridColDef[] = [
 
 // Columns for ListView
 const columnsListView: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', flex: 1 },
   {
     field: 'name',
     headerName: 'Name',
-    width: 160,
+    flex: 1,
     editable: true,
   },
   {
     field: 'cpuUsage',
-    headerName: 'Cpu Usage',
-    width: 130,
+    headerName: 'CPU Usage',
+    headerAlign: 'center',
+    align: 'center',
+    flex: 1,
     editable: true,
   },
   {
     field: 'cpuUsagePct',
     headerName: 'CPU Usage (%)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -77,16 +86,20 @@ const columnsListView: GridColDef[] = [
   },
   {
     field: 'memUsage',
-    headerName: 'memUsage',
+    headerName: 'MEM Usage (bytes)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
   },
   {
     field: 'memUsagePct',
-    headerName: 'Mem Usage (%)',
+    headerName: 'MEM Usage (%)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -96,24 +109,30 @@ const columnsListView: GridColDef[] = [
 
 // Columns for List Container and Nodes Metrics
 const columnsListViewUtil: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', flex: 1 },
   {
     field: 'name',
     headerName: 'Name',
-    width: 160,
+    headerAlign: 'left',
+    align: 'left',
+    flex: 1,
     editable: true,
   },
   {
     field: 'cpuUsage',
-    headerName: 'Cpu Usage',
-    width: 130,
+    headerName: 'CPU Usage (bytes)',
+    headerAlign: 'center',
+    align: 'center',
+    flex: 1,
     editable: true,
   },
   {
     field: 'cpuUtilPct',
     headerName: 'CPU Usage (%)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -121,16 +140,20 @@ const columnsListViewUtil: GridColDef[] = [
   },
   {
     field: 'memUsage',
-    headerName: 'memUsage',
+    headerName: 'MEM Usage',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
   },
   {
     field: 'memUtilPct',
-    headerName: 'Mem Usage (%)',
+    headerName: 'MEM Usage (%)',
+    headerAlign: 'center',
+    align: 'center',
     type: 'number',
-    width: 130,
+    flex: 1,
     editable: true,
     valueGetter: (params) => {
       return params.value.toFixed(2);
@@ -152,7 +175,6 @@ const ListViewPage = () => {
 
   if (metricsState) {
     metricsState = formatMetricsMap(metricsState);
-    console.log('AfterFormat', metricsState);
   }
 
   const capitalizeFirstLetter = (s: string) => {
@@ -166,9 +188,6 @@ const ListViewPage = () => {
     !metricsState.node
   )
     return;
-  console.log('metricsState pod?', metricsState.pod);
-  console.log('metricsState node?', metricsState.node);
-  console.log('metricsState container', metricsState.container);
 
   return (
     <div className={`list-view`}>
