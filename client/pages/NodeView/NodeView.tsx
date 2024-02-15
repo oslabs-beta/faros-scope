@@ -118,8 +118,7 @@ const NodeView = () => {
           <Box
             component="div"
             // gridColumn="span 8"
-            //   bgColor={theme.palette.background.secondary}
-            sx={{ backgroundColor: theme.palette.background.default }}
+            sx={{ backgroundColor: theme.palette.background.alt }}
             p="1rem"
             borderRadius="0.55rem"
           >
@@ -142,7 +141,7 @@ const NodeView = () => {
           {/* ROW 3 */}
           <Box
             component="div"
-            sx={{ backgroundColor: theme.palette.background.default }}
+            sx={{ backgroundColor: theme.palette.background.alt }}
             p="1rem"
             borderRadius="0.55rem"
           >
@@ -166,12 +165,11 @@ const NodeView = () => {
           <Box
             component="div"
             // gridColumn="span 8"
-            //   backgroundColor={theme.palette.background.secondary}
-            sx={{ backgroundColor: theme.palette.background.default }}
+            sx={{ backgroundColor: theme.palette.background.alt }}
             p="1rem"
             borderRadius="0.55rem"
           >
-            <CollapsiblePanel title="Bandwidth">
+            {/* <CollapsiblePanel title="Bandwidth">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
                   title={"Received Bandwidth Per Node - Top 50"}
@@ -184,19 +182,18 @@ const NodeView = () => {
                   URL={"podNetwork"}
                 />
               </Suspense>
-            </CollapsiblePanel>
+            </CollapsiblePanel> */}
           </Box>
 
           {/* ROW 5 */}
           <Box
             component="div"
             // gridColumn="span 8"
-            // backgroundColor={theme.palette.background.secondary}
-            sx={{ backgroundColor: theme.palette.background.default }}
+            sx={{ backgroundColor: theme.palette.background.alt }}
             p="1rem"
             borderRadius="0.55rem"
           >
-            <CollapsiblePanel title="Rate of Packets">
+            {/* <CollapsiblePanel title="Rate of Packets">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
                   title={"Received packet count per node - Top 50"}
@@ -209,7 +206,7 @@ const NodeView = () => {
                   URL={"packetsTransmitted"}
                 />
               </Suspense>
-            </CollapsiblePanel>
+            </CollapsiblePanel> */}
           </Box>
         </Box>
       </Box>

@@ -48,7 +48,7 @@ exports.metricsApi = (0, react_1.createApi)({
         }),
         getContainerUsage: builder.query({
             queryFn: () => __awaiter(void 0, void 0, void 0, function* () {
-                const response = yield fetch('http://34.139.156.110:80/usage-metrics');
+                const response = yield fetch('meteor-service/usage-metrics');
                 const data = yield response.json();
                 console.log(data);
                 return { data: data };

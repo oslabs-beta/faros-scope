@@ -33,21 +33,21 @@ const _nav = [
         // to: '/buttons',
         icon: (0, jsx_runtime_1.jsx)(md_1.MdDashboard, { className: "nav-icon" }),
         items: [
-            {
-                component: react_1.CNavItem,
-                name: "Cluster View",
-                to: "/cluster-view",
-            },
+            //   {
+            //     component: CNavItem,
+            //     name: "Cluster View",
+            //     to: "/cluster-view",
+            //   },
             {
                 component: react_1.CNavItem,
                 name: "Node View",
                 to: "/node-view",
             },
-            {
-                component: react_1.CNavItem,
-                name: "Workload View",
-                to: "/workload-view",
-            },
+            //   {
+            //     component: CNavItem,
+            //     name: "Workload View",
+            //     to: "/workload-view",
+            //   },
             {
                 component: react_1.CNavItem,
                 name: "List View",

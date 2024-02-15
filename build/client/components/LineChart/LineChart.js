@@ -24,7 +24,7 @@ const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 const tenMinutesAgo = now - 50000 * 2;
 const URLObject = {
-    clusterUsage: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
+    clusterUsage: `/prom-service/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
     // ! by changing query from 5  to 10 minutes increase range of time of sample
     nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=120`,
     podNetwork: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`,
@@ -58,8 +58,8 @@ const LineChart = ({ title, URL }) => {
                 })
                     .then(({ data }) => {
                     const XY = data.result.map((result) => {
-                        console.log(`${title} ${URL}`, result);
                         const temp = result.values.map((point) => {
+                            console.log(new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'UTC' }).format(new Date(point[0] * 1000)));
                             return {
                                 x: new Date(point[0] * 1000).toISOString(),
                                 y: Number(point[1]),
@@ -74,7 +74,9 @@ const LineChart = ({ title, URL }) => {
                 });
             });
         })();
+        4;
     }, []);
+    console.log('The DATA after modification', data);
     return ((0, jsx_runtime_1.jsxs)(Paper_1.default, { variant: "outlined", sx: {
             position: "relative",
             width: "100%",
@@ -106,7 +108,7 @@ const LineChart = ({ title, URL }) => {
                     //   precision: "second",
                     // }}
                     xScale: {
-                        type: 'linear',
+                        type: 'time',
                         format: "%Y-%m-%dT%H:%M:%S.%L%Z",
                         precision: 'minute',
                     }, xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z", yScale: {
@@ -124,10 +126,13 @@ const LineChart = ({ title, URL }) => {
                     //     legend: 'time scale',
                     //     legendOffset: -12,
                     // }}
-                    enablePointLabel: true, pointSize: 16, pointBorderWidth: 1, pointBorderColor: {
+                    // enablePointLabel={true}
+                    pointSize: 16, pointBorderWidth: 1, pointBorderColor: {
                         from: 'color',
                         modifiers: [['darker', 0.3]],
-                    }, useMesh: true, enableSlices: false, colors: { scheme: "spectral" } })) }))] }));
+                    }, 
+                    // useMesh={true}
+                    enableSlices: false, colors: { scheme: "spectral" } })) }))] }));
 };
 // Exporting as default for React lazy loading; React.lazy() only supports default exports
 exports.default = LineChart;

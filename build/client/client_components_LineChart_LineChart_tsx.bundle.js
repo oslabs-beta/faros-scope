@@ -51,7 +51,7 @@ var now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
 var tenMinutesAgo = now - 50000 * 2;
 var URLObject = {
-  clusterUsage: "http://35.227.104.153:31374/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=300"),
+  clusterUsage: "/prom-service/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=300"),
   // ! by changing query from 5  to 10 minutes increase range of time of sample
   nodeUsage: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!=\"idle\"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource=\"cpu\"})&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=120"),
   podNetwork: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=100"),
@@ -61,27 +61,36 @@ var URLObject = {
   receivedBandwidth: "http://35.227.104.153:31374/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=150")
 };
 var commonProperties = {
-  //   width: 900,
-  //   height: 400,
+  // width: 900,
+  height: 400,
   margin: {
     top: 20,
     right: 20,
     bottom: 60,
     left: 80
   },
-  animate: true,
-  enableSlices: 'x'
+  pointSize: 8,
+  pointColor: {
+    theme: 'background'
+  },
+  pointBorderWidth: 2,
+  pointBorderColor: {
+    theme: 'background'
+  }
 };
+//   //   width: 900,
+//   //   height: 400,
+//   margin: { top: 20, right: 20, bottom: 60, left: 80 },
+// //   animate: true,
+// //   enableSlices: "x",
+
 var LineChart = function LineChart(_ref) {
   var title = _ref.title,
     URL = _ref.URL;
-  //   const theme = useTheme();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     data = _useState2[0],
     setData = _useState2[1];
-  //   const [isLegendExpanded, setIsLegendExpanded] = useState(false);
-
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -93,8 +102,14 @@ var LineChart = function LineChart(_ref) {
             }).then(function (_ref3) {
               var data = _ref3.data;
               var XY = data.result.map(function (result) {
-                console.log("".concat(title, " ").concat(URL), result);
                 var temp = result.values.map(function (point) {
+                  console.log(new Intl.DateTimeFormat('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                    timeZone: 'UTC'
+                  }).format(new Date(point[0] * 1000)));
                   return {
                     x: new Date(point[0] * 1000).toISOString(),
                     y: Number(point[1])
@@ -102,7 +117,7 @@ var LineChart = function LineChart(_ref) {
                 });
                 return {
                   data: temp,
-                  id: Object.values(result.metric)[0] || 'placeholder'
+                  id: Object.values(result.metric)[0] || "placeholder"
                 };
               });
               setData(XY);
@@ -113,50 +128,59 @@ var LineChart = function LineChart(_ref) {
         }
       }, _callee);
     }))();
+    4;
   }, []);
-  console.log("THIS IS THE ".concat(title, " ").concat(URL, " DATA"), data);
+  console.log('The DATA after modification', data);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Paper__WEBPACK_IMPORTED_MODULE_4__["default"], {
     variant: "outlined",
     sx: {
-      position: 'relative',
-      width: '100%',
-      aspectRatio: '1/1',
-      height: '50vh',
-      borderRadius: '0.45rem',
-      backgroundColor: 'white',
+      position: "relative",
+      width: "100%",
+      aspectRatio: "1/1",
+      height: "50vh",
+      borderRadius: "0.45rem",
+      backgroundColor: "white",
       // backgroundColor: theme.palette.neutral.light,
-      color: 'black',
-      display: 'flex',
+      color: "black",
+      display: "flex",
       // justifyContent: 'center',
       // alignItems: 'center',
-      flexDirection: 'column',
-      overFlow: 'visible'
+      flexDirection: "column",
+      overFlow: "visible"
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
       sx: {
-        color: 'black',
-        fontSize: '1.05rem',
-        height: '100%'
+        margin: '0 16px',
+        color: "black",
+        fontSize: "1.15rem",
+        height: "100%"
       },
       children: title
     }), !data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_6__["default"], {}), data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       style: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: '10%'
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: "10%"
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_nivo_line__WEBPACK_IMPORTED_MODULE_0__.ResponsiveLineCanvas, _objectSpread(_objectSpread({}, commonProperties), {}, {
-        data: data,
+        data: data
+        //   type: "time",
+        //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+        //   useUTC: true,
+        //   precision: "second",
+        // }}
+        ,
         xScale: {
           type: 'time',
           format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-          useUTC: true,
-          precision: 'second'
+          precision: 'minute'
         },
         xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z",
         yScale: {
-          type: 'linear'
+          type: 'linear',
+          min: "auto",
+          max: 'auto'
           // stacked: boolean('stacked', false),
         },
 
@@ -164,27 +188,26 @@ var LineChart = function LineChart(_ref) {
           legend: 'linear scale',
           legendOffset: 12
         },
-        axisBottom: {
-          format: '%S.%L',
-          tickValues: 'every 1 minute',
-          legend: 'time',
-          legendOffset: -12
-        },
-        curve: "natural"
+        axisBottom: undefined
+        // axisBottom={{
+        //     format: '%H:%M:%S',
+        //     tickValues: 'every  5 minutes',
+        //     legend: 'time scale',
+        //     legendOffset: -12,
+        // }}
         // enablePointLabel={true}
-        // pointSymbol={CustomSymbol}
         ,
-        pointSize: 0,
-        pointBorderWidth: 0,
+        pointSize: 16,
+        pointBorderWidth: 1,
         pointBorderColor: {
           from: 'color',
           modifiers: [['darker', 0.3]]
-        },
-        enableSlices: false
-        //
+        }
+        // useMesh={true}
         ,
+        enableSlices: false,
         colors: {
-          scheme: 'spectral'
+          scheme: "spectral"
         }
       }))
     })]
@@ -195,6 +218,45 @@ var LineChart = function LineChart(_ref) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LineChart);
 
 /*
+
+          <ResponsiveLineCanvas
+            {...commonProperties}
+            data={data}
+            // xScale={{
+            //   type: "time",
+            //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+            //   useUTC: true,
+            //   precision: "second",
+            // }}
+            // xFormat="time:%Y-%m-%dT%H:%M:%S.%L%Z"
+            // yScale={{
+            //   type: "linear",
+            //   // stacked: boolean('stacked', false),
+            // }}
+            // axisLeft={{
+            //   legend: "linear scale",
+            //   legendOffset: 12,
+            // }}
+            // axisBottom={{
+            //   format: '%S.%L',
+            //   tickValues: 'every 1 minute',
+            //   legend: 'time',
+            //   legendOffset: -12,
+            // }}
+            // curve="natural"
+            // enablePointLabel={true}
+            // pointSymbol={CustomSymbol}
+            // pointSize={0}
+            // pointBorderWidth={0}
+            // pointBorderColor={{
+            //   from: "color",
+            //   modifiers: [["darker", 0.3]],
+            // }}
+            // enableSlices={false}
+            // colors={{ scheme: "spectral" }}
+          />
+
+
 <ResponsiveLineCanvas
 data={data}
 margin={{ top: 5, right: 60, bottom: 40, left: 60 }} // Adjust left margin for potential axisLeft use
@@ -385,6 +447,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes hover-up-down {
   text-shadow: 2px 2px 2px black;
   display: inline;
 }
+.custom-container {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
 .page {
   display: flex;
   flex-direction: row;
@@ -403,7 +470,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes hover-up-down {
 }
 .page h1 {
   color: white;
-}`, "",{"version":3,"sources":["webpack://./client/variables.scss","webpack://./client/components/LineChart/linechart.scss"],"names":[],"mappings":"AAmDA;EACE;IACE,0BAAA;EClDF;EDoDA;IACE,2BAAA;EClDF;EDoDA;IACE,0BAAA;EClDF;AACF;ADqDA;EACE;IACE,UAAA;ECnDF;EDqDA;IACE,UAAA;ECnDF;AACF;ADsDA;EACE;IACE,UAAA;ECpDF;EDsDA;IACE,UAAA;ECpDF;AACF;ADuDA;EACE;IACE,0BAAA;ECrDF;EDuDA;IACE,6BAAA;ECrDF;EDuDA;IACE,0BAAA;ECrDF;AACF;ADwDA;EACE;IACE,2BAAA;ECtDF;EDwDA;IACE,2BAAA;IACA,iCAAA;ECtDF;EDwDA;IACE,2BAAA;ECtDF;AACF;ADyDA;EACE;IACE,4BAAA;ECvDF;ED0DA;IACE,yBAAA;ECxDF;AACF;ADgEA;EACE,cAJc;EAKd,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAZY;EAaZ,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAjBW;EAkBX,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cArBa;EAsBb,8BAAA;EACA,eAAA;AC9DF;AA9EA;EDwBE,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,uBAAA;ECzBA,YAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;AAoFF;AAnFE;EACE,oCAAA;AAqFJ;AAnFE;EACE,oCAAA;AAqFJ;AAnFE;EACE,YAAA;AAqFJ","sourcesContent":["$background-color-dark: #222222;\n$background-color-light: #d0d0d0;\n$base-blue: #154084;\n$base-red: #9d2719;\n$base-yellow: #d7b418;\n$base-orange: #f4a227;\n$accent-blue: #188fff;\n$accent-red: #ff4d4d;\n$accent-yellow: #f5d300;\n$accent-orange: #f4a227;\n$dark-border: rgba(0, 0, 0, 0.2);\n$light-border: rgba(255, 255, 255, 1);\n$dark-text: #ededed;\n$light-text: #222222;\n$graph-blue: #188fff;\n$graph-yellow: #f5d300;\n$diamond-blue: rgb(200, 230, 255);\n$unhealthy-pod: #ad4a39;\n$healthy-pod: #42a62b;\n$warning-pod: #e8c529;\n$pronounced-shadow: 4px 4px 1px 0 rgba(0, 0, 0, 0.5);\n$healthyGradient: linear-gradient(-45deg, #52caee, #3c53e7, #23a6d5, #23d5ab);\n$unhealthyGradient: linear-gradient(-45deg, #e65252, #e73c3c, #d52323, #ab2323);\n$warningGradient: linear-gradient(-45deg, #e6e652, #e7e73c, #d5d523, #abab23);\n\n@mixin flex-horizontal {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-vertical {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n@mixin grid-base {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-gap: 1rem;\n}\n\n@keyframes hover-up-down {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes opacity {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes opacity-reverse {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes hover-up-down-3D {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3.5px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes navLinkBlueShadow {\n  0% {\n    box-shadow: 0 0 0px #287aff;\n  }\n  50% {\n    box-shadow: 0 0 8px #287aff;\n    text-shadow: 0px 0px 10px #287aff;\n  }\n  100% {\n    box-shadow: 0 0 0px #287aff;\n  }\n}\n\n@keyframes slide-in-left {\n  0% {\n    transform: translateX(-100%);\n  }\n\n  100% {\n    transform: translateX(0%);\n  }\n}\n\n$inline-blue: #24b0df;\n$inline-red: #db3523;\n$inline-orange: #f4a227;\n$inline-white: #ededed;\n\n.inlineOrangeText {\n  color: $inline-orange;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineBlueText {\n  color: $inline-blue;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineRedText {\n  color: $inline-red;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineWhiteText {\n  color: $inline-white;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n// Source mixin\n// @mixin make-container($padding-x: $container-padding-x) {\n//     width: 100%;\n//     padding-right: $padding-x;\n//     padding-left: $padding-x;\n//     margin-right: auto;\n//     margin-left: auto;\n//   }\n\n//   .custom-container {\n    \n//   }","@import '../../variables.scss';\n\n.page {\n  @include flex-horizontal;\n  color: white;\n  min-height: 30vh;\n  min-width: 25vw;\n  border-radius: 20px;\n  &.dark {\n    border: 1px solid $light-border;\n  }\n  &.light {\n    border: 1px solid $dark-border;\n  }\n  h1 {\n    color: white;\n  }\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./client/variables.scss","webpack://./client/components/LineChart/linechart.scss"],"names":[],"mappings":"AAmDA;EACE;IACE,0BAAA;EClDF;EDoDA;IACE,2BAAA;EClDF;EDoDA;IACE,0BAAA;EClDF;AACF;ADqDA;EACE;IACE,UAAA;ECnDF;EDqDA;IACE,UAAA;ECnDF;AACF;ADsDA;EACE;IACE,UAAA;ECpDF;EDsDA;IACE,UAAA;ECpDF;AACF;ADuDA;EACE;IACE,0BAAA;ECrDF;EDuDA;IACE,6BAAA;ECrDF;EDuDA;IACE,0BAAA;ECrDF;AACF;ADwDA;EACE;IACE,2BAAA;ECtDF;EDwDA;IACE,2BAAA;IACA,iCAAA;ECtDF;EDwDA;IACE,2BAAA;ECtDF;AACF;ADyDA;EACE;IACE,4BAAA;ECvDF;ED0DA;IACE,yBAAA;ECxDF;AACF;ADgEA;EACE,cAJc;EAKd,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAZY;EAaZ,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAjBW;EAkBX,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cArBa;EAsBb,8BAAA;EACA,eAAA;AC9DF;AD0EE;EACE,cAAA;EACA,eAAA;EACA,eAAA;ACvEJ;AApFA;EDwBE,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,uBAAA;ECzBA,YAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;AA0FF;AAzFE;EACE,oCAAA;AA2FJ;AAzFE;EACE,oCAAA;AA2FJ;AAzFE;EACE,YAAA;AA2FJ","sourcesContent":["$background-color-dark: #222222;\n$background-color-light: #d0d0d0;\n$base-blue: #154084;\n$base-red: #9d2719;\n$base-yellow: #d7b418;\n$base-orange: #f4a227;\n$accent-blue: #188fff;\n$accent-red: #ff4d4d;\n$accent-yellow: #f5d300;\n$accent-orange: #f4a227;\n$dark-border: rgba(0, 0, 0, 0.2);\n$light-border: rgba(255, 255, 255, 1);\n$dark-text: #ededed;\n$light-text: #222222;\n$graph-blue: #188fff;\n$graph-yellow: #f5d300;\n$diamond-blue: rgb(200, 230, 255);\n$unhealthy-pod: #ad4a39;\n$healthy-pod: #42a62b;\n$warning-pod: #e8c529;\n$pronounced-shadow: 4px 4px 1px 0 rgba(0, 0, 0, 0.5);\n$healthyGradient: linear-gradient(-45deg, #52caee, #3c53e7, #23a6d5, #23d5ab);\n$unhealthyGradient: linear-gradient(-45deg, #e65252, #e73c3c, #d52323, #ab2323);\n$warningGradient: linear-gradient(-45deg, #e6e652, #e7e73c, #d5d523, #abab23);\n\n@mixin flex-horizontal {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-vertical {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n@mixin grid-base {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-gap: 1rem;\n}\n\n@keyframes hover-up-down {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes opacity {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes opacity-reverse {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes hover-up-down-3D {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3.5px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes navLinkBlueShadow {\n  0% {\n    box-shadow: 0 0 0px #287aff;\n  }\n  50% {\n    box-shadow: 0 0 8px #287aff;\n    text-shadow: 0px 0px 10px #287aff;\n  }\n  100% {\n    box-shadow: 0 0 0px #287aff;\n  }\n}\n\n@keyframes slide-in-left {\n  0% {\n    transform: translateX(-100%);\n  }\n\n  100% {\n    transform: translateX(0%);\n  }\n}\n\n$inline-blue: #24b0df;\n$inline-red: #db3523;\n$inline-orange: #f4a227;\n$inline-white: #ededed;\n\n.inlineOrangeText {\n  color: $inline-orange;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineBlueText {\n  color: $inline-blue;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineRedText {\n  color: $inline-red;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineWhiteText {\n  color: $inline-white;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n// Source mixin\n// @mixin make-container($padding-x: $container-padding-x) {\n//     width: 100%;\n//     padding-right: $padding-x;\n//     padding-left: $padding-x;\n//     margin-right: auto;\n//     margin-left: auto;\n//   }\n\n  .custom-container {\n    margin-left: 0;;\n    margin-right: 0;\n    max-width: 100%;\n  }","@import '../../variables.scss';\n\n.page {\n  @include flex-horizontal;\n  color: white;\n  min-height: 30vh;\n  min-width: 25vw;\n  border-radius: 20px;\n  &.dark {\n    border: 1px solid $light-border;\n  }\n  &.light {\n    border: 1px solid $dark-border;\n  }\n  h1 {\n    color: white;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

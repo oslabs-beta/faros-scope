@@ -29,21 +29,21 @@ const _nav = [
     // to: '/buttons',
     icon: <MdDashboard className="nav-icon" />,
     items: [
-      {
-        component: CNavItem,
-        name: "Cluster View",
-        to: "/cluster-view",
-      },
+    //   {
+    //     component: CNavItem,
+    //     name: "Cluster View",
+    //     to: "/cluster-view",
+    //   },
       {
         component: CNavItem,
         name: "Node View",
         to: "/node-view",
       },
-      {
-        component: CNavItem,
-        name: "Workload View",
-        to: "/workload-view",
-      },
+    //   {
+    //     component: CNavItem,
+    //     name: "Workload View",
+    //     to: "/workload-view",
+    //   },
         {
           component: CNavItem,
           name: "List View",

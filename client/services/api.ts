@@ -42,9 +42,10 @@ export const metricsApi = createApi({
         return { data: data };
       },
     }),
+    
     getContainerUsage: builder.query({
       queryFn: async () => {
-        const response = await fetch('http://34.139.156.110:80:80/usage-metrics');
+        const response = await fetch('meteor-service/usage-metrics');
         const data = await response.json();
         console.log(data);
         return { data: data };

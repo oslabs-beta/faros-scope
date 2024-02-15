@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import React from "react";
@@ -8,6 +8,8 @@ import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary";
 import { styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material";
+import { title } from "process";
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
@@ -15,10 +17,6 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(26, 10, 10, 0.05)"
-      : "rgba(0, 0, 0, .03)",
   flexDirection: "row-reverse",
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
@@ -34,37 +32,38 @@ interface Props {
 }
 
 export const CollapsiblePanel = ({ title, children }: Props) => {
+  const theme = useTheme();
   return (
-    <Box>
-      <Accordion
-        sx={{
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    <Accordion
+      sx={{
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              // backgroundColor: theme.palette.background.alt,
+          backgroundColor: rgb(34, 35, 39)
+      }}
+    >
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={title.replace(/\s+/g, "") + "-content"}
+        id={title.replace(/\s+/g, "") + "-header"}
+              sx={{
+            // backgroundColor: theme.palette.background.alt,
+          "& .MuiAccordionSummary.Mui-expanded": {
+            margin: "20px 0 0px 20px",
+          },
         }}
       >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls={title.replace(/\s+/g, "") + "-content"}
-          id={title.replace(/\s+/g, "") + "-header"}
-          sx={{
-            fontSize: "1.15rem",
-            "& .MuiAccordionSummary.Mui-expanded": {
-              margin: "20px 0 0px 20px",
-            },
-          }}
-        >
-          {title}
-        </AccordionSummary>
-        <AccordionDetails
-          sx={{
-            display: "grid",
-            // gridTemplateColumns: '1fr 1fr',
-            gridTemplateRows: "auto 1fr",
-            gap: "1rem",
-          }} // TODO: Verify this is correct
-        >
-          {children}
-        </AccordionDetails>
-      </Accordion>
-    </Box>
+        <Typography sx={{ fontSize: "1.15rem" }}>{title}</Typography>
+      </AccordionSummary>
+      <AccordionDetails
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "1rem",
+          backgroundColor: theme.palette.background.alt,
+        }} // TODO: Verify this is correct
+      >
+        {children}
+      </AccordionDetails>
+    </Accordion>
   );
 };

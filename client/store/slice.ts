@@ -12,7 +12,7 @@ export const clusterEventsAdapter = createEntityAdapter<ClusterEvent>({
 });
 
 const initialAppState = {
-    sidebarShow: true,
+    sidebarShow: false,
     sidebarUnfoldable: false,
 }
 

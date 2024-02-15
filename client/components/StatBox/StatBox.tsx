@@ -7,7 +7,8 @@ interface Props {
 }
 
 export const StatBox = ({ title, value = '-' }: Props) => {
-  const theme = useTheme();
+    const theme = useTheme();
+    console.log(theme); 
   return (
     <Box
       sx={{
@@ -24,14 +25,14 @@ export const StatBox = ({ title, value = '-' }: Props) => {
       }}
     >
       <FlexBetween>
-        <Typography variant="h5" sx={{ color: theme.palette.typography.main }}>
+        <Typography variant="h5" sx={{ color: theme.palette.typography.letters }}>
           {title}
         </Typography>
       </FlexBetween>
       <Typography
         variant="h2"
         fontWeight="600"
-        sx={{ color: theme.palette.typography.main }}
+        sx={{ color: theme.palette.typography.numbers }}
       >
         {value}
       </Typography>
