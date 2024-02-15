@@ -1,0 +1,18 @@
+@import '../../variables.scss';
+
+.page {
+  @include flex-horizontal;
+  color: white;
+  min-height: 30vh;
+  min-width: 25vw;
+  border-radius: 20px;
+  &.dark {
+    border: 1px solid $light-border;
+  }
+  &.light {
+    border: 1px solid $dark-border;
+  }
+  h1 {
+    color: white;
+  }
+}

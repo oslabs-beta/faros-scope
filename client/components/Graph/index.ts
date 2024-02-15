@@ -1,1 +1,3 @@
-export { Graph } from './Graph';
+import Graph from './Graph';
+
+export { Graph };

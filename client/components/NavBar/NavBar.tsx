@@ -1,95 +1,65 @@
-import { useTheme } from '../context/Theme';
-import { SwitchButton } from '../SwitchButton/index';
 import { Link } from 'react-router-dom';
-import { useGrid } from '../context/GridContext';
-import '../../css/Navbar.scss';
-import homeImage from '../../assets/icons8-home-512.png';
-import settingsImage from '../../assets/icons8-settings-512.png';
-import listImage from '../../assets/list.png';
-import centerImage from '../../assets/center.png';
+import './Navbar.scss';
+import { SwitchButton } from '../SwitchButton/index';
+import { useContext } from 'react';
+import { ColorModeContext } from '../../theme';
+import { useTheme } from '@mui/material';
 
 interface NavBarProps {
-  styleOverride?: any;
-  orientation?: string;
+    styleOverride?: any;
+    orientation?: string;
 }
 
 /**
  * The NavBar component is contstantly rendered at the top of the page. It contains a link to the Faros GitHub repo, and other links to different pages of the app. It also contains a toggle switch to change the theme of the app.
  * @returns ReactNode
  */
-export const NavBar = ({ styleOverride, orientation }: NavBarProps) => {
-  const { toggleTheme, theme } = useTheme();
-  const { scrollToSignificantChild } = useGrid();
+export const NavBar = ({ styleOverride }: NavBarProps) => {
+  const colorMode = useContext(ColorModeContext)
+  const muiTheme = useTheme();
+
   const changeTheme = () => {
-    toggleTheme();
+    colorMode.toggleColorMode();
   };
 
-  const centerGrid = () => {
-    scrollToSignificantChild();
-  }
+  // const centerGrid = () => {
+  //   scrollToSignificantChild();
+  // };
 
   return (
     <div
       style={styleOverride}
-      className={`navContainer ${
-        orientation === 'vertical' ? 'vertical' : 'horizontal'
-      }`}
+      className={`navContainer ${'horizontal'} ${muiTheme.palette.mode}`}
     >
-      <nav
-        className={`NavBar ${
-          orientation === 'horizontal' ? 'horizontal' : 'vertical'
-        }`}
-      >
+      <nav className={`NavBar ${'horizontal'}`}>
         <a
           id="App-Name-Header"
-          className="navLink"
+          className={'navLink'}
           href="https://github.com/oslabs-beta/faros-scope"
         >
-          {orientation === 'vertical' ? 'FA' : 'Faros'}
+          Faros
         </a>
-        <div className="nav-right">
-          <Link to={'/'} className="navLink">
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src={homeImage}
-              ></img>
-            ) : (
-              'Home'
-            )}
+        <div className={'nav-right'}>
+          <Link to={'/'} className={'navLink'}>
+            Home
           </Link>
-          <Link to={'/settings'} className="navLink">
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src={settingsImage}
-              ></img>
-            ) : (
-              'Settings'
-            )}
+          <Link to={'/list-view'} className={'navLink'}>
+            List View
           </Link>
-          <Link to={'/list-view'} className="navLink">
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src={listImage}
-              ></img>
-            ) : (
-              'List View'
-            )}
+          <Link to={'/node-view'} className={'navLink'}>
+            Node View
           </Link>
-          <button className="navLink btn" onClick={centerGrid}>
-            {orientation === 'vertical' ? (
-              <img
-                style={{ maxWidth: '35px', maxHeight: '35px' }}
-                src={centerImage}
-              ></img>
-            ) : (
-              'Center Grid'
-            )}
-          </button>
-          <SwitchButton checked={theme === 'dark'} onChange={changeTheme} />
+          <Link to={'/landing'} className={'navLink'}>
+            About
+          </Link>
+          <Link
+            to={'https://github.com/oslabs-beta/faros-scope'}
+            className={'navLink'}
+          >
+            Github Repository
+          </Link>
         </div>
+        <SwitchButton onChange={changeTheme} />
       </nav>
     </div>
   );

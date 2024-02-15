@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LandingPage = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_router_dom_1 = require("react-router-dom");
+const ColoredText_1 = require("../../components/reusable/text/ColoredText");
+require("./Landing.scss");
+const LandingPage = () => {
+    return ((0, jsx_runtime_1.jsx)("div", { className: "landingMain", children: (0, jsx_runtime_1.jsx)("div", { className: "landingContent", children: (0, jsx_runtime_1.jsx)("div", { className: "landingBody", children: (0, jsx_runtime_1.jsxs)("div", { className: "landingBodyContent", children: [(0, jsx_runtime_1.jsx)("h1", { id: 'farosText', children: (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Red", children: "Faros" }) }), (0, jsx_runtime_1.jsxs)("header", { className: "landingHeader", children: [(0, jsx_runtime_1.jsxs)("h2", { children: ["Faros is a web application that helps users visualize their", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Blue", children: "Kubernetes" }), " Clusters and their resources with", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Orange", children: "Real-Time" }), " updates."] }), (0, jsx_runtime_1.jsxs)("h3", { children: ["We're devoted to providing our users a", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Orange", children: "Simple" }), " and", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Orange", children: "Responsive" }), " User Experience while giving them as much", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Orange", children: "information" }), " and", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Orange", children: "control" }), " over their clusters as possible."] }), (0, jsx_runtime_1.jsxs)("h3", { children: ["Take control of your", ' ', (0, jsx_runtime_1.jsx)(ColoredText_1.ColoredText, { color: "Blue", children: "Kubernetes" }), " Cluster today!"] })] }), (0, jsx_runtime_1.jsxs)(react_router_dom_1.Link, { to: "/", children: [' ', (0, jsx_runtime_1.jsx)("button", { className: "landingButton", children: "Get Started" })] })] }) }) }) }));
+};
+exports.LandingPage = LandingPage;

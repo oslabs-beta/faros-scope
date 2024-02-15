@@ -1,10 +1,8 @@
-import '../../css/Switchbutton.scss';
-import { useTheme } from '../context/Theme';
-import sun from '../../assets/sun.png';
-import moon from '../../assets/moon.png';
+import { useTheme } from '@mui/material';
+import './SwitchButton.scss';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 interface SwitchButtonProps {
-  checked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -14,21 +12,34 @@ interface SwitchButtonProps {
  * @param onChange
  * @returns ReactNode
  */
-export const SwitchButton = ({ checked, onChange }: SwitchButtonProps) => {
-  const { theme } = useTheme();
-  //* Sun is the light theme, moon is the dark theme, image element uses a dynamic path, depending on the theme mode
+export const SwitchButton = ({ onChange }: SwitchButtonProps) => {
+  const muiTheme = useTheme();
   return (
-    <div className="switchContainer">
-      <div className="switchButton">
-        <input
-          type="checkbox"
-          className="switchBar"
-          checked={checked}
-          onChange={onChange}
-        />
-        <span className="slider">
-          <img className="themeIcon" src={theme === 'dark' ? moon : sun} />
-        </span>
+    <div className={'switchContainer'}>
+      <div className={'switchButton'}>
+        <label className={'modeLabel'} htmlFor="lightTheme">
+          <input
+            type="radio"
+            id="lightTheme"
+            className={'brightnessModeLight' + ' ' + 'brightnessMode'}
+            value="light"
+            checked={muiTheme.palette.mode === 'light'}
+            onChange={onChange}
+          />
+          <FaSun className={'sunIcon'} />
+        </label>
+
+        <label className={'modeLabel'} htmlFor="darkTheme">
+          <input
+            type="radio"
+            id="darkTheme"
+            className={'brightnessModeLight' + ' ' + 'brightnessMode'}
+            value="dark"
+            checked={muiTheme.palette.mode === 'dark'}
+            onChange={onChange}
+          />
+          <FaMoon className={'moonIcon'} />
+        </label>
       </div>
     </div>
   );

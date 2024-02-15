@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import '../../../css/ColoredText.scss';
 
 interface ColoredTextProps {
   children: ReactNode;

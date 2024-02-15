@@ -1,34 +1,97 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useTheme } from './components/context/Theme';
-import { Home } from './components/Home/index';
-import { Settings } from './components/Settings/index';
-import { Landing } from './components/LandingPage/index';
-import Main from './Main';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { ColorModeContext, useMode } from "./theme";
+import { ThemeProvider } from "@mui/system";
+import { CssBaseline } from "@mui/material";
+import { CSpinner } from "@coreui/react";
+// import { HomePage } from './pages';
+// import { SettingsPage } from './pages';
+// import { LandingPage } from './pages';
+// import { MainPage } from './pages';
+// import { NodeView } from './pages';
+// import { ListViewDisplay } from './components';
+// import { GraphPage } from './pages/GraphPage/GraphPage';
+// import { WorkloadView } from './pages';
+
+import "./scss/style.scss";
+
+// Containers
+const DefaultLayout = lazy(() => import("./layout/DefaultLayout"));
+
+const Loader = () => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <CSpinner variant="grow" />
+    </div>
+  );
+};
 
 const App = () => {
-  const { theme } = useTheme();
-  const body = document.querySelector('body');
-
-  //* This useEffect hook is used to toggle the theme class on the body element, which is used to style the app's body itself.
-  useEffect(() => {
-    if (body) {
-      body.classList.toggle('dark', theme === 'dark');
-      body.classList.toggle('light', theme === 'light');
-    }
-  }, [theme]);
+  const { theme, colorMode } = useMode();
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<Home />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-        <Route path="/landing" element={<Landing />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
+        <Suspense fallback={<Loader />}>
+          <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Routes>
+                <Route path="*" element={<DefaultLayout />} />
+                {/* <Route path="/" element={<Navigate to="/dashboard" replace />} /> */}
+                {/* <Route path="/dashboard" element={<HomePage />} />
+                <Route path="/dashboard" element={<ListViewDisplay />} />
+                <Route path="/node-view" element={<NodeView />} />
+                <Route path="/workload-view" element={<WorkloadView />} />
+                <Route path="settings" element={<SettingsPage />} />
+                </Route>
+                <Route path="landing" element={<LandingPage />} /> */}
+              </Routes>
+            </ThemeProvider>
+          </ColorModeContext.Provider>
+        </Suspense>
+      </BrowserRouter>
+    </div>
   );
 };
 
 export default App;
+
+/*
+import { Routes, Route } from 'react-router-dom';
+import { ColorModeContext, useMode } from './theme';
+import { ThemeProvider } from '@mui/system';
+import { CssBaseline } from '@mui/material';
+import { HomePage } from './pages';
+import { LandingPage, NodeView, MainPage } from './pages';
+import { WorkloadView } from './pages';
+import { ListViewPage } from './pages/ListViewPage/ListViewPage';
+
+const App = () => {
+  const [theme, colorMode] = useMode();
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route path="/" element={<MainPage />}>
+            <Route index element={<HomePage />} />
+            <Route path="list-view" element={<ListViewPage />} />
+            <Route path="node-view" element={<NodeView />} />
+            <Route path="workload-view" element={<WorkloadView />} />
+          </Route>
+          <Route path="landing" element={<LandingPage />} />
+        </Routes>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
+*/
