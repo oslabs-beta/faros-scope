@@ -195,21 +195,27 @@ const ListViewPage = () => {
         />
 
         <DataGridWithHeader
-          title={capitalizeFirstLetter(cUsageData.namespace[0].type)}
+          title={`Container Usage by ${capitalizeFirstLetter(
+            cUsageData.namespace[0].type
+          )}`}
           columns={columns}
           data={cUsageData.namespace}
           isLoading={false}
         />
 
         <DataGridWithHeader
-          title={capitalizeFirstLetter(cUsageData.pod[0].type)}
+          title={`Container Usage by ${capitalizeFirstLetter(
+            cUsageData.pod[0].type
+          )}`}
           columns={columns}
           data={cUsageData.pod}
           isLoading={false}
         />
 
         <DataGridWithHeader
-          title={capitalizeFirstLetter(cUsageData.node[0].type)}
+          title={`Container Usage by ${capitalizeFirstLetter(
+            cUsageData.node[0].type
+          )}`}
           columns={columns}
           data={cUsageData.node}
           isLoading={false}
