@@ -42,16 +42,16 @@ const columns: GridColDef[] = [
   },
   {
     field: 'MEM',
-    headerName: 'MEM (bytes)',
+    headerName: 'MEM (MB)',
     headerAlign: 'center',
     align: 'center',
     type: 'number',
     // width: 130,
     flex: 1,
     editable: true,
-    // valueGetter: (params) => {
-    //   return params.value.toFixed(2);
-    // },
+    valueGetter: (params) => {
+      return params.value.toFixed(2);
+    },
   },
 ];
 
@@ -66,11 +66,14 @@ const columnsListView: GridColDef[] = [
   },
   {
     field: 'cpuUsage',
-    headerName: 'CPU Usage',
+    headerName: 'CPU Usage (MB)',
     headerAlign: 'center',
     align: 'center',
     flex: 1,
     editable: true,
+    valueGetter: (params) => {
+      return params.value.toFixed(2);
+    },
   },
   {
     field: 'cpuUsagePct',
@@ -86,12 +89,15 @@ const columnsListView: GridColDef[] = [
   },
   {
     field: 'memUsage',
-    headerName: 'MEM Usage (bytes)',
+    headerName: 'MEM Usage (MB)',
     headerAlign: 'center',
     align: 'center',
     type: 'number',
     flex: 1,
     editable: true,
+    valueGetter: (params) => {
+      return params.value.toFixed(2);
+    },
   },
   {
     field: 'memUsagePct',
@@ -120,11 +126,14 @@ const columnsListViewUtil: GridColDef[] = [
   },
   {
     field: 'cpuUsage',
-    headerName: 'CPU Usage (bytes)',
+    headerName: 'CPU Usage (MB)',
     headerAlign: 'center',
     align: 'center',
     flex: 1,
     editable: true,
+    valueGetter: (params) => {
+      return params.value.toFixed(2);
+    },
   },
   {
     field: 'cpuUtilPct',
@@ -140,12 +149,15 @@ const columnsListViewUtil: GridColDef[] = [
   },
   {
     field: 'memUsage',
-    headerName: 'MEM Usage',
+    headerName: 'MEM Usage (MB)',
     headerAlign: 'center',
     align: 'center',
     type: 'number',
     flex: 1,
     editable: true,
+    valueGetter: (params) => {
+      return params.value.toFixed(2);
+    },
   },
   {
     field: 'memUtilPct',
