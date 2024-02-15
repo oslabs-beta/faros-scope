@@ -28,7 +28,7 @@ COPY --from=builder /app/build/server ./server
 
 # If your server requires any runtime dependencies, install them here
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm install 
 
 # Expose the port the server is running on
 EXPOSE 3000
