@@ -1,25 +1,8 @@
-Step 1. Install Prometheus
-
-```shell
-
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-
-helm search repo prometheus-community
-
-```
-
-Step 2. Create Service Account
-
-```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: kubby-meteor-service-account
-```
-
-Step 3. Create ClusterRole
-
-```yaml
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -44,11 +27,7 @@ rules:
       - get
       - list
       - watch
-```
-
-Step 4. Create ClusterRoleBinding
-
-```yaml
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -61,11 +40,7 @@ subjects:
   - kind: ServiceAccount
     name: kubby-meteor-service-account
     namespace: default
-```
-
-Step 5. Create KubbyMeteor deployment
-
-```yaml
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -90,11 +65,7 @@ spec:
           ports:
             - containerPort: 8000
           resources: {}
-```
-
-Step 6. Expose KubbyMeteor deployment
-
-```yaml
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -110,11 +81,7 @@ spec:
     app: kubby-meteor
 status:
   loadBalancer: {}
-```
-
-Step 7. Create Faros-Scope pod
-
-```yaml
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -134,11 +101,7 @@ spec:
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
-```
-
-Step 8. Expose Faros-Scope pod
-
-```yaml
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -155,4 +118,3 @@ spec:
   type: LoadBalancer
 status:
   loadBalancer: {}
-```
