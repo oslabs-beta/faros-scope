@@ -34,12 +34,16 @@ const themeSettings = (mode) => {
                     light: "#fcfcfc", // Default light background color
                 },
                 background: {
-                    default: "#222222",
-                    alt: "#1e1e1e",
+                    default: "#20232A",
+                    alt: "#16181D",
+                    test: "red",
                     inverted: "#fcfcfc", // Default light background color
                 },
                 typography: {
-                    main: "#fcfcfc",
+                    inverted: "black",
+                    main: "#FFFFFF",
+                    letters: "#FFFFFF",
+                    numbers: "#61DAFB",
                 },
             }
             : {

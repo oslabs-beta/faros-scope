@@ -36,18 +36,14 @@ const URLObject = {
 const commonProperties = {
     // width: 900,
     height: 400,
-    margin: { top: 20, right: 20, bottom: 60, left: 80 },
+    margin: { top: 20, right: 20, bottom: 40, left: 60 },
     pointSize: 8,
-    pointColor: { theme: 'background' },
+    pointColor: { theme: "background" },
     pointBorderWidth: 2,
-    pointBorderColor: { theme: 'background' },
+    pointBorderColor: { theme: "background" },
 };
-//   //   width: 900,
-//   //   height: 400,
-//   margin: { top: 20, right: 20, bottom: 60, left: 80 },
-// //   animate: true,
-// //   enableSlices: "x",
 const LineChart = ({ title, URL }) => {
+    const theme = (0, material_1.useTheme)();
     const [data, setData] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         (function () {
@@ -59,9 +55,17 @@ const LineChart = ({ title, URL }) => {
                     .then(({ data }) => {
                     const XY = data.result.map((result) => {
                         const temp = result.values.map((point) => {
-                            console.log(new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'UTC' }).format(new Date(point[0] * 1000)));
+                            console.log(new Intl.DateTimeFormat("en-US", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit",
+                                hour12: false,
+                                timeZone: "UTC",
+                            }).format(new Date(point[0] * 1000)));
+                            // console.log(new Date(point[0] * 1000)))
                             return {
                                 x: new Date(point[0] * 1000).toISOString(),
+                                //   x: new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone:'UTC'}).format(new Date(point[0] * 1000)),
                                 y: Number(point[1]),
                             };
                         });
@@ -71,68 +75,76 @@ const LineChart = ({ title, URL }) => {
                         };
                     });
                     setData(XY);
+                    ``;
                 });
             });
         })();
         4;
     }, []);
-    console.log('The DATA after modification', data);
-    return ((0, jsx_runtime_1.jsxs)(Paper_1.default, { variant: "outlined", sx: {
+    console.log("The DATA after modification", data);
+    return ((0, jsx_runtime_1.jsxs)(Paper_1.default
+    //   variant="outlined"
+    , { 
+        //   variant="outlined"
+        sx: {
             position: "relative",
             width: "100%",
             aspectRatio: "1/1",
             height: "50vh",
             borderRadius: "0.45rem",
-            backgroundColor: "white",
-            // backgroundColor: theme.palette.neutral.light,
-            color: "black",
+            // backgroundColor: theme.palette.background.alt,
+            backgroundColor: 'red',
             display: "flex",
-            // justifyContent: 'center',
-            // alignItems: 'center',
             flexDirection: "column",
             overFlow: "visible",
         }, children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { sx: {
-                    margin: '0 16px',
-                    color: "black",
+                    margin: "0 16px",
                     fontSize: "1.15rem",
                     height: "100%",
+                    color: theme.palette.typography.main,
+                    textAlign: "center",
                 }, children: title }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)("div", { style: {
                     position: "absolute",
                     width: "100%",
                     height: "100%",
                     top: "10%",
-                }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { data: data, 
-                    //   type: "time",
-                    //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-                    //   useUTC: true,
-                    //   precision: "second",
-                    // }}
-                    xScale: {
-                        type: 'time',
+                }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { theme: {
+                        text: {
+                            fill: theme.palette.typography.main,
+                        },
+                        tooltip: {
+                            container: {
+                                color: theme.palette.typography.inverted,
+                            },
+                        },
+                    }, data: data, xScale: {
+                        type: "time",
                         format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-                        precision: 'minute',
-                    }, xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z", yScale: {
-                        type: 'linear',
+                        precision: "minute",
                         min: "auto",
-                        max: 'auto',
+                        max: "auto",
+                    }, xFormat: "time:%Y-%m-%d %H:%M:%S.%Z", yScale: {
+                        type: "linear",
+                        min: "auto",
+                        max: "auto",
                         // stacked: boolean('stacked', false),
                     }, axisLeft: {
-                        legend: 'linear scale',
+                        //   legend: "linear scale",
+                        legendOffset: -12,
+                    }, axisBottom: {
+                        format: "%H:%M",
+                        tickValues: 10,
+                        tickPadding: 10,
+                        //   legend: "time scale",
                         legendOffset: 12,
-                    }, axisBottom: undefined, 
-                    // axisBottom={{
-                    //     format: '%H:%M:%S',
-                    //     tickValues: 'every  5 minutes',
-                    //     legend: 'time scale',
-                    //     legendOffset: -12,
-                    // }}
+                    }, 
                     // enablePointLabel={true}
                     pointSize: 16, pointBorderWidth: 1, pointBorderColor: {
-                        from: 'color',
-                        modifiers: [['darker', 0.3]],
+                        from: "color",
+                        modifiers: [["darker", 0.3]],
                     }, 
                     // useMesh={true}
-                    enableSlices: false, colors: { scheme: "spectral" } })) }))] }));
+                    enableSlices: false, enableGridX: false, colors: { scheme: "spectral" } })) }))] }));
 };
 // Exporting as default for React lazy loading; React.lazy() only supports default exports
 exports.default = LineChart;

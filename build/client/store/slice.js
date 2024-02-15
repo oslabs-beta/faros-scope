@@ -12,7 +12,7 @@ exports.clusterEventsAdapter = (0, toolkit_1.createEntityAdapter)({
     selectId: (clusterEvent) => clusterEvent.metadata.resourceVersion,
 });
 const initialAppState = {
-    sidebarShow: true,
+    sidebarShow: false,
     sidebarUnfoldable: false,
 };
 exports.appState = (0, toolkit_1.createSlice)({

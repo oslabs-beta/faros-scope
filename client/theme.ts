@@ -1,6 +1,5 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
-import { PiArrowsInLineVerticalDuotone } from "react-icons/pi";
 
 type ThemeMode = "light" | "dark";
 
@@ -123,7 +122,6 @@ type ThemeMode = "light" | "dark";
 //         },
 //       }),
 // });
-
 declare module "@mui/material/styles" {
   interface Theme {
     palette: {
@@ -158,14 +156,15 @@ declare module "@mui/material/styles" {
       };
       typography: {
         main?: string;
+        inverted?: string;
+        letters?: string;
+        numbers?: string;
       };
     };
     status?: {
       danger?: string;
     };
   }
-  // allow configuration using `createTheme`
-  // interface ThemeOptions {}
 }
 
 // mui theme settings
@@ -189,7 +188,6 @@ export const themeSettings = (mode: ThemeMode) => {
                 700: "#0d264f",
                 800: "#081a35",
                 900: "#040d1a",
-            
               },
             },
             secondary: {
@@ -203,15 +201,15 @@ export const themeSettings = (mode: ThemeMode) => {
             },
             background: {
               default: "#20232A", // $background-color-dark
-                alt: "#16181D", // $background-color-light
-              "test": 'red',
+              alt: "#16181D", // $background-color-light
+              test: "red",
               inverted: "#fcfcfc", // Default light background color
             },
-              typography: {
-                  inverted: 'black',
-                  main: '#FFFFFF',
-                  letters: '#FFFFFF',
-                  numbers: '#61DAFB'
+            typography: {
+              inverted: "black",
+              main: "#FFFFFF",
+              letters: "#FFFFFF",
+              numbers: "#61DAFB",
             },
           }
         : {
@@ -269,7 +267,7 @@ export const themeSettings = (mode: ThemeMode) => {
 
 // context for color mode
 export const ColorModeContext = createContext({
-    toggleColorMode: () => {},
+  toggleColorMode: () => {},
 });
 
 export const useMode = () => {
@@ -286,5 +284,5 @@ export const useMode = () => {
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
-    return { theme, colorMode };
+  return { theme, colorMode };
 };
