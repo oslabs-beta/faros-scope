@@ -169,7 +169,7 @@ const NodeView = () => {
             p="1rem"
             borderRadius="0.55rem"
           >
-            {/* <CollapsiblePanel title="Bandwidth">
+            <CollapsiblePanel title="Bandwidth">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
                   title={"Received Bandwidth Per Node - Top 50"}
@@ -182,7 +182,7 @@ const NodeView = () => {
                   URL={"podNetwork"}
                 />
               </Suspense>
-            </CollapsiblePanel> */}
+            </CollapsiblePanel>
           </Box>
 
           {/* ROW 5 */}
@@ -193,7 +193,7 @@ const NodeView = () => {
             p="1rem"
             borderRadius="0.55rem"
           >
-            {/* <CollapsiblePanel title="Rate of Packets">
+            <CollapsiblePanel title="Rate of Packets">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
                   title={"Received packet count per node - Top 50"}
@@ -206,7 +206,7 @@ const NodeView = () => {
                   URL={"packetsTransmitted"}
                 />
               </Suspense>
-            </CollapsiblePanel> */}
+            </CollapsiblePanel>
           </Box>
         </Box>
       </Box>
