@@ -3,7 +3,7 @@ import { Pod, Node, Container } from '../../types/types';
 
 export const metricsApi = createApi({
   reducerPath: 'metricsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://35.185.108.181:8000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://34.139.156.110:80/' }),
   endpoints: (builder) => ({
     getClusterInfo: builder.query({
       query: () => 'clusterInfo',
@@ -37,7 +37,7 @@ export const metricsApi = createApi({
     }),
     getNodeView: builder.query({
       queryFn: async () => {
-        const response = await fetch('http://34.139.156.110/node-view');
+        const response = await fetch('http://34.139.156.110:80/node-view');
         const data = await response.json();
         return { data: data };
       },

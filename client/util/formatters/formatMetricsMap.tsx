@@ -16,6 +16,7 @@ type Cache = {
 
 export const formatMetricsMap = (data: ListViewDisplayProps): any => {
   const cache: Cache = {};
+  // console.log('inside Metrics', data)
 
   for (const item in data.metricsMap) {
     const dataObj: MetricsMapItem = {
@@ -28,5 +29,18 @@ export const formatMetricsMap = (data: ListViewDisplayProps): any => {
       cache[data.metricsMap[item].type].push(dataObj);
     }
   }
+
+  cache.pod = cache?.pod?.map((elm, i) => {
+    return { ...elm, id: i };
+  });
+
+  cache.node = cache?.node?.map((elm, i) => {
+    return { ...elm, id: i };
+  });
+
+  cache.container = cache?.container?.map((elm, i) => {
+    return { ...elm, id: i };
+  });
+
   return cache;
 };
