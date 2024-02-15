@@ -1,5 +1,5 @@
-import { DataGrid, GridToolbar, GridColDef } from "@mui/x-data-grid";
-import { Typography, Box } from "@mui/material";
+import { DataGrid, GridToolbar, GridColDef } from '@mui/x-data-grid';
+import { Typography, Box } from '@mui/material';
 
 interface Props {
   title: string;
@@ -12,39 +12,40 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
   return (
     <Box
       sx={{
-        border: "1px solid #e0e0e0",
-        borderRadius: "4px",
-        display: "flex",
-        flexDirection: "column",
-        "& .MuiDataGrid-root": {
-          border: "none",
+        border: '1px solid #e0e0e0',
+        borderRadius: '4px',
+        display: 'flex',
+        flexDirection: 'column',
+        '& .MuiDataGrid-root': {
+          border: 'none',
         },
-        "& .MuiDataGrid-toolbarContainer": {
-          borderTop: "1px solid #e0e0e0",
-          borderBottom: "1px solid #e0e0e0",
-          height: "40px",
+        '& .MuiDataGrid-toolbarContainer': {
+          borderTop: '1px solid #e0e0e0',
+          borderBottom: '1px solid #e0e0e0',
+          height: '40px',
         },
-        "& .MuiDataGrid-columnHeaders": {
-          backgroundColor: "lightgray",
+        '& .MuiDataGrid-columnHeaders': {
+          backgroundColor: 'lightgray',
           borderRadius: 0,
         },
-        "& .MuiTablePagination-selectLabel ": {
-          margin: "0",
+        '& .MuiTablePagination-selectLabel ': {
+          margin: '0',
         },
-        "& .MuiTablePagination-displayedRows": {
-          margin: "0",
+        '& .MuiTablePagination-displayedRows': {
+          margin: '0',
         },
       }}
     >
       <Typography
         style={{
-          display: "flex",
-          fontWeight: "bold",
-          alignItems: "center",
-          marginLeft: "1rem",
-          fontSize: "1.15rem",
-          height: "36px",
-          textAlign: "center",
+          display: 'flex',
+          fontWeight: 'bold',
+          alignItems: 'center',
+          marginLeft: '1rem',
+          padding: '1.5rem',
+          fontSize: '1.5rem',
+          height: '36px',
+          textAlign: 'center',
         }}
       >
         {title}
@@ -55,8 +56,8 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
         columns={columns}
         components={{ Toolbar: GridToolbar }}
         sx={{
-          minHeight: "400px",
-          maxHeight: "400px",
+          minHeight: '400px',
+          maxHeight: '400px',
         }}
         columnHeaderHeight={40}
 
