@@ -19,18 +19,18 @@ const DataGridWithHeader = lazy(
 
 // Columns for Container Usage by NameSpace
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 50 },
+  { field: 'id', headerName: 'ID', flex: 1 },
   {
     field: 'name',
     headerName: 'Name',
-    width: 160,
+    // width: 160,
     flex: 1,
     editable: true,
   },
   {
     field: 'CPU',
-    headerName: 'CPU (%)',
-    width: 130,
+    headerName: 'CPU (num cores)',
+    // width: 130,
     flex: 1,
     editable: true,
     valueGetter: (params) => {
@@ -41,7 +41,7 @@ const columns: GridColDef[] = [
     field: 'MEM',
     headerName: 'MEM (bytes)',
     type: 'number',
-    width: 130,
+    // width: 130,
     flex: 1,
     editable: true,
     // valueGetter: (params) => {
@@ -197,7 +197,7 @@ const ListViewPage = () => {
         <DataGridWithHeader
           title={`Container Usage by ${capitalizeFirstLetter(
             cUsageData.namespace[0].type
-          )}`}
+          )} (Aggr.)`}
           columns={columns}
           data={cUsageData.namespace}
           isLoading={false}
@@ -206,7 +206,7 @@ const ListViewPage = () => {
         <DataGridWithHeader
           title={`Container Usage by ${capitalizeFirstLetter(
             cUsageData.pod[0].type
-          )}`}
+          )} (Aggr.)`}
           columns={columns}
           data={cUsageData.pod}
           isLoading={false}
@@ -215,7 +215,7 @@ const ListViewPage = () => {
         <DataGridWithHeader
           title={`Container Usage by ${capitalizeFirstLetter(
             cUsageData.node[0].type
-          )}`}
+          )} (Aggr.)`}
           columns={columns}
           data={cUsageData.node}
           isLoading={false}
