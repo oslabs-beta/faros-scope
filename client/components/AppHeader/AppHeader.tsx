@@ -78,17 +78,17 @@ const AppHeader = () => {
         <CHeaderNav>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
+              {/* <CIcon icon={cilBell} size="lg" /> */}
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
+              {/* <CIcon icon={cilList} size="lg" /> */}
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
+              {/* <CIcon icon={cilEnvelopeOpen} size="lg" /> */}
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
@@ -135,10 +135,9 @@ const AppHeader = () => {
         <AppBreadcrumb />
         {/* // SELECTIVELY RENDER TIMESPAN BASED ON ROUTE */}
         {/* <BasicTimePicker/> */}
-        Add TimePicker
       </CContainer>
-      <CHeaderDivider />
-      <CContainer fluid>Add Notifications | Add Filter | Add Event</CContainer>
+      {/* <CHeaderDivider /> */}
+      {/* <CContainer fluid>Add Notifications | Add Filter | Add Event</CContainer> */}
     </CHeader>
   );
 };

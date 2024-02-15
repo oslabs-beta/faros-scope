@@ -201,8 +201,7 @@ export const themeSettings = (mode: ThemeMode) => {
             },
             background: {
               default: "#20232A", // $background-color-dark
-              alt: "#16181D", // $background-color-light
-              test: "red",
+                alt: "#16181D", // $background-color-light
               inverted: "#fcfcfc", // Default light background color
             },
             typography: {
@@ -227,7 +226,8 @@ export const themeSettings = (mode: ThemeMode) => {
             background: {
               default: "#fcfcfc", // Default light background color
               alt: "#ffffff", // $background-color-light
-              inverted: "#222222", // $background-color-dark
+                inverted: "#222222", // $background-color-dark
+              
             },
             typography: {
               main: "#222222",
@@ -271,7 +271,7 @@ export const ColorModeContext = createContext({
 });
 
 export const useMode = () => {
-  const [mode, setMode] = useState<ThemeMode>("light");
+  const [mode, setMode] = useState<ThemeMode>("dark");
 
   const colorMode = useMemo(
     () => ({

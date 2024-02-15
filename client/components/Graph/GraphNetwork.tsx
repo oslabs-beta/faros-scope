@@ -67,7 +67,6 @@ const GraphResponsiveNetwork = ({
   lengthOfData,
   draggableContainer,
 }: any) => {
-  // const {instance, zoomIn, zoomOut, ...rest} = useControls();
   const muiTheme = useTheme();
   const containerRef = draggableContainer;
   const [open, setOpen] = useState(false);

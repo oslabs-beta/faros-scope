@@ -36,16 +36,15 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
     <Accordion
       sx={{
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              // backgroundColor: theme.palette.background.alt,
-          backgroundColor: 'rgb(34, 35, 39)'
+        backgroundColor: "rgb(34, 35, 39)",
       }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={title.replace(/\s+/g, "") + "-content"}
         id={title.replace(/\s+/g, "") + "-header"}
-              sx={{
-            // backgroundColor: theme.palette.background.alt,
+        sx={{
+          // backgroundColor: theme.palette.background.alt,
           "& .MuiAccordionSummary.Mui-expanded": {
             margin: "20px 0 0px 20px",
           },
@@ -58,7 +57,7 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "1rem",
-          backgroundColor: theme.palette.background.alt,
+          backgroundColor: "rgb(34, 35, 39)",
         }} // TODO: Verify this is correct
       >
         {children}

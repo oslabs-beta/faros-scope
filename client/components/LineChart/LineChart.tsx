@@ -1,9 +1,14 @@
-import { Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import { ResponsiveLineCanvas } from "@nivo/line";
 import { useEffect, useState } from "react";
 import "./linechart.scss";
+
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
+import MoreVertTwoToneIcon from "@mui/icons-material/MoreVertTwoTone";
 
 interface RecievedData {
   metric: { [key: string]: string };
@@ -20,6 +25,26 @@ interface URLObject {
   receivedBandwidth: string;
   [key: string]: string;
 }
+
+const InfoTooltip = () => {
+  return (
+    <Tooltip>
+      <IconButton>
+        <InfoTwoToneIcon fontSize="small" />
+      </IconButton>
+    </Tooltip>
+  );
+};
+
+const MoreInfoTooltip = () => {
+  return (
+    <Tooltip title="More Info" sx={{ marginLeft: "auto" }}>
+      <IconButton>
+        <MoreVertTwoToneIcon fontSize="small" />
+      </IconButton>
+    </Tooltip>
+  );
+};
 
 // Get the current time in seconds (Unix timestamp)
 const now = Math.floor(Date.now() / 1000);
@@ -44,8 +69,8 @@ interface Props {
 
 const commonProperties = {
   // width: 900,
-  height: 400,
-  margin: { top: 20, right: 20, bottom: 40, left: 60 },
+  //   height: 400,
+  margin: { top: 20, right: 20, bottom: 40, left: 40 },
   pointSize: 8,
   pointColor: { theme: "background" },
   pointBorderWidth: 2,
@@ -104,38 +129,49 @@ const LineChart = ({ title, URL }: Props) => {
         height: "50vh",
         borderRadius: "0.45rem",
         // backgroundColor: theme.palette.background.alt,
-        backgroundColor: "red",
+        backgroundColor: "transparent",
 
         display: "flex",
         flexDirection: "column",
         overFlow: "visible",
       }}
     >
-      <Typography
+      <Box
         sx={{
-          margin: "0 16px",
-          fontSize: "1.15rem",
-          height: "100%",
-          color: theme.palette.typography.main,
-          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
         }}
       >
-        {title}
-      </Typography>
+        <Typography
+          sx={{
+            marginLeft: "1rem",
+            fontSize: "1.10rem",
+            display: "inline-block",
+            color: theme.palette.typography.main,
+            textAlign: "center",
+          }}
+        >
+          {title}
+        </Typography>
+        <InfoTooltip />
+        <MoreInfoTooltip />
+      </Box>
 
       {!data && <CircularProgress />}
       {data && (
         <div
           style={{
-            position: "absolute",
+            position: "relative",
             width: "100%",
             height: "100%",
-            top: "10%",
+            borderRadius: "0.45rem",
           }}
         >
           <ResponsiveLineCanvas
             {...commonProperties}
             theme={{
+              background: "rgba(161, 183, 201, 0.3)",
               text: {
                 fill: theme.palette.typography.main,
               },
@@ -172,7 +208,7 @@ const LineChart = ({ title, URL }: Props) => {
               legendOffset: 12,
             }}
             // enablePointLabel={true}
-            pointSize={16}
+            pointSize={0}
             pointBorderWidth={1}
             pointBorderColor={{
               from: "color",

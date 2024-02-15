@@ -11,10 +11,10 @@ const Graph = React.lazy(() => import("./components/Graph/Graph"));
 
 const routes = [
   { path: "/*", /*exact: true ,*/ name: "Home" },
-  { path: "/dashboard", name: "Dashboard", element: Dashboard },
+  { path: "/dashboard", name: "Dashboard", element: Graph },
   { path: "/node-view", name: "Node View", element: NodeView },
   { path: "/list-view", name: "List View", element: ListView },
-  { path: "/network-view", name: "Network View", element: Graph },
+//   { path: "/network-view", name: "Network View", element: Graph },
 ];
 
 export default routes;
