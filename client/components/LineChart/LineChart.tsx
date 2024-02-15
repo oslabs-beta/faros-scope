@@ -28,7 +28,7 @@ interface URLObject {
 
 const InfoTooltip = () => {
   return (
-    <Tooltip>
+    <Tooltip title='Info'>
       <IconButton>
         <InfoTwoToneIcon fontSize="small" />
       </IconButton>
@@ -70,7 +70,7 @@ interface Props {
 const commonProperties = {
   // width: 900,
   //   height: 400,
-  margin: { top: 20, right: 20, bottom: 40, left: 40 },
+  margin: { top: 20, right: 20, bottom: 40, left: 60 },
   pointSize: 8,
   pointColor: { theme: "background" },
   pointBorderWidth: 2,
@@ -128,7 +128,6 @@ const LineChart = ({ title, URL }: Props) => {
         aspectRatio: "1/1",
         height: "50vh",
         borderRadius: "0.45rem",
-        // backgroundColor: theme.palette.background.alt,
         backgroundColor: "transparent",
 
         display: "flex",
@@ -146,7 +145,7 @@ const LineChart = ({ title, URL }: Props) => {
         <Typography
           sx={{
             marginLeft: "1rem",
-            fontSize: "1.10rem",
+            fontSize: "1.17rem",
             display: "inline-block",
             color: theme.palette.typography.main,
             textAlign: "center",
@@ -165,13 +164,15 @@ const LineChart = ({ title, URL }: Props) => {
             position: "relative",
             width: "100%",
             height: "100%",
-            borderRadius: "0.45rem",
+                      borderRadius: "0.45rem",
+            padding: "0.5rem",
           }}
         >
           <ResponsiveLineCanvas
             {...commonProperties}
             theme={{
-              background: "rgba(161, 183, 201, 0.3)",
+                //   background: "rgba(161, 183, 201, 0.06)",
+                background: theme.palette.background.linechart.main,
               text: {
                 fill: theme.palette.typography.main,
               },

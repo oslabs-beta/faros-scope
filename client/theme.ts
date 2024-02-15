@@ -149,7 +149,13 @@ declare module "@mui/material/styles" {
         main?: string;
         light?: string;
       };
-      background: {
+        background: {
+            linechart: {
+                main?: string;
+            };
+            accordion: {
+                main?: string;
+            };
         default?: string;
         alt?: string;
         inverted?: string;
@@ -200,8 +206,14 @@ export const themeSettings = (mode: ThemeMode) => {
               light: "#fcfcfc", // Default light background color
             },
             background: {
+              linechart: {
+                main: "rgba(161,183,201, 0.06)",
+                },
+                accordion: {
+                    main: "rgb(34, 35, 39)"
+                },
               default: "#20232A", // $background-color-dark
-                alt: "#16181D", // $background-color-light
+              alt: "#16181D", // $background-color-light
               inverted: "#fcfcfc", // Default light background color
             },
             typography: {
@@ -223,11 +235,16 @@ export const themeSettings = (mode: ThemeMode) => {
               main: "#d0d0d0", // $background-color-light
               light: "#fcfcfc", // Default light background color
             },
-            background: {
+              background: {
+                linechart: {
+                    main: "white",
+                  },
+                  accordion: {
+                      main: "white"
+                  },
               default: "#fcfcfc", // Default light background color
               alt: "#ffffff", // $background-color-light
-                inverted: "#222222", // $background-color-dark
-              
+              inverted: "#222222", // $background-color-dark
             },
             typography: {
               main: "#222222",

@@ -12,13 +12,13 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
   return (
     <Box
       sx={{
-        border: '1px solid #2B2F3B',
+        border: '1px solid #e0e0e0',
         borderRadius: '4px',
         display: 'flex',
         flexDirection: 'column',
         '& .MuiDataGrid-root': {
           border: 'none',
-          backgroundColor: 'rgb(42, 43, 46)'
+        //   backgroundColor: 'rgb(42, 43, 46)'
         },
         '& .MuiDataGrid-toolbarContainer': {
           borderTop: '1px solid #e0e0e0',

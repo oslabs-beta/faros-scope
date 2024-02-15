@@ -125,13 +125,13 @@ const NodeView = () => {
             <CollapsiblePanel title="CPU and Memory">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"CPU Usage Per Node - Top 50"}
+                  title={"CPU Usage Per Node"}
                   URL={"clusterUsage"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"Memory Usage Per Node - Top 50"}
+                  title={"Memory Usage Per Node"}
                   URL={"nodeUsage"}
                 />
               </Suspense>

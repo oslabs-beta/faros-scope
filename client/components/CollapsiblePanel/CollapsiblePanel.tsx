@@ -36,7 +36,8 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
     <Accordion
       sx={{
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        backgroundColor: "rgb(34, 35, 39)",
+        //   backgroundColor: "rgb(34, 35, 39)",
+        backgroundColor: theme.palette.background.accordion.main,
       }}
     >
       <AccordionSummary
@@ -57,7 +58,8 @@ export const CollapsiblePanel = ({ title, children }: Props) => {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "1rem",
-          backgroundColor: "rgb(34, 35, 39)",
+          //   backgroundColor: "rgb(34, 35, 39)",
+          backgroundColor: theme.palette.background.accordion.main,
         }} // TODO: Verify this is correct
       >
         {children}
