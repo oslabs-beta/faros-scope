@@ -71,7 +71,7 @@ kind: Service
 metadata:
   labels:
     app: kubby-meteor
-  name: kubby-meteor-service
+  name: kubby-meteor
 spec:
   ports:
     - port: 80
