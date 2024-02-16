@@ -212,6 +212,9 @@ export const themeSettings = (mode: ThemeMode) => {
                 accordion: {
                     main: "rgb(34, 35, 39)"
                 },
+                datagrid: {
+main: '#20232A'
+                },
               default: "#20232A", // $background-color-dark
               alt: "#16181D", // $background-color-light
               inverted: "#fcfcfc", // Default light background color
@@ -242,12 +245,16 @@ export const themeSettings = (mode: ThemeMode) => {
                   accordion: {
                       main: "white"
                   },
+                  datagrid: {
+                      main: '#d1e0f5'
+                  },
               default: "#fcfcfc", // Default light background color
               alt: "#ffffff", // $background-color-light
               inverted: "#222222", // $background-color-dark
             },
             typography: {
-              main: "#222222",
+                main: "#222222",
+                letters: 'black',
             },
           }),
     },

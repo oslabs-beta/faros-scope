@@ -172,13 +172,13 @@ const NodeView = () => {
             <CollapsiblePanel title="Bandwidth">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"Received Bandwidth Per Node - Top 50"}
+                  title={"Received Bandwidth Per Node"}
                   URL={"receivedBandwidth"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"Received Bandwidth Per Node - Top 50"}
+                  title={"Received Bandwidth Per Node"}
                   URL={"podNetwork"}
                 />
               </Suspense>
@@ -196,13 +196,13 @@ const NodeView = () => {
             <CollapsiblePanel title="Rate of Packets">
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"Received packet count per node - Top 50"}
+                  title={"Received packet count per node"}
                   URL={"packetsReceived"}
                 />
               </Suspense>
               <Suspense fallback={<CircularProgress />}>
                 <LineChart
-                  title={"Transmitted packet count per node - Top 50"}
+                  title={"Transmitted packet count per node"}
                   URL={"packetsTransmitted"}
                 />
               </Suspense>
