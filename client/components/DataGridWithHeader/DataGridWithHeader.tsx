@@ -26,7 +26,7 @@ const DataGridWithHeader = ({ title, columns, data, isLoading }: Props) => {
           height: '40px',
         },
         '& .MuiDataGrid-columnHeaders': {
-          backgroundColor: 'lightgray',
+          backgroundColor: 'd1e0f5',
           borderRadius: 0,
         },
         '& .MuiTablePagination-selectLabel ': {
