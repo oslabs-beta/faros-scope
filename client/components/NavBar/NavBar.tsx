@@ -28,176 +28,174 @@ export const NavBar = () => {
   };
 
   return (
-    <>
-      <AppBar id="navbar" position="fixed">
-        <Toolbar
-          id="toolbar"
+    <AppBar id="navbar" position="fixed">
+      <Toolbar
+        id="toolbar"
+        sx={{
+          backgroundColor: 'transparent',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
           sx={{
-            backgroundColor: 'transparent',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            mr: 2,
+            '&:hover': {
+              backgroundColor: '#20232A',
+            },
+          }}
+          onClick={toggleSidebar}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box display={'flex'} gap={2}>
+          <img height={'50px'} src={logo} alt="logo" />
+          <Typography variant="h1">Faros-Scope</Typography>
+        </Box>
+        <SwitchButton onChange={changeTheme} />
+        <Drawer
+          variant="temporary"
+          anchor="left"
+          open={sidebarShow}
+          onClose={toggleSidebar}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            '& .MuiPaper-root': {
+              background: 'transparent',
+            },
+            '& .MuiDrawer-paper': {
+              minWidth: '15%',
+              backgroundColor:
+                theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
+            },
           }}
         >
           <IconButton
             size="large"
-            edge="start"
-            color="inherit"
+            edge={false}
             aria-label="menu"
             sx={{
-              mr: 2,
+              color: theme.palette.mode === 'light' ? '#000000' : '#FFFFFF',
+              width: '100%',
+              borderRadius: '0%',
+              backgroundColor:
+                theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
               '&:hover': {
-                backgroundColor: '#20232A',
+                backgroundColor:
+                  theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
               },
             }}
             onClick={toggleSidebar}
           >
             <MenuIcon />
           </IconButton>
-          <Box display={'flex'} gap={2}>
-            <img height={'50px'} src={logo} alt="logo" />
-            <Typography variant="h1">Faros-Scope</Typography>
-          </Box>
-          <SwitchButton onChange={changeTheme} />
-          <Drawer
-            variant="temporary"
-            anchor="left"
-            open={sidebarShow}
-            onClose={toggleSidebar}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+          <Box
             sx={{
-              '& .MuiPaper-root': {
-                background: 'transparent',
-              },
-              '& .MuiDrawer-paper': {
-                minWidth: '15%',
-                backgroundColor:
-                  theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
-              },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 1,
+              borderTop: `1px solid ${
+                theme.palette.mode === 'light'
+                  ? '#000000'
+                  : 'rgba(248, 249, 250, 0.5)'
+              }`,
+              borderBottom: `1px solid ${
+                theme.palette.mode === 'light'
+                  ? '#000000'
+                  : 'rgba(248, 249, 250, 0.5)'
+              }`,
+              backgroundColor:
+                theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
             }}
           >
-            <IconButton
-              size="large"
-              edge={false}
-              aria-label="menu"
+            <Container
               sx={{
-                color: theme.palette.mode === 'light' ? '#000000' : '#FFFFFF',
-                width: '100%',
-                borderRadius: '0%',
-                backgroundColor:
-                  theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: '0.5rem',
+              }}
+            >
+              <img height={'50px'} src={logo} alt="logo" />
+            </Container>
+            <Container
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 '&:hover': {
                   backgroundColor:
                     theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
                 },
               }}
-              onClick={toggleSidebar}
             >
-              <MenuIcon />
-            </IconButton>
-            <Box
+              <Link
+                onClick={toggleSidebar}
+                className="navbar-link"
+                to="/"
+                style={{
+                  color: theme.palette.typography.main,
+                }}
+              >
+                Dashboard
+              </Link>
+            </Container>
+            <Container
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: 1,
-                borderTop: `1px solid ${
-                  theme.palette.mode === 'light'
-                    ? '#000000'
-                    : 'rgba(248, 249, 250, 0.5)'
-                }`,
-                borderBottom: `1px solid ${
-                  theme.palette.mode === 'light'
-                    ? '#000000'
-                    : 'rgba(248, 249, 250, 0.5)'
-                }`,
-                backgroundColor:
-                  theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
+                '&:hover': {
+                  backgroundColor:
+                    theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
+                },
               }}
             >
-              <Container
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: '0.5rem',
+              <Link
+                onClick={toggleSidebar}
+                className="navbar-link"
+                to="/list-view"
+                style={{
+                  color: theme.palette.typography.main,
                 }}
               >
-                <img height={'50px'} src={logo} alt="logo" />
-              </Container>
-              <Container
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  '&:hover': {
-                    backgroundColor:
-                      theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
-                  },
+                List-View
+              </Link>
+            </Container>
+            <Container
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                '&:hover': {
+                  backgroundColor:
+                    theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
+                },
+              }}
+            >
+              <Link
+                onClick={toggleSidebar}
+                className="navbar-link"
+                to="/node-view"
+                style={{
+                  color: theme.palette.typography.main,
                 }}
               >
-                <Link
-                  onClick={toggleSidebar}
-                  className="navbar-link"
-                  to="/"
-                  style={{
-                    color: theme.palette.typography.main,
-                  }}
-                >
-                  Dashboard
-                </Link>
-              </Container>
-              <Container
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  '&:hover': {
-                    backgroundColor:
-                      theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
-                  },
-                }}
-              >
-                <Link
-                  onClick={toggleSidebar}
-                  className="navbar-link"
-                  to="/list-view"
-                  style={{
-                    color: theme.palette.typography.main,
-                  }}
-                >
-                  List-View
-                </Link>
-              </Container>
-              <Container
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  '&:hover': {
-                    backgroundColor:
-                      theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
-                  },
-                }}
-              >
-                <Link
-                  onClick={toggleSidebar}
-                  className="navbar-link"
-                  to="/node-view"
-                  style={{
-                    color: theme.palette.typography.main,
-                  }}
-                >
-                  Node-View
-                </Link>
-              </Container>
-            </Box>
-          </Drawer>
-        </Toolbar>
-      </AppBar>
-    </>
+                Node-View
+              </Link>
+            </Container>
+          </Box>
+        </Drawer>
+      </Toolbar>
+    </AppBar>
   );
 };

@@ -91,8 +91,7 @@ const GraphResponsiveNetwork = ({
   return (
     <TransformWrapper
       initialScale={1}
-          minScale={0.1}
-    
+      minScale={0.1}
       initialPositionX={0}
       initialPositionY={0}
       wheel={{ step: 100 }}
@@ -130,18 +129,19 @@ const GraphResponsiveNetwork = ({
               distanceMin={20}
               linkThickness={(n) => 2 + 2 * n.target.data.height}
               pixelRatio={2}
-              linkColor={(n) =>
-                n.source.data.type === 'namespace'
-                  ? 'green'
-                  : n.source.data.type === 'service'
-                  ? 'blue'
-                  : n.source.data.type === 'pod'
-                  ? 'orange'
-                  : n.source.data.type === 'container'
-                  ? 'cyan'
-                  : muiTheme.palette.mode === 'dark'
-                  ? 'white'
-                  : 'black'
+              linkColor={
+                (n) =>
+                  n.source.data.type === 'namespace'
+                    ? '#9AFF99' // pastel green
+                    : n.source.data.type === 'service'
+                    ? '#99C2FF' // pastel blue
+                    : n.source.data.type === 'pod'
+                    ? '#FFD699' // pastel orange
+                    : n.source.data.type === 'container'
+                    ? '#99FFFF' // pastel cyan
+                    : muiTheme.palette.mode === 'dark'
+                    ? '#EEEEEE' // light gray
+                    : '#CCCCCC' // pastel gray
               }
               motionConfig="wobbly"
               nodeTooltip={(e) => (
@@ -150,9 +150,17 @@ const GraphResponsiveNetwork = ({
                     border: `2px solid ${muiTheme.palette.primary.main}`,
                     padding: '10px',
                     borderRadius: '20px',
-                    color: muiTheme.palette.background.default,
-                    backgroundColor: muiTheme.palette.background.inverted,
+                    color: muiTheme.palette.typography.letters,
+                    backgroundColor:
+                      muiTheme.palette.mode === 'dark'
+                        ? 'rgba(0, 0, 0, 0.5)'
+                        : 'rgba(255, 255, 255, 0.5)',
+                    backdropFilter: 'blur(10px)',
                     textAlign: 'center',
+                    textShadow:
+                      muiTheme.palette.mode === 'dark'
+                        ? '1px 1px 2px black'
+                        : '1px 1px 2px white',
                   }}
                 >
                   ID: {e.node.data.label || e.node.id} <br />
