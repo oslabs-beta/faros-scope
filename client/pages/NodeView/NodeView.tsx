@@ -70,27 +70,21 @@ const NodeView = () => {
   return (
     <Box className="NodeView" height="100%" width="100%">
       <Box m="1.5rem 2.5rem">
-        {/* <FlexBetween>
-          <Header title="Nodes View" subtitle="View all nodes in the network" />
-        </FlexBetween> */}
-
         <Box
           mt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(1fr)"
-          gridAutoRows="minmax(auto, auto)"
+          display="flex"
+          flexDirection={'column'}
           gap="20px"
-          sx={{
-            "& > div": {
-              gridColumn: isNonMediumScreens ? undefined : "span 12",
-            },
-          }}
         >
           {/* ROW 1 */}
           <Box
             display="grid"
-            gridTemplateColumns="repeat(auto-fill, 200px);"
+            gridTemplateColumns="repeat(auto-fit, 200px);"
             gap="20px"
+            sx={{
+              width: "100%",
+              placeContent: "center",
+            }}
           >
             <StatBox
               title="Total Nodes"

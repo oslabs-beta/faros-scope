@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
 
 * {
   box-sizing: border-box;
@@ -49,7 +49,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 #root {
@@ -57,7 +56,10 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+}
+
+.main-wrapper {
+  height: 100%;
 }
 
 a {
@@ -65,4 +67,4 @@ a {
   width: fit-content;
   height: fit-content;
   color: inherit;
-} */
+}

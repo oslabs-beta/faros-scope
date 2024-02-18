@@ -8,26 +8,6 @@
   background-color: $background-color-light;
 }
 
-.Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  overflow: auto;
-}
-
-.styledContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  color: #ededed;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2rem;
-  overflow: hidden;
-}
-
 .textShadowLight {
   text-shadow: 2px 2px 2px black;
 }

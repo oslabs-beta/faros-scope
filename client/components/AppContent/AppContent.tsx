@@ -21,7 +21,7 @@ const Loader = () => {
 
 const AppContent = () => {
   return (
-    <CContainer className="custom-container w-100" fluid>
+    <CContainer className="custom-container w-100 p-0" fluid>
       <Suspense fallback={<Loader />}>
         <Routes>
           {routes.map((route, idx) => {
@@ -30,8 +30,6 @@ const AppContent = () => {
                 <Route
                   key={idx}
                   path={route.path}
-                //   exact={route.exact}
-                //   name={route.name}
                   element={<route.element />}
                 />
               )

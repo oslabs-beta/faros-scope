@@ -1,30 +1,30 @@
-import {
-  AppContent,
-  AppSidebar,
-  AppFooter,
-  AppHeader,
-} from '../components/index';
+import { Box } from '@mui/material';
+import { AppContent, NavBar } from '../components/index';
 
 // ! TEMPORARY IMPORT
-import {
-    useGetClusterInfoQuery,
-} from '../services/api';
+import { useGetClusterInfoQuery } from '../services/api';
 
 const DefaultLayout = () => {
- // ! TEMPORARY
-    useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
+  // ! TEMPORARY
+  useGetClusterInfoQuery(undefined, { pollingInterval: 25000 });
 
   return (
-    <>
-      <AppSidebar />
-      <div className="wrapper d-flex flex-column min-vh-100">
-        <AppHeader />
-        <div className="body flex-grow-1">
-          <AppContent />
-        </div>
-        <AppFooter />
-      </div>
-    </>
+    <div className="main-wrapper">
+      <NavBar />
+      <Box
+        component="main"
+        sx={{
+          marginTop: '4rem',
+          height: '100%',
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+        }}
+      >
+        <AppContent />
+      </Box>
+    </div>
   );
 };
 
