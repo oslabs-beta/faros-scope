@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwitchButton = void 0;
 const jsx_runtime_1 = require("react/jsx-runtime");
 const material_1 = require("@mui/material");
-require("./SwitchButton.scss");
 const fa_1 = require("react-icons/fa");
+require("./SwitchButton.scss");
 /**
  * A basic switch button that uses the current theme for styling, and toggles the current global theme between light and dark modes
  * @param checked

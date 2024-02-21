@@ -34,9 +34,14 @@ const themeSettings = (mode) => {
                     light: "#fcfcfc", // Default light background color
                 },
                 background: {
+                    linechart: {
+                        main: "rgba(161,183,201, 0.06)",
+                    },
+                    accordion: {
+                        main: "rgb(34, 35, 39)"
+                    },
                     default: "#20232A",
                     alt: "#16181D",
-                    test: "red",
                     inverted: "#fcfcfc", // Default light background color
                 },
                 typography: {
@@ -59,6 +64,12 @@ const themeSettings = (mode) => {
                     light: "#fcfcfc", // Default light background color
                 },
                 background: {
+                    linechart: {
+                        main: "white",
+                    },
+                    accordion: {
+                        main: "white"
+                    },
                     default: "#fcfcfc",
                     alt: "#ffffff",
                     inverted: "#222222", // $background-color-dark
@@ -103,7 +114,7 @@ exports.ColorModeContext = (0, react_1.createContext)({
     toggleColorMode: () => { },
 });
 const useMode = () => {
-    const [mode, setMode] = (0, react_1.useState)("light");
+    const [mode, setMode] = (0, react_1.useState)("dark");
     const colorMode = (0, react_1.useMemo)(() => ({
         toggleColorMode: () => {
             setMode((prev) => (prev === "light" ? "dark" : "light"));

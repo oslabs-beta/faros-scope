@@ -13,46 +13,45 @@ const http_proxy_middleware_1 = require("http-proxy-middleware");
 require("dotenv/config");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
-const METEOR_SVC = process.env.NODE_ENV !== "prod"
-    ? "http://34.139.156.110"
-    : "http://kubby-meteor.default.svc.cluster.local:80";
-const PROM_SVC = process.env.NODE_ENV !== "prod"
-    ? "http://35.227.104.153:31374"
-    : "http://my-prom-prometheus-server.default.svc.cluster.local:80";
+const METEOR_SVC = process.env.NODE_ENV !== 'prod'
+    ? 'http://34.139.156.110'
+    : 'http://kubby-meteor.default.svc.cluster.local:80';
+const PROM_SVC = process.env.NODE_ENV !== 'prod'
+    ? 'http://35.227.104.153:31374'
+    : 'http://my-prom-prometheus-server.default.svc.cluster.local:80';
 // middleware
-app.use((0, morgan_1.default)("dev"));
+app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use("/meteor-service", (0, http_proxy_middleware_1.createProxyMiddleware)({
+app.use('/meteor-service', (0, http_proxy_middleware_1.createProxyMiddleware)({
     target: METEOR_SVC,
     changeOrigin: true,
     pathRewrite: {
-        "^/meteor-service": "",
+        '^/meteor-service': '',
     },
 }));
-app.use("/prom-service", (0, http_proxy_middleware_1.createProxyMiddleware)({
+app.use('/prom-service', (0, http_proxy_middleware_1.createProxyMiddleware)({
     target: PROM_SVC,
     changeOrigin: true,
     pathRewrite: {
-        "^/prom-service": "",
+        '^/prom-service': '',
     },
 }));
 app.use((0, connect_history_api_fallback_1.default)());
-app.use(express_1.default.static(path_1.default.join(__dirname, "../client")));
-app.use(express_1.default.static(path_1.default.join(__dirname, "../build")));
-// app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../client')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../build')));
+app.use('/assets', express_1.default.static(path_1.default.join(__dirname, '../client/assets')));
 // app.use("/api", Router);
 // catch all route handler
-app.use("*", (_req, res) => {
-    console.log('HIT HIT');
-    res.sendFile(path_1.default.join(__dirname, "../build/index.html"));
+app.use('*', (_req, res) => {
+    res.sendFile(path_1.default.join(__dirname, '../client/index.html'));
 });
 // global error handler
 app.use((err, _req, res, _next) => {
     const defaultError = {
-        log: "Express error handler caught unknown middleware error",
+        log: 'Express error handler caught unknown middleware error',
         status: 500,
-        message: { err: "An error occurred" },
+        message: { err: 'An error occurred' },
     };
     const errorObj = Object.assign(Object.assign({}, defaultError), (err instanceof Error ? { message: { err: err.message } } : err));
     console.log(errorObj.log);

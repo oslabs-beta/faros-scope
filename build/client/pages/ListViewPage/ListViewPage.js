@@ -35,18 +35,21 @@ const react_1 = require("react");
 const DataGridWithHeader = (0, react_1.lazy)(() => Promise.resolve().then(() => __importStar(require('../../components/DataGridWithHeader/DataGridWithHeader'))));
 // Columns for Container Usage by NameSpace
 const columns = [
-    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'id', headerName: 'ID', width: 100 },
     {
         field: 'name',
         headerName: 'Name',
-        width: 160,
+        headerAlign: 'left',
+        align: 'left',
+        // width: 160,
         flex: 1,
         editable: true,
     },
     {
         field: 'CPU',
-        headerName: 'CPU (%)',
-        width: 130,
+        headerName: 'CPU (num cores)',
+        headerAlign: 'center',
+        align: 'center',
         flex: 1,
         editable: true,
         valueGetter: (params) => {
@@ -56,8 +59,10 @@ const columns = [
     {
         field: 'MEM',
         headerName: 'MEM (bytes)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        // width: 130,
         flex: 1,
         editable: true,
         // valueGetter: (params) => {
@@ -67,24 +72,28 @@ const columns = [
 ];
 // Columns for ListView
 const columnsListView = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', flex: 1 },
     {
         field: 'name',
         headerName: 'Name',
-        width: 160,
+        flex: 1,
         editable: true,
     },
     {
         field: 'cpuUsage',
-        headerName: 'Cpu Usage',
-        width: 130,
+        headerName: 'CPU Usage',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         editable: true,
     },
     {
         field: 'cpuUsagePct',
         headerName: 'CPU Usage (%)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
         valueGetter: (params) => {
             return params.value.toFixed(2);
@@ -92,16 +101,20 @@ const columnsListView = [
     },
     {
         field: 'memUsage',
-        headerName: 'memUsage',
+        headerName: 'MEM Usage (bytes)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
     },
     {
         field: 'memUsagePct',
-        headerName: 'Mem Usage (%)',
+        headerName: 'MEM Usage (%)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
         valueGetter: (params) => {
             return params.value.toFixed(2);
@@ -110,24 +123,30 @@ const columnsListView = [
 ];
 // Columns for List Container and Nodes Metrics
 const columnsListViewUtil = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', flex: 1 },
     {
         field: 'name',
         headerName: 'Name',
-        width: 160,
+        headerAlign: 'left',
+        align: 'left',
+        flex: 1,
         editable: true,
     },
     {
         field: 'cpuUsage',
-        headerName: 'Cpu Usage',
-        width: 130,
+        headerName: 'CPU Usage (bytes)',
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         editable: true,
     },
     {
         field: 'cpuUtilPct',
         headerName: 'CPU Usage (%)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
         valueGetter: (params) => {
             return params.value.toFixed(2);
@@ -135,16 +154,20 @@ const columnsListViewUtil = [
     },
     {
         field: 'memUsage',
-        headerName: 'memUsage',
+        headerName: 'MEM Usage',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
     },
     {
         field: 'memUtilPct',
-        headerName: 'Mem Usage (%)',
+        headerName: 'MEM Usage (%)',
+        headerAlign: 'center',
+        align: 'center',
         type: 'number',
-        width: 130,
+        flex: 1,
         editable: true,
         valueGetter: (params) => {
             return params.value.toFixed(2);
@@ -164,7 +187,6 @@ const ListViewPage = () => {
     }
     if (metricsState) {
         metricsState = (0, formatMetricsMap_1.formatMetricsMap)(metricsState);
-        console.log('AfterFormat', metricsState);
     }
     const capitalizeFirstLetter = (s) => {
         return s.charAt(0).toUpperCase() + s.slice(1);
@@ -174,9 +196,6 @@ const ListViewPage = () => {
         !metricsState.container ||
         !metricsState.node)
         return;
-    console.log('metricsState pod?', metricsState.pod);
-    console.log('metricsState node?', metricsState.node);
-    console.log('metricsState container', metricsState.container);
-    return ((0, jsx_runtime_1.jsx)("div", { className: `list-view`, children: (0, jsx_runtime_1.jsxs)(material_1.Box, { display: "flex", flexDirection: "column", gap: "2rem", children: [(0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_a = metricsState === null || metricsState === void 0 ? void 0 : metricsState.container[0]) === null || _a === void 0 ? void 0 : _a.type), columns: columnsListView, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.container, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_b = metricsState === null || metricsState === void 0 ? void 0 : metricsState.pod[0]) === null || _b === void 0 ? void 0 : _b.type), columns: columnsListView, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_c = metricsState === null || metricsState === void 0 ? void 0 : metricsState.node[0]) === null || _c === void 0 ? void 0 : _c.type), columns: columnsListViewUtil, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.node, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.namespace[0].type)}`, columns: columns, data: cUsageData.namespace, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.pod[0].type)}`, columns: columns, data: cUsageData.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.node[0].type)}`, columns: columns, data: cUsageData.node, isLoading: false })] }) }));
+    return ((0, jsx_runtime_1.jsx)("div", { className: `list-view`, children: (0, jsx_runtime_1.jsxs)(material_1.Box, { display: "flex", flexDirection: "column", gap: "2rem", children: [(0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_a = metricsState === null || metricsState === void 0 ? void 0 : metricsState.container[0]) === null || _a === void 0 ? void 0 : _a.type), columns: columnsListView, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.container, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_b = metricsState === null || metricsState === void 0 ? void 0 : metricsState.pod[0]) === null || _b === void 0 ? void 0 : _b.type), columns: columnsListView, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: capitalizeFirstLetter((_c = metricsState === null || metricsState === void 0 ? void 0 : metricsState.node[0]) === null || _c === void 0 ? void 0 : _c.type), columns: columnsListViewUtil, data: metricsState === null || metricsState === void 0 ? void 0 : metricsState.node, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.namespace[0].type)} (Aggr.)`, columns: columns, data: cUsageData.namespace, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.pod[0].type)} (Aggr.)`, columns: columns, data: cUsageData.pod, isLoading: false }), (0, jsx_runtime_1.jsx)(DataGridWithHeader, { title: `Container Usage by ${capitalizeFirstLetter(cUsageData.node[0].type)} (Aggr.)`, columns: columns, data: cUsageData.node, isLoading: false })] }) }));
 };
 exports.default = ListViewPage;

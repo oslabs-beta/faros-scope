@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 // ! Review React docs regarding ErrorBoundary
 // TODO: Add error boundary
 // import { ErrorBoundary } from "react-error-boundary";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { GridColDef } from "@mui/x-data-grid";
 
@@ -41,8 +41,6 @@ const columns: GridColDef[] = [
 
 const NodeView = () => {
   const theme = useTheme();
-
-  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
   console.log(data);
   let podsFormattedData = [];

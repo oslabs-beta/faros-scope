@@ -26,8 +26,8 @@ const CollapsiblePanel = ({ title, children }) => {
     const theme = (0, material_2.useTheme)();
     return ((0, jsx_runtime_1.jsxs)(Accordion_1.default, { sx: {
             boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-            // backgroundColor: theme.palette.background.alt,
-            backgroundColor: 'rgb(34, 35, 39)'
+            //   backgroundColor: "rgb(34, 35, 39)",
+            backgroundColor: theme.palette.background.accordion.main,
         }, children: [(0, jsx_runtime_1.jsx)(AccordionSummary, { expandIcon: (0, jsx_runtime_1.jsx)(ExpandMore_1.default, {}), "aria-controls": title.replace(/\s+/g, "") + "-content", id: title.replace(/\s+/g, "") + "-header", sx: {
                     // backgroundColor: theme.palette.background.alt,
                     "& .MuiAccordionSummary.Mui-expanded": {
@@ -37,7 +37,8 @@ const CollapsiblePanel = ({ title, children }) => {
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
                     gap: "1rem",
-                    backgroundColor: theme.palette.background.alt,
+                    //   backgroundColor: "rgb(34, 35, 39)",
+                    backgroundColor: theme.palette.background.accordion.main,
                 }, children: children })] }));
 };
 exports.CollapsiblePanel = CollapsiblePanel;

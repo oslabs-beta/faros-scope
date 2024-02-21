@@ -14,7 +14,6 @@ const styles_module_css_1 = __importDefault(require("./styles.module.css"));
 const Controls = ({ zoomIn, zoomOut, resetTransform, centerView, }) => ((0, jsx_runtime_1.jsxs)("div", { className: styles_module_css_1.default.controlPanel, children: [(0, jsx_runtime_1.jsx)("button", { type: "button", className: styles_module_css_1.default.controlBtn, onClick: () => zoomIn(), children: "Zoom In +" }), (0, jsx_runtime_1.jsx)("button", { type: "button", className: styles_module_css_1.default.controlBtn, onClick: () => zoomOut(), children: "Zoom Out -" }), (0, jsx_runtime_1.jsx)("button", { type: "button", className: styles_module_css_1.default.controlBtn, onClick: () => resetTransform(), children: "Reset" }), (0, jsx_runtime_1.jsx)("button", { type: "button", className: styles_module_css_1.default.controlBtn, onClick: () => centerView(), children: "Center" })] }));
 exports.Controls = Controls;
 const GraphResponsiveNetwork = ({ data, lengthOfData, draggableContainer, }) => {
-    // const {instance, zoomIn, zoomOut, ...rest} = useControls();
     const muiTheme = (0, material_1.useTheme)();
     const containerRef = draggableContainer;
     const [open, setOpen] = (0, react_1.useState)(false);
@@ -32,7 +31,7 @@ const GraphResponsiveNetwork = ({ data, lengthOfData, draggableContainer, }) => 
             containerRef.current.scrollLeft = scrollOffsetWidth;
         }
     }, [calculatedHeight]);
-    return ((0, jsx_runtime_1.jsx)(react_zoom_pan_pinch_1.TransformWrapper, { initialScale: 1, initialPositionX: 0, initialPositionY: 0, wheel: { step: 100 }, centerOnInit: true, children: () => ((0, jsx_runtime_1.jsx)(react_zoom_pan_pinch_1.TransformComponent, { wrapperStyle: {
+    return ((0, jsx_runtime_1.jsx)(react_zoom_pan_pinch_1.TransformWrapper, { initialScale: 1, minScale: 0.1, initialPositionX: 0, initialPositionY: 0, wheel: { step: 100 }, centerOnInit: true, children: () => ((0, jsx_runtime_1.jsx)(react_zoom_pan_pinch_1.TransformComponent, { wrapperStyle: {
                 width: '100%',
                 height: '100%',
             }, children: (0, jsx_runtime_1.jsxs)("div", { style: {
@@ -44,22 +43,29 @@ const GraphResponsiveNetwork = ({ data, lengthOfData, draggableContainer, }) => 
                             from: 'color',
                             modifiers: [['darker', 0.8]],
                         }, distanceMin: 20, linkThickness: (n) => 2 + 2 * n.target.data.height, pixelRatio: 2, linkColor: (n) => n.source.data.type === 'namespace'
-                            ? 'green'
+                            ? '#9AFF99' // pastel green
                             : n.source.data.type === 'service'
-                                ? 'blue'
+                                ? '#99C2FF' // pastel blue
                                 : n.source.data.type === 'pod'
-                                    ? 'orange'
+                                    ? '#FFD699' // pastel orange
                                     : n.source.data.type === 'container'
-                                        ? 'cyan'
+                                        ? '#99FFFF' // pastel cyan
                                         : muiTheme.palette.mode === 'dark'
-                                            ? 'white'
-                                            : 'black', motionConfig: "wobbly", nodeTooltip: (e) => ((0, jsx_runtime_1.jsxs)("div", { style: {
+                                            ? '#EEEEEE' // light gray
+                                            : '#CCCCCC' // pastel gray
+                        , motionConfig: "wobbly", nodeTooltip: (e) => ((0, jsx_runtime_1.jsxs)("div", { style: {
                                 border: `2px solid ${muiTheme.palette.primary.main}`,
                                 padding: '10px',
                                 borderRadius: '20px',
-                                color: muiTheme.palette.background.default,
-                                backgroundColor: muiTheme.palette.background.inverted,
+                                color: muiTheme.palette.typography.letters,
+                                backgroundColor: muiTheme.palette.mode === 'dark'
+                                    ? 'rgba(0, 0, 0, 0.5)'
+                                    : 'rgba(255, 255, 255, 0.5)',
+                                backdropFilter: 'blur(10px)',
                                 textAlign: 'center',
+                                textShadow: muiTheme.palette.mode === 'dark'
+                                    ? '1px 1px 2px black'
+                                    : '1px 1px 2px white',
                             }, children: ["ID: ", e.node.data.label || e.node.id, " ", (0, jsx_runtime_1.jsx)("br", {}), "Type: ", e.node.data.type.toUpperCase(), " ", (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("span", { style: {
                                         color: muiTheme.palette.primary.main,
                                     }, children: "CLICK TO COPY ID" })] })), onClick: (n) => {

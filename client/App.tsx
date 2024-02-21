@@ -33,7 +33,7 @@ const App = () => {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Routes>
-              <Route path="*" element={<DefaultLayout />} />
+              <Route path="/*" element={<DefaultLayout />} />
             </Routes>
           </ThemeProvider>
         </ColorModeContext.Provider>

@@ -27,18 +27,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const Dashboard = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./views/dashboard/Dashboard"))));
-const NodeView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./pages/NodeView/NodeView"))));
-const ListView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./pages/ListViewPage/ListViewPage"))));
-const Graph = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require("./components/Graph/Graph"))));
-// const NetworkView = React.lazy(() => import("./components/Graph/Graph"));
-// example
-//   { path: '/theme', name: 'Theme', element: Colors, exact: true },
+const NodeView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require('./pages/NodeView/NodeView'))));
+const ListView = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require('./pages/ListViewPage/ListViewPage'))));
+const Graph = react_1.default.lazy(() => Promise.resolve().then(() => __importStar(require('./components/Graph/Graph'))));
 const routes = [
-    { path: "/*", /*exact: true ,*/ name: "Home" },
-    { path: "/dashboard", name: "Dashboard", element: Dashboard },
-    { path: "/node-view", name: "Node View", element: NodeView },
-    { path: "/list-view", name: "List View", element: ListView },
-    { path: "/network-view", name: "Network View", element: Graph },
+    { path: '/*', name: 'Home' },
+    { path: '/dashboard', name: 'Dashboard', element: Graph },
+    { path: '/node-view', name: 'Node View', element: NodeView },
+    { path: '/list-view', name: 'List View', element: ListView },
 ];
 exports.default = routes;

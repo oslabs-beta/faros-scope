@@ -56,7 +56,7 @@ app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
 
 // catch all route handler
 app.use('*', (_req: Request, res: Response): void => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 // global error handler

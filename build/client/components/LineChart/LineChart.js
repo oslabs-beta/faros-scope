@@ -19,6 +19,16 @@ const Paper_1 = __importDefault(require("@mui/material/Paper"));
 const line_1 = require("@nivo/line");
 const react_1 = require("react");
 require("./linechart.scss");
+const Tooltip_1 = __importDefault(require("@mui/material/Tooltip"));
+const IconButton_1 = __importDefault(require("@mui/material/IconButton"));
+const InfoTwoTone_1 = __importDefault(require("@mui/icons-material/InfoTwoTone"));
+const MoreVertTwoTone_1 = __importDefault(require("@mui/icons-material/MoreVertTwoTone"));
+const InfoTooltip = () => {
+    return ((0, jsx_runtime_1.jsx)(Tooltip_1.default, { title: 'Info', children: (0, jsx_runtime_1.jsx)(IconButton_1.default, { children: (0, jsx_runtime_1.jsx)(InfoTwoTone_1.default, { fontSize: "small" }) }) }));
+};
+const MoreInfoTooltip = () => {
+    return ((0, jsx_runtime_1.jsx)(Tooltip_1.default, { title: "More Info", sx: { marginLeft: "auto" }, children: (0, jsx_runtime_1.jsx)(IconButton_1.default, { children: (0, jsx_runtime_1.jsx)(MoreVertTwoTone_1.default, { fontSize: "small" }) }) }));
+};
 // Get the current time in seconds (Unix timestamp)
 const now = Math.floor(Date.now() / 1000);
 // Calculate the start time (10 minutes ago)
@@ -27,15 +37,15 @@ const URLObject = {
     clusterUsage: `/prom-service/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=300`,
     // ! by changing query from 5  to 10 minutes increase range of time of sample
     nodeUsage: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!="idle"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource="cpu"})&start=${tenMinutesAgo}&end=${now}&step=120`,
-    podNetwork: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=100`,
-    packetsTransmitted: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=200`,
-    packetsReceived: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (pod) (rate(container_network_receive_packets_total{pod!=""}[5m]))&start=${tenMinutesAgo}&end=${now}&step=60`,
+    podNetwork: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=${tenMinutesAgo}&end=${now}&step=200`,
+    packetsTransmitted: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=350`,
+    packetsReceived: `http://35.227.104.153:31374/api/v1/query_range?query= topk(5, sum by (pod) (rate(container_network_receive_packets_total[5m])))&start=${tenMinutesAgo}&end=${now}&step=350`,
     nodeUsageURL: `http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=${tenMinutesAgo}&end=${now}&step=150`,
     receivedBandwidth: `http://35.227.104.153:31374/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=${tenMinutesAgo}&end=${now}&step=150`,
 };
 const commonProperties = {
     // width: 900,
-    height: 400,
+    //   height: 400,
     margin: { top: 20, right: 20, bottom: 40, left: 60 },
     pointSize: 8,
     pointColor: { theme: "background" },
@@ -92,23 +102,29 @@ const LineChart = ({ title, URL }) => {
             aspectRatio: "1/1",
             height: "50vh",
             borderRadius: "0.45rem",
-            // backgroundColor: theme.palette.background.alt,
-            backgroundColor: 'red',
+            backgroundColor: "transparent",
             display: "flex",
             flexDirection: "column",
             overFlow: "visible",
-        }, children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { sx: {
-                    margin: "0 16px",
-                    fontSize: "1.15rem",
-                    height: "100%",
-                    color: theme.palette.typography.main,
-                    textAlign: "center",
-                }, children: title }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)("div", { style: {
-                    position: "absolute",
+        }, children: [(0, jsx_runtime_1.jsxs)(material_1.Box, { sx: {
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                }, children: [(0, jsx_runtime_1.jsx)(material_1.Typography, { sx: {
+                            marginLeft: "1rem",
+                            fontSize: "1.17rem",
+                            display: "inline-block",
+                            color: theme.palette.typography.main,
+                            textAlign: "center",
+                        }, children: title }), (0, jsx_runtime_1.jsx)(InfoTooltip, {}), (0, jsx_runtime_1.jsx)(MoreInfoTooltip, {})] }), !data && (0, jsx_runtime_1.jsx)(CircularProgress_1.default, {}), data && ((0, jsx_runtime_1.jsx)("div", { style: {
+                    position: "relative",
                     width: "100%",
                     height: "100%",
-                    top: "10%",
+                    borderRadius: "0.45rem",
+                    padding: "0.5rem",
                 }, children: (0, jsx_runtime_1.jsx)(line_1.ResponsiveLineCanvas, Object.assign({}, commonProperties, { theme: {
+                        //   background: "rgba(161, 183, 201, 0.06)",
+                        background: theme.palette.background.linechart.main,
                         text: {
                             fill: theme.palette.typography.main,
                         },
@@ -139,7 +155,7 @@ const LineChart = ({ title, URL }) => {
                         legendOffset: 12,
                     }, 
                     // enablePointLabel={true}
-                    pointSize: 16, pointBorderWidth: 1, pointBorderColor: {
+                    pointSize: 0, pointBorderWidth: 1, pointBorderColor: {
                         from: "color",
                         modifiers: [["darker", 0.3]],
                     }, 

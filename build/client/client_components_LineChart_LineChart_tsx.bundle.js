@@ -11,13 +11,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/CircularProgress */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var _mui_material_Paper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Paper */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/styles/useTheme.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material/CircularProgress */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
+/* harmony import */ var _mui_material_Paper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/Paper */ "./node_modules/@mui/material/Paper/Paper.js");
 /* harmony import */ var _nivo_line__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @nivo/line */ "./node_modules/@nivo/line/dist/nivo-line.es.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _linechart_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./linechart.scss */ "./client/components/LineChart/linechart.scss");
+/* harmony import */ var _mui_material_Tooltip__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Tooltip */ "./node_modules/@mui/material/Tooltip/Tooltip.js");
+/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_icons_material_InfoTwoTone__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/icons-material/InfoTwoTone */ "./node_modules/@mui/icons-material/InfoTwoTone.js");
+/* harmony import */ var _mui_icons_material_MoreVertTwoTone__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/icons-material/MoreVertTwoTone */ "./node_modules/@mui/icons-material/MoreVertTwoTone.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
@@ -45,6 +51,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
+
+var InfoTooltip = function InfoTooltip() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Tooltip__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    title: "Info",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_InfoTwoTone__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        fontSize: "small"
+      })
+    })
+  });
+};
+var MoreInfoTooltip = function MoreInfoTooltip() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Tooltip__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    title: "More Info",
+    sx: {
+      marginLeft: "auto"
+    },
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_MoreVertTwoTone__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        fontSize: "small"
+      })
+    })
+  });
+};
+
 // Get the current time in seconds (Unix timestamp)
 var now = Math.floor(Date.now() / 1000);
 
@@ -54,39 +88,34 @@ var URLObject = {
   clusterUsage: "/prom-service/api/v1/query_range?query=sum by (cluster_ip) (rate(container_cpu_user_seconds_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=300"),
   // ! by changing query from 5  to 10 minutes increase range of time of sample
   nodeUsage: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (node) (rate(node_cpu_seconds_total{mode!=\"idle\"}[10m])) / sum by (node) (kube_pod_container_resource_requests{resource=\"cpu\"})&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=120"),
-  podNetwork: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=100"),
-  packetsTransmitted: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=200"),
-  packetsReceived: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (pod) (rate(container_network_receive_packets_total{pod!=\"\"}[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=60"),
+  podNetwork: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_receive_bytes_total[15m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=200"),
+  packetsTransmitted: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (rate(container_network_transmit_packets_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=350"),
+  packetsReceived: "http://35.227.104.153:31374/api/v1/query_range?query= topk(5, sum by (pod) (rate(container_network_receive_packets_total[5m])))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=350"),
   nodeUsageURL: "http://35.227.104.153:31374/api/v1/query_range?query= sum by (kubernetes_io_hostname) (container_memory_usage_bytes)&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=150"),
   receivedBandwidth: "http://35.227.104.153:31374/api/v1/query_range?query=sum by (node) (rate(node_network_receive_bytes_total[5m]))&start=".concat(tenMinutesAgo, "&end=").concat(now, "&step=150")
 };
 var commonProperties = {
   // width: 900,
-  height: 400,
+  //   height: 400,
   margin: {
     top: 20,
     right: 20,
-    bottom: 60,
-    left: 80
+    bottom: 40,
+    left: 60
   },
   pointSize: 8,
   pointColor: {
-    theme: 'background'
+    theme: "background"
   },
   pointBorderWidth: 2,
   pointBorderColor: {
-    theme: 'background'
+    theme: "background"
   }
 };
-//   //   width: 900,
-//   //   height: 400,
-//   margin: { top: 20, right: 20, bottom: 60, left: 80 },
-// //   animate: true,
-// //   enableSlices: "x",
-
 var LineChart = function LineChart(_ref) {
   var title = _ref.title,
     URL = _ref.URL;
+  var theme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"])();
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
     data = _useState2[0],
@@ -103,15 +132,17 @@ var LineChart = function LineChart(_ref) {
               var data = _ref3.data;
               var XY = data.result.map(function (result) {
                 var temp = result.values.map(function (point) {
-                  console.log(new Intl.DateTimeFormat('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
+                  console.log(new Intl.DateTimeFormat("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
                     hour12: false,
-                    timeZone: 'UTC'
+                    timeZone: "UTC"
                   }).format(new Date(point[0] * 1000)));
+                  // console.log(new Date(point[0] * 1000)))
                   return {
                     x: new Date(point[0] * 1000).toISOString(),
+                    //   x: new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone:'UTC'}).format(new Date(point[0] * 1000)),
                     y: Number(point[1])
                   };
                 });
@@ -121,6 +152,7 @@ var LineChart = function LineChart(_ref) {
                 };
               });
               setData(XY);
+              "";
             });
           case 2:
           case "end":
@@ -130,82 +162,97 @@ var LineChart = function LineChart(_ref) {
     }))();
     4;
   }, []);
-  console.log('The DATA after modification', data);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Paper__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    variant: "outlined",
+  console.log("The DATA after modification", data);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Paper__WEBPACK_IMPORTED_MODULE_9__["default"]
+  //   variant="outlined"
+  , {
     sx: {
       position: "relative",
       width: "100%",
       aspectRatio: "1/1",
       height: "50vh",
       borderRadius: "0.45rem",
-      backgroundColor: "white",
-      // backgroundColor: theme.palette.neutral.light,
-      color: "black",
+      backgroundColor: "transparent",
       display: "flex",
-      // justifyContent: 'center',
-      // alignItems: 'center',
       flexDirection: "column",
       overFlow: "visible"
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       sx: {
-        margin: '0 16px',
-        color: "black",
-        fontSize: "1.15rem",
-        height: "100%"
+        display: "flex",
+        alignItems: "center",
+        width: "100%"
       },
-      children: title
-    }), !data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_6__["default"], {}), data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        sx: {
+          marginLeft: "1rem",
+          fontSize: "1.17rem",
+          display: "inline-block",
+          color: theme.palette.typography.main,
+          textAlign: "center"
+        },
+        children: title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(InfoTooltip, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MoreInfoTooltip, {})]
+    }), !data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_CircularProgress__WEBPACK_IMPORTED_MODULE_12__["default"], {}), data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       style: {
-        position: "absolute",
+        position: "relative",
         width: "100%",
         height: "100%",
-        top: "10%"
+        borderRadius: "0.45rem",
+        padding: "0.5rem"
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_nivo_line__WEBPACK_IMPORTED_MODULE_0__.ResponsiveLineCanvas, _objectSpread(_objectSpread({}, commonProperties), {}, {
-        data: data
-        //   type: "time",
-        //   format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-        //   useUTC: true,
-        //   precision: "second",
-        // }}
-        ,
-        xScale: {
-          type: 'time',
-          format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-          precision: 'minute'
+        theme: {
+          //   background: "rgba(161, 183, 201, 0.06)",
+          background: theme.palette.background.linechart.main,
+          text: {
+            fill: theme.palette.typography.main
+          },
+          tooltip: {
+            container: {
+              color: theme.palette.typography.inverted
+            }
+          }
         },
-        xFormat: "time:%Y-%m-%dT%H:%M:%S.%L%Z",
-        yScale: {
-          type: 'linear',
+        data: data,
+        xScale: {
+          type: "time",
+          format: "%Y-%m-%dT%H:%M:%S.%L%Z",
+          precision: "minute",
           min: "auto",
-          max: 'auto'
+          max: "auto"
+        },
+        xFormat: "time:%Y-%m-%d %H:%M:%S.%Z",
+        yScale: {
+          type: "linear",
+          min: "auto",
+          max: "auto"
           // stacked: boolean('stacked', false),
         },
 
         axisLeft: {
-          legend: 'linear scale',
-          legendOffset: 12
+          //   legend: "linear scale",
+          legendOffset: -12
         },
-        axisBottom: undefined
-        // axisBottom={{
-        //     format: '%H:%M:%S',
-        //     tickValues: 'every  5 minutes',
-        //     legend: 'time scale',
-        //     legendOffset: -12,
-        // }}
+        axisBottom: {
+          format: "%H:%M",
+          tickValues: 10,
+          tickPadding: 10,
+          //   legend: "time scale",
+          legendOffset: 12
+        }
         // enablePointLabel={true}
         ,
-        pointSize: 16,
+        pointSize: 0,
         pointBorderWidth: 1,
         pointBorderColor: {
-          from: 'color',
-          modifiers: [['darker', 0.3]]
+          from: "color",
+          modifiers: [["darker", 0.3]]
         }
         // useMesh={true}
         ,
         enableSlices: false,
+        enableGridX: false,
         colors: {
           scheme: "spectral"
         }
@@ -451,6 +498,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes hover-up-down {
   margin-left: 0;
   margin-right: 0;
   max-width: 100%;
+  height: 100%;
 }
 .page {
   display: flex;
@@ -470,7 +518,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes hover-up-down {
 }
 .page h1 {
   color: white;
-}`, "",{"version":3,"sources":["webpack://./client/variables.scss","webpack://./client/components/LineChart/linechart.scss"],"names":[],"mappings":"AAmDA;EACE;IACE,0BAAA;EClDF;EDoDA;IACE,2BAAA;EClDF;EDoDA;IACE,0BAAA;EClDF;AACF;ADqDA;EACE;IACE,UAAA;ECnDF;EDqDA;IACE,UAAA;ECnDF;AACF;ADsDA;EACE;IACE,UAAA;ECpDF;EDsDA;IACE,UAAA;ECpDF;AACF;ADuDA;EACE;IACE,0BAAA;ECrDF;EDuDA;IACE,6BAAA;ECrDF;EDuDA;IACE,0BAAA;ECrDF;AACF;ADwDA;EACE;IACE,2BAAA;ECtDF;EDwDA;IACE,2BAAA;IACA,iCAAA;ECtDF;EDwDA;IACE,2BAAA;ECtDF;AACF;ADyDA;EACE;IACE,4BAAA;ECvDF;ED0DA;IACE,yBAAA;ECxDF;AACF;ADgEA;EACE,cAJc;EAKd,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAZY;EAaZ,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAjBW;EAkBX,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cArBa;EAsBb,8BAAA;EACA,eAAA;AC9DF;AD0EE;EACE,cAAA;EACA,eAAA;EACA,eAAA;ACvEJ;AApFA;EDwBE,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,uBAAA;ECzBA,YAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;AA0FF;AAzFE;EACE,oCAAA;AA2FJ;AAzFE;EACE,oCAAA;AA2FJ;AAzFE;EACE,YAAA;AA2FJ","sourcesContent":["$background-color-dark: #222222;\n$background-color-light: #d0d0d0;\n$base-blue: #154084;\n$base-red: #9d2719;\n$base-yellow: #d7b418;\n$base-orange: #f4a227;\n$accent-blue: #188fff;\n$accent-red: #ff4d4d;\n$accent-yellow: #f5d300;\n$accent-orange: #f4a227;\n$dark-border: rgba(0, 0, 0, 0.2);\n$light-border: rgba(255, 255, 255, 1);\n$dark-text: #ededed;\n$light-text: #222222;\n$graph-blue: #188fff;\n$graph-yellow: #f5d300;\n$diamond-blue: rgb(200, 230, 255);\n$unhealthy-pod: #ad4a39;\n$healthy-pod: #42a62b;\n$warning-pod: #e8c529;\n$pronounced-shadow: 4px 4px 1px 0 rgba(0, 0, 0, 0.5);\n$healthyGradient: linear-gradient(-45deg, #52caee, #3c53e7, #23a6d5, #23d5ab);\n$unhealthyGradient: linear-gradient(-45deg, #e65252, #e73c3c, #d52323, #ab2323);\n$warningGradient: linear-gradient(-45deg, #e6e652, #e7e73c, #d5d523, #abab23);\n\n@mixin flex-horizontal {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-vertical {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n@mixin flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n@mixin grid-base {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-gap: 1rem;\n}\n\n@keyframes hover-up-down {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes opacity {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes opacity-reverse {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n\n@keyframes hover-up-down-3D {\n  0% {\n    transform: translateY(0px);\n  }\n  50% {\n    transform: translateY(-3.5px);\n  }\n  100% {\n    transform: translateY(0px);\n  }\n}\n\n@keyframes navLinkBlueShadow {\n  0% {\n    box-shadow: 0 0 0px #287aff;\n  }\n  50% {\n    box-shadow: 0 0 8px #287aff;\n    text-shadow: 0px 0px 10px #287aff;\n  }\n  100% {\n    box-shadow: 0 0 0px #287aff;\n  }\n}\n\n@keyframes slide-in-left {\n  0% {\n    transform: translateX(-100%);\n  }\n\n  100% {\n    transform: translateX(0%);\n  }\n}\n\n$inline-blue: #24b0df;\n$inline-red: #db3523;\n$inline-orange: #f4a227;\n$inline-white: #ededed;\n\n.inlineOrangeText {\n  color: $inline-orange;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineBlueText {\n  color: $inline-blue;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineRedText {\n  color: $inline-red;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n.inlineWhiteText {\n  color: $inline-white;\n  text-shadow: 2px 2px 2px black;\n  display: inline;\n}\n\n// Source mixin\n// @mixin make-container($padding-x: $container-padding-x) {\n//     width: 100%;\n//     padding-right: $padding-x;\n//     padding-left: $padding-x;\n//     margin-right: auto;\n//     margin-left: auto;\n//   }\n\n  .custom-container {\n    margin-left: 0;;\n    margin-right: 0;\n    max-width: 100%;\n  }","@import '../../variables.scss';\n\n.page {\n  @include flex-horizontal;\n  color: white;\n  min-height: 30vh;\n  min-width: 25vw;\n  border-radius: 20px;\n  &.dark {\n    border: 1px solid $light-border;\n  }\n  &.light {\n    border: 1px solid $dark-border;\n  }\n  h1 {\n    color: white;\n  }\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./client/variables.scss","webpack://./client/components/LineChart/linechart.scss"],"names":[],"mappings":"AAmDA;EACE;IACE,0BAAA;EClDF;EDoDA;IACE,2BAAA;EClDF;EDoDA;IACE,0BAAA;EClDF;AACF;ADqDA;EACE;IACE,UAAA;ECnDF;EDqDA;IACE,UAAA;ECnDF;AACF;ADsDA;EACE;IACE,UAAA;ECpDF;EDsDA;IACE,UAAA;ECpDF;AACF;ADuDA;EACE;IACE,0BAAA;ECrDF;EDuDA;IACE,6BAAA;ECrDF;EDuDA;IACE,0BAAA;ECrDF;AACF;ADwDA;EACE;IACE,2BAAA;ECtDF;EDwDA;IACE,2BAAA;IACA,iCAAA;ECtDF;EDwDA;IACE,2BAAA;ECtDF;AACF;ADyDA;EACE;IACE,4BAAA;ECvDF;ED0DA;IACE,yBAAA;ECxDF;AACF;ADgEA;EACE,cAJc;EAKd,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAZY;EAaZ,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAjBW;EAkBX,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cArBa;EAsBb,8BAAA;EACA,eAAA;AC9DF;ADiEA;EACE,cAAA;EACA,eAAA;EACA,eAAA;EACA,YAAA;AC9DF;AArFA;EDwBE,aAAA;EACA,mBAAA;EACA,mBAAA;EACA,uBAAA;ECzBA,YAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;AA2FF;AA1FE;EACE,oCAAA;AA4FJ;AA1FE;EACE,oCAAA;AA4FJ;AA1FE;EACE,YAAA;AA4FJ","sourcesContent":["$background-color-dark: #222222;\r\n$background-color-light: #d0d0d0;\r\n$base-blue: #154084;\r\n$base-red: #9d2719;\r\n$base-yellow: #d7b418;\r\n$base-orange: #f4a227;\r\n$accent-blue: #188fff;\r\n$accent-red: #ff4d4d;\r\n$accent-yellow: #f5d300;\r\n$accent-orange: #f4a227;\r\n$dark-border: rgba(0, 0, 0, 0.2);\r\n$light-border: rgba(255, 255, 255, 1);\r\n$dark-text: #ededed;\r\n$light-text: #222222;\r\n$graph-blue: #188fff;\r\n$graph-yellow: #f5d300;\r\n$diamond-blue: rgb(200, 230, 255);\r\n$unhealthy-pod: #ad4a39;\r\n$healthy-pod: #42a62b;\r\n$warning-pod: #e8c529;\r\n$pronounced-shadow: 4px 4px 1px 0 rgba(0, 0, 0, 0.5);\r\n$healthyGradient: linear-gradient(-45deg, #52caee, #3c53e7, #23a6d5, #23d5ab);\r\n$unhealthyGradient: linear-gradient(-45deg, #e65252, #e73c3c, #d52323, #ab2323);\r\n$warningGradient: linear-gradient(-45deg, #e6e652, #e7e73c, #d5d523, #abab23);\r\n\r\n@mixin flex-horizontal {\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n@mixin flex-vertical {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n@mixin flex-center {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n@mixin grid-base {\r\n  display: grid;\r\n  grid-template-columns: repeat(12, 1fr);\r\n  grid-gap: 1rem;\r\n}\r\n\r\n@keyframes hover-up-down {\r\n  0% {\r\n    transform: translateY(0px);\r\n  }\r\n  50% {\r\n    transform: translateY(-3px);\r\n  }\r\n  100% {\r\n    transform: translateY(0px);\r\n  }\r\n}\r\n\r\n@keyframes opacity {\r\n  0% {\r\n    opacity: 0;\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n@keyframes opacity-reverse {\r\n  0% {\r\n    opacity: 1;\r\n  }\r\n  100% {\r\n    opacity: 0;\r\n  }\r\n}\r\n\r\n@keyframes hover-up-down-3D {\r\n  0% {\r\n    transform: translateY(0px);\r\n  }\r\n  50% {\r\n    transform: translateY(-3.5px);\r\n  }\r\n  100% {\r\n    transform: translateY(0px);\r\n  }\r\n}\r\n\r\n@keyframes navLinkBlueShadow {\r\n  0% {\r\n    box-shadow: 0 0 0px #287aff;\r\n  }\r\n  50% {\r\n    box-shadow: 0 0 8px #287aff;\r\n    text-shadow: 0px 0px 10px #287aff;\r\n  }\r\n  100% {\r\n    box-shadow: 0 0 0px #287aff;\r\n  }\r\n}\r\n\r\n@keyframes slide-in-left {\r\n  0% {\r\n    transform: translateX(-100%);\r\n  }\r\n\r\n  100% {\r\n    transform: translateX(0%);\r\n  }\r\n}\r\n\r\n$inline-blue: #24b0df;\r\n$inline-red: #db3523;\r\n$inline-orange: #f4a227;\r\n$inline-white: #ededed;\r\n\r\n.inlineOrangeText {\r\n  color: $inline-orange;\r\n  text-shadow: 2px 2px 2px black;\r\n  display: inline;\r\n}\r\n\r\n.inlineBlueText {\r\n  color: $inline-blue;\r\n  text-shadow: 2px 2px 2px black;\r\n  display: inline;\r\n}\r\n\r\n.inlineRedText {\r\n  color: $inline-red;\r\n  text-shadow: 2px 2px 2px black;\r\n  display: inline;\r\n}\r\n\r\n.inlineWhiteText {\r\n  color: $inline-white;\r\n  text-shadow: 2px 2px 2px black;\r\n  display: inline;\r\n}\r\n\r\n.custom-container {\r\n  margin-left: 0;\r\n  margin-right: 0;\r\n  max-width: 100%;\r\n  height: 100%;\r\n}\r\n","@import '../../variables.scss';\r\n\r\n.page {\r\n  @include flex-horizontal;\r\n  color: white;\r\n  min-height: 30vh;\r\n  min-width: 25vw;\r\n  border-radius: 20px;\r\n  &.dark {\r\n    border: 1px solid $light-border;\r\n  }\r\n  &.light {\r\n    border: 1px solid $dark-border;\r\n  }\r\n  h1 {\r\n    color: white;\r\n  }\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
