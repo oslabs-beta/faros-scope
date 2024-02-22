@@ -141,7 +141,8 @@ declare module "@mui/material/styles" {
           900?: string;
         };
       };
-      secondary?: {
+      secondary: {
+        main: string;
         alt?: string;
       };
       neutral: {
