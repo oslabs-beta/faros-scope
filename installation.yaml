@@ -93,7 +93,7 @@ spec:
     - env:
         - name: NODE_ENV
           value: prod
-      image: eddywins/faros:v0.8
+      image: marcoalagna/faros-scope:latest
       name: faros-scope
       ports:
         - containerPort: 3000
