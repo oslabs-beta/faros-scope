@@ -172,7 +172,7 @@ const ListView = ({ metricsObject }: ListViewProps) => {
   };
 
   return (
-    <>
+    <div>
       {dataObj ? (
         <TableContainer>
           <Table
@@ -256,7 +256,7 @@ const ListView = ({ metricsObject }: ListViewProps) => {
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </div>
   );
 };
 

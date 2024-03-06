@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 // ! Review React docs regarding ErrorBoundary
 // TODO: Add error boundary
 // import { ErrorBoundary } from "react-error-boundary";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { GridColDef } from "@mui/x-data-grid";
 
@@ -41,8 +41,6 @@ const columns: GridColDef[] = [
 
 const NodeView = () => {
   const theme = useTheme();
-
-  const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
   const { data, isLoading } = useGetNodeViewQuery(undefined, {});
   console.log(data);
   let podsFormattedData = [];
@@ -70,27 +68,21 @@ const NodeView = () => {
   return (
     <Box className="NodeView" height="100%" width="100%">
       <Box m="1.5rem 2.5rem">
-        {/* <FlexBetween>
-          <Header title="Nodes View" subtitle="View all nodes in the network" />
-        </FlexBetween> */}
-
         <Box
           mt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(1fr)"
-          gridAutoRows="minmax(auto, auto)"
+          display="flex"
+          flexDirection={'column'}
           gap="20px"
-          sx={{
-            "& > div": {
-              gridColumn: isNonMediumScreens ? undefined : "span 12",
-            },
-          }}
         >
           {/* ROW 1 */}
           <Box
             display="grid"
-            gridTemplateColumns="repeat(auto-fill, 200px);"
+            gridTemplateColumns="repeat(auto-fit, 200px);"
             gap="20px"
+            sx={{
+              width: "100%",
+              placeContent: "center",
+            }}
           >
             <StatBox
               title="Total Nodes"

@@ -143,17 +143,9 @@ $inline-white: #ededed;
   display: inline;
 }
 
-// Source mixin
-// @mixin make-container($padding-x: $container-padding-x) {
-//     width: 100%;
-//     padding-right: $padding-x;
-//     padding-left: $padding-x;
-//     margin-right: auto;
-//     margin-left: auto;
-//   }
-
-  .custom-container {
-    margin-left: 0;;
-    margin-right: 0;
-    max-width: 100%;
-  }
+.custom-container {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  height: 100%;
+}

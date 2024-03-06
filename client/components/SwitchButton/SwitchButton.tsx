@@ -1,6 +1,6 @@
 import { useTheme } from '@mui/material';
-import './SwitchButton.scss';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import './SwitchButton.scss';
 
 interface SwitchButtonProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;

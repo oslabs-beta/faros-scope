@@ -71,6 +71,7 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './client/index.html',
+            inject: false
         }),
         new Dotenv(),
         new ReactRefreshWebpackPlugin(),

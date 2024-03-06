@@ -1,66 +1,168 @@
-import { Link } from 'react-router-dom';
-import './Navbar.scss';
-import { SwitchButton } from '../SwitchButton/index';
-import { useContext } from 'react';
-import { ColorModeContext } from '../../theme';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  IconButton,
+  Drawer,
+  Container,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { SwitchButton } from '../SwitchButton';
 import { useTheme } from '@mui/material';
+import { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ColorModeContext } from '../../theme';
+import NavBarLink from './NavBarLink';
+import logo from '../../assets/faros.png';
+import './navbar.scss';
 
-interface NavBarProps {
-    styleOverride?: any;
-    orientation?: string;
-}
+export const NavBar = () => {
+  const colorMode = useContext(ColorModeContext);
+  const changeTheme = () => colorMode.toggleColorMode();
+  const [sidebarShow, setSidebarShow] = useState(false);
+  const location = useLocation();
+  const currLocation = location.pathname;
+  const theme = useTheme();
 
-/**
- * The NavBar component is contstantly rendered at the top of the page. It contains a link to the Faros GitHub repo, and other links to different pages of the app. It also contains a toggle switch to change the theme of the app.
- * @returns ReactNode
- */
-export const NavBar = ({ styleOverride }: NavBarProps) => {
-  const colorMode = useContext(ColorModeContext)
-  const muiTheme = useTheme();
-
-  const changeTheme = () => {
-    colorMode.toggleColorMode();
+  const toggleSidebar = () => {
+    console.log('toggleSidebar');
+    setSidebarShow(!sidebarShow);
   };
 
-  // const centerGrid = () => {
-  //   scrollToSignificantChild();
-  // };
-
   return (
-    <div
-      style={styleOverride}
-      className={`navContainer ${'horizontal'} ${muiTheme.palette.mode}`}
-    >
-      <nav className={`NavBar ${'horizontal'}`}>
-        <a
-          id="App-Name-Header"
-          className={'navLink'}
-          href="https://github.com/oslabs-beta/faros-scope"
+    <>
+      <AppBar id="navbar" position="fixed">
+        <Toolbar
+          id="toolbar"
+          sx={{
+            backgroundColor: 'transparent',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          Faros
-        </a>
-        <div className={'nav-right'}>
-          <Link to={'/'} className={'navLink'}>
-            Home
-          </Link>
-          <Link to={'/list-view'} className={'navLink'}>
-            List View
-          </Link>
-          <Link to={'/node-view'} className={'navLink'}>
-            Node View
-          </Link>
-          <Link to={'/landing'} className={'navLink'}>
-            About
-          </Link>
-          <Link
-            to={'https://github.com/oslabs-beta/faros-scope'}
-            className={'navLink'}
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{
+              marginLeft: '0.5rem',
+              '&:hover': {
+                backgroundColor: '#20232A',
+              },
+            }}
+            onClick={toggleSidebar}
           >
-            Github Repository
-          </Link>
-        </div>
-        <SwitchButton onChange={changeTheme} />
-      </nav>
-    </div>
+            <MenuIcon />
+          </IconButton>
+          <Box display={'flex'} gap={2}>
+            <img height={'50px'} src={logo} alt="logo" />
+            <Typography variant="h1">Faros-Scope</Typography>
+          </Box>
+          <SwitchButton onChange={changeTheme} />
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="persistent"
+        anchor="left"
+        open={sidebarShow}
+        onClose={toggleSidebar}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          '& .MuiPaper-root': {
+            background: 'transparent',
+          },
+          '& .MuiDrawer-paper': {
+            minWidth: '15%',
+            backgroundColor:
+              theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
+          },
+        }}
+      >
+        <IconButton
+          size="large"
+          edge={false}
+          aria-label="menu"
+          sx={{
+            color: theme.palette.mode === 'light' ? '#000000' : '#FFFFFF',
+            width: '100%',
+            borderRadius: '0%',
+            backgroundColor:
+              theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'light' ? '#FFFFFF' : '#20232A',
+            },
+          }}
+          onClick={toggleSidebar}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 1,
+            borderTop: `1px solid ${
+              theme.palette.mode === 'light'
+                ? '#000000'
+                : 'rgba(248, 249, 250, 0.5)'
+            }`,
+            borderBottom: `1px solid ${
+              theme.palette.mode === 'light'
+                ? '#000000'
+                : 'rgba(248, 249, 250, 0.5)'
+            }`,
+            backgroundColor:
+              theme.palette.mode === 'light' ? '#d6d4d4' : '#181a1f',
+          }}
+        >
+          <Container
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '0.5rem',
+            }}
+          >
+            <img 
+              height={'75px'} 
+              src={logo} 
+              alt="logo"
+              style={{
+                filter: 'drop-shadow(0 0 0.5em #61dafbaa)'
+              }}
+            />
+          </Container>
+          <NavBarLink
+            to="/dashboard"
+            currLocation={currLocation}
+            toggleSidebar={toggleSidebar}
+          >
+            Dashboard
+          </NavBarLink>
+          <NavBarLink
+            to="/list-view"
+            currLocation={currLocation}
+            toggleSidebar={toggleSidebar}
+          >
+            List-View
+          </NavBarLink>
+          <NavBarLink
+            to="/node-view"
+            currLocation={currLocation}
+            toggleSidebar={toggleSidebar}
+          >
+            Node-View
+          </NavBarLink>
+        </Box>
+      </Drawer>
+    </>
   );
 };
